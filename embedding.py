@@ -63,11 +63,14 @@ def process_pdf(file_path):
 			xObject = page['/Resources']['/XObject'].get_object()
 			for obj in xObject:
 				if xObject[obj]['/Subtype'] == '/Image':
-					size = (xObject[obj]['/Width'], xObject[obj]['/Height'])
-					data = xObject[obj].get_data()
-					mode = "RGB" if xObject[obj]['/ColorSpace'] == '/DeviceRGB' else "L"
-					img = Image.frombytes(mode, size, data)
-					images.append(img)
+					try:
+						size = (xObject[obj]['/Width'], xObject[obj]['/Height'])
+						data = xObject[obj].get_data()
+						mode = "RGB" if xObject[obj]['/ColorSpace'] == '/DeviceRGB' else "L"
+						img = Image.frombytes(mode, size, data)
+						images.append(img)
+					except Exception as e:
+						print(f"Skipping invalid image data: {e}")
 
 	return text, images
 
