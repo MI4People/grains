@@ -9,6 +9,7 @@ from nltk.tokenize import sent_tokenize
 import nltk
 
 nltk.download('punkt')
+nltk.download('punkt_tab')
 
 s3 = boto3.client('s3')
 bucket_name = 'grains-files'

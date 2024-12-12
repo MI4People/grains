@@ -21,7 +21,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
           pip install boto3 openai PyPDF2 transformers Pillow nltk
-          python -c "import nltk; nltk.download('punkt')"
 
       - name: Run Embedding Script
         env:
