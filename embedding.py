@@ -49,10 +49,19 @@ def create_vector_store(name, metadata=None):
 
 def attach_file_to_vector_store(vector_store_id, file_id, chunking_strategy="auto"):
     endpoint = f"{VECTOR_STORE_ENDPOINT}/{vector_store_id}/files"
-    headers = {"Authorization": f"Bearer {OPENAI_API_KEY}", "Content-Type": "application/json"}
+    headers = {
+        "Authorization": f"Bearer {OPENAI_API_KEY}",
+        "Content-Type": "application/json",
+        "OpenAI-Beta": "assistants=v2"  # Added required header
+    }
     data = {"file_id": file_id, "chunking_strategy": chunking_strategy}
     response = requests.post(endpoint, headers=headers, json=data)
-    response.raise_for_status()
+
+    if response.status_code != 200:
+        print(f"Error attaching file to vector store: {response.status_code}")
+        print(f"Response: {response.text}")
+        response.raise_for_status()
+
     return response.json()
 
 def process_files(bucket_name, vector_store_name, prefix):
