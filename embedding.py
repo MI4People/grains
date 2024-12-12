@@ -54,6 +54,14 @@ def attach_file_to_vector_store(vector_store_id, file_id, chunking_strategy="aut
         "Content-Type": "application/json",
         "OpenAI-Beta": "assistants=v2"  # Added required header
     }
+
+    if chunking_strategy is None:
+        chunking_strategy = {
+            "type": "auto",
+            "max_chunk_size_tokens": 800,
+            "chunk_overlap_tokens": 400
+        }
+
     data = {"file_id": file_id, "chunking_strategy": chunking_strategy}
     response = requests.post(endpoint, headers=headers, json=data)
 
