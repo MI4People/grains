@@ -1,4 +1,4 @@
-name: Manual Vector Store Update
+name: Vector Store Update
 
 on:
   workflow_dispatch:
@@ -19,16 +19,9 @@ jobs:
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
+          pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
           pip install boto3 openai PyPDF2 transformers Pillow nltk
           python -c "import nltk; nltk.download('punkt')"
-
-      - name: Load Environment Variables
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: |
-          echo "Loaded environment variables."
 
       - name: Run Embedding Script
         env:
