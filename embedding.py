@@ -20,17 +20,31 @@ else:
     processed_files = []
 
 def upload_file_to_openai(file_path, purpose="assistants"):
-    headers = {"Authorization": f"Bearer {OPENAI_API_KEY}"}
-    files = {"file": (file_path, open(file_path, "rb")), "purpose": (None, purpose)}
+    headers = {
+        "Authorization": f"Bearer {OPENAI_API_KEY}"
+    }
+    files = {
+        "file": (file_path, open(file_path, "rb")),
+        "purpose": (None, purpose)
+    }
     response = requests.post(FILE_UPLOAD_ENDPOINT, headers=headers, files=files)
     response.raise_for_status()
     return response.json()["id"]
 
 def create_vector_store(name, metadata=None):
-    headers = {"Authorization": f"Bearer {OPENAI_API_KEY}", "Content-Type": "application/json"}
+    headers = {
+        "Authorization": f"Bearer {OPENAI_API_KEY}",
+        "Content-Type": "application/json",
+        "OpenAI-Beta": "assistants=v2"  # Added required header
+    }
     data = {"name": name, "metadata": metadata or {}}
     response = requests.post(VECTOR_STORE_ENDPOINT, headers=headers, json=data)
-    response.raise_for_status()
+
+    if response.status_code != 200:
+        print(f"Error creating vector store: {response.status_code}")
+        print(f"Response: {response.text}")
+        response.raise_for_status()
+
     return response.json()["id"]
 
 def attach_file_to_vector_store(vector_store_id, file_id, chunking_strategy="auto"):
