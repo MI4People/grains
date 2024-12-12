@@ -20,16 +20,13 @@ else:
     processed_files = []
 
 def upload_file_to_openai(file_path, purpose="assistants"):
-    headers = {
-        "Authorization": f"Bearer {OPENAI_API_KEY}"
-    }
-    files = {
-        "file": (file_path, open(file_path, "rb")),
-        "purpose": (None, purpose)
-    }
+    headers = {"Authorization": f"Bearer {OPENAI_API_KEY}"}
+    files = {"file": (file_path, open(file_path, "rb")), "purpose": (None, purpose)}
     response = requests.post(FILE_UPLOAD_ENDPOINT, headers=headers, files=files)
     response.raise_for_status()
-    return response.json()["id"]
+    file_id = response.json()["id"]
+    print(f"File uploaded successfully: {file_id}")
+    return file_id
 
 def create_vector_store(name, metadata=None):
     headers = {
