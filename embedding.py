@@ -1,111 +1,67 @@
+import boto3
+import requests
 import os
 import json
-import boto3
-import openai
-from PyPDF2 import PdfReader
-from transformers import CLIPProcessor, CLIPModel
-from PIL import Image
-from nltk.tokenize import sent_tokenize
-import nltk
 
-nltk.download('punkt')
-nltk.download('punkt_tab')
+OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
+S3_BUCKET_NAME = os.environ["S3_BUCKET_NAME"]
+S3_PREFIX = os.environ["S3_PREFIX"]
+VECTOR_STORE_NAME = os.environ["VECTOR_STORE_NAME"]
+FILE_UPLOAD_ENDPOINT = "https://api.openai.com/v1/files"
+VECTOR_STORE_ENDPOINT = "https://api.openai.com/v1/vector_stores"
 
-s3 = boto3.client('s3')
-bucket_name = 'grains-files'
-prefix = 'house-keeping/'
+s3 = boto3.client("s3")
 
-openai.api_key = os.environ['OPENAI_API_KEY']
-
-clip_model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
-clip_processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
-
-processed_file = 'processed_documents.json'
-if os.path.exists(processed_file):
-	with open(processed_file, 'r') as f:
-		processed_docs = set(json.load(f))
+processed_files_path = "processed_documents.json"
+if os.path.exists(processed_files_path):
+    with open(processed_files_path, "r") as file:
+        processed_files = json.load(file)
 else:
-	processed_docs = set()
+    processed_files = []
 
-vector_store = {}
+def upload_file_to_openai(file_path, purpose="assistants"):
+    headers = {"Authorization": f"Bearer {OPENAI_API_KEY}"}
+    files = {"file": (file_path, open(file_path, "rb")), "purpose": (None, purpose)}
+    response = requests.post(FILE_UPLOAD_ENDPOINT, headers=headers, files=files)
+    response.raise_for_status()
+    return response.json()["id"]
 
-def create_vector_store():
-	print("Vector store initialized.")
+def create_vector_store(name, metadata=None):
+    headers = {"Authorization": f"Bearer {OPENAI_API_KEY}", "Content-Type": "application/json"}
+    data = {"name": name, "metadata": metadata or {}}
+    response = requests.post(VECTOR_STORE_ENDPOINT, headers=headers, json=data)
+    response.raise_for_status()
+    return response.json()["id"]
 
-create_vector_store()
+def attach_file_to_vector_store(vector_store_id, file_id, chunking_strategy="auto"):
+    endpoint = f"{VECTOR_STORE_ENDPOINT}/{vector_store_id}/files"
+    headers = {"Authorization": f"Bearer {OPENAI_API_KEY}", "Content-Type": "application/json"}
+    data = {"file_id": file_id, "chunking_strategy": chunking_strategy}
+    response = requests.post(endpoint, headers=headers, json=data)
+    response.raise_for_status()
+    return response.json()
 
-def chunk_text_semantically(text, max_length=500):
-	sentences = sent_tokenize(text)
-	chunks = []
-	current_chunk = []
+def process_files(bucket_name, vector_store_name, prefix):
+    response = s3.list_objects_v2(Bucket=bucket_name, Prefix=prefix)
+    if "Contents" not in response:
+        return
 
-	for sentence in sentences:
-		if len(" ".join(current_chunk + [sentence])) <= max_length:
-			current_chunk.append(sentence)
-		else:
-			chunks.append(" ".join(current_chunk))
-			current_chunk = [sentence]
+    vector_store_id = create_vector_store(vector_store_name)
 
-	if current_chunk:
-		chunks.append(" ".join(current_chunk))
+    for obj in response["Contents"]:
+        key = obj["Key"]
+        if key in processed_files:
+            continue
 
-	return chunks
+        local_file_name = key.split("/")[-1]
+        s3.download_file(bucket_name, key, local_file_name)
 
-def process_pdf(file_path):
-	reader = PdfReader(file_path)
-	text = ""
-	images = []
+        file_id = upload_file_to_openai(local_file_name)
+        attach_file_to_vector_store(vector_store_id, file_id)
 
-	for page in reader.pages:
-		if page.extract_text():
-			text += page.extract_text() + "\n"
+        processed_files.append(key)
+        with open(processed_files_path, "w") as file:
+            json.dump(processed_files, file)
 
-		if '/XObject' in page.get('/Resources', {}):
-			xObject = page['/Resources']['/XObject'].get_object()
-			for obj in xObject:
-				if xObject[obj]['/Subtype'] == '/Image':
-					try:
-						size = (xObject[obj]['/Width'], xObject[obj]['/Height'])
-						data = xObject[obj].get_data()
-						mode = "RGB" if xObject[obj]['/ColorSpace'] == '/DeviceRGB' else "L"
-						img = Image.frombytes(mode, size, data)
-						images.append(img)
-					except Exception as e:
-						print(f"Skipping invalid image data: {e}")
-
-	return text, images
-
-response = s3.list_objects_v2(Bucket=bucket_name, Prefix=prefix)
-if 'Contents' in response:
-	for obj in response['Contents']:
-		key = obj['Key']
-		if key not in processed_docs and key.endswith('.pdf'):
-			print(f"Processing: {key}")
-
-			local_file = key.replace('/', '_')
-			s3.download_file(bucket_name, key, local_file)
-
-			text, images = process_pdf(local_file)
-
-			chunks = chunk_text_semantically(text)
-			text_embeddings = [
-				openai.Embedding.create(input=chunk, model="text-embedding-3-large")["data"][0]["embedding"]
-				for chunk in chunks
-			]
-
-			image_embeddings = []
-			for image in images:
-				inputs = clip_processor(text=None, images=image, return_tensors="pt", padding=True)
-				outputs = clip_model.get_image_features(**inputs)
-				image_embeddings.append(outputs.detach().numpy().tolist())
-
-			vector_store[key] = {"text_embeddings": text_embeddings, "image_embeddings": image_embeddings}
-
-			processed_docs.add(key)
-
-			os.remove(local_file)
-
-with open(processed_file, 'w') as f:
-	json.dump(list(processed_docs), f)
-
-print("Processing complete. Processed documents updated.")
+if __name__ == "__main__":
+    process_files(S3_BUCKET_NAME, vector_store_name=VECTOR_STORE_NAME, prefix=S3_PREFIX)
