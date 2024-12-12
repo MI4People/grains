@@ -35,7 +35,7 @@ def create_vector_store(name, metadata=None):
     headers = {
         "Authorization": f"Bearer {OPENAI_API_KEY}",
         "Content-Type": "application/json",
-        "OpenAI-Beta": "assistants=v2"  # Added required header
+        "OpenAI-Beta": "assistants=v2"
     }
     data = {"name": name, "metadata": metadata or {}}
     response = requests.post(VECTOR_STORE_ENDPOINT, headers=headers, json=data)
@@ -47,22 +47,15 @@ def create_vector_store(name, metadata=None):
 
     return response.json()["id"]
 
-def attach_file_to_vector_store(vector_store_id, file_id, chunking_strategy=None):
+def attach_file_to_vector_store(vector_store_id, file_id):
     endpoint = f"{VECTOR_STORE_ENDPOINT}/{vector_store_id}/files"
     headers = {
         "Authorization": f"Bearer {OPENAI_API_KEY}",
         "Content-Type": "application/json",
-        "OpenAI-Beta": "assistants=v2"  # Added required header
+        "OpenAI-Beta": "assistants=v2"
     }
 
-    if chunking_strategy is None:
-        chunking_strategy = {
-            "type": "auto",
-            "max_chunk_size_tokens": 800,
-            "chunk_overlap_tokens": 400
-        }
-
-    data = {"file_id": file_id, "chunking_strategy": chunking_strategy}
+    data = {"file_id": file_id}
     response = requests.post(endpoint, headers=headers, json=data)
 
     if response.status_code != 200:
