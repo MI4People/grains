@@ -47,7 +47,7 @@ def create_vector_store(name, metadata=None):
 
     return response.json()["id"]
 
-def attach_file_to_vector_store(vector_store_id, file_id, chunking_strategy="auto"):
+def attach_file_to_vector_store(vector_store_id, file_id, chunking_strategy=None):
     endpoint = f"{VECTOR_STORE_ENDPOINT}/{vector_store_id}/files"
     headers = {
         "Authorization": f"Bearer {OPENAI_API_KEY}",
