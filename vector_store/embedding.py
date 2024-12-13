@@ -7,7 +7,7 @@ import time
 OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
 S3_BUCKET_NAME = os.environ["S3_BUCKET_NAME"]
 S3_PREFIX = os.environ["S3_PREFIX"]
-PROCESSED_FILES_KEY = os.environ.get("PROCESSED_FILES_KEY", "processed-files/processed_documents.json")
+PROCESSED_FILES_KEY = os.environ["PROCESSED_FILES_KEY"]
 VECTOR_STORE_NAME = os.environ["VECTOR_STORE_NAME"]
 FILES_ENDPOINT = "https://api.openai.com/v1/files"
 VECTOR_STORE_ENDPOINT = "https://api.openai.com/v1/vector_stores"
@@ -17,8 +17,6 @@ s3 = boto3.client("s3")
 try:
     response = s3.get_object(Bucket=S3_BUCKET_NAME, Key=PROCESSED_FILES_KEY)
     processed_files = json.loads(response["Body"].read().decode("utf-8"))
-    s3.delete_object(Bucket=S3_BUCKET_NAME, Key=PROCESSED_FILES_KEY)
-    processed_files = {}
 except s3.exceptions.NoSuchKey:
     processed_files = {}
 
