@@ -2,13 +2,14 @@ import boto3
 import requests
 import os
 import json
+import time
 
 OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
 S3_BUCKET_NAME = os.environ["S3_BUCKET_NAME"]
 S3_PREFIX = os.environ["S3_PREFIX"]
-PROCESSED_FILES_KEY = os.environ["PROCESSED_FILES_KEY"]
+PROCESSED_FILES_KEY = os.environ.get("PROCESSED_FILES_KEY", "processed-files/processed_documents.json")
 VECTOR_STORE_NAME = os.environ["VECTOR_STORE_NAME"]
-FILE_UPLOAD_ENDPOINT = "https://api.openai.com/v1/files"
+FILES_ENDPOINT = "https://api.openai.com/v1/files"
 VECTOR_STORE_ENDPOINT = "https://api.openai.com/v1/vector_stores"
 
 s3 = boto3.client("s3")
@@ -16,19 +17,36 @@ s3 = boto3.client("s3")
 try:
     response = s3.get_object(Bucket=S3_BUCKET_NAME, Key=PROCESSED_FILES_KEY)
     processed_files = json.loads(response["Body"].read().decode("utf-8"))
+    s3.delete_object(Bucket=S3_BUCKET_NAME, Key=PROCESSED_FILES_KEY)
+    processed_files = {}
 except s3.exceptions.NoSuchKey:
     processed_files = {}
 
 def upload_file_to_openai(file_path, purpose="assistants"):
     headers = {
         "Authorization": f"Bearer {OPENAI_API_KEY}",
+        "OpenAI-Beta": "assistants=v2"
     }
     files = {"file": (file_path, open(file_path, "rb")), "purpose": (None, purpose)}
-    response = requests.post(FILE_UPLOAD_ENDPOINT, headers=headers, files=files)
+    response = requests.post(FILES_ENDPOINT, headers=headers, files=files)
     response.raise_for_status()
     file_id = response.json()["id"]
     print(f"File uploaded successfully: {file_id}")
     return file_id
+
+def wait_for_file_upload(file_id):
+    headers = {
+        "Authorization": f"Bearer {OPENAI_API_KEY}"
+    }
+    while True:
+        response = requests.get(FILES_ENDPOINT, headers=headers)
+        response.raise_for_status()
+        files = response.json()["data"]
+        if any(f["id"] == file_id for f in files):
+            print(f"File {file_id} is now available.")
+            return
+        print(f"Waiting for file {file_id} to be available...")
+        time.sleep(5)
 
 def list_files_in_vector_store(vector_store_id):
     endpoint = f"{VECTOR_STORE_ENDPOINT}/{vector_store_id}/files"
@@ -119,6 +137,7 @@ def process_files(bucket_name, vector_store_name, prefix):
         s3.download_file(bucket_name, key, local_file_name)
 
         file_id = upload_file_to_openai(local_file_name)
+        wait_for_file_upload(file_id)
         attach_file_to_vector_store(vector_store_id, file_id)
 
         processed_files[key] = file_id
