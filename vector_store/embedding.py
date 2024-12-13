@@ -20,6 +20,7 @@ try:
 except s3.exceptions.NoSuchKey:
     processed_files = {}
 
+
 def upload_file_to_openai(file_path, purpose="assistants"):
     headers = {
         "Authorization": f"Bearer {OPENAI_API_KEY}",
@@ -31,6 +32,7 @@ def upload_file_to_openai(file_path, purpose="assistants"):
     file_id = response.json()["id"]
     print(f"File uploaded successfully: {file_id}")
     return file_id
+
 
 def wait_for_file_upload(file_id):
     headers = {
@@ -46,6 +48,7 @@ def wait_for_file_upload(file_id):
         print(f"Waiting for file {file_id} to be available...")
         time.sleep(5)
 
+
 def list_files_in_vector_store(vector_store_id):
     endpoint = f"{VECTOR_STORE_ENDPOINT}/{vector_store_id}/files"
     headers = {
@@ -57,6 +60,7 @@ def list_files_in_vector_store(vector_store_id):
     response.raise_for_status()
     files = [file["id"] for file in response.json()["data"]]
     return files
+
 
 def get_vector_store_by_name(name):
     headers = {
@@ -71,6 +75,7 @@ def get_vector_store_by_name(name):
             print(f"Found existing vector store ID: {store['id']} for name: {name}")
             return store["id"]
     return None
+
 
 def create_vector_store(name, metadata=None):
     existing_store_id = get_vector_store_by_name(name)
@@ -88,6 +93,7 @@ def create_vector_store(name, metadata=None):
     vector_store_id = response.json()["id"]
     print(f"Created vector store ID: {vector_store_id}")
     return vector_store_id
+
 
 def attach_file_to_vector_store(vector_store_id, file_id):
     existing_files = list_files_in_vector_store(vector_store_id)
@@ -114,9 +120,11 @@ def attach_file_to_vector_store(vector_store_id, file_id):
 
     return response.json()
 
+
 def save_processed_files(bucket_name, key, processed_files):
     s3.put_object(Bucket=bucket_name, Key=key, Body=json.dumps(processed_files))
     print(f"Processed files saved to S3 at {key}")
+
 
 def process_files(bucket_name, vector_store_name, prefix):
     response = s3.list_objects_v2(Bucket=bucket_name, Prefix=prefix)
@@ -140,6 +148,7 @@ def process_files(bucket_name, vector_store_name, prefix):
 
         processed_files[key] = file_id
         save_processed_files(bucket_name, PROCESSED_FILES_KEY, processed_files)
+
 
 if __name__ == "__main__":
     process_files(S3_BUCKET_NAME, vector_store_name=VECTOR_STORE_NAME, prefix=S3_PREFIX)
