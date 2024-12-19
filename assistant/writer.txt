@@ -30,9 +30,10 @@ Here’s how you should approach each task:
 5. Output the Final Content:
    - Return the script in a valid JSON format, including all sections explicitly.
 
-JSON Response Template:
+JSON Response Template Example For Video Tasks:
 ```json
 {
+  "task_type": "Video",
   "title": "Video Title",
   "sections": [
     {
@@ -55,10 +56,11 @@ JSON Response Template:
 }
 ```
 
-Example Output:
+Example Output For Video Tasks:
 For a task on “The Importance of Restaurant Concepts,” your output might look like:
 ```json
 {
+  "task_type": "Video",
   "title": "The Importance of Restaurant Concepts",
   "sections": [
     {
