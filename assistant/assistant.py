@@ -90,7 +90,8 @@ def get_or_create_assistant(name, vector_store_id):
             "instructions": instructions,
             "model": "gpt-4o",
             "tools": [],
-            "temperature": 0.2
+            "temperature": 0.2,
+            "response_format": { "type": "json_object" }
         }
 
         if name in ["writer", "critic"]:
