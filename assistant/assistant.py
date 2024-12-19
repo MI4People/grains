@@ -5,7 +5,7 @@ import time
 OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
 VECTOR_STORE_NAME = os.environ.get("VECTOR_STORE_NAME")
 BASE_URL = "https://api.openai.com/v1/assistants"
-VECTOR_STORE_ENDPOINT = "https://api.openai.com/v1/vector-stores"
+VECTOR_STORE_ENDPOINT = "https://api.openai.com/v1/vector_stores"
 
 
 def load_instructions(name):
