@@ -21,9 +21,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
-      - name: Run Embedding Script
+      - name: Run Assistant Script
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          VECTOR_STORE_NAME: "grains-house-keeping"
         run: |
           cd ./assistant
           python assistant.py
