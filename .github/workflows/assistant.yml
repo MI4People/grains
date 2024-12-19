@@ -1,4 +1,4 @@
-name: Assistant Update
+name: 2- Assistant Update
 
 on:
   workflow_dispatch:

@@ -1,4 +1,4 @@
-name: Vector Store Update
+name: 1- Vector Store Update
 
 on:
   workflow_dispatch:
