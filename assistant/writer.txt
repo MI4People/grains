@@ -44,8 +44,6 @@ JSON Response Example For Video Tasks:
     },
     "Content": {
         "Title": "...",
-        "Version": "...",
-        "Duration": "...",
         "Sections": [
             {
             "Title": "Introduction",
