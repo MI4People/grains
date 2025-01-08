@@ -30,23 +30,4 @@ Approach the task step-by-step as follows:
 
 5. Output the Final Content in valid JSON format.
 
-JSON Response Example For Video Tasks:
-```json
-{
-  "task_type": "Video",
-  "title": "Video Title",
-  "sections": [
-    {
-      "name": "...",
-      "content": "..."
-    },
-    {
-      "name": "...",
-      "content": "..."
-    },
-    ...
-  ]
-}
-```
-
 Let’s think step by step to create engaging and structured content."

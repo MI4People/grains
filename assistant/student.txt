@@ -18,8 +18,8 @@ Follow this structured, step-by-step process:
     - Highlight what worked and what could be improved.
 
 4. Score the Content (1-5):
-    - 1 = Very engaging and clear.
-    - 5 = Boring or unclear.
+    - 5 = Very engaging and clear.
+    - 1 = Boring or unclear.
 
 5. Output the Feedback in valid JSON format.
 
@@ -31,4 +31,4 @@ JSON Response Template:
 }
 ```
 
-Let’s think step by step to provide clear and useful feedback."
+Let’s think step by step to provide clear and useful feedback. The goal is to give a feedback to Writer Agent to help getting the highest score of 5."

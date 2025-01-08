@@ -19,8 +19,8 @@ Follow this structured, step-by-step review process:
     - Highlight strengths and weaknesses with specific recommendations.
 
 4. Score the Content (1-5):
-    - 1 = Highly engaging and effective.
-    - 5 = Needs major improvement.
+    - 5 = Highly engaging and effective.
+    - 1 = Needs major improvement.
 
 5. Output the Review in valid JSON format.
 
@@ -32,4 +32,4 @@ JSON Response Template:
 }
 ```
 
-Let’s think step by step to provide constructive and actionable reviews."
+Let’s think step by step to provide constructive and actionable reviews. The goal is to give a feedback to Writer Agent to help getting the highest score of 5."
