@@ -97,7 +97,10 @@ class OpenAIChatComponent(Component):
             "OpenAI-Beta": "assistants=v2"
         }
         payload = {
-            "assistant_id": assistant_id
+            "assistant_id": assistant_id,
+            "response_format": {
+                "type": "json_object"
+            }
         }
         try:
             response = requests.post(url, headers=headers, json=payload)
@@ -121,10 +124,30 @@ class OpenAIChatComponent(Component):
                 data = response.json()
                 status = data.get("status")
                 if status == "completed":
-                    return data
+                    messages = self.list_messages(api_key, thread_id)
+                    responses = []
+                    for msg in messages:
+                        if msg['role'] == 'assistant':
+                            responses.append(msg['content'][0]['text']['value'])
+                    return responses
                 time.sleep(1)
             except requests.exceptions.RequestException as e:
                 raise RuntimeError(f"Error checking run status: {str(e)}")
+
+    def list_messages(self, api_key, thread_id):
+        url = f"https://api.openai.com/v1/threads/{thread_id}/messages"
+        headers = {
+            "Authorization": f"Bearer {api_key.strip()}",
+            "Content-Type": "application/json",
+            "OpenAI-Beta": "assistants=v2"
+        }
+        try:
+            response = requests.get(url, headers=headers)
+            response.raise_for_status()
+            data = response.json()
+            return data.get("data", [])
+        except requests.exceptions.RequestException as e:
+            raise RuntimeError(f"Error listing messages: {str(e)}")
 
     def build_output(self) -> Message:
         user_message = self.user_input.strip()
@@ -139,8 +162,8 @@ class OpenAIChatComponent(Component):
         thread_id = self.create_thread(api_key)
         self.add_message(api_key, thread_id, user_message)
         run_id = self.run_thread(api_key, thread_id, assistant_id)
-        run_data = self.wait_for_completion(api_key, thread_id, run_id)
+        responses = self.wait_for_completion(api_key, thread_id, run_id)
 
-        result_string = data_to_text("{text}", [run_data], sep="\n")
+        result_string = data_to_text("{text}", responses, sep="\n")
         self.status = result_string
         return Message(text=result_string)
