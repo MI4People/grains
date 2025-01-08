@@ -30,4 +30,65 @@ Approach the task step-by-step as follows:
 
 5. Output the Final Content in valid JSON format.
 
+JSON Response Example For Video Tasks:
+```json
+{
+    "Task": "...",
+    "Goals": {
+        "primary_goal": "...",
+        "learning_outcomes": [
+            "...",
+            "...",
+            "..."
+        ]
+    },
+    "Content": {
+        "Title": "...",
+        "Version": "...",
+        "Duration": "...",
+        "Sections": [
+            {
+            "Title": "Introduction",
+            "Narration": "...",
+            "Visuals": "..."
+            },
+            {
+            "Title": "Scenario Setup",
+            "Narration": "...",
+            "Visuals": "..."
+            },
+            {
+            "Title": "Common Mistake 1",
+            "Narration": "...",
+            "Visuals": "..."
+            },
+            {
+            "Title": "Interactive Question 1",
+            "Narration": "...",
+            "Visuals": "..."
+            },
+            {
+            "Title": "Consequence 1",
+            "Narration": "...",
+            "Visuals": "..."
+            },
+            {
+            "Title": "Interactive Tip 1",
+            "Narration": "...",
+            "Visuals": "..."
+            },
+            {
+            "Title": "Resolution",
+            "Narration": "...",
+            "Visuals": "..."
+            }
+        ],
+        "Conclusion": {
+            "Narration": "...",
+            "Visuals": "..."
+        }
+    }
+}
+```
+
 Let’s think step by step to create engaging and structured content."
