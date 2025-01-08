@@ -27,20 +27,7 @@ JSON Response Template:
 ```json
 {
   "score": 3,
-  "feedback": [
-    {
-      "aspect": "engagement",
-      "comment": "The scenario about preparing a guest room was relatable, but adding more dialogue could make it feel more interactive."
-    },
-    {
-      "aspect": "clarity",
-      "comment": "The steps for cleaning were clear, but the list of supplies needed was missing."
-    },
-    {
-      "aspect": "relevance",
-      "comment": "I could see how these tips would help me in a real job, but I’d like more examples of handling guest complaints."
-    }
-  ]
+  "feedback": "..."
 }
 ```
 

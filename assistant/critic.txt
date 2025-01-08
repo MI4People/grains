@@ -28,24 +28,7 @@ JSON Response Template:
 ```json
 {
   "score": 2,
-  "feedback": [
-    {
-      "section": "introduction",
-      "comment": "The introduction effectively explains the importance of cleanliness, but could benefit from a stronger hook."
-    },
-    {
-      "section": "scenario",
-      "comment": "The scenario is clear, but adding more sensory details (e.g., smells, textures) could enhance realism."
-    },
-    {
-      "section": "interactive_question",
-      "comment": "The question is relevant, but consider adding multiple-choice options for more interactivity."
-    },
-    {
-      "section": "resolution",
-      "comment": "Good conclusion, but an example of a guest complaint could emphasize the consequences of poor housekeeping."
-    }
-  ]
+  "feedback": "..."
 }
 ```
 

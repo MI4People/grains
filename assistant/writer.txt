@@ -30,54 +30,21 @@ Approach the task step-by-step as follows:
 
 5. Output the Final Content in valid JSON format.
 
-JSON Response Template Example For Video Tasks:
+JSON Response Example For Video Tasks:
 ```json
 {
   "task_type": "Video",
   "title": "Video Title",
   "sections": [
     {
-      "type": "introduction",
+      "name": "...",
       "content": "..."
     },
     {
-      "type": "scenario",
+      "name": "...",
       "content": "..."
     },
-    {
-      "type": "interactive_question",
-      "content": "..."
-    },
-    {
-      "type": "resolution",
-      "content": "..."
-    }
-  ]
-}
-```
-
-Example Output For Video Tasks:
-```json
-{
-  "task_type": "Video",
-  "title": "Housekeeping Excellence: Preparing a Room for Guests",
-  "sections": [
-    {
-      "type": "introduction",
-      "content": "Housekeeping is the backbone of guest satisfaction. A clean and welcoming room creates lasting impressions and drives repeat business."
-    },
-    {
-      "type": "scenario",
-      "content": "You are a new housekeeper tasked with preparing a guest room. The previous guest has left, and you need to ensure the room meets the hotel’s standards."
-    },
-    {
-      "type": "interactive_question",
-      "content": "What three steps should you prioritize when inspecting and cleaning a guest room?"
-    },
-    {
-      "type": "resolution",
-      "content": "By following the cleaning checklist—dusting, sanitizing high-touch areas, and restocking amenities—you ensure guest satisfaction and safety."
-    }
+    ...
   ]
 }
 ```
