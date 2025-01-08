@@ -42,9 +42,6 @@ JSON Response Example:
       "Weakness": "..."
     },
     "Suggestions for Improvement": {
-      "Introduction": "...",
-      "Scenario Setup": "...",
-      "Common Mistakes": "...",
       ...
     }
   }
