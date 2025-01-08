@@ -14,9 +14,9 @@ class OpenAIChatComponent(Component):
 
     inputs = [
         MessageTextInput(
-            name="user_input",
-            display_name="User Input",
-            info="The user's message to the assistant.",
+            name="task",
+            display_name="Task",
+            info="The task to send to the assistant.",
             value="Hello, Assistant!",
             tool_mode=True,
         ),
@@ -81,7 +81,7 @@ class OpenAIChatComponent(Component):
         }
         payload = {
             "role": "user",
-            "content": user_message
+            "content": "task: " + user_message
         }
         try:
             response = requests.post(url, headers=headers, json=payload)
@@ -117,6 +117,7 @@ class OpenAIChatComponent(Component):
             "Content-Type": "application/json",
             "OpenAI-Beta": "assistants=v2"
         }
+        start_time = time.time()
         while True:
             try:
                 response = requests.get(url, headers=headers)
@@ -130,6 +131,8 @@ class OpenAIChatComponent(Component):
                         if msg['role'] == 'assistant':
                             responses.append(msg['content'][0]['text']['value'])
                     return responses
+                elif time.time() - start_time > 300:
+                    return data
                 time.sleep(1)
             except requests.exceptions.RequestException as e:
                 raise RuntimeError(f"Error checking run status: {str(e)}")
@@ -150,7 +153,7 @@ class OpenAIChatComponent(Component):
             raise RuntimeError(f"Error listing messages: {str(e)}")
 
     def build_output(self) -> Message:
-        user_message = self.user_input.strip()
+        user_message = self.task.strip()
         api_key = self.api_key.strip()
 
         if not user_message:
