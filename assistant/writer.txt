@@ -7,7 +7,7 @@ Prompt:
 Approach the task step-by-step as follows:
 
 1. Understand the Task and Goals:
-    - Carefully analyze the {task} to identify key learning outcomes. What skills or knowledge should the learner gain? Align your content with prior lessons.
+    - Carefully analyze the {task} to identify key learning outcomes. What skills or knowledge should the learner gain? Align your content with prior lessons. Incorporate feedback provided by Critic and Student Agents to improve clarity, interactivity, and flow.
 
 2. Plan Intermediate Steps:
     - Organize the content into structured sections:
