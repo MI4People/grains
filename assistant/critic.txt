@@ -24,11 +24,30 @@ Follow this structured, step-by-step review process:
 
 5. Output the Review in valid plain JSON format, without any Markdown, special characters, or formatting. Provide raw JSON data only.
 
-JSON Response Template:
+JSON Response Example:
 ```json
 {
   "score": 2,
-  "feedback": "..."
+  "feedback": {
+    "Structure": {
+      "Strength": "...",
+      "Weakness": "..."
+    },
+    "Engagement": {
+      "Strength": "...",
+      "Weakness": "..."
+    },
+    "Clarity": {
+      "Strength": "...",
+      "Weakness": "..."
+    },
+    "Suggestions for Improvement": {
+      "Introduction": "...",
+      "Scenario Setup": "...",
+      "Common Mistakes": "...",
+      ...
+    }
+  }
 }
 ```
 
