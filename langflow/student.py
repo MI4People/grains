@@ -6,8 +6,8 @@ import requests
 import time
 
 class OpenAIChatComponent(Component):
-    display_name = "Chat with Writer"
-    description = "A custom component to interact with the OpenAI Assistant 'writer'."
+    display_name = "Chat with student"
+    description = "A custom component to interact with the OpenAI Student Assistant."
     documentation: str = "http://docs.langflow.org/components/custom"
     icon = "chat"
     name = "OpenAIChatComponent"
@@ -23,21 +23,7 @@ class OpenAIChatComponent(Component):
         MessageTextInput(
             name="writer_output",
             display_name="Writer Output",
-            info="Writer output",
-            value="",
-            tool_mode=True,
-        ),
-        MessageTextInput(
-            name="critic_feedback",
-            display_name="Critic Feedback",
-            info="Feedback from the critic.",
-            value="",
-            tool_mode=True,
-        ),
-        MessageTextInput(
-            name="student_feedback",
-            display_name="Student Feedback",
-            info="Feedback from the student.",
+            info="Writer output to send to student",
             value="",
             tool_mode=True,
         ),
@@ -51,7 +37,7 @@ class OpenAIChatComponent(Component):
     ]
 
     outputs = [
-        Output(display_name="Writer Response", name="writer_response", method="build_output"),
+        Output(display_name="Student Response", name="student_response", method="build_output"),
     ]
 
     def get_assistant_id(self, api_key):
@@ -73,9 +59,9 @@ class OpenAIChatComponent(Component):
             except requests.exceptions.RequestException as e:
                 raise RuntimeError(f"Error fetching assistant ID: {str(e)}")
         for assistant in assistants:
-            if assistant.get("name") == "writer":
+            if assistant.get("name") == "student":
                 return assistant.get("id")
-        raise RuntimeError("Assistant named 'writer' not found.")
+        raise RuntimeError("Assistant named 'student' not found.")
 
     def create_thread(self, api_key):
         url = f"https://api.openai.com/v1/threads"
@@ -93,14 +79,14 @@ class OpenAIChatComponent(Component):
         except requests.exceptions.RequestException as e:
             raise RuntimeError(f"Error creating thread: {str(e)}")
 
-    def add_message(self, api_key, thread_id, user_message, writer_output, critic_feedback, student_feedback):
+    def add_message(self, api_key, thread_id, user_message, writer_output):
         url = f"https://api.openai.com/v1/threads/{thread_id}/messages"
         headers = {
             "Authorization": f"Bearer {api_key.strip()}",
             "Content-Type": "application/json",
             "OpenAI-Beta": "assistants=v2"
         }
-        combined_message = f"Task: {user_message}\n\nPrevious Results:{writer_output}\n\nCritic Feedback: {critic_feedback}\n\nStudent Feedback: {student_feedback}"
+        combined_message = f"Task: {user_message}\nWriter Output: {writer_output}"
         payload = {
             "role": "user",
             "content": [
@@ -158,7 +144,7 @@ class OpenAIChatComponent(Component):
                         if msg['role'] == 'assistant':
                             responses.append(msg['content'][0]['text']['value'])
                     return responses
-                elif time.time() - start_time > 300:  # 5 minutes timeout
+                elif time.time() - start_time > 300:
                     return data
                 time.sleep(1)
             except requests.exceptions.RequestException as e:
@@ -182,8 +168,6 @@ class OpenAIChatComponent(Component):
     def build_output(self) -> Message:
         user_message = self.task.strip()
         writer_output = self.writer_output.strip()
-        critic_feedback = self.critic_feedback.strip()
-        student_feedback = self.student_feedback.strip()
         api_key = self.api_key.strip()
 
         if not user_message:
@@ -193,7 +177,7 @@ class OpenAIChatComponent(Component):
 
         assistant_id = self.get_assistant_id(api_key)
         thread_id = self.create_thread(api_key)
-        self.add_message(api_key, thread_id, user_message, writer_output, critic_feedback, student_feedback)
+        self.add_message(api_key, thread_id, user_message, writer_output)
         run_id = self.run_thread(api_key, thread_id, assistant_id)
         responses = self.wait_for_completion(api_key, thread_id, run_id)
 
