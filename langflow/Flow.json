@@ -466,7 +466,7 @@
           "type": "CustomComponent",
           "id": "CustomComponent-Zkpkl"
         },
-        "selected": false,
+        "selected": true,
         "width": 320,
         "height": 599,
         "dragging": false,
@@ -1849,7 +1849,7 @@
           "type": "CustomComponent",
           "id": "CustomComponent-wTbnq"
         },
-        "selected": true,
+        "selected": false,
         "width": 320,
         "height": 427,
         "dragging": false,
@@ -3155,6 +3155,487 @@
           "y": 6494.298880720222
         },
         "dragging": false
+      },
+      {
+        "id": "CustomComponent-jNmvz",
+        "type": "genericNode",
+        "position": {
+          "x": 1478.0639754623612,
+          "y": 7692.608951271365
+        },
+        "data": {
+          "node": {
+            "template": {
+              "_type": "Component",
+              "api_key": {
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "load_from_db": true,
+                "list": false,
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "api_key",
+                "value": "OpenAI_API_Key",
+                "display_name": "API Key",
+                "advanced": false,
+                "input_types": [
+                  "Message"
+                ],
+                "dynamic": false,
+                "info": "Your OpenAI API key.",
+                "title_case": false,
+                "type": "str",
+                "_input_type": "MessageTextInput"
+              },
+              "code": {
+                "type": "code",
+                "required": true,
+                "placeholder": "",
+                "list": false,
+                "show": true,
+                "multiline": true,
+                "value": "from langflow.custom import Component\nfrom langflow.helpers.data import data_to_text\nfrom langflow.io import MessageTextInput, Output\nfrom langflow.schema import Data, Message\nimport requests\nimport time\n\nclass OpenAIChatComponent(Component):\n    display_name = \"Chat with critic\"\n    description = \"A custom component to interact with the OpenAI Critic Assistant.\"\n    documentation: str = \"http://docs.langflow.org/components/custom\"\n    icon = \"chat\"\n    name = \"OpenAIChatComponent\"\n\n    inputs = [\n        MessageTextInput(\n            name=\"task\",\n            display_name=\"Task\",\n            info=\"The task to send to the assistant.\",\n            value=\"Hello, Assistant!\",\n            tool_mode=True,\n        ),\n        MessageTextInput(\n            name=\"writer_output\",\n            display_name=\"Writer Output\",\n            info=\"Writer output to send to critic\",\n            value=\"\",\n            tool_mode=True,\n        ),\n        MessageTextInput(\n            name=\"api_key\",\n            display_name=\"API Key\",\n            info=\"Your OpenAI API key.\",\n            value=\"\",\n            tool_mode=False,\n        ),\n    ]\n\n    outputs = [\n        Output(display_name=\"Critic Response\", name=\"critic_response\", method=\"build_output\"),\n    ]\n\n    def get_assistant_id(self, api_key):\n        BASE_URL = \"https://api.openai.com/v1/assistants\"\n        headers = {\n            \"Authorization\": f\"Bearer {api_key.strip()}\",\n            \"Content-Type\": \"application/json\",\n            \"OpenAI-Beta\": \"assistants=v2\"\n        }\n        assistants = []\n        url = f\"{BASE_URL}?order=desc&limit=20\"\n        while url:\n            try:\n                response = requests.get(url, headers=headers)\n                response.raise_for_status()\n                data = response.json()\n                assistants.extend(data.get(\"data\", []))\n                url = data.get(\"next\", None)\n            except requests.exceptions.RequestException as e:\n                raise RuntimeError(f\"Error fetching assistant ID: {str(e)}\")\n        for assistant in assistants:\n            if assistant.get(\"name\") == \"critic\":\n                return assistant.get(\"id\")\n        raise RuntimeError(\"Assistant named 'critic' not found.\")\n\n    def create_thread(self, api_key):\n        url = f\"https://api.openai.com/v1/threads\"\n        headers = {\n            \"Authorization\": f\"Bearer {api_key.strip()}\",\n            \"Content-Type\": \"application/json\",\n            \"OpenAI-Beta\": \"assistants=v2\"\n        }\n        payload = {}\n        try:\n            response = requests.post(url, headers=headers, json=payload)\n            response.raise_for_status()\n            data = response.json()\n            return data.get(\"id\")\n        except requests.exceptions.RequestException as e:\n            raise RuntimeError(f\"Error creating thread: {str(e)}\")\n\n    def add_message(self, api_key, thread_id, user_message, writer_output):\n        url = f\"https://api.openai.com/v1/threads/{thread_id}/messages\"\n        headers = {\n            \"Authorization\": f\"Bearer {api_key.strip()}\",\n            \"Content-Type\": \"application/json\",\n            \"OpenAI-Beta\": \"assistants=v2\"\n        }\n        combined_message = f\"Task: {user_message}\\nWriter Output: {writer_output}\"\n        payload = {\n            \"role\": \"user\",\n            \"content\": [\n                {\n                    \"type\": \"text\",\n                    \"text\": combined_message\n                }\n            ]\n        }\n        try:\n            response = requests.post(url, headers=headers, json=payload)\n            response.raise_for_status()\n        except requests.exceptions.RequestException as e:\n            raise RuntimeError(f\"Error adding message to thread: {str(e)}\")\n\n    def run_thread(self, api_key, thread_id, assistant_id):\n        url = f\"https://api.openai.com/v1/threads/{thread_id}/runs\"\n        headers = {\n            \"Authorization\": f\"Bearer {api_key.strip()}\",\n            \"Content-Type\": \"application/json\",\n            \"OpenAI-Beta\": \"assistants=v2\"\n        }\n        payload = {\n            \"assistant_id\": assistant_id,\n            \"response_format\": {\n                \"type\": \"json_object\"\n            }\n        }\n        try:\n            response = requests.post(url, headers=headers, json=payload)\n            response.raise_for_status()\n            data = response.json()\n            return data.get(\"id\")\n        except requests.exceptions.RequestException as e:\n            raise RuntimeError(f\"Error running thread: {str(e)}\")\n\n    def wait_for_completion(self, api_key, thread_id, run_id):\n        url = f\"https://api.openai.com/v1/threads/{thread_id}/runs/{run_id}\"\n        headers = {\n            \"Authorization\": f\"Bearer {api_key.strip()}\",\n            \"Content-Type\": \"application/json\",\n            \"OpenAI-Beta\": \"assistants=v2\"\n        }\n        start_time = time.time()\n        while True:\n            try:\n                response = requests.get(url, headers=headers)\n                response.raise_for_status()\n                data = response.json()\n                status = data.get(\"status\")\n                if status == \"completed\":\n                    messages = self.list_messages(api_key, thread_id)\n                    responses = []\n                    for msg in messages:\n                        if msg['role'] == 'assistant':\n                            responses.append(msg['content'][0]['text']['value'])\n                    return responses\n                elif time.time() - start_time > 300:\n                    return data\n                time.sleep(1)\n            except requests.exceptions.RequestException as e:\n                raise RuntimeError(f\"Error checking run status: {str(e)}\")\n\n    def list_messages(self, api_key, thread_id):\n        url = f\"https://api.openai.com/v1/threads/{thread_id}/messages\"\n        headers = {\n            \"Authorization\": f\"Bearer {api_key.strip()}\",\n            \"Content-Type\": \"application/json\",\n            \"OpenAI-Beta\": \"assistants=v2\"\n        }\n        try:\n            response = requests.get(url, headers=headers)\n            response.raise_for_status()\n            data = response.json()\n            return data.get(\"data\", [])\n        except requests.exceptions.RequestException as e:\n            raise RuntimeError(f\"Error listing messages: {str(e)}\")\n\n    def build_output(self) -> Message:\n        user_message = self.task.strip()\n        writer_output = self.writer_output.strip()\n        api_key = self.api_key.strip()\n\n        if not user_message:\n            raise ValueError(\"User input cannot be empty.\")\n        if not api_key:\n            raise ValueError(\"API key is required.\")\n\n        assistant_id = self.get_assistant_id(api_key)\n        thread_id = self.create_thread(api_key)\n        self.add_message(api_key, thread_id, user_message, writer_output)\n        run_id = self.run_thread(api_key, thread_id, assistant_id)\n        responses = self.wait_for_completion(api_key, thread_id, run_id)\n\n        result_string = data_to_text(\"{text}\", responses, sep=\"\\n\")\n        self.status = result_string\n        return Message(text=result_string)\n",
+                "fileTypes": [],
+                "file_path": "",
+                "password": false,
+                "name": "code",
+                "advanced": true,
+                "dynamic": true,
+                "info": "",
+                "load_from_db": false,
+                "title_case": false
+              },
+              "task": {
+                "tool_mode": true,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "load_from_db": false,
+                "list": false,
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "task",
+                "value": "",
+                "display_name": "Task",
+                "advanced": false,
+                "input_types": [
+                  "Message"
+                ],
+                "dynamic": false,
+                "info": "The task to send to the assistant.",
+                "title_case": false,
+                "type": "str",
+                "_input_type": "MessageTextInput"
+              },
+              "writer_output": {
+                "tool_mode": true,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "load_from_db": false,
+                "list": false,
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "writer_output",
+                "value": "",
+                "display_name": "Writer Output",
+                "advanced": false,
+                "input_types": [
+                  "Message"
+                ],
+                "dynamic": false,
+                "info": "Writer output to send to critic",
+                "title_case": false,
+                "type": "str",
+                "_input_type": "MessageTextInput"
+              }
+            },
+            "description": "A custom component to interact with the OpenAI Critic Assistant.",
+            "icon": "chat",
+            "base_classes": [
+              "Message"
+            ],
+            "display_name": "Critic",
+            "documentation": "http://docs.langflow.org/components/custom",
+            "custom_fields": {},
+            "output_types": [],
+            "pinned": false,
+            "conditional_paths": [],
+            "frozen": false,
+            "outputs": [
+              {
+                "types": [
+                  "Message"
+                ],
+                "selected": "Message",
+                "name": "critic_response",
+                "display_name": "Critic Response",
+                "method": "build_output",
+                "value": "__UNDEFINED__",
+                "cache": true
+              }
+            ],
+            "field_order": [
+              "task",
+              "writer_output",
+              "api_key"
+            ],
+            "beta": false,
+            "legacy": false,
+            "edited": true,
+            "metadata": {},
+            "tool_mode": false,
+            "lf_version": "1.1.1"
+          },
+          "type": "CustomComponent",
+          "id": "CustomComponent-jNmvz"
+        },
+        "selected": false,
+        "width": 320,
+        "height": 427,
+        "positionAbsolute": {
+          "x": 1478.0639754623612,
+          "y": 7692.608951271365
+        },
+        "dragging": false
+      },
+      {
+        "id": "CustomComponent-jw3fU",
+        "type": "genericNode",
+        "position": {
+          "x": 1467.291571801707,
+          "y": 8241.966661873634
+        },
+        "data": {
+          "node": {
+            "template": {
+              "_type": "Component",
+              "api_key": {
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "load_from_db": true,
+                "list": false,
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "api_key",
+                "value": "OpenAI_API_Key",
+                "display_name": "API Key",
+                "advanced": false,
+                "input_types": [
+                  "Message"
+                ],
+                "dynamic": false,
+                "info": "Your OpenAI API key.",
+                "title_case": false,
+                "type": "str",
+                "_input_type": "MessageTextInput"
+              },
+              "code": {
+                "type": "code",
+                "required": true,
+                "placeholder": "",
+                "list": false,
+                "show": true,
+                "multiline": true,
+                "value": "from langflow.custom import Component\nfrom langflow.helpers.data import data_to_text\nfrom langflow.io import MessageTextInput, Output\nfrom langflow.schema import Data, Message\nimport requests\nimport time\n\nclass OpenAIChatComponent(Component):\n    display_name = \"Chat with student\"\n    description = \"A custom component to interact with the OpenAI Student Assistant.\"\n    documentation: str = \"http://docs.langflow.org/components/custom\"\n    icon = \"chat\"\n    name = \"OpenAIChatComponent\"\n\n    inputs = [\n        MessageTextInput(\n            name=\"task\",\n            display_name=\"Task\",\n            info=\"The task to send to the assistant.\",\n            value=\"Hello, Assistant!\",\n            tool_mode=True,\n        ),\n        MessageTextInput(\n            name=\"writer_output\",\n            display_name=\"Writer Output\",\n            info=\"Writer output to send to student\",\n            value=\"\",\n            tool_mode=True,\n        ),\n        MessageTextInput(\n            name=\"api_key\",\n            display_name=\"API Key\",\n            info=\"Your OpenAI API key.\",\n            value=\"\",\n            tool_mode=False,\n        ),\n    ]\n\n    outputs = [\n        Output(display_name=\"Student Response\", name=\"student_response\", method=\"build_output\"),\n    ]\n\n    def get_assistant_id(self, api_key):\n        BASE_URL = \"https://api.openai.com/v1/assistants\"\n        headers = {\n            \"Authorization\": f\"Bearer {api_key.strip()}\",\n            \"Content-Type\": \"application/json\",\n            \"OpenAI-Beta\": \"assistants=v2\"\n        }\n        assistants = []\n        url = f\"{BASE_URL}?order=desc&limit=20\"\n        while url:\n            try:\n                response = requests.get(url, headers=headers)\n                response.raise_for_status()\n                data = response.json()\n                assistants.extend(data.get(\"data\", []))\n                url = data.get(\"next\", None)\n            except requests.exceptions.RequestException as e:\n                raise RuntimeError(f\"Error fetching assistant ID: {str(e)}\")\n        for assistant in assistants:\n            if assistant.get(\"name\") == \"student\":\n                return assistant.get(\"id\")\n        raise RuntimeError(\"Assistant named 'student' not found.\")\n\n    def create_thread(self, api_key):\n        url = f\"https://api.openai.com/v1/threads\"\n        headers = {\n            \"Authorization\": f\"Bearer {api_key.strip()}\",\n            \"Content-Type\": \"application/json\",\n            \"OpenAI-Beta\": \"assistants=v2\"\n        }\n        payload = {}\n        try:\n            response = requests.post(url, headers=headers, json=payload)\n            response.raise_for_status()\n            data = response.json()\n            return data.get(\"id\")\n        except requests.exceptions.RequestException as e:\n            raise RuntimeError(f\"Error creating thread: {str(e)}\")\n\n    def add_message(self, api_key, thread_id, user_message, writer_output):\n        url = f\"https://api.openai.com/v1/threads/{thread_id}/messages\"\n        headers = {\n            \"Authorization\": f\"Bearer {api_key.strip()}\",\n            \"Content-Type\": \"application/json\",\n            \"OpenAI-Beta\": \"assistants=v2\"\n        }\n        combined_message = f\"Task: {user_message}\\nWriter Output: {writer_output}\"\n        payload = {\n            \"role\": \"user\",\n            \"content\": [\n                {\n                    \"type\": \"text\",\n                    \"text\": combined_message\n                }\n            ]\n        }\n        try:\n            response = requests.post(url, headers=headers, json=payload)\n            response.raise_for_status()\n        except requests.exceptions.RequestException as e:\n            raise RuntimeError(f\"Error adding message to thread: {str(e)}\")\n\n    def run_thread(self, api_key, thread_id, assistant_id):\n        url = f\"https://api.openai.com/v1/threads/{thread_id}/runs\"\n        headers = {\n            \"Authorization\": f\"Bearer {api_key.strip()}\",\n            \"Content-Type\": \"application/json\",\n            \"OpenAI-Beta\": \"assistants=v2\"\n        }\n        payload = {\n            \"assistant_id\": assistant_id,\n            \"response_format\": {\n                \"type\": \"json_object\"\n            }\n        }\n        try:\n            response = requests.post(url, headers=headers, json=payload)\n            response.raise_for_status()\n            data = response.json()\n            return data.get(\"id\")\n        except requests.exceptions.RequestException as e:\n            raise RuntimeError(f\"Error running thread: {str(e)}\")\n\n    def wait_for_completion(self, api_key, thread_id, run_id):\n        url = f\"https://api.openai.com/v1/threads/{thread_id}/runs/{run_id}\"\n        headers = {\n            \"Authorization\": f\"Bearer {api_key.strip()}\",\n            \"Content-Type\": \"application/json\",\n            \"OpenAI-Beta\": \"assistants=v2\"\n        }\n        start_time = time.time()\n        while True:\n            try:\n                response = requests.get(url, headers=headers)\n                response.raise_for_status()\n                data = response.json()\n                status = data.get(\"status\")\n                if status == \"completed\":\n                    messages = self.list_messages(api_key, thread_id)\n                    responses = []\n                    for msg in messages:\n                        if msg['role'] == 'assistant':\n                            responses.append(msg['content'][0]['text']['value'])\n                    return responses\n                elif time.time() - start_time > 300:\n                    return data\n                time.sleep(1)\n            except requests.exceptions.RequestException as e:\n                raise RuntimeError(f\"Error checking run status: {str(e)}\")\n\n    def list_messages(self, api_key, thread_id):\n        url = f\"https://api.openai.com/v1/threads/{thread_id}/messages\"\n        headers = {\n            \"Authorization\": f\"Bearer {api_key.strip()}\",\n            \"Content-Type\": \"application/json\",\n            \"OpenAI-Beta\": \"assistants=v2\"\n        }\n        try:\n            response = requests.get(url, headers=headers)\n            response.raise_for_status()\n            data = response.json()\n            return data.get(\"data\", [])\n        except requests.exceptions.RequestException as e:\n            raise RuntimeError(f\"Error listing messages: {str(e)}\")\n\n    def build_output(self) -> Message:\n        user_message = self.task.strip()\n        writer_output = self.writer_output.strip()\n        api_key = self.api_key.strip()\n\n        if not user_message:\n            raise ValueError(\"User input cannot be empty.\")\n        if not api_key:\n            raise ValueError(\"API key is required.\")\n\n        assistant_id = self.get_assistant_id(api_key)\n        thread_id = self.create_thread(api_key)\n        self.add_message(api_key, thread_id, user_message, writer_output)\n        run_id = self.run_thread(api_key, thread_id, assistant_id)\n        responses = self.wait_for_completion(api_key, thread_id, run_id)\n\n        result_string = data_to_text(\"{text}\", responses, sep=\"\\n\")\n        self.status = result_string\n        return Message(text=result_string)\n",
+                "fileTypes": [],
+                "file_path": "",
+                "password": false,
+                "name": "code",
+                "advanced": true,
+                "dynamic": true,
+                "info": "",
+                "load_from_db": false,
+                "title_case": false
+              },
+              "task": {
+                "tool_mode": true,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "load_from_db": false,
+                "list": false,
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "task",
+                "value": "",
+                "display_name": "Task",
+                "advanced": false,
+                "input_types": [
+                  "Message"
+                ],
+                "dynamic": false,
+                "info": "The task to send to the assistant.",
+                "title_case": false,
+                "type": "str",
+                "_input_type": "MessageTextInput"
+              },
+              "writer_output": {
+                "tool_mode": true,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "load_from_db": false,
+                "list": false,
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "writer_output",
+                "value": "",
+                "display_name": "Writer Output",
+                "advanced": false,
+                "input_types": [
+                  "Message"
+                ],
+                "dynamic": false,
+                "info": "Writer output to send to student",
+                "title_case": false,
+                "type": "str",
+                "_input_type": "MessageTextInput"
+              }
+            },
+            "description": "A custom component to interact with the OpenAI Student Assistant.",
+            "icon": "chat",
+            "base_classes": [
+              "Message"
+            ],
+            "display_name": "Student",
+            "documentation": "http://docs.langflow.org/components/custom",
+            "custom_fields": {},
+            "output_types": [],
+            "pinned": false,
+            "conditional_paths": [],
+            "frozen": false,
+            "outputs": [
+              {
+                "types": [
+                  "Message"
+                ],
+                "selected": "Message",
+                "name": "student_response",
+                "display_name": "Student Response",
+                "method": "build_output",
+                "value": "__UNDEFINED__",
+                "cache": true
+              }
+            ],
+            "field_order": [
+              "task",
+              "writer_output",
+              "api_key"
+            ],
+            "beta": false,
+            "legacy": false,
+            "edited": true,
+            "metadata": {},
+            "tool_mode": false,
+            "lf_version": "1.1.1"
+          },
+          "type": "CustomComponent",
+          "id": "CustomComponent-jw3fU"
+        },
+        "selected": false,
+        "width": 320,
+        "height": 427,
+        "positionAbsolute": {
+          "x": 1467.291571801707,
+          "y": 8241.966661873634
+        },
+        "dragging": false
+      },
+      {
+        "id": "CustomComponent-mCS2S",
+        "type": "genericNode",
+        "position": {
+          "x": 2041.8605899759082,
+          "y": 7823.638033272625
+        },
+        "data": {
+          "node": {
+            "template": {
+              "_type": "Component",
+              "api_key": {
+                "tool_mode": false,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "load_from_db": true,
+                "list": false,
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "api_key",
+                "value": "OpenAI_API_Key",
+                "display_name": "API Key",
+                "advanced": false,
+                "input_types": [
+                  "Message"
+                ],
+                "dynamic": false,
+                "info": "Your OpenAI API key.",
+                "title_case": false,
+                "type": "str",
+                "_input_type": "MessageTextInput"
+              },
+              "code": {
+                "type": "code",
+                "required": true,
+                "placeholder": "",
+                "list": false,
+                "show": true,
+                "multiline": true,
+                "value": "from langflow.custom import Component\nfrom langflow.helpers.data import data_to_text\nfrom langflow.io import MessageTextInput, Output\nfrom langflow.schema import Data, Message\nimport requests\nimport time\n\nclass OpenAIChatComponent(Component):\n    display_name = \"Chat with Writer\"\n    description = \"A custom component to interact with the OpenAI Assistant 'writer'.\"\n    documentation: str = \"http://docs.langflow.org/components/custom\"\n    icon = \"chat\"\n    name = \"OpenAIChatComponent\"\n\n    inputs = [\n        MessageTextInput(\n            name=\"task\",\n            display_name=\"Task\",\n            info=\"The task to send to the assistant.\",\n            value=\"Hello, Assistant!\",\n            tool_mode=True,\n        ),\n        MessageTextInput(\n            name=\"writer_output\",\n            display_name=\"Writer Output\",\n            info=\"Writer output\",\n            value=\"\",\n            tool_mode=True,\n        ),\n        MessageTextInput(\n            name=\"critic_feedback\",\n            display_name=\"Critic Feedback\",\n            info=\"Feedback from the critic.\",\n            value=\"\",\n            tool_mode=True,\n        ),\n        MessageTextInput(\n            name=\"student_feedback\",\n            display_name=\"Student Feedback\",\n            info=\"Feedback from the student.\",\n            value=\"\",\n            tool_mode=True,\n        ),\n        MessageTextInput(\n            name=\"api_key\",\n            display_name=\"API Key\",\n            info=\"Your OpenAI API key.\",\n            value=\"\",\n            tool_mode=False,\n        ),\n    ]\n\n    outputs = [\n        Output(display_name=\"Writer Response\", name=\"writer_response\", method=\"build_output\"),\n    ]\n\n    def get_assistant_id(self, api_key):\n        BASE_URL = \"https://api.openai.com/v1/assistants\"\n        headers = {\n            \"Authorization\": f\"Bearer {api_key.strip()}\",\n            \"Content-Type\": \"application/json\",\n            \"OpenAI-Beta\": \"assistants=v2\"\n        }\n        assistants = []\n        url = f\"{BASE_URL}?order=desc&limit=20\"\n        while url:\n            try:\n                response = requests.get(url, headers=headers)\n                response.raise_for_status()\n                data = response.json()\n                assistants.extend(data.get(\"data\", []))\n                url = data.get(\"next\", None)\n            except requests.exceptions.RequestException as e:\n                raise RuntimeError(f\"Error fetching assistant ID: {str(e)}\")\n        for assistant in assistants:\n            if assistant.get(\"name\") == \"writer\":\n                return assistant.get(\"id\")\n        raise RuntimeError(\"Assistant named 'writer' not found.\")\n\n    def create_thread(self, api_key):\n        url = f\"https://api.openai.com/v1/threads\"\n        headers = {\n            \"Authorization\": f\"Bearer {api_key.strip()}\",\n            \"Content-Type\": \"application/json\",\n            \"OpenAI-Beta\": \"assistants=v2\"\n        }\n        payload = {}\n        try:\n            response = requests.post(url, headers=headers, json=payload)\n            response.raise_for_status()\n            data = response.json()\n            return data.get(\"id\")\n        except requests.exceptions.RequestException as e:\n            raise RuntimeError(f\"Error creating thread: {str(e)}\")\n\n    def add_message(self, api_key, thread_id, user_message, writer_output, critic_feedback, student_feedback):\n        url = f\"https://api.openai.com/v1/threads/{thread_id}/messages\"\n        headers = {\n            \"Authorization\": f\"Bearer {api_key.strip()}\",\n            \"Content-Type\": \"application/json\",\n            \"OpenAI-Beta\": \"assistants=v2\"\n        }\n        combined_message = f\"Task: {user_message}\\n\\nPrevious Results:{writer_output}\\n\\nCritic Feedback: {critic_feedback}\\n\\nStudent Feedback: {student_feedback}\"\n        payload = {\n            \"role\": \"user\",\n            \"content\": [\n                {\n                    \"type\": \"text\",\n                    \"text\": combined_message\n                }\n            ]\n        }\n        try:\n            response = requests.post(url, headers=headers, json=payload)\n            response.raise_for_status()\n        except requests.exceptions.RequestException as e:\n            raise RuntimeError(f\"Error adding message to thread: {str(e)}\")\n\n    def run_thread(self, api_key, thread_id, assistant_id):\n        url = f\"https://api.openai.com/v1/threads/{thread_id}/runs\"\n        headers = {\n            \"Authorization\": f\"Bearer {api_key.strip()}\",\n            \"Content-Type\": \"application/json\",\n            \"OpenAI-Beta\": \"assistants=v2\"\n        }\n        payload = {\n            \"assistant_id\": assistant_id,\n            \"response_format\": {\n                \"type\": \"json_object\"\n            }\n        }\n        try:\n            response = requests.post(url, headers=headers, json=payload)\n            response.raise_for_status()\n            data = response.json()\n            return data.get(\"id\")\n        except requests.exceptions.RequestException as e:\n            raise RuntimeError(f\"Error running thread: {str(e)}\")\n\n    def wait_for_completion(self, api_key, thread_id, run_id):\n        url = f\"https://api.openai.com/v1/threads/{thread_id}/runs/{run_id}\"\n        headers = {\n            \"Authorization\": f\"Bearer {api_key.strip()}\",\n            \"Content-Type\": \"application/json\",\n            \"OpenAI-Beta\": \"assistants=v2\"\n        }\n        start_time = time.time()\n        while True:\n            try:\n                response = requests.get(url, headers=headers)\n                response.raise_for_status()\n                data = response.json()\n                status = data.get(\"status\")\n                if status == \"completed\":\n                    messages = self.list_messages(api_key, thread_id)\n                    responses = []\n                    for msg in messages:\n                        if msg['role'] == 'assistant':\n                            responses.append(msg['content'][0]['text']['value'])\n                    return responses\n                elif time.time() - start_time > 300:  # 5 minutes timeout\n                    return data\n                time.sleep(1)\n            except requests.exceptions.RequestException as e:\n                raise RuntimeError(f\"Error checking run status: {str(e)}\")\n\n    def list_messages(self, api_key, thread_id):\n        url = f\"https://api.openai.com/v1/threads/{thread_id}/messages\"\n        headers = {\n            \"Authorization\": f\"Bearer {api_key.strip()}\",\n            \"Content-Type\": \"application/json\",\n            \"OpenAI-Beta\": \"assistants=v2\"\n        }\n        try:\n            response = requests.get(url, headers=headers)\n            response.raise_for_status()\n            data = response.json()\n            return data.get(\"data\", [])\n        except requests.exceptions.RequestException as e:\n            raise RuntimeError(f\"Error listing messages: {str(e)}\")\n\n    def build_output(self) -> Message:\n        user_message = self.task.strip()\n        writer_output = self.writer_output.strip()\n        critic_feedback = self.critic_feedback.strip()\n        student_feedback = self.student_feedback.strip()\n        api_key = self.api_key.strip()\n\n        if not user_message:\n            raise ValueError(\"User input cannot be empty.\")\n        if not api_key:\n            raise ValueError(\"API key is required.\")\n\n        assistant_id = self.get_assistant_id(api_key)\n        thread_id = self.create_thread(api_key)\n        self.add_message(api_key, thread_id, user_message, writer_output, critic_feedback, student_feedback)\n        run_id = self.run_thread(api_key, thread_id, assistant_id)\n        responses = self.wait_for_completion(api_key, thread_id, run_id)\n\n        result_string = data_to_text(\"{text}\", responses, sep=\"\\n\")\n        self.status = result_string\n        return Message(text=result_string)\n",
+                "fileTypes": [],
+                "file_path": "",
+                "password": false,
+                "name": "code",
+                "advanced": true,
+                "dynamic": true,
+                "info": "",
+                "load_from_db": false,
+                "title_case": false
+              },
+              "critic_feedback": {
+                "tool_mode": true,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "load_from_db": false,
+                "list": false,
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "critic_feedback",
+                "value": "",
+                "display_name": "Critic Feedback",
+                "advanced": false,
+                "input_types": [
+                  "Message"
+                ],
+                "dynamic": false,
+                "info": "Feedback from the critic.",
+                "title_case": false,
+                "type": "str",
+                "_input_type": "MessageTextInput"
+              },
+              "student_feedback": {
+                "tool_mode": true,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "load_from_db": false,
+                "list": false,
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "student_feedback",
+                "value": "",
+                "display_name": "Student Feedback",
+                "advanced": false,
+                "input_types": [
+                  "Message"
+                ],
+                "dynamic": false,
+                "info": "Feedback from the student.",
+                "title_case": false,
+                "type": "str",
+                "_input_type": "MessageTextInput"
+              },
+              "task": {
+                "tool_mode": true,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "load_from_db": false,
+                "list": false,
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "task",
+                "value": "",
+                "display_name": "Task",
+                "advanced": false,
+                "input_types": [
+                  "Message"
+                ],
+                "dynamic": false,
+                "info": "The task to send to the assistant.",
+                "title_case": false,
+                "type": "str",
+                "_input_type": "MessageTextInput"
+              },
+              "writer_output": {
+                "tool_mode": true,
+                "trace_as_input": true,
+                "trace_as_metadata": true,
+                "load_from_db": false,
+                "list": false,
+                "required": false,
+                "placeholder": "",
+                "show": true,
+                "name": "writer_output",
+                "value": "",
+                "display_name": "Writer Output",
+                "advanced": false,
+                "input_types": [
+                  "Message"
+                ],
+                "dynamic": false,
+                "info": "Writer output",
+                "title_case": false,
+                "type": "str",
+                "_input_type": "MessageTextInput"
+              }
+            },
+            "description": "A custom component to interact with the OpenAI Assistant 'writer'.",
+            "icon": "chat",
+            "base_classes": [
+              "Message"
+            ],
+            "display_name": "Writer",
+            "documentation": "http://docs.langflow.org/components/custom",
+            "custom_fields": {},
+            "output_types": [],
+            "pinned": false,
+            "conditional_paths": [],
+            "frozen": false,
+            "outputs": [
+              {
+                "types": [
+                  "Message"
+                ],
+                "selected": "Message",
+                "name": "writer_response",
+                "display_name": "Writer Response",
+                "method": "build_output",
+                "value": "__UNDEFINED__",
+                "cache": true
+              }
+            ],
+            "field_order": [
+              "task",
+              "writer_output",
+              "critic_feedback",
+              "student_feedback",
+              "api_key"
+            ],
+            "beta": false,
+            "legacy": false,
+            "edited": true,
+            "metadata": {},
+            "tool_mode": false,
+            "lf_version": "1.1.1"
+          },
+          "type": "CustomComponent",
+          "id": "CustomComponent-mCS2S"
+        },
+        "selected": false,
+        "width": 320,
+        "height": 599,
+        "positionAbsolute": {
+          "x": 2041.8605899759082,
+          "y": 7823.638033272625
+        },
+        "dragging": false
       }
     ],
     "edges": [
@@ -3184,7 +3665,7 @@
         "id": "reactflow__edge-ChatInput-J4eBJ{œdataTypeœ:œChatInputœ,œidœ:œChatInput-J4eBJœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-l19U3{œfieldNameœ:œtaskœ,œidœ:œCustomComponent-l19U3œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "animated": false,
-        "className": "not-running"
+        "className": "ran"
       },
       {
         "source": "ChatInput-J4eBJ",
@@ -3240,7 +3721,7 @@
         "id": "reactflow__edge-CustomComponent-Zkpkl{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-Zkpklœ,œnameœ:œwriter_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-l19U3{œfieldNameœ:œwriter_outputœ,œidœ:œCustomComponent-l19U3œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "selected": false,
         "animated": false,
-        "className": "not-running"
+        "className": "ran"
       },
       {
         "source": "ChatInput-J4eBJ",
@@ -3267,7 +3748,7 @@
         },
         "id": "reactflow__edge-ChatInput-J4eBJ{œdataTypeœ:œChatInputœ,œidœ:œChatInput-J4eBJœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-kI6Oh{œfieldNameœ:œtaskœ,œidœ:œCustomComponent-kI6Ohœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running",
+        "className": "ran",
         "selected": false
       },
       {
@@ -3295,7 +3776,8 @@
         },
         "id": "reactflow__edge-CustomComponent-Zkpkl{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-Zkpklœ,œnameœ:œwriter_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-kI6Oh{œfieldNameœ:œwriter_outputœ,œidœ:œCustomComponent-kI6Ohœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "ran",
+        "selected": false
       },
       {
         "source": "CustomComponent-Zkpkl",
@@ -3322,7 +3804,8 @@
         },
         "id": "reactflow__edge-CustomComponent-Zkpkl{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-Zkpklœ,œnameœ:œwriter_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-jOMwv{œfieldNameœ:œwriter_outputœ,œidœ:œCustomComponent-jOMwvœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "CustomComponent-l19U3",
@@ -3348,8 +3831,9 @@
           }
         },
         "id": "reactflow__edge-CustomComponent-l19U3{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-l19U3œ,œnameœ:œcritic_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-jOMwv{œfieldNameœ:œcritic_feedbackœ,œidœ:œCustomComponent-jOMwvœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "animated": false,
-        "className": "not-running"
+        "animated": true,
+        "className": "running",
+        "selected": false
       },
       {
         "source": "CustomComponent-kI6Oh",
@@ -3375,8 +3859,9 @@
           }
         },
         "id": "reactflow__edge-CustomComponent-kI6Oh{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-kI6Ohœ,œnameœ:œstudent_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-jOMwv{œfieldNameœ:œstudent_feedbackœ,œidœ:œCustomComponent-jOMwvœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "animated": false,
-        "className": "not-running"
+        "animated": true,
+        "className": "running",
+        "selected": false
       },
       {
         "source": "ChatInput-J4eBJ",
@@ -3403,7 +3888,8 @@
         },
         "id": "reactflow__edge-ChatInput-J4eBJ{œdataTypeœ:œChatInputœ,œidœ:œChatInput-J4eBJœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-jOMwv{œfieldNameœ:œtaskœ,œidœ:œCustomComponent-jOMwvœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "CustomComponent-jOMwv",
@@ -3430,7 +3916,8 @@
         },
         "id": "reactflow__edge-CustomComponent-jOMwv{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-jOMwvœ,œnameœ:œwriter_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-6fhsN{œfieldNameœ:œwriter_outputœ,œidœ:œCustomComponent-6fhsNœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "CustomComponent-jOMwv",
@@ -3457,7 +3944,8 @@
         },
         "id": "reactflow__edge-CustomComponent-jOMwv{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-jOMwvœ,œnameœ:œwriter_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-o1s4D{œfieldNameœ:œwriter_outputœ,œidœ:œCustomComponent-o1s4Dœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "ChatInput-J4eBJ",
@@ -3484,7 +3972,8 @@
         },
         "id": "reactflow__edge-ChatInput-J4eBJ{œdataTypeœ:œChatInputœ,œidœ:œChatInput-J4eBJœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-6fhsN{œfieldNameœ:œtaskœ,œidœ:œCustomComponent-6fhsNœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "ChatInput-J4eBJ",
@@ -3511,7 +4000,8 @@
         },
         "id": "reactflow__edge-ChatInput-J4eBJ{œdataTypeœ:œChatInputœ,œidœ:œChatInput-J4eBJœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-o1s4D{œfieldNameœ:œtaskœ,œidœ:œCustomComponent-o1s4Dœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "ChatInput-J4eBJ",
@@ -3538,7 +4028,8 @@
         },
         "id": "reactflow__edge-ChatInput-J4eBJ{œdataTypeœ:œChatInputœ,œidœ:œChatInput-J4eBJœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-wTbnq{œfieldNameœ:œtaskœ,œidœ:œCustomComponent-wTbnqœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "ChatInput-J4eBJ",
@@ -3565,7 +4056,8 @@
         },
         "id": "reactflow__edge-ChatInput-J4eBJ{œdataTypeœ:œChatInputœ,œidœ:œChatInput-J4eBJœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-1EmHw{œfieldNameœ:œtaskœ,œidœ:œCustomComponent-1EmHwœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "ChatInput-J4eBJ",
@@ -3592,7 +4084,8 @@
         },
         "id": "reactflow__edge-ChatInput-J4eBJ{œdataTypeœ:œChatInputœ,œidœ:œChatInput-J4eBJœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-Sg1c5{œfieldNameœ:œtaskœ,œidœ:œCustomComponent-Sg1c5œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "ChatInput-J4eBJ",
@@ -3619,7 +4112,8 @@
         },
         "id": "reactflow__edge-ChatInput-J4eBJ{œdataTypeœ:œChatInputœ,œidœ:œChatInput-J4eBJœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-zaBOf{œfieldNameœ:œtaskœ,œidœ:œCustomComponent-zaBOfœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "ChatInput-J4eBJ",
@@ -3646,7 +4140,8 @@
         },
         "id": "reactflow__edge-ChatInput-J4eBJ{œdataTypeœ:œChatInputœ,œidœ:œChatInput-J4eBJœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-aV3Dn{œfieldNameœ:œtaskœ,œidœ:œCustomComponent-aV3Dnœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "ChatInput-J4eBJ",
@@ -3673,7 +4168,8 @@
         },
         "id": "reactflow__edge-ChatInput-J4eBJ{œdataTypeœ:œChatInputœ,œidœ:œChatInput-J4eBJœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-LqqgF{œfieldNameœ:œtaskœ,œidœ:œCustomComponent-LqqgFœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "CustomComponent-6fhsN",
@@ -3700,7 +4196,8 @@
         },
         "id": "reactflow__edge-CustomComponent-6fhsN{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-6fhsNœ,œnameœ:œcritic_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-o0DeM{œfieldNameœ:œcritic_feedbackœ,œidœ:œCustomComponent-o0DeMœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "CustomComponent-o1s4D",
@@ -3727,7 +4224,8 @@
         },
         "id": "reactflow__edge-CustomComponent-o1s4D{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-o1s4Dœ,œnameœ:œstudent_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-o0DeM{œfieldNameœ:œstudent_feedbackœ,œidœ:œCustomComponent-o0DeMœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "CustomComponent-jOMwv",
@@ -3754,7 +4252,8 @@
         },
         "id": "reactflow__edge-CustomComponent-jOMwv{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-jOMwvœ,œnameœ:œwriter_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-o0DeM{œfieldNameœ:œwriter_outputœ,œidœ:œCustomComponent-o0DeMœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "ChatInput-J4eBJ",
@@ -3781,7 +4280,8 @@
         },
         "id": "reactflow__edge-ChatInput-J4eBJ{œdataTypeœ:œChatInputœ,œidœ:œChatInput-J4eBJœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-o0DeM{œfieldNameœ:œtaskœ,œidœ:œCustomComponent-o0DeMœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "ChatInput-J4eBJ",
@@ -3808,7 +4308,8 @@
         },
         "id": "reactflow__edge-ChatInput-J4eBJ{œdataTypeœ:œChatInputœ,œidœ:œChatInput-J4eBJœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-3qEkH{œfieldNameœ:œtaskœ,œidœ:œCustomComponent-3qEkHœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "ran"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "ChatInput-J4eBJ",
@@ -3835,7 +4336,8 @@
         },
         "id": "reactflow__edge-ChatInput-J4eBJ{œdataTypeœ:œChatInputœ,œidœ:œChatInput-J4eBJœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-WYcRW{œfieldNameœ:œtaskœ,œidœ:œCustomComponent-WYcRWœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "ChatInput-J4eBJ",
@@ -3862,7 +4364,8 @@
         },
         "id": "reactflow__edge-ChatInput-J4eBJ{œdataTypeœ:œChatInputœ,œidœ:œChatInput-J4eBJœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-clcv5{œfieldNameœ:œtaskœ,œidœ:œCustomComponent-clcv5œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "CustomComponent-o0DeM",
@@ -3889,7 +4392,8 @@
         },
         "id": "reactflow__edge-CustomComponent-o0DeM{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-o0DeMœ,œnameœ:œwriter_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-wTbnq{œfieldNameœ:œwriter_outputœ,œidœ:œCustomComponent-wTbnqœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "CustomComponent-o0DeM",
@@ -3916,7 +4420,8 @@
         },
         "id": "reactflow__edge-CustomComponent-o0DeM{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-o0DeMœ,œnameœ:œwriter_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-1EmHw{œfieldNameœ:œwriter_outputœ,œidœ:œCustomComponent-1EmHwœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "CustomComponent-o0DeM",
@@ -3943,7 +4448,8 @@
         },
         "id": "reactflow__edge-CustomComponent-o0DeM{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-o0DeMœ,œnameœ:œwriter_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-3qEkH{œfieldNameœ:œwriter_outputœ,œidœ:œCustomComponent-3qEkHœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "ran"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "CustomComponent-wTbnq",
@@ -3970,7 +4476,8 @@
         },
         "id": "reactflow__edge-CustomComponent-wTbnq{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-wTbnqœ,œnameœ:œcritic_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-3qEkH{œfieldNameœ:œcritic_feedbackœ,œidœ:œCustomComponent-3qEkHœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "ran"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "CustomComponent-1EmHw",
@@ -3997,7 +4504,8 @@
         },
         "id": "reactflow__edge-CustomComponent-1EmHw{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-1EmHwœ,œnameœ:œstudent_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-3qEkH{œfieldNameœ:œstudent_feedbackœ,œidœ:œCustomComponent-3qEkHœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "ran"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "CustomComponent-3qEkH",
@@ -4023,8 +4531,9 @@
           }
         },
         "id": "reactflow__edge-CustomComponent-3qEkH{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-3qEkHœ,œnameœ:œwriter_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-WYcRW{œfieldNameœ:œwriter_outputœ,œidœ:œCustomComponent-WYcRWœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "animated": true,
-        "className": "running"
+        "animated": false,
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "CustomComponent-3qEkH",
@@ -4050,8 +4559,9 @@
           }
         },
         "id": "reactflow__edge-CustomComponent-3qEkH{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-3qEkHœ,œnameœ:œwriter_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-Sg1c5{œfieldNameœ:œwriter_outputœ,œidœ:œCustomComponent-Sg1c5œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "animated": true,
-        "className": "running"
+        "animated": false,
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "CustomComponent-3qEkH",
@@ -4077,8 +4587,9 @@
           }
         },
         "id": "reactflow__edge-CustomComponent-3qEkH{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-3qEkHœ,œnameœ:œwriter_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-zaBOf{œfieldNameœ:œwriter_outputœ,œidœ:œCustomComponent-zaBOfœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
-        "animated": true,
-        "className": "running"
+        "animated": false,
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "CustomComponent-Sg1c5",
@@ -4105,7 +4616,8 @@
         },
         "id": "reactflow__edge-CustomComponent-Sg1c5{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-Sg1c5œ,œnameœ:œcritic_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-WYcRW{œfieldNameœ:œcritic_feedbackœ,œidœ:œCustomComponent-WYcRWœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "CustomComponent-zaBOf",
@@ -4132,7 +4644,8 @@
         },
         "id": "reactflow__edge-CustomComponent-zaBOf{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-zaBOfœ,œnameœ:œstudent_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-WYcRW{œfieldNameœ:œstudent_feedbackœ,œidœ:œCustomComponent-WYcRWœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "CustomComponent-WYcRW",
@@ -4159,7 +4672,8 @@
         },
         "id": "reactflow__edge-CustomComponent-WYcRW{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-WYcRWœ,œnameœ:œwriter_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-clcv5{œfieldNameœ:œwriter_outputœ,œidœ:œCustomComponent-clcv5œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "CustomComponent-WYcRW",
@@ -4186,7 +4700,8 @@
         },
         "id": "reactflow__edge-CustomComponent-WYcRW{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-WYcRWœ,œnameœ:œwriter_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-aV3Dn{œfieldNameœ:œwriter_outputœ,œidœ:œCustomComponent-aV3Dnœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "CustomComponent-WYcRW",
@@ -4213,7 +4728,8 @@
         },
         "id": "reactflow__edge-CustomComponent-WYcRW{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-WYcRWœ,œnameœ:œwriter_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-LqqgF{œfieldNameœ:œwriter_outputœ,œidœ:œCustomComponent-LqqgFœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "CustomComponent-aV3Dn",
@@ -4240,7 +4756,8 @@
         },
         "id": "reactflow__edge-CustomComponent-aV3Dn{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-aV3Dnœ,œnameœ:œcritic_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-clcv5{œfieldNameœ:œcritic_feedbackœ,œidœ:œCustomComponent-clcv5œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "not-running"
+        "className": "not-running",
+        "selected": false
       },
       {
         "source": "CustomComponent-LqqgF",
@@ -4267,17 +4784,74 @@
         },
         "id": "reactflow__edge-CustomComponent-LqqgF{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-LqqgFœ,œnameœ:œstudent_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-clcv5{œfieldNameœ:œstudent_feedbackœ,œidœ:œCustomComponent-clcv5œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
+        "className": "not-running",
+        "selected": false
+      },
+      {
+        "source": "CustomComponent-jNmvz",
+        "target": "CustomComponent-mCS2S",
+        "sourceHandle": "{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-jNmvzœ,œnameœ:œcritic_responseœ,œoutput_typesœ:[œMessageœ]}",
+        "targetHandle": "{œfieldNameœ:œcritic_feedbackœ,œidœ:œCustomComponent-mCS2Sœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "id": "reactflow__edge-CustomComponent-jNmvz{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-jNmvzœ,œnameœ:œcritic_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-mCS2S{œfieldNameœ:œcritic_feedbackœ,œidœ:œCustomComponent-mCS2Sœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "data": {
+          "targetHandle": {
+            "fieldName": "critic_feedback",
+            "id": "CustomComponent-mCS2S",
+            "inputTypes": [
+              "Message"
+            ],
+            "type": "str"
+          },
+          "sourceHandle": {
+            "dataType": "CustomComponent",
+            "id": "CustomComponent-jNmvz",
+            "name": "critic_response",
+            "output_types": [
+              "Message"
+            ]
+          }
+        },
+        "selected": false,
+        "animated": false,
+        "className": "not-running"
+      },
+      {
+        "source": "CustomComponent-jw3fU",
+        "target": "CustomComponent-mCS2S",
+        "sourceHandle": "{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-jw3fUœ,œnameœ:œstudent_responseœ,œoutput_typesœ:[œMessageœ]}",
+        "targetHandle": "{œfieldNameœ:œstudent_feedbackœ,œidœ:œCustomComponent-mCS2Sœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "id": "reactflow__edge-CustomComponent-jw3fU{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-jw3fUœ,œnameœ:œstudent_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-mCS2S{œfieldNameœ:œstudent_feedbackœ,œidœ:œCustomComponent-mCS2Sœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "data": {
+          "targetHandle": {
+            "fieldName": "student_feedback",
+            "id": "CustomComponent-mCS2S",
+            "inputTypes": [
+              "Message"
+            ],
+            "type": "str"
+          },
+          "sourceHandle": {
+            "dataType": "CustomComponent",
+            "id": "CustomComponent-jw3fU",
+            "name": "student_response",
+            "output_types": [
+              "Message"
+            ]
+          }
+        },
+        "selected": false,
+        "animated": false,
         "className": "not-running"
       },
       {
         "source": "CustomComponent-clcv5",
         "sourceHandle": "{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-clcv5œ,œnameœ:œwriter_responseœ,œoutput_typesœ:[œMessageœ]}",
-        "target": "ChatOutput-3XGJ1",
-        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-3XGJ1œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "target": "CustomComponent-jNmvz",
+        "targetHandle": "{œfieldNameœ:œwriter_outputœ,œidœ:œCustomComponent-jNmvzœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "data": {
           "targetHandle": {
-            "fieldName": "input_value",
-            "id": "ChatOutput-3XGJ1",
+            "fieldName": "writer_output",
+            "id": "CustomComponent-jNmvz",
             "inputTypes": [
               "Message"
             ],
@@ -4292,18 +4866,180 @@
             ]
           }
         },
-        "id": "reactflow__edge-CustomComponent-clcv5{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-clcv5œ,œnameœ:œwriter_responseœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-3XGJ1{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-3XGJ1œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "id": "reactflow__edge-CustomComponent-clcv5{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-clcv5œ,œnameœ:œwriter_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-jNmvz{œfieldNameœ:œwriter_outputœ,œidœ:œCustomComponent-jNmvzœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "animated": false,
+        "className": "not-running"
+      },
+      {
+        "source": "CustomComponent-clcv5",
+        "sourceHandle": "{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-clcv5œ,œnameœ:œwriter_responseœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "CustomComponent-jw3fU",
+        "targetHandle": "{œfieldNameœ:œwriter_outputœ,œidœ:œCustomComponent-jw3fUœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "data": {
+          "targetHandle": {
+            "fieldName": "writer_output",
+            "id": "CustomComponent-jw3fU",
+            "inputTypes": [
+              "Message"
+            ],
+            "type": "str"
+          },
+          "sourceHandle": {
+            "dataType": "CustomComponent",
+            "id": "CustomComponent-clcv5",
+            "name": "writer_response",
+            "output_types": [
+              "Message"
+            ]
+          }
+        },
+        "id": "reactflow__edge-CustomComponent-clcv5{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-clcv5œ,œnameœ:œwriter_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-jw3fU{œfieldNameœ:œwriter_outputœ,œidœ:œCustomComponent-jw3fUœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "animated": false,
+        "className": "not-running"
+      },
+      {
+        "source": "CustomComponent-clcv5",
+        "sourceHandle": "{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-clcv5œ,œnameœ:œwriter_responseœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "CustomComponent-mCS2S",
+        "targetHandle": "{œfieldNameœ:œwriter_outputœ,œidœ:œCustomComponent-mCS2Sœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "data": {
+          "targetHandle": {
+            "fieldName": "writer_output",
+            "id": "CustomComponent-mCS2S",
+            "inputTypes": [
+              "Message"
+            ],
+            "type": "str"
+          },
+          "sourceHandle": {
+            "dataType": "CustomComponent",
+            "id": "CustomComponent-clcv5",
+            "name": "writer_response",
+            "output_types": [
+              "Message"
+            ]
+          }
+        },
+        "id": "reactflow__edge-CustomComponent-clcv5{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-clcv5œ,œnameœ:œwriter_responseœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-mCS2S{œfieldNameœ:œwriter_outputœ,œidœ:œCustomComponent-mCS2Sœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "animated": false,
+        "className": "not-running"
+      },
+      {
+        "source": "ChatInput-J4eBJ",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-J4eBJœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "CustomComponent-jNmvz",
+        "targetHandle": "{œfieldNameœ:œtaskœ,œidœ:œCustomComponent-jNmvzœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "data": {
+          "targetHandle": {
+            "fieldName": "task",
+            "id": "CustomComponent-jNmvz",
+            "inputTypes": [
+              "Message"
+            ],
+            "type": "str"
+          },
+          "sourceHandle": {
+            "dataType": "ChatInput",
+            "id": "ChatInput-J4eBJ",
+            "name": "message",
+            "output_types": [
+              "Message"
+            ]
+          }
+        },
+        "id": "reactflow__edge-ChatInput-J4eBJ{œdataTypeœ:œChatInputœ,œidœ:œChatInput-J4eBJœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-jNmvz{œfieldNameœ:œtaskœ,œidœ:œCustomComponent-jNmvzœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "animated": false,
+        "className": "not-running"
+      },
+      {
+        "source": "ChatInput-J4eBJ",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-J4eBJœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "CustomComponent-jw3fU",
+        "targetHandle": "{œfieldNameœ:œtaskœ,œidœ:œCustomComponent-jw3fUœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "data": {
+          "targetHandle": {
+            "fieldName": "task",
+            "id": "CustomComponent-jw3fU",
+            "inputTypes": [
+              "Message"
+            ],
+            "type": "str"
+          },
+          "sourceHandle": {
+            "dataType": "ChatInput",
+            "id": "ChatInput-J4eBJ",
+            "name": "message",
+            "output_types": [
+              "Message"
+            ]
+          }
+        },
+        "id": "reactflow__edge-ChatInput-J4eBJ{œdataTypeœ:œChatInputœ,œidœ:œChatInput-J4eBJœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-jw3fU{œfieldNameœ:œtaskœ,œidœ:œCustomComponent-jw3fUœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "animated": false,
+        "className": "not-running"
+      },
+      {
+        "source": "ChatInput-J4eBJ",
+        "sourceHandle": "{œdataTypeœ:œChatInputœ,œidœ:œChatInput-J4eBJœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "CustomComponent-mCS2S",
+        "targetHandle": "{œfieldNameœ:œtaskœ,œidœ:œCustomComponent-mCS2Sœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "data": {
+          "targetHandle": {
+            "fieldName": "task",
+            "id": "CustomComponent-mCS2S",
+            "inputTypes": [
+              "Message"
+            ],
+            "type": "str"
+          },
+          "sourceHandle": {
+            "dataType": "ChatInput",
+            "id": "ChatInput-J4eBJ",
+            "name": "message",
+            "output_types": [
+              "Message"
+            ]
+          }
+        },
+        "id": "reactflow__edge-ChatInput-J4eBJ{œdataTypeœ:œChatInputœ,œidœ:œChatInput-J4eBJœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-CustomComponent-mCS2S{œfieldNameœ:œtaskœ,œidœ:œCustomComponent-mCS2Sœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "animated": false,
+        "className": "not-running"
+      },
+      {
+        "source": "CustomComponent-mCS2S",
+        "sourceHandle": "{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-mCS2Sœ,œnameœ:œwriter_responseœ,œoutput_typesœ:[œMessageœ]}",
+        "target": "ChatOutput-3XGJ1",
+        "targetHandle": "{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-3XGJ1œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
+        "data": {
+          "targetHandle": {
+            "fieldName": "input_value",
+            "id": "ChatOutput-3XGJ1",
+            "inputTypes": [
+              "Message"
+            ],
+            "type": "str"
+          },
+          "sourceHandle": {
+            "dataType": "CustomComponent",
+            "id": "CustomComponent-mCS2S",
+            "name": "writer_response",
+            "output_types": [
+              "Message"
+            ]
+          }
+        },
+        "id": "reactflow__edge-CustomComponent-mCS2S{œdataTypeœ:œCustomComponentœ,œidœ:œCustomComponent-mCS2Sœ,œnameœ:œwriter_responseœ,œoutput_typesœ:[œMessageœ]}-ChatOutput-3XGJ1{œfieldNameœ:œinput_valueœ,œidœ:œChatOutput-3XGJ1œ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
         "className": "not-running"
       }
     ],
     "viewport": {
-      "x": -731.4651682719596,
-      "y": -3014.695181729381,
-      "zoom": 0.8213107007520664
+      "x": -350.6872133984484,
+      "y": -540.5203857078639,
+      "zoom": 0.6355158446528494
     }
   },
-  "description": "",
+  "description": "Perform basic prompting with an OpenAI model.",
   "name": "Flow",
   "last_tested_version": "1.1.1",
   "endpoint_name": null,
