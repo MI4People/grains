@@ -22,7 +22,7 @@ Follow this structured, step-by-step review process:
     - 5 = Highly engaging and effective.
     - 1 = Needs major improvement.
 
-5. Output the Review in valid JSON format.
+5. Output the Review in valid plain JSON format, without any Markdown, special characters, or formatting. Provide raw JSON data only.
 
 JSON Response Template:
 ```json

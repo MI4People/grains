@@ -28,7 +28,7 @@ Approach the task step-by-step as follows:
     - - Are learners prompted to reflect and apply concepts?
     - - Is the material accessible for beginners?
 
-5. Output the Final Content in valid JSON format.
+5. Output the Final Content in valid plain JSON format, without any Markdown, special characters, or formatting. Provide raw JSON data only.
 
 JSON Response Example For Video Tasks:
 ```json
