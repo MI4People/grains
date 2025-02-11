@@ -1,24 +1,34 @@
+import json
 import os
 import warnings
+from itertools import islice
 from pathlib import Path
-from typing import Generator, Iterable, List, Tuple
+from typing import Dict, Generator, Iterable, Iterator, List, Tuple
 
+import mistletoe
 import openai
 import tiktoken
-from docling.document_converter import DocumentConverter
+from docling.datamodel.base_models import InputFormat
+from docling.datamodel.pipeline_options import (PdfPipelineOptions,
+                                                TableFormerMode)
+from docling.document_converter import DocumentConverter, PdfFormatOption
+from docling_core.types.doc.document import PictureStackedBarChartData
+from mistletoe.ast_renderer import AstRenderer
 
 # Initialize OpenAI client
 openai.api_key = os.getenv("OPENAI_API_KEY")
 MODEL: str = "gpt-4"
 
 
-def extract_all_to_markdown(input_dir: Path, md_dir: Path):
-    """Convert all PDFs to Markdown files and return saved paths"""
+def extract_all_to_markdown(
+    input_files: Iterable[Path], md_dir: Path, overwrite: bool = False
+) -> Iterator[Tuple[Path, str]]:
+    """Convert all PDFs to Markdown files and yield saved paths and contents."""
     md_dir.mkdir(parents=True, exist_ok=True)
-    for pdf_path in input_dir.glob("*.pdf"):
+    for pdf_path in input_files:
         try:
-            _, md_path = extract_content(pdf_path, md_dir)
-            print(f"Saved: {md_path}")
+            md_content, md_path = extract_content(pdf_path, md_dir, overwrite)
+            yield md_path, md_content
         except Exception as e:
             warnings.warn(f"Failed to process {pdf_path.name}: {str(e)}")
 
@@ -52,38 +62,83 @@ def extract_content(
         with md_path.open("r") as f:
             markdown_content = f.read()
     else:
-        converter = DocumentConverter()
+        pipeline_options = PdfPipelineOptions(do_table_structure=True)
+        pipeline_options.table_structure_options.mode = TableFormerMode.ACCURATE
+
+        converter = DocumentConverter(
+            format_options={
+                InputFormat.PDF: PdfFormatOption(pipeline_options=pipeline_options)
+            }
+        )
         result = converter.convert(str(pdf_path))
+        # TODO: can also embed images as base64
         markdown_content = result.document.export_to_markdown()
         with open(md_path, "w", encoding="utf-8") as f:
             f.write(markdown_content)
+            print(f"Saved: {md_path}")
 
     return markdown_content, md_path
 
 
+def extract_headings(node: Dict, max_level=3, current_level=1):
+    """
+    Recursively builds a nested structure of headings as dictionaries up to the specified maximum level.
+
+    Args:
+        node (dict): The current node in the AST.
+        max_level (int): The maximum heading level to include (inclusive).
+        current_level (int): The current heading level being processed.
+
+    Returns:
+        list: A nested list representing the heading structure as dictionaries.
+    """
+    structure = []
+    for child in node.get("children", []):
+        if child["type"] == "Heading" and child["level"] <= max_level:
+            heading_text = "".join(
+                grandchild["content"]
+                for grandchild in child["children"]
+                if grandchild["type"] == "RawText"
+            )
+            sub_structure = extract_headings(child, max_level, child["level"])
+            structure.append({"text": heading_text, "children": sub_structure})
+        else:
+            sub_structure = extract_headings(child, max_level, current_level)
+            if sub_structure:
+                structure.extend(sub_structure)
+    return structure
+
+
 def analyze_document(content: str) -> str:
     """Use LLM to identify key categories/sections."""
-    prompt: str = f"""Analyze this document and extract hierarchical categories/chapters.
-    Return as markdown with maximum 3 levels (##, ###, ####).
-    Include brief section summaries (1-2 sentences). Keep technical terminology specific to hospitality:
+    # prompt: str = f"""Analyze this document and extract hierarchical categories/chapters.
+    # Return as markdown with maximum 3 levels (##, ###, ####).
+    # Include brief section summaries (1-2 sentences). Keep technical terminology specific to hospitality:
 
-    {content[:12000]}"""
+    # {content[:12000]}"""
 
-    client = openai.OpenAI()
-    response = client.chat.completions.create(
-        model=MODEL, messages=[{"role": "user", "content": prompt}]
-    )
-    return str(response.choices[0].message.content)
+    # client = openai.OpenAI()
+    # response = client.chat.completions.create(
+    #     model=MODEL, messages=[{"role": "user", "content": prompt}]
+    # )
+    # return str(response.choices[0].message.content)
+    ast = mistletoe.markdown(content, AstRenderer)
+    print(type(rendered))
+    return rendered
 
 
-def analyze_documents(md_paths: Iterable[Path]) -> List[str]:
+def build_ast(md_tuples: Iterable[Tuple[Path, str]]) -> Iterable[Dict]:
+    for md_path, md_content in md_tuples:
+        ast_str = mistletoe.markdown(md_content, AstRenderer)
+        yield json.loads(ast_str)
+
+
+def analyze_documents(md_tuples: Iterable[Tuple[Path, str]]) -> List[str]:
     """Process all Markdown files to extract categories"""
     categories = []
-    for md_path in md_paths:
+    for md_path, md_content in islice(md_tuples, 2):
         try:
-            with open(md_path, "r", encoding="utf-8") as f:
-                content = f.read()
-            analysis = analyze_document(content)
+            analysis = analyze_document(md_content)
             categories.append(analysis)
         except Exception as e:
             warnings.warn(f"Failed to analyze {md_path.name}: {str(e)}")
@@ -141,22 +196,29 @@ def save_final_document(
             f.write(f"{section}\n\n")
 
 
+def process_markdown(md_generator: Iterable[Tuple[Path, str]]) -> None:
+    ast_gen = build_ast(md_generator)
+    js = next(ast_gen)
+    headings = extract_headings(js)
+    for heading in headings:
+        print(heading["text"])
+    # all_categories = analyze_documents(md_generator)
+    # merged_taxonomy = merge_categories(all_categories)
+    # content_generator = categorize_and_merge_content(md_paths, merged_taxonomy)
+    # save_final_document(output_file, content_generator)
+
+
 def process_documents(input_dir: Path, output_file: Path, md_dir: Path) -> None:
     """Main processing pipeline with error resilience"""
-    extract_all_to_markdown(input_dir, md_dir)
-    md_paths = md_dir.glob("*.md")
-    all_categories = analyze_documents(md_paths)
-    merged_taxonomy = merge_categories(all_categories)
-    content_generator = categorize_and_merge_content(md_paths, merged_taxonomy)
-    save_final_document(output_file, content_generator)
+    input_files = input_dir.glob("*.pdf")
+    md_generator = extract_all_to_markdown(input_files, md_dir)
+    process_markdown(md_generator)
 
 
 if __name__ == "__main__":
     # Configuration with type-hinted Path objects
-    input_dir: Path = Path("../../data/pdf")
-    output_file: Path = Path("../../data/merged/hospitality_llm_merged.md")
-    md_dir: Path = Path("../../data/md")
-
+    input_dir: Path = Path("data/pdf")
+    output_file: Path = Path("data/merged/hospitality_llm_merged.md")
+    md_dir: Path = Path("data/md")
     # Run processing
     process_documents(input_dir, output_file, md_dir)
-    print(f"\nProcessing complete!\nMarkdown files saved to: {md_dir}")
