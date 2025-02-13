@@ -3,7 +3,8 @@ import os
 import warnings
 from itertools import islice
 from pathlib import Path
-from typing import Dict, Generator, Iterable, Iterator, List, Tuple
+from pprint import pprint
+from typing import Dict, Generator, Iterable, Iterator, List, NamedTuple, Tuple
 
 import mistletoe
 import openai
@@ -18,6 +19,12 @@ from mistletoe.ast_renderer import AstRenderer
 # Initialize OpenAI client
 openai.api_key = os.getenv("OPENAI_API_KEY")
 MODEL: str = "gpt-4"
+
+
+class AstData(NamedTuple):
+    filename: str
+    tokens: int
+    data: Dict
 
 
 def extract_all_to_markdown(
@@ -101,7 +108,13 @@ def extract_headings(node: Dict, max_level=3, current_level=1):
                 if grandchild["type"] == "RawText"
             )
             sub_structure = extract_headings(child, max_level, child["level"])
-            structure.append({"text": heading_text, "children": sub_structure})
+            structure.append(
+                {
+                    "text": heading_text,
+                    "children": sub_structure,
+                    "level": current_level,
+                }
+            )
         else:
             sub_structure = extract_headings(child, max_level, current_level)
             if sub_structure:
@@ -127,10 +140,12 @@ def analyze_document(content: str) -> str:
     return rendered
 
 
-def build_ast(md_tuples: Iterable[Tuple[Path, str]]) -> Iterable[Dict]:
+def build_ast(md_tuples: Iterable[Tuple[Path, str]]) -> Iterable[AstData]:
     for md_path, md_content in md_tuples:
         ast_str = mistletoe.markdown(md_content, AstRenderer)
-        yield json.loads(ast_str)
+        ast_dict = json.loads(ast_str)
+        tokens = count_tokens_in_markdown(md_content)
+        yield AstData(filename=md_path.stem, data=ast_dict, tokens=tokens)
 
 
 def analyze_documents(md_tuples: Iterable[Tuple[Path, str]]) -> List[str]:
@@ -145,14 +160,12 @@ def analyze_documents(md_tuples: Iterable[Tuple[Path, str]]) -> List[str]:
     return categories
 
 
-def count_okens_in_markdown(file_path: str, encoding_name: str = "cl100k_base") -> int:
+def count_tokens_in_markdown(
+    md_content: str, encoding_name: str = "cl100k_base"
+) -> int:
     """Counts the tokens of a markdown document."""
-    with open(file_path, "r", encoding="utf-8") as f:
-        content = f.read()
-
     encoder = tiktoken.get_encoding(encoding_name)
-    tokens = encoder.encode(content)
-
+    tokens = encoder.encode(md_content)
     return len(tokens)
 
 
@@ -197,11 +210,14 @@ def save_final_document(
 
 
 def process_markdown(md_generator: Iterable[Tuple[Path, str]]) -> None:
-    ast_gen = build_ast(md_generator)
-    js = next(ast_gen)
-    headings = extract_headings(js)
-    for heading in headings:
-        print(heading["text"])
+    ast_generator = build_ast(md_generator)
+    for ast in ast_generator:
+        # pprint(ast.data["children"][:15])
+        headings = extract_headings(ast.data)
+        print(f"{ast.filename} with {ast.tokens} tokens.")
+        # TODO: need summary
+        # for heading in headings:
+        #     print((heading["level"] - 1) * "\t" + heading["text"])
     # all_categories = analyze_documents(md_generator)
     # merged_taxonomy = merge_categories(all_categories)
     # content_generator = categorize_and_merge_content(md_paths, merged_taxonomy)
