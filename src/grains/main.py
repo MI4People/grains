@@ -15,6 +15,7 @@ from docling.datamodel.pipeline_options import (PdfPipelineOptions,
 from docling.document_converter import DocumentConverter, PdfFormatOption
 from docling_core.types.doc.document import PictureStackedBarChartData
 from mistletoe.ast_renderer import AstRenderer
+from pydantic import BaseModel, Field
 
 # Initialize OpenAI client
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -25,6 +26,17 @@ class AstData(NamedTuple):
     filename: str
     tokens: int
     data: Dict
+
+
+class HeadingSummary(BaseModel):
+    """Represents a heading with its text, level, content, and summary."""
+    text: str = Field(..., description="The text of the heading")
+    level: int = Field(..., description="The level of the heading (1-6)")
+    content: str = Field("", description="The content text under this heading")
+    summary: str = Field("", description="Generated summary of the heading content")
+    children: List["HeadingSummary"] = Field(default_factory=list, description="Child headings")
+
+HeadingSummary.model_rebuild()
 
 
 def extract_all_to_markdown(
@@ -122,6 +134,42 @@ def extract_headings(node: Dict, max_level=3, current_level=1):
     return structure
 
 
+def extract_heading_content(node: Dict) -> str:
+    """Extract text content from paragraphs under a heading."""
+    text = ""
+    for child in node.get("children", []):
+        if child["type"] == "Paragraph":
+            for paragraph_child in child.get("children", []):
+                if paragraph_child["type"] == "RawText":
+                    text += paragraph_child.get("content", "") + " "
+    return text.strip()
+
+
+def generate_heading_summary(content: str, heading_text: str) -> str:
+    """Generate a concise summary (20-200 words) for heading content."""
+    if not content.strip():
+        return "No content available to summarize."
+    
+    client = openai.OpenAI()
+    
+    prompt = f"""Summarize the following content under the heading "{heading_text}".
+    Use only factual information present in the text.
+    Keep the summary between 20-200 words:
+    
+    {content[:4000]}"""
+    
+    try:
+        response = client.chat.completions.create(
+            model=MODEL,
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=300,
+            temperature=0.5
+        )
+        return str(response.choices[0].message.content).strip()
+    except Exception as e:
+        return f"Error generating summary: {str(e)}"
+
+
 def analyze_document(content: str) -> str:
     """Use LLM to identify key categories/sections."""
     # prompt: str = f"""Analyze this document and extract hierarchical categories/chapters.
@@ -136,8 +184,7 @@ def analyze_document(content: str) -> str:
     # )
     # return str(response.choices[0].message.content)
     ast = mistletoe.markdown(content, AstRenderer)
-    print(type(rendered))
-    return rendered
+    return ast
 
 
 def build_ast(md_tuples: Iterable[Tuple[Path, str]]) -> Iterable[AstData]:
@@ -209,19 +256,53 @@ def save_final_document(
             f.write(f"{section}\n\n")
 
 
+def process_heading_with_summary(node: Dict, level: int = 0) -> HeadingSummary:
+    """Process a heading node to create a HeadingSummary with content and summary."""
+    heading_text = "".join(
+        child["content"] for child in node.get("children", []) 
+        if child["type"] == "RawText"
+    )
+
+    content = extract_heading_content(node)
+    summary = generate_heading_summary(content, heading_text)
+
+    return HeadingSummary(
+        text=heading_text,
+        level=level,
+        content=content,
+        summary=summary,
+        children=[]
+    )
+
+
 def process_markdown(md_generator: Iterable[Tuple[Path, str]]) -> None:
     ast_generator = build_ast(md_generator)
     for ast in ast_generator:
         # pprint(ast.data["children"][:15])
         headings = extract_headings(ast.data)
         print(f"{ast.filename} with {ast.tokens} tokens.")
-        # TODO: need summary
-        # for heading in headings:
-        #     print((heading["level"] - 1) * "\t" + heading["text"])
-    # all_categories = analyze_documents(md_generator)
-    # merged_taxonomy = merge_categories(all_categories)
-    # content_generator = categorize_and_merge_content(md_paths, merged_taxonomy)
-    # save_final_document(output_file, content_generator)
+        
+        summaries = []
+        for heading_dict in headings:
+            heading_node = next(
+                (child for child in ast.data.get("children", []) 
+                if child["type"] == "Heading" and 
+                "".join(grandchild["content"] for grandchild in child["children"] 
+                        if grandchild["type"] == "RawText") == heading_dict["text"]),
+                None
+            )
+            
+            if heading_node:
+                summary = process_heading_with_summary(heading_node, heading_dict["level"])
+                summaries.append(summary)
+                print(f"Heading: {summary.text} (Level {summary.level})")
+                print(f"Summary: {summary.summary}\n")
+        
+        output_file = Path(f"data/summaries/{ast.filename}_summaries.json")
+        output_file.parent.mkdir(parents=True, exist_ok=True)
+        with open(output_file, "w", encoding="utf-8") as f:
+            json.dump([s.dict() for s in summaries], f, indent=2)
+        print(f"Saved summaries to {output_file}")
 
 
 def process_documents(input_dir: Path, output_file: Path, md_dir: Path) -> None:
