@@ -4,7 +4,7 @@ import warnings
 from itertools import islice
 from pathlib import Path
 from pprint import pprint
-from typing import Dict, Generator, Iterable, Iterator, List, NamedTuple, Tuple
+from typing import Dict, Generator, Iterable, Iterator, List, NamedTuple, Tuple, Any
 
 import mistletoe
 import openai
@@ -24,7 +24,7 @@ MODEL: str = "gpt-4"
 class AstData(NamedTuple):
     filename: str
     tokens: int
-    data: Dict
+    data: Dict[str,Any]
 
 
 def extract_all_to_markdown(
@@ -136,8 +136,8 @@ def analyze_document(content: str) -> str:
     # )
     # return str(response.choices[0].message.content)
     ast = mistletoe.markdown(content, AstRenderer)
-    print(type(rendered))
-    return rendered
+    print(type(ast))
+    return ast
 
 
 def build_ast(md_tuples: Iterable[Tuple[Path, str]]) -> Iterable[AstData]:
@@ -224,7 +224,7 @@ def process_markdown(md_generator: Iterable[Tuple[Path, str]]) -> None:
     # save_final_document(output_file, content_generator)
 
 
-def process_documents(input_dir: Path, output_file: Path, md_dir: Path) -> None:
+def process_documents(input_dir: Path, md_dir: Path) -> None:
     """Main processing pipeline with error resilience"""
     input_files = input_dir.glob("*.pdf")
     md_generator = extract_all_to_markdown(input_files, md_dir)
@@ -233,8 +233,7 @@ def process_documents(input_dir: Path, output_file: Path, md_dir: Path) -> None:
 
 if __name__ == "__main__":
     # Configuration with type-hinted Path objects
-    input_dir: Path = Path("data/pdf")
-    output_file: Path = Path("data/merged/hospitality_llm_merged.md")
-    md_dir: Path = Path("data/md")
+    input_dir: Path = Path("data/j_in")
+    md_dir: Path = Path("data/j_out")
     # Run processing
-    process_documents(input_dir, output_file, md_dir)
+    process_documents(input_dir, md_dir)
