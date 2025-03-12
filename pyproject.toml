@@ -20,3 +20,21 @@ pudb = "^2024.1.3"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+
+[tool.ruff]
+# Set line length to 120
+line-length = 120
+# Configure rules and settings
+select = ["E", "F", "I"]
+
+# Control spacing between classes
+[tool.ruff.format]
+line-ending = "auto"
+
+# This specifically controls class spacing
+[tool.ruff.lint.flake8-style]
+# For Ruff 0.1.0+:
+blank-lines-after-class = 1  # Only one blank line after class definitions
