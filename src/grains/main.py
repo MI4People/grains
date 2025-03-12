@@ -27,36 +27,7 @@ class AstData(NamedTuple):
     data: Dict[str,Any]
 
 
-def extract_all_to_markdown(
-    input_files: Iterable[Path], md_dir: Path, overwrite: bool = False
-) -> Iterator[Tuple[Path, str]]:
-    """Convert all PDFs to Markdown files and yield saved paths and contents."""
-    md_dir.mkdir(parents=True, exist_ok=True)
-    for pdf_path in input_files:
-        try:
-            md_content, md_path = extract_content(pdf_path, md_dir, overwrite)
-            yield md_path, md_content
-        except Exception as e:
-            warnings.warn(f"Failed to process {pdf_path.name}: {str(e)}")
-
-
-def merge_categories(all_categories: Iterable[str]) -> str:
-    """Use LLM to create unified taxonomy."""
-    prompt: str = f"""Create a comprehensive chapter structure that best organizes these hospitality categories:
-
-    {"\n\n".join(all_categories)}
-
-    Return final structure in markdown format with hierarchy. Follow these rules:
-    1. Group similar concepts (e.g., merge "Hotel Operations" and "Resort Management")
-    2. Maintain original technical terms
-    3. Order logically from fundamentals to advanced topics
-    4. Include clear hierarchy (##, ###, ####)"""
-    client = openai.OpenAI()
-    response = client.chat.completions.create(
-        model=MODEL, messages=[{"role": "user", "content": prompt}]
-    )
-    return str(response.choices[0].message.content)
-
+# =============== PDF to Markdown Extraction =============== #
 
 def extract_content(
     pdf_path: Path, md_dir: Path, overwrite: bool = False
@@ -86,6 +57,55 @@ def extract_content(
 
     return markdown_content, md_path
 
+def extract_all_to_markdown(
+    input_files: Iterable[Path], md_dir: Path, overwrite: bool = False
+) -> Iterator[Tuple[Path, str]]:
+    """Convert all PDFs to Markdown files and yield saved paths and contents."""
+    md_dir.mkdir(parents=True, exist_ok=True)
+    for pdf_path in input_files:
+        try:
+            md_content, md_path = extract_content(pdf_path, md_dir, overwrite)
+            yield md_path, md_content
+        except Exception as e:
+            warnings.warn(f"Failed to process {pdf_path.name}: {str(e)}")
+
+
+# =============== Markdown Analysis =============== #
+
+def analyze_document(content: str) -> str:
+    """Use LLM to identify key categories/sections."""
+    # prompt: str = f"""Analyze this document and extract hierarchical categories/chapters.
+    # Return as markdown with maximum 3 levels (##, ###, ####).
+    # Include brief section summaries (1-2 sentences). Keep technical terminology specific to hospitality:
+
+    # {content[:12000]}"""
+
+    # client = openai.OpenAI()
+    # response = client.chat.completions.create(
+    #     model=MODEL, messages=[{"role": "user", "content": prompt}]
+    # )
+    # return str(response.choices[0].message.content)
+    ast = mistletoe.markdown(content, AstRenderer)
+    print(type(ast))
+    return ast
+
+def analyze_documents(md_tuples: Iterable[Tuple[Path, str]]) -> List[str]:
+    """Process all Markdown files to extract categories"""
+    categories = []
+    for md_path, md_content in islice(md_tuples, 2):
+        try:
+            analysis = analyze_document(md_content)
+            categories.append(analysis)
+        except Exception as e:
+            warnings.warn(f"Failed to analyze {md_path.name}: {str(e)}")
+    return categories
+
+def build_ast(md_tuples: Iterable[Tuple[Path, str]]) -> Iterable[AstData]:
+    for md_path, md_content in md_tuples:
+        ast_str = mistletoe.markdown(md_content, AstRenderer)
+        ast_dict = json.loads(ast_str)
+        tokens = count_tokens_in_markdown(md_content)
+        yield AstData(filename=md_path.stem, data=ast_dict, tokens=tokens)
 
 def extract_headings(node: Dict, max_level=3, current_level=1):
     """
@@ -121,45 +141,6 @@ def extract_headings(node: Dict, max_level=3, current_level=1):
                 structure.extend(sub_structure)
     return structure
 
-
-def analyze_document(content: str) -> str:
-    """Use LLM to identify key categories/sections."""
-    # prompt: str = f"""Analyze this document and extract hierarchical categories/chapters.
-    # Return as markdown with maximum 3 levels (##, ###, ####).
-    # Include brief section summaries (1-2 sentences). Keep technical terminology specific to hospitality:
-
-    # {content[:12000]}"""
-
-    # client = openai.OpenAI()
-    # response = client.chat.completions.create(
-    #     model=MODEL, messages=[{"role": "user", "content": prompt}]
-    # )
-    # return str(response.choices[0].message.content)
-    ast = mistletoe.markdown(content, AstRenderer)
-    print(type(ast))
-    return ast
-
-
-def build_ast(md_tuples: Iterable[Tuple[Path, str]]) -> Iterable[AstData]:
-    for md_path, md_content in md_tuples:
-        ast_str = mistletoe.markdown(md_content, AstRenderer)
-        ast_dict = json.loads(ast_str)
-        tokens = count_tokens_in_markdown(md_content)
-        yield AstData(filename=md_path.stem, data=ast_dict, tokens=tokens)
-
-
-def analyze_documents(md_tuples: Iterable[Tuple[Path, str]]) -> List[str]:
-    """Process all Markdown files to extract categories"""
-    categories = []
-    for md_path, md_content in islice(md_tuples, 2):
-        try:
-            analysis = analyze_document(md_content)
-            categories.append(analysis)
-        except Exception as e:
-            warnings.warn(f"Failed to analyze {md_path.name}: {str(e)}")
-    return categories
-
-
 def count_tokens_in_markdown(
     md_content: str, encoding_name: str = "cl100k_base"
 ) -> int:
@@ -168,6 +149,25 @@ def count_tokens_in_markdown(
     tokens = encoder.encode(md_content)
     return len(tokens)
 
+
+# =============== LLM Processing =============== #
+
+def merge_categories(all_categories: Iterable[str]) -> str:
+    """Use LLM to create unified taxonomy."""
+    prompt: str = f"""Create a comprehensive chapter structure that best organizes these hospitality categories:
+
+    {"\n\n".join(all_categories)}
+
+    Return final structure in markdown format with hierarchy. Follow these rules:
+    1. Group similar concepts (e.g., merge "Hotel Operations" and "Resort Management")
+    2. Maintain original technical terms
+    3. Order logically from fundamentals to advanced topics
+    4. Include clear hierarchy (##, ###, ####)"""
+    client = openai.OpenAI()
+    response = client.chat.completions.create(
+        model=MODEL, messages=[{"role": "user", "content": prompt}]
+    )
+    return str(response.choices[0].message.content)
 
 def categorize_content(content: str, taxonomy: str) -> str:
     """Map document content to unified taxonomy."""
@@ -181,7 +181,6 @@ def categorize_content(content: str, taxonomy: str) -> str:
         model=MODEL, messages=[{"role": "user", "content": prompt}]
     )
     return str(response.choices[0].message.content)
-
 
 def categorize_and_merge_content(
     md_paths: Iterable[Path], merged_taxonomy: str
@@ -198,7 +197,6 @@ def categorize_and_merge_content(
         except Exception as e:
             warnings.warn(f"Failed to categorize {md_path.name}: {str(e)}")
 
-
 def save_final_document(
     output_file: Path, content_generator: Generator[str, None, None]
 ) -> None:
@@ -208,6 +206,8 @@ def save_final_document(
         for section in content_generator:
             f.write(f"{section}\n\n")
 
+
+# =============== Processing Pipelines =============== #
 
 def process_markdown(md_generator: Iterable[Tuple[Path, str]]) -> None:
     ast_generator = build_ast(md_generator)
@@ -222,7 +222,6 @@ def process_markdown(md_generator: Iterable[Tuple[Path, str]]) -> None:
     # merged_taxonomy = merge_categories(all_categories)
     # content_generator = categorize_and_merge_content(md_paths, merged_taxonomy)
     # save_final_document(output_file, content_generator)
-
 
 def process_documents(input_dir: Path, md_dir: Path) -> None:
     """Main processing pipeline with error resilience"""
