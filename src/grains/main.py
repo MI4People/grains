@@ -4,7 +4,8 @@ import warnings
 from itertools import islice
 from pathlib import Path
 from pprint import pprint
-from typing import Dict, Generator, Iterable, Iterator, List, NamedTuple, Tuple, Any
+from typing import (Any, Dict, Generator, Iterable, Iterator, List, NamedTuple,
+                    Tuple)
 
 import mistletoe
 import openai
@@ -16,6 +17,9 @@ from docling.document_converter import DocumentConverter, PdfFormatOption
 from docling_core.types.doc.document import PictureStackedBarChartData
 from mistletoe.ast_renderer import AstRenderer
 
+from grains.data_structures import Document, Section
+from grains.llm_utils import add_summaries
+
 # Initialize OpenAI client
 openai.api_key = os.getenv("OPENAI_API_KEY")
 MODEL: str = "gpt-4"
@@ -24,14 +28,11 @@ MODEL: str = "gpt-4"
 class AstData(NamedTuple):
     filename: str
     tokens: int
-    data: Dict[str,Any]
+    data: Dict[str, Any]
 
 
 # =============== PDF to Markdown Extraction =============== #
-
-def extract_content(
-    pdf_path: Path, md_dir: Path, overwrite: bool = False
-) -> Tuple[str, Path]:
+def extract_content(pdf_path: Path, md_dir: Path, overwrite: bool = False) -> Tuple[str, Path]:
     """Extract content from a single PDF and save as Markdown"""
     markdown_content: str = ""
     md_path: Path = md_dir / f"{pdf_path.stem}.md"
@@ -44,9 +45,7 @@ def extract_content(
         pipeline_options.table_structure_options.mode = TableFormerMode.ACCURATE
 
         converter = DocumentConverter(
-            format_options={
-                InputFormat.PDF: PdfFormatOption(pipeline_options=pipeline_options)
-            }
+            format_options={InputFormat.PDF: PdfFormatOption(pipeline_options=pipeline_options)}
         )
         result = converter.convert(str(pdf_path))
         # TODO: can also embed images as base64
@@ -56,6 +55,7 @@ def extract_content(
             print(f"Saved: {md_path}")
 
     return markdown_content, md_path
+
 
 def extract_all_to_markdown(
     input_files: Iterable[Path], md_dir: Path, overwrite: bool = False
@@ -72,33 +72,6 @@ def extract_all_to_markdown(
 
 # =============== Markdown Analysis =============== #
 
-def analyze_document(content: str) -> str:
-    """Use LLM to identify key categories/sections."""
-    # prompt: str = f"""Analyze this document and extract hierarchical categories/chapters.
-    # Return as markdown with maximum 3 levels (##, ###, ####).
-    # Include brief section summaries (1-2 sentences). Keep technical terminology specific to hospitality:
-
-    # {content[:12000]}"""
-
-    # client = openai.OpenAI()
-    # response = client.chat.completions.create(
-    #     model=MODEL, messages=[{"role": "user", "content": prompt}]
-    # )
-    # return str(response.choices[0].message.content)
-    ast = mistletoe.markdown(content, AstRenderer)
-    print(type(ast))
-    return ast
-
-def analyze_documents(md_tuples: Iterable[Tuple[Path, str]]) -> List[str]:
-    """Process all Markdown files to extract categories"""
-    categories = []
-    for md_path, md_content in islice(md_tuples, 2):
-        try:
-            analysis = analyze_document(md_content)
-            categories.append(analysis)
-        except Exception as e:
-            warnings.warn(f"Failed to analyze {md_path.name}: {str(e)}")
-    return categories
 
 def build_ast(md_tuples: Iterable[Tuple[Path, str]]) -> Iterable[AstData]:
     for md_path, md_content in md_tuples:
@@ -106,6 +79,7 @@ def build_ast(md_tuples: Iterable[Tuple[Path, str]]) -> Iterable[AstData]:
         ast_dict = json.loads(ast_str)
         tokens = count_tokens_in_markdown(md_content)
         yield AstData(filename=md_path.stem, data=ast_dict, tokens=tokens)
+
 
 def extract_headings(node: Dict, max_level=3, current_level=1):
     """
@@ -123,9 +97,7 @@ def extract_headings(node: Dict, max_level=3, current_level=1):
     for child in node.get("children", []):
         if child["type"] == "Heading" and child["level"] <= max_level:
             heading_text = "".join(
-                grandchild["content"]
-                for grandchild in child["children"]
-                if grandchild["type"] == "RawText"
+                grandchild["content"] for grandchild in child["children"] if grandchild["type"] == "RawText"
             )
             sub_structure = extract_headings(child, max_level, child["level"])
             structure.append(
@@ -141,9 +113,8 @@ def extract_headings(node: Dict, max_level=3, current_level=1):
                 structure.extend(sub_structure)
     return structure
 
-def count_tokens_in_markdown(
-    md_content: str, encoding_name: str = "cl100k_base"
-) -> int:
+
+def count_tokens_in_markdown(md_content: str, encoding_name: str = "cl100k_base") -> int:
     """Counts the tokens of a markdown document."""
     encoder = tiktoken.get_encoding(encoding_name)
     tokens = encoder.encode(md_content)
@@ -152,54 +123,8 @@ def count_tokens_in_markdown(
 
 # =============== LLM Processing =============== #
 
-def merge_categories(all_categories: Iterable[str]) -> str:
-    """Use LLM to create unified taxonomy."""
-    prompt: str = f"""Create a comprehensive chapter structure that best organizes these hospitality categories:
 
-    {"\n\n".join(all_categories)}
-
-    Return final structure in markdown format with hierarchy. Follow these rules:
-    1. Group similar concepts (e.g., merge "Hotel Operations" and "Resort Management")
-    2. Maintain original technical terms
-    3. Order logically from fundamentals to advanced topics
-    4. Include clear hierarchy (##, ###, ####)"""
-    client = openai.OpenAI()
-    response = client.chat.completions.create(
-        model=MODEL, messages=[{"role": "user", "content": prompt}]
-    )
-    return str(response.choices[0].message.content)
-
-def categorize_content(content: str, taxonomy: str) -> str:
-    """Map document content to unified taxonomy."""
-    prompt: str = f"""Match this content to the taxonomy below. Return only category names and relevant excerpts:
-    Content: {content[:12000]}
-    Taxonomy:
-    {taxonomy}"""
-
-    client = openai.OpenAI()
-    response = client.chat.completions.create(
-        model=MODEL, messages=[{"role": "user", "content": prompt}]
-    )
-    return str(response.choices[0].message.content)
-
-def categorize_and_merge_content(
-    md_paths: Iterable[Path], merged_taxonomy: str
-) -> Generator[str, None, None]:
-    """Categorize content and generate merged sections"""
-    yield merged_taxonomy  # Start with taxonomy
-
-    for md_path in md_paths:
-        try:
-            with open(md_path, "r", encoding="utf-8") as f:
-                content = f.read()
-            categorized = categorize_content(content, merged_taxonomy)
-            yield f"## Source: {md_path.name}\n{categorized}"
-        except Exception as e:
-            warnings.warn(f"Failed to categorize {md_path.name}: {str(e)}")
-
-def save_final_document(
-    output_file: Path, content_generator: Generator[str, None, None]
-) -> None:
+def save_final_document(output_file: Path, content_generator: Generator[str, None, None]) -> None:
     """Save final merged document from generated content"""
     output_file.parent.mkdir(parents=True, exist_ok=True)
     with open(output_file, "w", encoding="utf-8") as f:
@@ -207,23 +132,154 @@ def save_final_document(
             f.write(f"{section}\n\n")
 
 
+def ast_to_document(ast_data: AstData) -> Document:
+    """
+    Converts an AST data structure (Mistletoe AST as a dictionary)
+    to a Document object.
+
+    Args:
+        ast_data: An AstData NamedTuple containing the filename, token count,
+                  and the Mistletoe AST represented as a Dict.
+
+    Returns:
+        A Document object representing the structured document.
+    """
+
+    data: Dict = ast_data.data
+    filename: str = ast_data.filename
+    tokens: int = ast_data.tokens
+    sections: List[Section] = []
+    current_section: Section | None = None
+
+    def extract_text_content(node: Dict) -> str:
+        """Extracts text content recursively from a node and its children."""
+        text = ""
+        if node.get("type") == "RawText":
+            return node.get("content", "")
+
+        for child in node.get("children", []):
+            text += extract_text_content(child)
+        return text
+
+    for node in data.get("children", []):  # Top level 'children' key now present
+        node_type = node.get("type")  # Use get because type may not always be present
+
+        if node_type == "Heading":
+            if current_section:
+                sections.append(current_section)
+
+            title = extract_text_content(node)  # Extract title more generically
+            current_section = Section(
+                title=title if title else "No Title",
+                level=node.get("level", 1),
+            )
+        elif node_type == "Paragraph":
+            paragraph_content = extract_text_content(node)
+
+            if current_section:
+                current_section.content += paragraph_content + "\n\n"  # append spacing
+            else:
+                sections.append(Section(title="Preamble", content=paragraph_content, level=0))
+                current_section = None  # Important: reset var after preamble create
+        # Add handling all other elements needed (quotes, list's etc.)
+        else:
+            pass
+
+    if current_section:
+        sections.append(current_section)
+
+    return Document(filename=filename, tokens=tokens, sections=sections)
 # =============== Processing Pipelines =============== #
+
+
+def asts_to_documents(ast_generator: Iterable[AstData]) -> Iterable[Document]:
+    docs = []
+    for ast in ast_generator:
+        doc = ast_to_document(ast)
+        docs.append(doc)
+    return docs
+
+
+def try_loading_document(filepath: str) -> Document | None:
+    """Loads a Document from a JSON file.  Returns None if the file doesn't exist."""
+    file_path = Path(filepath)
+    if not file_path.exists():
+        return None
+
+    try:
+        with open(filepath, "r") as f:
+            data = json.load(f)
+        return Document(**data)
+    except Exception as e:
+        print(f"Problem loading {filepath}: {e}")
+        return None
+
+
+def save_document(document: Document, filepath: Path) -> None:
+    """Serializes and saves a Document to a JSON file."""
+    with open(filepath, "w") as f:
+        f.write(document.model_dump_json(indent=2))
+    print(f"Saved document to {filepath}")
+
+
+def generate_and_store_summary(
+    document: Document, overwrite: bool = False, base_dir: str = "data/objects"
+) -> Document:  # Pass base directory
+    """
+    Loads a Document object if it exists, otherwise generates summaries
+    stores it, and returns the Document.
+
+    Args:
+        document:  The original document
+        base_dir: Base directory to put files under
+
+    Returns:
+        The Document object (either loaded or newly summarized).
+    """
+    title = document.filename
+    filepath = Path(base_dir) / f"{title}.json"
+    os.makedirs(base_dir, exist_ok=True)
+    loaded_document = try_loading_document(filepath)
+
+    if loaded_document and not overwrite:
+        return loaded_document
+    else:
+        print(f"Document not found at {filepath}. Generating summary...")
+        try:
+            # call openAI API KEY
+            document = add_summaries(document)
+            save_document(document, filepath)  # Save updated document
+            return document
+        except Exception as e:
+            print(f"Error: Failed to generate summary: {e}")
+            return document  # return original.
+
+
+def generate_and_store_or_load_summary_documents(
+    documents: Iterable[Document], overwrite: bool = False, base_dir: str = "data/objects"  # Pass base directory
+) -> Iterable[Document]:
+    results = []
+    for d in documents:
+        print(d.filename)
+        result = generate_and_store_summary(d, overwrite, base_dir)
+        # yield generate_and_store_summary(d, base_dir)
+        results.append(result)
+    return results
+
 
 def process_markdown(md_generator: Iterable[Tuple[Path, str]]) -> None:
     ast_generator = build_ast(md_generator)
-    for ast in ast_generator:
-        # pprint(ast.data["children"][:15])
-        headings = extract_headings(ast.data)
-        print(f"{ast.filename} with {ast.tokens} tokens.")
-        # TODO: need summary
-        # for heading in headings:
-        #     print((heading["level"] - 1) * "\t" + heading["text"])
-    # all_categories = analyze_documents(md_generator)
+    # TODO: remove =========================
+    # ast_generator = islice(ast_generator, 1)
+    # ======================================
+    doc_generator = asts_to_documents(ast_generator)
+    doc_generator = generate_and_store_or_load_summary_documents(doc_generator)
     # merged_taxonomy = merge_categories(all_categories)
     # content_generator = categorize_and_merge_content(md_paths, merged_taxonomy)
     # save_final_document(output_file, content_generator)
 
-def process_documents(input_dir: Path, output_file: Path, md_dir: Path) -> None:
+
+def process_documents(input_dir: Path, md_dir: Path) -> None:
     """Main processing pipeline with error resilience"""
     input_files = input_dir.glob("*.pdf")
     md_generator = extract_all_to_markdown(input_files, md_dir)
