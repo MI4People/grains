@@ -17,6 +17,9 @@ from docling.document_converter import DocumentConverter, PdfFormatOption
 from docling_core.types.doc.document import PictureStackedBarChartData
 from mistletoe.ast_renderer import AstRenderer
 
+from grains.data_structures import Document, Section
+from grains.llm_utils import add_summaries
+
 # Initialize OpenAI client
 openai.api_key = os.getenv("OPENAI_API_KEY")
 MODEL: str = "gpt-4"
@@ -189,18 +192,88 @@ def ast_to_document(ast_data: AstData) -> Document:
 # =============== Processing Pipelines =============== #
 
 
+def asts_to_documents(ast_generator: Iterable[AstData]) -> Iterable[Document]:
+    docs = []
+    for ast in ast_generator:
+        doc = ast_to_document(ast)
+        docs.append(doc)
+    return docs
+
+
+def try_loading_document(filepath: str) -> Document | None:
+    """Loads a Document from a JSON file.  Returns None if the file doesn't exist."""
+    file_path = Path(filepath)
+    if not file_path.exists():
+        return None
+
+    try:
+        with open(filepath, "r") as f:
+            data = json.load(f)
+        return Document(**data)
+    except Exception as e:
+        print(f"Problem loading {filepath}: {e}")
+        return None
+
+
+def save_document(document: Document, filepath: Path) -> None:
+    """Serializes and saves a Document to a JSON file."""
+    with open(filepath, "w") as f:
+        f.write(document.model_dump_json(indent=2))
+    print(f"Saved document to {filepath}")
+
+
+def generate_and_store_summary(
+    document: Document, overwrite: bool = False, base_dir: str = "data/objects"
+) -> Document:  # Pass base directory
+    """
+    Loads a Document object if it exists, otherwise generates summaries
+    stores it, and returns the Document.
+
+    Args:
+        document:  The original document
+        base_dir: Base directory to put files under
+
+    Returns:
+        The Document object (either loaded or newly summarized).
+    """
+    title = document.filename
+    filepath = Path(base_dir) / f"{title}.json"
+    os.makedirs(base_dir, exist_ok=True)
+    loaded_document = try_loading_document(filepath)
+
+    if loaded_document and not overwrite:
+        return loaded_document
+    else:
+        print(f"Document not found at {filepath}. Generating summary...")
+        try:
+            # call openAI API KEY
+            document = add_summaries(document)
+            save_document(document, filepath)  # Save updated document
+            return document
+        except Exception as e:
+            print(f"Error: Failed to generate summary: {e}")
+            return document  # return original.
+
+
+def generate_and_store_or_load_summary_documents(
+    documents: Iterable[Document], overwrite: bool = False, base_dir: str = "data/objects"  # Pass base directory
+) -> Iterable[Document]:
+    results = []
+    for d in documents:
+        print(d.filename)
+        result = generate_and_store_summary(d, overwrite, base_dir)
+        # yield generate_and_store_summary(d, base_dir)
+        results.append(result)
+    return results
+
+
 def process_markdown(md_generator: Iterable[Tuple[Path, str]]) -> None:
     ast_generator = build_ast(md_generator)
-    # TODO
-    for ast in islice(ast_generator, 1):
-        # for ast in ast_generator:
-        pprint(ast.data["children"])
-        headings = extract_headings(ast.data)
-        print(f"{ast.filename} with {ast.tokens} tokens.")
-        # TODO: need summary
-        # for heading in headings:
-        #     print((heading["level"] - 1) * "\t" + heading["text"])
-    # all_categories = analyze_documents(md_generator)
+    # TODO: remove =========================
+    # ast_generator = islice(ast_generator, 1)
+    # ======================================
+    doc_generator = asts_to_documents(ast_generator)
+    doc_generator = generate_and_store_or_load_summary_documents(doc_generator)
     # merged_taxonomy = merge_categories(all_categories)
     # content_generator = categorize_and_merge_content(md_paths, merged_taxonomy)
     # save_final_document(output_file, content_generator)
