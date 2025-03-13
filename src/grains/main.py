@@ -121,34 +121,6 @@ def count_tokens_in_markdown(md_content: str, encoding_name: str = "cl100k_base"
 # =============== LLM Processing =============== #
 
 
-def merge_categories(all_categories: Iterable[str]) -> str:
-    """Use LLM to create unified taxonomy."""
-    prompt: str = f"""Create a comprehensive chapter structure that best organizes these hospitality categories:
-
-    {"\n\n".join(all_categories)}
-
-    Return final structure in markdown format with hierarchy. Follow these rules:
-    1. Group similar concepts (e.g., merge "Hotel Operations" and "Resort Management")
-    2. Maintain original technical terms
-    3. Order logically from fundamentals to advanced topics
-    4. Include clear hierarchy (##, ###, ####)"""
-    client = openai.OpenAI()
-    response = client.chat.completions.create(model=MODEL, messages=[{"role": "user", "content": prompt}])
-    return str(response.choices[0].message.content)
-
-
-def categorize_content(content: str, taxonomy: str) -> str:
-    """Map document content to unified taxonomy."""
-    prompt: str = f"""Match this content to the taxonomy below. Return only category names and relevant excerpts:
-    Content: {content[:12000]}
-    Taxonomy:
-    {taxonomy}"""
-
-    client = openai.OpenAI()
-    response = client.chat.completions.create(model=MODEL, messages=[{"role": "user", "content": prompt}])
-    return str(response.choices[0].message.content)
-
-
 def save_final_document(output_file: Path, content_generator: Generator[str, None, None]) -> None:
     """Save final merged document from generated content"""
     output_file.parent.mkdir(parents=True, exist_ok=True)
@@ -157,6 +129,63 @@ def save_final_document(output_file: Path, content_generator: Generator[str, Non
             f.write(f"{section}\n\n")
 
 
+def ast_to_document(ast_data: AstData) -> Document:
+    """
+    Converts an AST data structure (Mistletoe AST as a dictionary)
+    to a Document object.
+
+    Args:
+        ast_data: An AstData NamedTuple containing the filename, token count,
+                  and the Mistletoe AST represented as a Dict.
+
+    Returns:
+        A Document object representing the structured document.
+    """
+
+    data: Dict = ast_data.data
+    filename: str = ast_data.filename
+    tokens: int = ast_data.tokens
+    sections: List[Section] = []
+    current_section: Section | None = None
+
+    def extract_text_content(node: Dict) -> str:
+        """Extracts text content recursively from a node and its children."""
+        text = ""
+        if node.get("type") == "RawText":
+            return node.get("content", "")
+
+        for child in node.get("children", []):
+            text += extract_text_content(child)
+        return text
+
+    for node in data.get("children", []):  # Top level 'children' key now present
+        node_type = node.get("type")  # Use get because type may not always be present
+
+        if node_type == "Heading":
+            if current_section:
+                sections.append(current_section)
+
+            title = extract_text_content(node)  # Extract title more generically
+            current_section = Section(
+                title=title if title else "No Title",
+                level=node.get("level", 1),
+            )
+        elif node_type == "Paragraph":
+            paragraph_content = extract_text_content(node)
+
+            if current_section:
+                current_section.content += paragraph_content + "\n\n"  # append spacing
+            else:
+                sections.append(Section(title="Preamble", content=paragraph_content, level=0))
+                current_section = None  # Important: reset var after preamble create
+        # Add handling all other elements needed (quotes, list's etc.)
+        else:
+            pass
+
+    if current_section:
+        sections.append(current_section)
+
+    return Document(filename=filename, tokens=tokens, sections=sections)
 # =============== Processing Pipelines =============== #
 
 
