@@ -2,3 +2,5 @@
 docs/.$architecture.drawio.bkp
 .DS_Store
 test.ipynb
+data/j_in
+data/j_out
