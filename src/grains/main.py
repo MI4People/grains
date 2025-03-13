@@ -18,7 +18,7 @@ from docling_core.types.doc.document import PictureStackedBarChartData
 from mistletoe.ast_renderer import AstRenderer
 
 from grains.data_structures import Document, Section
-from grains.llm_utils import add_summaries
+from grains.llm_utils import add_summaries, classify
 from grains.utils import load_curriculum
 
 # Initialize OpenAI client
@@ -277,10 +277,14 @@ def process_markdown(md_generator: Iterable[Tuple[Path, str]]) -> None:
     # ======================================
     doc_generator = asts_to_documents(ast_generator)
     doc_generator = generate_and_store_or_load_summary_documents(doc_generator)
+    doc_generator = classify_documents(doc_generator)
     # merged_taxonomy = merge_categories(all_categories)
     # content_generator = categorize_and_merge_content(md_paths, merged_taxonomy)
     # save_final_document(output_file, content_generator)
 
+def classify_documents(documents: Iterable[Document]) -> Iterable[Document]:
+    curriculum = load_curriculum()
+    return [classify(doc, curriculum) for doc in documents]
 
 def process_documents(input_dir: Path, md_dir: Path) -> None:
     """Main processing pipeline with error resilience"""

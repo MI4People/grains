@@ -1,6 +1,8 @@
 import os
+import json
 
 import openai
+import numpy as np
 
 from grains.data_structures import Document, Section
 from grains.prompts import (MODEL_NAME, SUMMARIZE_DOCUMENT_MAX_TOKENS,
@@ -78,5 +80,69 @@ def add_summaries(document: Document) -> Document:
     except Exception as e:
         print(f"Error summarizing document Title: {e}")
         document.summary_title = "Failed to summarize document Title."
+
+    return document
+
+def classify(document: Document, curriculum)-> Document:
+    """
+    Classifies sections of a document to categories using an LLM.
+
+    Args:
+        document: The Document object to classify.
+        curriculum: The curriculum of interest.
+
+    Returns:
+        The Document object with mappings.
+    """
+    client = openai.OpenAI(
+    base_url="https://openrouter.ai/api/v1",
+    api_key="<>",
+    )
+    # Infer LLM classifier function
+    def get_class(text, description, labels, label_descriptions):
+        function = {
+        "type": "function",
+        "function":{
+        "name": "Classify",
+        "description": description,
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "prediction": {
+                    "type": "string",
+                    "description": label_descriptions,
+                    "enum": labels
+                },
+            },
+            "required": ["prediction"]
+        },
+        }}
+        response = client.chat.completions.create(
+            model="google/gemini-2.0-flash-lite-preview-02-05:free", 
+            messages=[{"role": "system", "content": "Only use the functions you have been provided with."},
+                        {"role": "user", "content": text}],
+            tools=[function],
+            tool_choice= {
+                "type": "function",
+                "function": {
+                    "name": "Classify"
+                }
+                },
+            temperature=0
+        )
+        return json.loads(response.choices[0].message.tool_calls[0].function.arguments)["prediction"]
+     
+    # Classify each document section for each curriculum module 
+    for i in range(len(curriculum.modules)):
+        module_desc = [topic.description for topic in curriculum.modules[i].topics]+["Other"]
+        module_label = [topic.name for topic in curriculum.modules[i].topics]+["Other"]
+        for j in range(len(document.sections)):
+            # Classify from description of topics and summary of section
+            text_topic = get_class(text = document.sections[j].summary, description="topic of a section",
+                                labels=module_desc,
+                                label_descriptions="The section the text belongs to")
+            # Lookup topic name
+            label = module_label[np.where(np.array(module_desc) == np.array(text_topic))[0][0]]
+            document.sections[j].mappings += [[curriculum.modules[i].name, label]]
 
     return document
