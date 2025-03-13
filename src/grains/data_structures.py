@@ -7,14 +7,25 @@ class Topic(BaseModel):
     name: str = Field(..., description="Name of the topic")
     description: str = Field(..., description="Description of the topic")
 
+    def __str__(self) -> str:
+        return f"Topic: {self.name}\n    Description: {self.description}"
+
 
 class Module(BaseModel):
     name: str = Field(..., description="Name of the module")
     topics: List[Topic] = Field(..., description="Topics covered in the module")
 
+    def __str__(self) -> str:
+        topics_str = "\n    ".join(str(topic) for topic in self.topics)
+        return f"Module: {self.name}\n  Topics:\n    {topics_str}"
+
 
 class Curriculum(BaseModel):
     modules: List[Module] = Field(..., description="List of modules in the curriculum")
+
+    def __str__(self) -> str:
+        modules_str = "\n\n".join(str(module) for module in self.modules)
+        return f"Curriculum:\n{modules_str}"
 
 
 class CategoryMapping(BaseModel):

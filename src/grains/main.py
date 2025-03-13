@@ -19,6 +19,7 @@ from mistletoe.ast_renderer import AstRenderer
 
 from grains.data_structures import Document, Section
 from grains.llm_utils import add_summaries
+from grains.utils import load_curriculum
 
 # Initialize OpenAI client
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -189,6 +190,8 @@ def ast_to_document(ast_data: AstData) -> Document:
         sections.append(current_section)
 
     return Document(filename=filename, tokens=tokens, sections=sections)
+
+
 # =============== Processing Pipelines =============== #
 
 
@@ -290,5 +293,7 @@ if __name__ == "__main__":
     # Configuration with type-hinted Path objects
     input_dir: Path = Path("data/pdf")
     md_dir: Path = Path("data/md")
+    # Load desired curriculum
+    curriculum = load_curriculum()
     # Run processing
     process_documents(input_dir, md_dir)
