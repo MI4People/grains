@@ -1,6 +1,13 @@
-from typing import Dict, List, Optional
+from typing import (Any, Dict, Generator, Iterable, Iterator, List, NamedTuple,
+                    Optional, Tuple)
 
 from pydantic import BaseModel, Field
+
+
+class AstData(NamedTuple):
+    filename: str
+    tokens: int
+    data: Dict[str, Any]
 
 
 class Topic(BaseModel):

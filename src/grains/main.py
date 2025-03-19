@@ -17,19 +17,13 @@ from docling.document_converter import DocumentConverter, PdfFormatOption
 from docling_core.types.doc.document import PictureStackedBarChartData
 from mistletoe.ast_renderer import AstRenderer
 
-from grains.data_structures import Document, Section
+from grains.data_structures import AstData, Document, Section
 from grains.llm_utils import add_summaries
-from grains.utils import load_curriculum
+from grains.utils import load_curriculum, try_loading_document_object
 
 # Initialize OpenAI client
 openai.api_key = os.getenv("OPENAI_API_KEY")
 MODEL: str = "gpt-4"
-
-
-class AstData(NamedTuple):
-    filename: str
-    tokens: int
-    data: Dict[str, Any]
 
 
 # =============== PDF to Markdown Extraction =============== #
@@ -203,21 +197,6 @@ def asts_to_documents(ast_generator: Iterable[AstData]) -> Iterable[Document]:
     return docs
 
 
-def try_loading_document(filepath: str) -> Document | None:
-    """Loads a Document from a JSON file.  Returns None if the file doesn't exist."""
-    file_path = Path(filepath)
-    if not file_path.exists():
-        return None
-
-    try:
-        with open(filepath, "r") as f:
-            data = json.load(f)
-        return Document(**data)
-    except Exception as e:
-        print(f"Problem loading {filepath}: {e}")
-        return None
-
-
 def save_document(document: Document, filepath: Path) -> None:
     """Serializes and saves a Document to a JSON file."""
     with open(filepath, "w") as f:
@@ -242,7 +221,7 @@ def generate_and_store_summary(
     title = document.filename
     filepath = Path(base_dir) / f"{title}.json"
     os.makedirs(base_dir, exist_ok=True)
-    loaded_document = try_loading_document(filepath)
+    loaded_document = try_loading_document_object(filepath)
 
     if loaded_document and not overwrite:
         return loaded_document
