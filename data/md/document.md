@@ -1,0 +1,644 @@
+<!-- image -->
+
+## European Journal of Tourism Research http:llejtr.vumk.eu
+
+<!-- image -->
+
+## Exploring the barriers and prospects for service robot adoption in the hotel industry: A management perspective
+
+Ines Milohnić 1 and Jelena Kapeš 2 *
+
+- 1 Faculty of Tourism and Hospitality Management, University of Rijeka, Opatija, Croatia. E-mail: ines.miloh- nic@fthm.hr
+
+2
+
+Faculty of Tourism and Hospitality Management, University of Rijeka, Opatija, Croatia. E-mail:
+
+jelena.kapes@fthm.hr
+
+*Corresponding author
+
+## Abstract
+
+The hospitality industry in many countries has recently faced severe labour shortages, leading hoteliers to consider the robotization of services. Many studies have focused on hotels that already use service robots while overlooking those that have not yet deployed them. The key role is played by managers, whose perspective has been neglected in previous studies. This research explores the barriers and prospects for robot adoption from the perspective of hotel managers in hotels where service robotization is not yet widespread. For this purpose, 18 managers of upscale hotels in Croatia, a country heavily dependent on tourism facing a labour outflow and low technological development, were interviewed. Using an inductive thematic analysis, four main groups of barriers were identified: managerial knowledge, employee involvement, service context, and technical aspect. Lack of knowledge emerged as the most critical issue. Hotel managers do not currently consider robotization suitable for luxury hotels but express willingness to use it in the future, depending on hotel size and service type. They see potential applications primarily for back-office tasks. They would use them to support rather than replace staff. The results provide a basis for future studies and practical guidelines for hotel policy development.
+
+Keywords: service automation; technology adoption; robotization challenges; robotization benefits; future implementation
+
+Citation: Milohnić, I. and Kapeš, J. (2024). Exploring the barriers and prospects for service robot adoption in the hotel industry: A management perspective. European Journal of Tourism Research , 38, 3805. https://doi.org/10.54055/ejtr.v38i.3387.
+
+## Publication history:
+
+Received: 28/07/2023; Revised: 19/12/2023, 24/04/2024; Accepted: 27/04/2024; Published online: 01/08/2024; Volume date: 01/10/2024
+
+Coordinating editor: Stanislav Ivanov
+
+<!-- image -->
+
+© 2024 The Author(s)
+
+This work is licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0). To view a copy of this license, visit https://creativecommons.org/licenses/by/4.0/
+
+## 1 994 7658 ISSn (ONLINE):
+
+## 1. Introduction
+
+Automation of jobs in various industries is not a new phenomenon, but the hotel industry has only recently been affected by this trend. Market trends such as the ageing population, digitization of the economy, and the Covid-19 pandemic have created difficulties in the form of labour shortages, the need for innovation and quality improvement, and security and privacy issues (Seyitoglu & Ivanov, 2021; Yang & Chew, 2021). Enterprise robotization helps address these challenges (Song et al ., 2022; Xu et al ., 2020) and is therefore becoming an increasingly common research topic.
+
+The line between automation and robotization can be somewhat blurred and lead to ambiguity among researchers (Reis et al .,  2020). The former refers to the use of technology to optimize or streamline existing processes, while the latter involves the use of machines capable of performing tasks in a manner similar to human workers. According to Rajan and Saffiotti (2017), robotics in services should be integrated with AI so that it can interact with customers and provide them with a personalized experience. Wirtz et al . (2018, p. 909) define service robots (SRs) as 'system-based autonomous and adaptable interfaces that interact, communicate and deliver service to an organization's customers.' On the other hand, Bowen and Morosan (2018, p. 727) use the definition of SRs as 'physically embodied artificially intelligent agents that can take actions that have effects on the physical world'. Unlike other technologies that require human effort, SRs operate autonomously since they are directed by AI without the necessity for human assistance (Belanche et al ., 2020). They can appear in different forms such as anthropomorphic, zoomorphic, caricatured, and functional (Reis et al ., 2020). SRs can respond and adapt to their environment, resulting in specific human-robot interaction that is new to the hospitality industry (Tuomi et al ., 2021). To distinguish SRs from other technologies, for this article, the term service robot is used to refer to 'information technology in a physical embodiment, providing customized services by performing physical as well as nonphysical tasks with a high degree of autonomy' (Jörling et al ., 2019, p. 405).
+
+Since the hospitality industry relies heavily on human labour, it is critical to study the adoption and scale of robotic services in hotels. Previous studies have highlighted the importance of robotic technologies  in  hotel  operations,  finance,  marketing,  and  human  resources  (Ivanov,  Seyitoğlu,  &  Markova, 2020). However, research to date has mostly focused on the perspective of users or employees as the main actors when it comes to the application of this technology (Belias et al ., 2021; Chen et al ., 2022; Vatan & Dogan, 2021; Ayyildiz et al ., 2022). Moreover, Ye, Sun, and Lay (2022) state that more than 70% of existing relevant articles related to hotel service robotization focus on the consumer perspective only. On the other hand, the perspective of managers is much less represented (Nam et al ., 2021; Ivkov et al ., 2020; Pizam et al ., 2022), although they are the ones who play a pivotal role in deciding the extent of robotization in hotels. As the most influential individuals in the hierarchy of a hotel, managers have the power to advocate for or against new strategies (Chan et al ., 2015). They make decisions or initiate the introduction of such innovations, and if they do not see the benefits of using robots, robots will not be implemented (Ivanov, Seyitoğlu, & Markova 2020). Conversely, if their perception is positive, they are likely  to  encourage  and  facilitate  their  adoption  (Ezzaouia  &  Bulchand-Gidumal,  2020; Stylos et  al ., 2021). Therefore, their perception is crucial, as the introduction of new technologies requires hotel managers to be more open to change and to balance technological and human factors (Xu et al ., 2020; Ivanov & Webster, 2019).
+
+Since most of the previous studies spatially refer to a country with a high level of technological development (e.g., Zhong et al ., 2020a; Nam et al ., 2021; Tuomi et al ., 2021), researchers emphasize the need to consider countries where this type of technology is still in its infancy (Ivanov, Seyitoğlu, & Markova, 2020). Ivanov et al .  (2019)  also  warn that the dominance of research from Asia leads to a culturally coloured understanding of robots, service, and hospitality. This makes the Republic of Croatia an inter-
+
+sting research context. Although the country is part of the European Union, it is still less technologically developed compared with other EU countries. According to the Global Innovation Index (GII), which measures the innovation capabilities and outcomes of global economies, Croatia ranks 27th out of 39 European countries (WIPO, 2022). Croatia's frontier readiness technology index score is 0.68, placing the country in the upper middle range in technology adoption (UNCTAD, 2023). However, despite the high increase in the score over the past year, Croatia is still in the lower third quartile among European countries, with particularly low scores in the "skills" and "ICT" categories.
+
+On the other hand, tourism is highly developed in Croatia, as the country's economy depends heavily on it. The direct share of tourism in the national GDP is 11.3%, the highest in the EU, which has an average value of 4.5% (HRT, 2023). Due to strong emigration and simultaneous tourism growth, Croatia has been facing a serious labour shortage in the tourism and hospitality industry for several years. The number of inhabitants has decreased by 9.64% (DZS, 2022), while the number of tourist arrivals has grown by more than 45% in the last decade (DZS, 2023). During the same period, the number of accommodation units for tourists increased by over 34% (DZS, 2023). Importing labour was seen as a temporary solution, but could not last in the long run. According to several scholars, the successful integration of robotization into business processes can help optimise the workforce and improve the quality of working conditions (Xu et al .,  2020; Morosan & Bowen, 2022). Consequently, this could alleviate the labour problem. Some other countries have introduced service robotization due to the aforementioned problems. For example, Ivanov, Seyitoğlu, and Markova (2020) explain a similar context for their research in Bulgaria, noting that hoteliers have begun to use automated and robotized services; however, this is not yet the case in Croatia.
+
+The scant research on this topic has overlooked the questions that managers have to address when implementing SR (Belanche et al ., 2020). As hotels invest more in robotization, however, they will also need to invest in managers who can understand it (Xu et al ., 2020). Although the initial adoption of SRs in the hospitality industry presents an opportunity for organizations, service providers should also be prepared to address challenges related to their implementation (Kala, 2022). Some scholars (Ivanov, Webster, & Berezina, 2020; Lu et al., 2020; Pizam et al ., 2022) emphasize the need to understand the factors that hinder SR acceptance so they can be adapted to mitigate resistance. Decision-makers must be aware of the multiple factors that influence the decision to introduce SRs (McCartney & McCartney 2020). While various theoretical frameworks exist to explain the factors influencing technology adoption in organizations, they often remain general and require advancement to accommodate different contexts (Baker, 2011; Hasani et al ., 2023). Moreover, these frameworks, in exploring both positive and negative influences, do not fully capture internal and external barriers that hinder SR adoption. Given this gap and recent calls by scholars for a deeper understanding of managers' perspectives (Ivkov et al. , 2020; Nam et al ., 2021; Pizam et al ., 2022), the purpose of this study is to explore the barriers and prospects for robot adoption from the perspective of hotel managers in technologically less-developed areas.
+
+Therefore, the study answers the following research questions:
+
+- (1) What are the main barriers to service robot adoption in hotel establishments?
+- (2) Given the current barriers, how ready are hotel managers to adopt service robots in the future? By answering these questions, the research aims to (1) identify and categorize factors that hinder the implementation of service robots in hotels, and (2) determine the level of readiness for service robot adoption based on identified barriers and potential benefits for hotels.
+
+The paper contributes to the limited understanding of managers' perspectives when it comes to service robotization. To the authors' knowledge, there has been no previous study that provides a comprehensive framework of the barriers to SR adoption from the perspective of decision-makers in the hotel
+
+industry. This issue, however, appears to be of growing relevance, particularly in hotel establishments where the presence of service robotization is still very limited.
+
+## 2. Literature review
+
+The rapid progress of robotization has significantly disrupted the global market across various industries. A forecast suggests that by 2025 approximately 85 million jobs will be replaced by robots (WEF, 2020). The hospitality industry, known for its labour-intensive nature, is not exempt from this trend. The International Federation of Robotics (2023) has reported a 125% growth in robot sales for the hospitality industry in 2022. Moreover, Ivanov, Webster and Berezina (2020) argue that the hospitality sector is particularly vulnerable to robotization due to the prevalence of simple and routine tasks among its workforce. These repetitive tasks are first being automated and substituted by robots (Buhalis et al ., 2018).
+
+With its increased implementation, service robotization has been recognized as a way to improve operational efficiency, reduce labour costs, and even enhance customer experience (Belanche et al ., 2020). SRs have proved to be useful in hotel operations by increasing service capacity (Ivanov & Webster, 2019), providing a unique experience for guests (Chan & Tung, 2019) and reducing operational costs (Ivanov & Webster, 2019). Introducing robots in a hotel business is a complex process and to make an optimal decision, hotel managers need a clear understanding of SR advantages and disadvantages (Ivanov, Seyitoğlu, & Markova, 2020). Previous studies have addressed some main positive aspects of SR implementation such as increased productivity, cost-effectiveness, resource optimization, quality consistency, removal of human error, and mitigation of the effects of labour shortage (Ivanov & Webster, 2020; Ivanov, Seyitoğlu, & Markova, 2020; Dogan & Vatan, 2019; Bowen & Morosan, 2018). On the other hand, service robotization has been criticized due to lack of human interaction, absence of empathy, ability to work only in a structured situation, and complex implementation process (Ivanov, Seyitoğlu, & Markova, 2020; Dogan & Vatan, 2019). Therefore, Seyitoğlu et al . (2021) illustrate that a collaborative approach between humans and robots, known as a mixed service delivery system, proves to be the most appropriate. This system leverages the strengths of human employees to compensate for the limitations of robots, and vice versa. Accordingly, the choice of a combination of human and robot involvement in the service delivery system of tourism and hospitality companies has become a critical issue for hotel managers (Ivanov, Webster & Seyitoglu, 2023). Hence, the determinants of SR adoption appear as a common subject of research in hospitality. While the adoption of SRs remains a relatively novel concept in research, few well-established theoretical frameworks can help in understanding general aspects of technology adoption within organizations.
+
+The  Technology-Organization-Environment  (TOE)  framework  by  Tornatzky  and  Fleischer  (1990) stands out as one of the most widely used theories for exploring innovation adoption within organizations (Oliveira & Martins, 2011). TOE offers a structured lens for analysing the interplay of technological, organizational, and environmental factors influencing the adoption of innovations. It helps identify the specific technological features, the hotel's organizational readiness, and the external environmental factors that either facilitate or hinder the adoption of new technologies. TOE is often seen as a general framework offering considerable flexibility due to unclear key constructs (Baker, 2011; Hasani et  al., 2023). Therefore, researchers have used slightly different factors to describe each TOE dimension depending on the adoption context. Research on various technological innovations in the hospitality sector highlights key technological factors such as the costs associated with new technology (Pizam et al ., 2022), compatibility with the existing structures (Pizam et  al .,  2022;  Wang et  al .,  2016),  relative  advantage (Nam et al ., 2021; Pizam et al ., 2022; Wang et al ., 2016; Pateli et al ., 2020; Ezzaouia & BulchandGidumal, 2020), and complexity of its usage (Nam et al .,  2021; Pizam et al .,  2022; Wang et al .,  2016). Organizational factors predominantly refer to employee resistance (Nam et al ., 2021), company characteristics (Wang et al ., 2016; Ezzaouia & Bulchand-Gidumal, 2020), and top management support (Pizam
+
+et al ., 2022; Wang et al ., 2016; Pateli et al ., 2020; Cruz-Jesus et al ., 2019). Environmental factors mostly include competitiveness (Nam et al ., 2021; Pizam et al ., 2022; Wang et al. , 2016; Pateli et al ., 2020; CruzJesus et al ., 2020; Ezzaouia & Bulchand-Gidumal, 2020), with less emphasis on customers (Nam et al ., 2021; Ezzaouia & Bulchand-Gidumal, 2020). However, Baker (2011) warns that the TOE framework has seen minimal evolution since its initial development, as it has primarily adapted existing constructs to various contexts without introducing new ones. Over time, many scholars have started integrating diverse theoretical frameworks to grasp the complexity of technology adoption in organizations (Okumus et al .,  2017). Primarily, studies combine the TOE framework with the Diffusion of Innovations (DOI) Theory introduced by Rogers (1995), which focuses on the process of innovation diffusion within a social system. According to Rogers (1995), technology adoption is related to innovation characteristics, organization characteristics as well as the individual characteristics of a leader. While the DOI Theory and TOE framework appear to be in agreement (Oliveria & Martins, 2011; Pizam et al ., 2022), the DOI Theory does not include the environmental variable. On the other hand, it adds to the issue of technology adoption by emphasizing the individual variables of a leader. The TOE framework and DOI theory complement each other in understanding technology adoption in organizations. TOE focuses on the adoption context, while DOI examines the innovation's characteristics and the individuals and organizations involved. By integrating these frameworks, researchers gain a deeper insight into technology adoption. (Cobos et al ., 2016). According to Baker (2011), although the tension between the TOE framework and other theories appears to be minor, little theoretical agreement occurred, and it could be resolved by integrating competing ideas into the TOE framework rather than addressing them separately. Studies on technology adoption should  consider not only technological, organizational,  and environmental contexts but also task characteristics and individual factors (Baker, 2011). Several scholars (Ciftci et al ., 2021; Ezzaouia & Bulchand-Gidumal, 2020) also advocate for incorporating personal characteristics into technology acceptance models, recognizing them as important factors in technology adoption.
+
+Managers, although less represented in SR research, are considered crucial facilitators in any technology adoption process because of their critical role in providing the necessary resources and support for successful implementation (Ivanov, Seyitoğlu, & Markova, 2020). Even earlier studies recognized that top management support, and senior management's commitment to and belief in technology implementation influence the organizational perception of technology usage and its actual implementation (Lin, 2010; Law & Ngai, 2007). Management support can mitigate the conflicts related to robotization adoption and help to reach an overall consensus within an organization (Chen,2019; Pizam et  al .,  2022). Tuomi et al . (2021) highlight that hospitality managers need to consider how and where to implement SRs to find the right balance between using them for efficiency and meeting customer expectations. Since robotic technology will play an important role for organizations in the near future, it will have important implications for management (Xu et al ., 2020). Dogan and Vatan (2019) have found that managers accept the existence of SRs and are mostly positive towards their implementation in hotels. However, they are concerned about the disruption of human-to-human interaction. On the other hand, Ivanov, Seyitoğlu, and Markova (2020) conclude that hotel managers are generally not ready to implement SRs as they believe this would decrease the quality of service. The results may vary, however, depending on the context (Xu et al ., 2020), be it geographical, cultural, or related to the type of hotel or service.
+
+According to Maurer (1996), the resistance of people is the main reason for the failure of organizational changes. On an individual level, robotic hospitality services can trigger various positive or negative emotions depending on one's technology readiness, comfort and use (Parasuraman, 2000). The Status Quo Bias Theory posits that individuals prefer the current state of affairs and resist change, even when the change could bring potential benefits (Samuelson & Zeckhauser, 1988; Kim & Kankanhalli, 2009). This  theory  suggests  that  organizational  leaders  often  prefer  maintaining  the  status  quo,  especially when faced with limited choices and uncertain benefits or associated costs (Almatrodi et al ., 2023). The
+
+resistance to innovation arises from (1) rational decision-making when faced with transition costs or uncertainty, (2) cognitive misperceptions, and (3) psychological commitment resulting from misunderstood sunk costs, the desire to avoid regret or pursuit of consistency (Samuelson & Zeckhauser, 1988). Perceived difficulty often causes hesitation to adopt new technologies (Shin et al ., 2019). However, Pizam et al . (2022) emphasize that if hotel managers perceive that SR implementation could bring them a competitive advantage, they are more willing to adopt SRs. Studying the perspective of hotel managers thus becomes even more relevant. The complex factors that drive or discourage the decision of managers to introduce SRs must be understood. These factors go beyond economics and market competition (McCartney & McCartney, 2020), referring also to individual understanding of technology, internal and external support, employees, guest experience, and organization characteristics. While existing technology adoption frameworks provide a comprehensive understanding of the factors that influence the implementation of various technologies within organizations, focusing solely on them could lead to overlooking key barriers that prevent or hinder adoption. Unlike adoption factors, which emphasize benefits, advantages, and features of technology, barriers focus on internal and external obstacles that may impede the adoption process, requiring ongoing research (Pizam et al ., 2022).
+
+## 3. Methodology
+
+Given the exploratory nature of the study, a qualitative approach was used to answer the research questions. Qualitative research provides rich and holistic data with the potential to reveal complexity (Miles & Huberman, 1994). Semi-structured in-depth interviews were conducted to obtain thorough insights from hotel managers. The target population was the managers of large-capacity upscale hotels since studies show that larger hotels are more likely to be the early adopters of SRs compared with small ones (Xu et al ., 2020).
+
+Purposive sampling was employed to include participants who have multiple years of working experience in the hospitality industry and occupy middle or top-management positions within large hotel companies. Given that previous research highlights the dominant impact of service robot implementation on hotel operations (Ivanov, Seyitoğlu, & Markova, 2020), managers responsible for hotels, hotel operations, or operational departments were deemed suitable participants. While the primary application of SRs is in hotel operations, challenges associated with their implementation are greatly related to human resource management (Ivanov, Seyitoğlu, & Markova, 2020). When researching this issue from the organizational perspective, Xu et al .  (2020) highlighted HR experts as appropriate informants as they are familiar with employee-related issues, jobs, tasks, organizational readiness and organizational culture. Therefore, the eligible participants included general managers, operation managers, operation department managers and HR managers at both the corporate and independent level. Considering the difficulties in engaging hospitality managers in research (Stylos et al ., 2021), a snowball sampling technique was used as it has proved to be useful for overcoming the accessibility constraint (Biernacki & Waldorf, 1981). Using this technique, 5 individuals managing large hotel companies in Croatia were initially interviewed and asked to suggest additional interviewees based on their expertise and willingness to share information. Each participant suggested one or two potential participants based on their professional connections.
+
+The field research was conducted in February and March 2023. Initially, the potential participants were reached by e-mail or phone. Then the research objectives and methodology were explained to them, and upon their voluntary consent to participate, the interviews were carried out. The interviews occurred both online and in person, and were conducted in the participants' language, predominantly Croatian, except one interview conducted in English. The interviews varied in duration, lasting between 20 and 40 minutes, with an average of 28 minutes. Conducted in pairs, this format allowed one researcher to lead the conversation while the other took notes. Maintaining consistency for credibility, all
+
+interviews were carried out by the same individuals (Healy & Perry, 2000). To ensure the appropriateness of questions for capturing the research topic, the theory was used to guide the study (AdeoyeOlatunde & Olenik, 2021; Chan et al., 2015). Following the guidelines proposed by Adams (2015), an interview guide was constructed to initiate discussions with general questions about the topic, the managers' experiences and comprehension of SRs, and perceived SR advantages and disadvantages. The interview guide was designed using existing theoretical frameworks on technology adoption to understand the reasons behind the non-implementation of SRs. It ensured coverage of key topics related to technological, organizational, environmental, and individual aspects while also allowing for new themes to emerge. Towards the conclusion of the interview, socio-demographic information and the organizations' characteristics were collected.
+
+After the 17th interview, the saturation point was reached since the authors were not obtaining any new information (Guest et al .  2006). One additional interview was conducted to confirm the saturation. Thus, a total of 18 interviews were conducted with managers of Croatian hotels whose companies hold more than 60% of the total hotel room capacity in Croatia. All hotels included in the study belong to different brands and parent companies, ensuring that the respondents were not influenced by the same corporate entity. The characteristics of respondents are presented in Table 1.
+
+Table 1: Respondents characteristics
+
+| Participant   | Gender   | Position                     | Age   | Hotel type                 |
+|---------------|----------|------------------------------|-------|----------------------------|
+| P1            | F        | Hotel general manager        | 55-60 | Domestic hotel chain       |
+| P2            | M        | Corporate operations manager | 35-40 | Domestic hotel chain       |
+| P3            | M        | Hotel general manager        | 35-40 | International hotel chain  |
+| P4            | M        | Hotel operations manager     | 30-35 | International hotel chain  |
+| P5            | M        | Hotel F&B manager            | 25-30 | International hotel chain  |
+| P6            | M        | Hotel general manager        | 40-45 | International hotel chain  |
+| P7            | M        | Hotel general manager        | 60-65 | Independent domestic hotel |
+| P8            | M        | Corporate operations manager | 35-40 | Domestic hotel chain       |
+| P9            | F        | Hotel general manager        | 30-35 | Domestic hotel chain       |
+| P10           | M        | Hotel operations manager     | 35-40 | Independent domestic hotel |
+| P11           | F        | HR manager                   | 45-50 | International hotel chain  |
+| P12           | F        | Corporate general manager    | 60-65 | Domestic hotel chain       |
+| P13           | M        | HR manager                   | 45-50 | International hotel chain  |
+| P14           | F        | Hotel general manager        | 35-40 | Domestic hotel chain       |
+| P15           | M        | Hotel operations manager     | 25-30 | Independent domestic hotel |
+| P16           | F        | HR manager                   | 40-45 | International hotel chain  |
+| P17           | M        | Corporate F&B manager        | 35-40 | Domestic hotel chain       |
+| P18           | M        | Hotel general manager        | 50-55 | International hotel chain  |
+
+The analysis was made following the three-step framework which includes data reduction, data displaying, and conclusion drawing and verification (Miles & Huberman, 1994). Inductive thematic analysis was used. According to Vatan and Dogan (2021), utilizing thematic analysis enables researchers to effectively condense and organize large datasets by employing a systematic approach to data processing, ultimately leading to clear and well-structured final results. Given the existence of theories that focus on technology adoption in general rather than specifically on barriers to adoption, along with critiques regarding the generality of these frameworks (Baker, 2011; Hasani et al. , 2023), the inductive approach was chosen. This approach allows researchers to maintain an open perspective when identifying elements or concepts from the data that may not have been previously recognized (Chan et al ., 2015; Braun & Clarke, 2012; Lvov & Kompula, 2024).
+
+Following the recommendations of Van Nes et al . (2010), an analysis was carried out in Croatian, the source language, to prevent losing important information through translation. The single interview conducted in English was translated into Croatian with the assistance of a professional translator. Transcripts  made  during  the  interviews  were  independently  coded  by  two  researchers.  As  suggested  by Strauss and Corbin (1990), the coding was performed in two main stages: open coding and axial coding. Before initiating the analysis, transcripts were read multiple times.
+
+The analysis started with the open coding of three transcripts to extract the initial set of codes and develop a coding frame. This process was iterative, involving negotiated agreement as a method of achieving intercoder agreement, common for exploratory studies (Campbell et al ., 2013; Garison et al ., 2006). The first round of independent coding was followed by a meeting where discrepancies were discussed and the coding frame was revised (Campbell et al ., 2013; Hruschka et al ., 2004). Since the informants were explicit in expressing their thoughts, no major disagreements arose. In the following phase, nine transcripts were coded and discussed again to resolve some minor differences that occurred. After reaching a consensus and agreeing on a coding scheme, the analysis of all transcripts was conducted, resulting in some minor changes to the code frame during the following iterations. Once all codes were agreed upon, their connections became visible. During axial coding, codes were merged and organized thematically into themes and sub-themes as proposed by Braun and Clarke (2012). Following the recommendation of Van Nes et al . (2010), findings, including themes and quotes, were translated into English by consulting a professional translator. Finally, after the themes were defined, they were explained within the broader context of theories on technology adoption.
+
+## 4. Results
+
+Results are analysed and displayed according to the two research questions. The first sub-section addresses the question of what are the current barriers to SR adoption from the managers' perspective, while the second sub-section deals with the prospects for future SR implementation.
+
+## 4.1. Barriers to SR adoption
+
+To gain insight into the key barriers to SR implementation in hotels, managers were asked about various aspects  of  their  business.  After  a  thorough  analysis,  four  key  barriers  emerged,  namely  managerial knowledge, employee involvement, service context and technical aspect. These four themes with their main sub-themes are described below.
+
+## 4.1.1 Managerial knowledge
+
+The analysis has identified managerial knowledge as an important barrier to SR implementation, revealing three sub-themes: awareness, experience, and interest.
+
+## a) Awareness
+
+The research shows that hotel managers generally lack information on SRs, which appears to be the key issue, particularly since further analysis revealed that their attitudes are not negative. They were struggling with the definition of SR itself, not being able to distinguish clearly between service automation and service robotization.
+
+P1: 'In fact, I do not have an idea of what a service robot would actually be. Could a cutlery polishing machine also be a robot?'
+
+A part of the respondents who are not familiar with service robotization also lack awareness of this technology's current level of development. They perceive SRs as an innovation in its initial stage, not sufficiently developed to be implemented in a hotel.
+
+P5: 'I think this is still in its initial stage (…) I don't think it is developed enough to bring benefits (…) I am not sure how fast it (service robotization) can happen.'
+
+However, research and practice have both shown that service robots are already widely used in hotels across the globe, even for some sophisticated tasks such as concierge services, reception tasks, or food and drink preparation (Ivanov, Webster & Berezina, 2020). Managers will need to possess at least a minimum knowledge of and training in SRs to successfully implement them in business (Xu et al ., 2020). The lack of information is evident not only in understanding the possibilities and benefits of SRs but also in the inability to recognize the financial implications of SR adoption. Moreover, the majority of respondents did not have any information about the price of SRs nor the costs and savings they could bring. Although they mostly believe that robots can reduce some costs, they were just conjecturing.
+
+P4: 'I  don't  know if using a robot would justify the cost of its service. Maybe there would be some savings (…) but I have no idea about the price.' '…it raises the question of how much they (SRs) replace a person (…) perhaps the investment would
+
+P11: pay off, but it is quite large. It's hard for me to judge.'
+
+Managers employed in international chain hotels seem to be more informed about SRs, emphasizing that their hotels in other countries have already initiated implementation (e.g., P5, P13, P16, P18). On the other hand, only two managers at the corporate level are actively considering SR adoption and have thorough knowledge about its implications. However, corporate managers are the ones who should be creating awareness when it comes to new technology adoption. As service robots are penetrating the hospitality market, it will be quite challenging for managers to match the industry's requirements if they do not have sufficient technological knowledge (Kala, 2022). Having prior knowledge about robotics and a thorough understanding of its benefits can greatly reduce uncertainty and influence adoption decisions (Nam et al ., 2021).
+
+## b) Experience
+
+The lack of information can partly be explained by the fact that nearly half of the interviewees have not encountered SRs. Those who have some experience with robots, mostly have it from a guest perspective or they have encountered certain types of SRs through professional presentation, but they do not actually implement SRs in their hotel.
+
+P8: ' In our company, we still do not have any points of contact with service robots and do not use them (…) I have minimal experience as a guest.'
+
+P10: 'I don't have any experience, but I was just in a meeting where they talked about robotization with a partner, a hotelier who has a completely robotic hotel…'
+
+To the authors' knowledge, there are still no hotels in Croatia that have implemented service robotization by the time of writing this paper, so the managers' experiences are mostly related to professional trips  abroad  or  to  some  other  hospitality  establishments,  such  as  highway  restaurants,  which  have started to implement robots recently.
+
+P12: ' In 2017, I was in America on a study trip visiting large city hotels. Back then, the robot was used exclusively in the reception area (…) I also came across one recently in a restaurant.'
+
+The level of internationalization appears as a differentiating factor in terms of experience with SRs. Despite not implementing them in their hotels, the respondents managing hotels within international
+
+chains are more experienced with SRs, compared with those employed in domestic hotel chains or independent hotels.
+
+P13: ' We belong to the X group; they have been using robots in some hotels for 10 years and this is not new. They have a robot butler who brings and takes away things, robots in the kitchen, etc.' Our hotel group has already employed robots in a couple of locations in Europe, mostly they are robots related to F&B (…) one of our hotels has a minibar robot (…) At the level of the hotel group,
+
+P16: ' robotization is already very accepted.'
+
+Other managers underline their proclivity towards innovation; however, at the moment this refers only to the implementation of advanced digital and automation technologies. They tend to optimize processes using various software solutions and (semi-)automatic devices for tasks such as cleaning or mowing.
+
+P9: ' We are trying to make it easier for our employees through digitalization, but we are not applying robotization and I am not sure how we would do that.'
+
+P13: ' We still do not use a robotic service (…) but we already have self-check-in so you don't have to come to the reception desk but can do it yourself via the app (…) and you can unlock the room with your mobile phone.'
+
+P7: ' We use automatic devices for pool cleaning and mowing only.'
+
+## c) Interest
+
+Results show that managers are generally open to innovation and interested in trying new technologies. Younger managers, in particular, demonstrated a higher interest in adopting SRs. However, most of the managers see an issue in the lack of initiative from the upper hierarchical levels or owners. Half of the respondents indicated that there was never any suggestion to seriously consider robotization.
+
+P1: ' I am open to innovation, but there was never any initiative.'
+
+P7: ' There is no interest in implementing it in business, either now or in the future'
+
+Only a few respondents managing hotels in international hotel chains highlighted the support and proactiveness of the board of directors. Previous research, however, has underlined the support of top management as a key antecedent of the successful implementation of new technologies (Lin, 2010; Chen, 2019; Pizam et al ., 2022). Belias et al . (2021) point out that the role of hotel owners and top management in the hotel industry is to encourage employees and inform them about the positive effects of robots, thereby enhancing their intentions to use them. One could argue that general or operations managers are those who should initiate such innovation, particularly those at the corporate level as they oversee hotel operations and are responsible for general hotel performance. Nevertheless, it appears that the initiative is not coming from any side despite their openness to adopting new technology. There is a knowledge gap which seems to be an important barrier to new technology implementation. The lack of knowledge about the performance, costs and benefits of SRs evokes scepticism.
+
+P12: ' We would be ready to introduce SRs, but I would wait to see what practice will show, I don't want to be the first and I want to see good practice and wait for reactions. I would introduce them only when I know the concrete and exact effects.'
+
+P1: ' The leading people lack experience wider than this company; they are not familiar enough with it to dare, they lack courage…'
+
+The lack of initiative combined with the manager's non-awareness and scepticism creates an inert environment resistant to innovation, which was also recognized by respondent P8.
+
+P8: ' I think that we in Croatia are falling behind when it comes to new trends, we are quite inert and rely on traditional work methods, we are very slow to embrace trends, mostly things change only out of necessity '
+
+The analysis indicates that the true robotization of service is a step that hoteliers in Croatia are only now starting to consider. To implement service robotization at any level, the knowledge gap has to be overcome first.
+
+## 4.1.2 Employee involvement
+
+The results have shown that employee involvement also represents a barrier to SR implementation, although this was less emphasized than was previously thought. This is in line with the findings of Nam et al . (2021) who conclude that employees of upper-scale hotels show less resistance to SRs. According to Belias et al . (2021), it is expected that innovations are initially treated with scepticism, but eventually, the hospitality industry will accept SRs and adapt to them. However, the current main barriers related to employees refer to their prejudice, workforce structure and organizational values.
+
+## a) Workforce structure
+
+Managers claim that the reaction towards SRs in their hotels would be quite diverse depending on the employees'  age,  personality  and  contract  type.  Belias et  al .  (2021)  also  emphasize  the  role  of  demographics, gender and type of employment in intentions to use SRs. Managers agree that younger employees are more likely to accept robots as something entertaining and interesting, while they expect certain resistance from the older employees.
+
+P2: ' The older ones would think that a replacement is coming, and the younger ones would have fun playing with them (SRs).'
+
+P3: 'It depends on the type of person; the older generation would have a harder time accepting them (SRs) and it would be more difficult for them.'
+
+Managers have also indicated that there would be some difference in SR acceptance depending on the contract type. For instance, P11 claims that experienced permanent employees would be less concerned than others as they are aware of the necessity of human staff.
+
+P11: '…we have permanent employees who know that they are needed.'
+
+However, as most of the hotels in Croatia operate seasonally, a substantial portion of employees do not have permanent jobs in hospitality.
+
+## b) Employees' prejudice
+
+The main obstacle to SR implementation related to employees derives from their biases. People are naturally resistant to change (Samuelson & Zeckhauser, 1988), particularly if they do not have enough information. Results show that the managers recognize an initial resistance when it comes to implementing new technology but believe the employees would accept it over time, just like any other innovation they have introduced.
+
+P9 : 'At first, they would be surprised by SRs and they would probably think that we are replacing them with robots. Resistance is always the initial reaction. Everything new we do is at first always met with resistance due to lack of knowledge and fear, but we accept everything over time. That's how it turned out for everything new we introduced.'
+
+Results also indicate that managers in international hotel chains anticipate less resistance from their employees compared with managers in domestic hotel chains and independent hotels. This may be attributed to their extensive knowledge, resulting in fewer prejudices.
+
+In line with the findings of Brougham and Haar (2018), managers do not see the fear of losing one's job as the main issue here. Although fear is also present, they are more concerned about employees' resentment. Namely, they believe employees would be irritated to learn that the owners have invested in SRs instead of increasing the salaries of current workers.
+
+P4: 'I think that people would take it very badly (…) they would say that we don't want to raise their wages, but rather save labour costs by injecting money into some machines." P8: '…they would wonder what the boss is really willing to do just to save on labour costs.'
+
+Another reason for employee resistance to SR adoption that concerns the managers refers to the need for additional education and support. As there is no prior experience on the part of either the managers or the employees, they are not familiar with this kind of technology. As prejudices are based on a lack of knowledge, they lead to scepticism. Some managers appear to be sceptical about the independence and effectiveness of SRs and believe the employees feel the same way. Indicating that there has to be a human employee who will program an SR and work with it, they believe that if SRs required additional efforts and supervision of employees, this would lead to dissatisfaction and irritation.
+
+P11: '…but they might be sceptical if they have to control it, it would be tiring for them…'
+
+P12: '…I think they would accept them (SRs) if they knew exactly how that would help them. If they knew the concrete benefits, they would accept them with pleasure; but if these employees had to deal with a robot and if that took up their extra time, they would not be satisfied.'
+
+Although some previous studies show that hotel employees have a positive view and high level of intention to use SRs (Belias et al . 2021), the managers indicate that employees are unaware of the benefits SRs can bring. Nevertheless, they see a way to overcome this issue - namely, employees need to be educated about the possibilities this innovation can bring and how it could facilitate their jobs once it is successfully implemented.
+
+P3 : 'It will be difficult… Some education will be required because people will perceive that it is taking away their jobs, on the one hand, and rightfully so.' 'Employees react with resistance to any change, but the moment they become familiarised with
+
+P17: an innovation and realize how much help it can give them, they gladly accept it.'
+
+Hence, education is a key issue that needs to be addressed. If it is not done properly, all potential benefits disappear and the investment is pointless.
+
+P2: 'The biggest obstacle would be in educating people to handle SRs. It (handling SRs) is a big responsibility, and if no one is in charge of that, you've thrown a lot of money into the wind.'
+
+## c) Organizational values
+
+Research has revealed that some managers may show repulsion towards service robotization as they believe it collides with the organizational values of the company. For instance, Participant 4 states that their  company  focuses  on  sustainability  and  dedication  to  the  local  community  and  environment. Hence, deploying SRs could be considered contradictory to these values.
+
+P4: 'It is in no way aligned with our organizational values and corporate development; we develop the concept of total sustainability, for example, we make hotels from natural materials'
+
+Furthermore, the respondents agreed on their commitment to high-end personalized service which cannot be provided by robots. Their core values such as friendliness, high quality, and memorable experience are embedded in all aspects of the company and have to be delivered by human staff. Managers believe that robots would not be able to transfer a hotel's key values in the way human staff can.
+
+P17: 'Warmth and friendliness can't be conveyed by a robot.' P9: 'We are still looking for a genuine smile which is a key value of our hotel.'
+
+Hence, although factors related to employee involvement are seen as an important barrier to SR adoption, in the context of this study they do not appear to be crucial.
+
+## 4.1.3. Service context
+
+Another major theme revealed by the research refers to the service context as a barrier to SR adoption. The results indicate that factors such as service type, guest structure, and guest expectations are important barriers that hinder SR implementation.
+
+## a) Service type
+
+In terms of hotel service, the respondents agree that robotization and high-quality service do not go 'hand in hand'. They state that their hotels provide a very high-quality service that is in line with the expectations of the guests who choose luxury facilities, and expect personalized service and pleasant communication. According to Nam et al . (2021), most luxury hotels do not use SRs because they are concerned about losing the personal touch and eroding customer satisfaction. Thus, some barriers are closely related to hotel categorization. For instance, the managers of 5-star hotels do not see the application of SRs in their hotels as they are focused on a high level of personal interaction with their guests.
+
+P4: They (SRs) are not suitable for high-category hotels and luxury accommodation. They are just machines without a soul.'
+
+P6: Robots don't fit in our luxury environment which is very high-touch in human interaction. (…) We don't sell hotel rooms and services, we sell experiences, we sell memories (…) We are always seeking new ways to wow our guests.'
+
+P18: 'Quality is provided by people. Robots may only help.'
+
+Chan and Tung (2019) also point out that, unlike midscale and budget hotels which deliver standardized services that could be supported by SRs, luxury hotels require quick recognition of customers' needs. Besides categorization, the barriers to the application of SRs are also related to the size of the facility as well as the departments where the service is provided. Xu et al . (2020) identified larger hotels as early adopters of SRs, while small hotels are often more risk-averse. The managers here agreed that service robotization is more appropriate for large 3- or 4-star hotels and only for certain services.
+
+P10: 'I don't see an application in the luxury segment, especially in smaller hotels.'
+
+P11: 'I would use them in the back office. (…) I wouldn't employ them for a task that requires communication with guests such as in the reception area, in the restaurant or wellness facilities…'
+
+P14: 'I don't see the possibility of application in the reception area because we have demanding procedures.'
+
+P4: '…not at all in luxury hotels. (…) It's inconceivable to me that a guest would have to enter a code to get a drink.'
+
+Hence, front-office tasks have been recognized as not very appropriate for SR implementation since they require direct contact with guests. In line with previous research (Belanche et al ., 2021; Chen et al ., 2022; Dogan & Vatan, 2019), the managers agree that SR implementation would be more useful for some routine repetitive back-office tasks. This corresponds to the previously mentioned values that highquality hotels nurture.
+
+## b) Guest structure
+
+The managers also indicate that the application of SRs and the structure of guests who choose their facilities for their vacation are in mutual collision. Moreover, the managers indicate market segment as a crucial factor in determining SR appropriateness.
+
+P8: 'The main criterion is the structure of the guests. I think it would be more interesting for new generations, people who live in Europe and are prone to new trends… Everything that comes to us has already been seen.'
+
+It was determined that the hotels managed by the respondents accommodate leisure guests, very often families or older people. It was agreed that robots would be more appropriate for business guests rather than leisure guests as they travel for different motives and have different expectations, thus confirming the theory of Ivanov, Seyitoglu and Markova (2020) that the managers' perception is shaped depending on the type of guests.
+
+- P1: 'Our guests are middle-aged and older people who would like to talk and they would miss having a conversation (...) robots would hold no interest for them.'
+- P11: 'It is unimaginable to me that guests on vacation at our place would be looking at a robot for 7 days.'
+- P15: 'We are a family hotel and we have a lot of regular guests. Our guests love and appreciate that family approach.'
+- P13: 'We are doing research and it does not show that SRs would be useful considering our approach and target segment of guests (…) We strive for personalization and warmth in our relationship with the guests.'
+
+Despite the considerable guest turnover in hotels during summer, the managers emphasize that they greatly rely on their loyal guests, believing that they are not ready to accept robotized service.
+
+P10: 'Loyal guests would take it very badly, they would resent the introduction of robots because they come solely for the relationship and contact with employees (…) It would be interesting for younger guests, but I wonder how long-lasting that effect would be (…) since we are oriented towards loyal guests, I don't think it would be appropriate for us.
+
+- P2: '…some are afraid of advanced technology (…) some would say that they have saved on employees, but on the other hand they have not lowered the room rates.'
+
+This is supported by Belanche et al . (2020) who warn that loyal customers may feel insulted if a robot provides them a service instead of an employee.
+
+## c) Guest expectations
+
+Considering the focus on the leisure market segment, hotels have to adapt to the expectations of those guests, which appear to be in collision with service robotization. Respondents indicate that despite many potential benefits, implementing SRs could lead to unfulfilled guest expectations.
+
+P3: 'I think that leisure guests still expect traditional service…'
+
+P13: 'People come to us to rest, to ease their souls… So, our bartenders are often like psychologists… Those who come with children, expect someone to take care of them. They pay a premium price for personalized services. I think it wouldn't go very well if they had a robot bartender…' P12: 'I think that people on vacation want to get away from screens and, for my structure of guests, I
+
+think that a screen would be something the guests have an aversion to because they are there for personalized service. (…) A robot cannot transfer energy like a human can.'
+
+This is in line with a study by Lin and Mattila (2021) who delved deeper into the guest's perspective. They emphasize that guests perceive SRs as machines that lack emotions and the ability to build relationships, which is particularly important in the case of service failure. As most of the respondents operate in 4- or 5-star hotels, they continue to emphasize that their guests are looking for a high level of interaction through a hospitable and warm relationship.
+
+- P14: '…our guests are quite spoiled because they expect interaction with employees, they highly praise the relationship with all the employees.'
+
+P10: 'Implementing robots would cause a loss of personality and a diminished experience, especially in
+
+the luxury segment.'
+
+Ivkov et al . (2020) also warn that recent studies point to the low quality of the human-robot interaction and to guests wanting to see human employees, especially in upscale establishments where SRs are not able to replace them. Furthermore, the respondents emphasize that a high degree of personalization is expected by their guests. When it comes to luxury hotels, managers conclude that their guests who are experienced travellers cannot be impressed or amused by a hotel SR.
+
+P6: 'Our guests have seen everything and you cannot wow them with a robot. They come with a private jet; they are looking for different service. (…) In a hotel like ours, we impress people by knowing what they ate yesterday. (…) We are always seeking new ways to amaze the guest…' P11: 'Our guests are quite traditional; they still appreciate when we speak their language.'
+
+Thus, managers agree that the service context, particularly guest expectations, plays a crucial role in the decision to implement SRs.
+
+## 4.1.4. Technical aspect
+
+Besides the issues related to managerial knowledge, employees, and the service itself, the research reveals certain technical aspects that also hinder SR adoption, namely physical barriers, costs, and maintenance issues.
+
+## a) Physical barriers
+
+The managers highlighted several physical obstacles in hotels as barriers to service application. Murphy et al . (2017) also raised this question. Deploying SRs requires a robot-friendly physical environment and facilities which enable their mobility and functioning, and this may lead to some additional investments in a building (Ivanov et al ., 2017). An analysis of the responses has generated several physical obstacles relating to the size of the space, stairs or elevators.
+
+- P2: 'Our hotel doesn't have the proper infrastructure to implement a robot because of the chairs in the restaurant, plants in the reception area. (…) The robot also cannot go on the carpet.'
+- P12: 'I think our facilities are not big enough (…) we have not found any justification for their implementation.'
+
+P14: 'They are not suitable for a small space, and in large hotels they can get lost easily. We have a lot of physical obstacles, e.g., stairs…'
+
+These obstacles appear to be quite challenging since they may require certain interventions in a hotel's physical space that can be quite expensive. However, the analysis suggests that these barriers are not a severe problem.
+
+P17: 'Even if there are infrastructural obstacles, it is certainly possible to solve them. For example, all facilities adapted for the disabled have already solved most of the problems...'
+
+A few respondents also suggested that a robot would not fit in with the physical environment.
+
+P6: 'It is not for luxury hotels and it doesn't fit in with our environment, both physically and experientially.
+
+Some other technical issues have also been observed, as the respondents noted that due to their physical limitations, SRs would not be as time-efficient as human employees in certain situations.
+
+P7: 'As a guest, I saw that there are technical difficulties, e.g., they (SRs) react badly to obstacles and they are slow. It took it 6 minutes to get the dishes to the kitchen, while my employees would have done that a long time ago.'
+
+## b) Costs
+
+The research also indicated that the managers do not have adequate information concerning the costs of implementing robotic service in the hotel industry, and they believe that the acquisition costs, as well as maintenance costs, are significant, which makes them unsure that the benefits would be greater than the expenses.
+
+- P4: I'm not sure if using a robot would justify the cost of their service although I have no idea about the price.'
+- P1: 'Robots are charged with electricity, and if the price of electricity goes up, that could be very expensive (…) It is difficult to track the savings.'
+- P2: 'I assume that one such robot cannot cost less than 15 thousand euros. It is a very large expenditure.'
+- P9: 'We don't know what the benefits are, we need to do a feasibility study to see what the benefits are and what the disadvantages are.'
+
+Analysis shows that the respondents predominantly believe some savings could be achieved by implementing SRs, but they lack accurate information about the financial benefits and maintenance costs. Previous studies have addressed certain potential financial benefits deriving from greater efficiency (Ivanov et al ., 2017), but researchers warn that due to significant expenses, a cost-benefit analysis should be conducted (Ivanov, Seyitoglu & Markova, 2020; Nam et al ., 2021). Considering the high initial investment, the managers consider it risky; however, given the opportunity for a free trial, they would be willing to test SRs in their establishments.
+
+## c) Maintenance issues
+
+In addition to the abovementioned costs, the hotel managers expect additional problems in maintenance, such as unavailable authorized service and lack of expertise in maintenance and handling.
+
+- P9: 'The application of robotic service brings with it other problems such as maintenance, technology…'
+
+P10: 'It's a technology - anything can go wrong and we cannot influence that.'
+
+The  managers  emphasized  the  difficulties  in  robot  handling,  primarily  by  employees  who  are  not properly educated as well as by guests who may feel the urge to play with them. The managers wonder about the availability of authorized service and the time and effort needed to solve any potential technical issues. To ensure proper robot repair and maintenance, hotels can either hire trained personnel or outsource it. However, Ivanov and Webster (2019) argue that reliance on a specific robot supplier may lead to vendor lock-in and difficulties in switching to another.
+
+As previously discussed, an examination of the managers' responses reveals that some specific barriers pose a greater hindrance to SR adoption than others. Consequently, the identified barriers exhibit varying levels of importance, depending on their potential influence on SR (non)adoption. Figure 1 illustrates a matrix depicting the importance of distinct sub-themes of identified barriers. The figure also shows the placement of new themes in the broader context of TOE and DOI theoretical frameworks.
+
+Figure 1. Importance of barriers to SR implementation
+
+<!-- image -->
+
+The results show that the most important barrier to the current implementation of SRs is the lack of knowledge among the managers. Specifically, lack of awareness of SRs' possibilities, limited previous experience, and weak interest appear to be the main factors hindering them from initiating SR implementation. Rogers (1960) suggests that the innovation process starts with knowledge, so the higher the knowledge barrier is, the more likely that the adoption will be delayed (Okumus et al ., 2017). Previous research on service robotization has overlooked this problem, but there are recent studies, examining the adoption of some other innovations, that also conclude that lack of knowledge among managers is an important obstacle (Chan et al ., 2020; Chan et al ., 2015; Lam & Law, 2019). Guest expectations are also considered a critical barrier to SR implementation, as the respondents believe that guests generally expect traditional service, and the relationship with the staff is one of the main reasons they return to
+
+a hotel. The managers trust that most of their guests would not want to see SRs in their hotels. Similarly, Nam et al . (2021) conclude that customers are one of the most influential factors in implementing artificial intelligence and robotics in hospitality. Other service-related barriers, namely service type and guest structure, are considered very important since these factors are often used to help decide on the appropriateness  of  SR  implementation.  However,  they  concern  managers  less  than  failing  to  fulfil guests'  expectations.  Employee-related  barriers  (workforce  structure  and  employees'  prejudice)  also emerged as important but the managers see solutions on how to overcome them. According to Rogers (1995), resistance is often encountered in the early stages of the innovation diffusion process but people accept innovation over time. Cost is also seen as a major barrier, as implementation would require a large initial investment but could result in savings in the long run. The respondents indicated that if they had a clearer understanding of the financial aspects, they would be more willing to implement SRs. The minor obstacles are related to organizational values, physical barriers, and maintenance issues. The analysis shows that these problems could be solved if the previous obstacles were overcome, i.e., SRs could be used to enhance organizational values, physical space could be adapted to accommodate SRs similar to wheelchairs or strollers, and maintenance could be ensured through a specialized company.
+
+Newly emerged themes of barriers can be linked to the TOE framework and DOI theory due to their general applicability; however, they differ from existing technology adoption frameworks by precisely identifying hindrance factors of SR adoption and highlighting some sub-themes that have not been emphasized previously. This primarily refers to dimensions under managerial knowledge. While previous theories acknowledge the role of managers, they do not explicitly focus on managerial knowledge. The TOE framework views it solely as a managerial structure and support, while the DOI theory concentrates on managers' attitudes toward change (Oliveira & Martins, 2011). The importance of SR's characteristics as an innovation is less emphasized in these findings compared to the TOE and DOI frameworks. While previous theories highlight technology characteristics such as complexity or relative advantage,  these  findings  suggest  that  more  obstacles  arise from  the  organization and  the  environment. This could be attributed to a lack of familiarity with SR technology. However, in contrast to the general TOE framework, where environmental influences typically stem from government and market competitiveness (McCartney & McCartney, 2020), in this study, they predominantly originate from customers, i.e., guests. Only a few studies from a hospitality perspective have acknowledged this aspect (Nam et al. , 2021; Ezzaouia & Bulchand-Gidumal, 2020) despite customers being central stakeholders in the hospitality industry. Apart from customers and the lack of maintenance support, other environmental influences do not significantly impede SR adoption. It could be due to the research context, with fewer SRs and regulations in the market. Furthermore, the findings indicate that market competitiveness may be an encouraging rather than a hindering factor.
+
+## 4.2. Readiness for future SR implementation
+
+Research has revealed that Croatian hoteliers still do not use service robotization due to the aforementioned key barriers. To gain insight into their readiness for SR implementation, the managers were asked about their perspective on possible future adoption. The study shows that the managers see some benefits in SR application and they appear to be ready to adopt certain types of SRs in the future.
+
+A possible future application, according to the views of the respondents, primarily depends on the hotel category, in particular, on service quality. SRs have prospects in lower-category hotel facilities, i.e., those that provide a lower level of quality and simpler services, such as city, business or airport hotels.
+
+P4: 'I could implement it in lower-class accommodation (…) for facilities that only provide overnight service for the purpose of doing business…'
+
+P8: 'I believe that it will first come to lower-class hotels, especially in those facilities where communication with the guest is less important, for example, city and airport hotels… where the advantage is in the speed of the service.'
+
+When it comes to certain hotel types, the managers see the possibility of applying SRs in hotels aiming at specific target groups, such as families with children for whom the SR would be a kind of attraction, as well as younger age groups of guests. Some of the respondents even gave suggestions for enhancing interaction through gamification.
+
+P16: 'In establishments with a high turnover of guests, I think it would actually be interesting. There are many possibilities for gamification. (…) You need to make a nice story out of everything. I would introduce a game in which the person who catches the robot on the 6th floor gets a prize. (…) You need to make it interactive so that people find it interesting, and not develop an aversion to it.' P12: 'In hotels for families with children, I would introduce small robots, the size of children.'
+
+The results of the research indicate that the managers most often associate the possibilities of future SR application with larger-sized facilities. While Ivanov, Seyitoğlu, and Markova (2020) found that managers in larger hotels are more sceptical towards the use of robots although they are more resourceful, these findings indicate that greater benefits could be achieved in larger hotels. The managers also indicate that SR implementation largely depends on the hotel department and type of tasks, mostly referring to front-office and back-office activities. They highlight certain tasks they would or would not delegate to SRs. Figure 2 shows a summary of these tasks in relation to task type and willingness for future implementation.
+
+The analysis reveals that managers are inclined to implement SRs primarily in the back office, expressing the highest willingness for implementation in tasks such as cleaning larger spaces, mowing, handling laundry, and polishing dishes or cutlery. While they acknowledge the feasibility, their willingness for SR implementation in food preparation, maintenance, and warehouse operations is comparatively lower. Regarding front-office tasks, a high willingness for SR implementation was reported specifically for room service and all-inclusive restaurant serving. For tasks like check-in and check-out procedures, concierge duties, luggage handling, and cocktail making, managers see the application of SRs as possible but less likely to be implemented.
+
+P2: 'We could use them in all-inclusive restaurants where drinks are included. I would introduce them in the restaurant tomorrow if I could. (…) …and they are very useful for mowing the grass, polishing the dishes...'
+
+P10: '…in the back office, e.g., in the kitchen for preparing food, in housekeeping for cleaning public
+
+areas… maybe I would try them in the reception area during the night shift.' P16: 'I would use them for jobs out of the sight of guests, such as washing dishes, cleaning...'
+
+On the other hand, the managers are not ready to use SRs for all back-office tasks. For example, they consider SRs completely unsuitable for administrative tasks or room cleaning. Despite the use of SRs in some hotels for room sanitation during COVID-19, their current capabilities are not advanced enough to handle tasks like changing bed linens, cleaning closets, or bathroom cleaning - tasks integral to room cleaning.
+
+P9: 'I am not sure how we could bring that about. (…) I don't think we will ever be able to replace a housekeeper.
+
+## Type of task
+
+## Willingness for SR application
+
+Figure 2.
+
+| BACK OFFICE                               |                                 |
+|-------------------------------------------|---------------------------------|
+| Cleaning halls and pools Laundry handling | Room service                    |
+|                                           | Concierge tasks Cocktail making |
+|                                           | Wellness operations             |
+
+Willingness to delegate tasks to SRs Source: authors' work
+
+The participants highlight that for SRs to undertake such responsibilities in the future, they would need significant advancements in sophistication to match human capabilities. Additionally, regarding frontoffice tasks, the participants stress that they would never implement SRs in wellness operations, a-lacarte restaurants, or any roles involving substantial interaction with guests.
+
+P18: 'The preparation and serving of food and drinks in an a-la-carte restaurant is a special experience. Robots can't provide that.'
+
+P6: 'Luxury restaurants are expected to provide a high level of human interaction. We present our dishes, tell stories… We carve your meat at the table…'
+
+Despite the managers not being inclined towards high-service robotization in their hotels, four key drivers of SR adoption were identified, namely competitive pressure, labour shortage, process optimization and cost reduction.
+
+## 4.2.1. Competitive pressure
+
+Although none of the observed hotels deploy SRs, managers appear to feel competitive pressure for SR implementation. Despite not being significantly present in Croatia, examples of service robotization can be found in its broader environment. As the adoption of SRs is still in its initial stages in many countries, Kala (2022) points out that the robotization of services could be a matter of competitive differentiation for hotels and thus attract guests. The managers are aware of market trends and the necessity to adapt to them, regardless of their personal attitudes and limited understanding.
+
+P2: 'Personally I'm not a big supporter, but it is something that is coming and will be inevitable. We have to adapt because sooner or later we will all have to get used to it.'
+
+However, there is an evident lack of proactivity. Several managers have confirmed they do not want to pioneer SR implementation because they are not familiar with its features and implications. They would rather leave it to someone else to see its advantages and disadvantages.
+
+P12: 'I will wait. I do not want to be the first one.' P11: 'If it becomes a trend that the majority uses, then I will too because that means it is good.'
+
+Hence, it is likely to expect that when one company embraces the trend, others will follow its lead to remain competitive in the market and not fall behind.
+
+## 4.2.2. Labour shortage
+
+As indicated previously, Croatia is facing a severe shortage of workforce, particularly in the hospitality industry. While the number of tourists is growing from day to day, the pool of potential workforce is getting smaller. Regardless of this, high-quality service has to be provided and hotel managers are aware of the unfavourable position they find themselves in. It makes them consider some alternative options, such as service robotization. Hence, the labour shortage emerges as a key driver for possible future SR adoption.
+
+P1: 'That problem (labour shortage) could be solved by robotization. Things change. Until a few years ago, we could not imagine that we would employ so many foreigners. It is very difficult for us to find workers because young people want more free time and do not want to dedicate their lives to work. But we do not have sufficient infrastructure to increase the number of  employees and  allow  more free time…'
+
+P9: 'I believe that we would be ready for anything if we had no employees, we could cover 5% of the support staff (with SRs).'
+
+P17: '…we would implement SRs due to the lack of labour. People are replaceable in many areas, and the labour market is a disaster'
+
+This supports the research of Ivanov (2020) who claims that it is inevitable for some personnel to be substituted with robots. Although the respondents unanimously agree that a robot could never fully replace a human employee, they believe it could perform some tasks instead of the employee, thus mitigating the labour shortage issue. As described above, they would use SRs for some supporting tasks, while keeping human employees in front office jobs.
+
+## 4.2.3. Process optimization
+
+Another key driver of possible SR implementation is service optimization through the facilitation and speeding up of processes. The respondents indicate that the reason for their consideration of SR adoption lies in their desire to improve the service by making some procedures automated, faster and easier.
+
+P15: 'We do not intend to implement them (SRs) yet because we are still struggling with what we have (…) but I believe this is the future. (…) We are looking at how to optimize the processes; I think we will all go in that direction over time.'
+
+Moreover, the respondents also view process optimisation through the lens of service quality. Although they agree that high-quality service and SRs are mutually exclusive, they see certain benefits when it comes to service improvement. Unlike the findings of Ivanov, Seyitoglu and Markova (2020), the findings of this study show that the managers do not think that applying robots would necessarily reduce
+
+the quality of the service. Moreover, some managers emphasize the benefit of constant and standardized service when using robots.
+
+P5: 'The robot enables continuity in service provision. It is never sick, it does not fail to show up at work because it was out late the day before, it is never in a bad mood, its leg does not hurt... It provides a constant level of work…'
+
+P13: '…a robot is predictable. We know what kind of service it will provide.'
+
+Another benefit for service quality that could stimulate future SR application relates to the liberation of employees from tedious activities. Thereby they would be able to engage more in their core tasks and build relationships with guests.
+
+P16: ' It would make it easier for the workers, so I believe they would be more satisfied and could devote more attention and time to the guest .'
+
+Although a few respondents remain sceptical as to whether employees would use the extra time to interact with guests, they indicate that one of the key motives for future SR implementation derives from strivings to achieve service optimisation. They believe SRs could not work independently, so they would use them to enhance, rather than substitute, human work.
+
+## 4.2.4. Cost reduction
+
+From a financial point of view, SRs are seen as a big investment for which many Croatian hoteliers are not ready yet. However, when it comes to the intention to implement SRs in the future, they indicate that one of the drivers would be cost reduction. Despite their lack of information and doubts about robotization itself, when asked about the motivation for future implementation, they emphasized potential long-term savings.
+
+P8: 'It is possible to achieve cost rationalization by increasing the efficiency of operational tasks…'
+
+The managers mostly link possible cost savings with the workforce, indicating employees as the most important source of costs (despite being the most important asset).
+
+P17: 'It is possible to reduce costs such as the purchase of uniforms, labour accommodation costs, food and drinks, agency commissions for finding workers, salaries, bonuses and awards. The robot is a completely fixed cost for which I can accurately predict the cost in budgeting, while for employees I cannot... We made a calculation for the purchase of 12 robots, which could replace 30 people, but we would use them only as a replacement for some auxiliary jobs…'
+
+Although some managers see long-term financial benefits, they are still looking for precise indicators of the usefulness of SR application:
+
+P3: '…the long-term benefits have yet to be calculated through the reduction of salary costs etc.' 'P9: It would be reasonable to reduce the number of employees but a follow-up feasibility study would be needed to see what are the benefits and what are the costs.'
+
+The respondents are generally not inclined to implement SRs unless they have to. However, they feel pressed by the economic situation which impacts their costs.
+
+## 5. Conclusion
+
+This study is a response to recent calls made by several scholars asking for an in-depth understanding of hotel service robotization from a supply-side perspective (Ivanov, Seyitoğlu, & Markova, 2020; Seyitoglu & Ivanov, 2022; Belias et al ., 2021). This paper focuses on the managers of upscale hotels as actors who have been overlooked by previous studies (Pizam et al ., 2022; Nam et al ., 2021). Using an exploratory approach with in-depth interviews, the study investigates the managers' perspectives on SR implementation. Specifically, the study has identified the current barriers to SR adoption as well as the prospects for its implementation in the future. The Republic of Croatia was chosen as a novel research context since it is a country highly dependent on tourism that is struggling with severe workforce outflow. Given the low technological development of Croatia in comparison with other EU countries, Croatian hoteliers are still not implementing SRs.
+
+The thorough analysis yielded four key barriers, namely the barriers related to managerial knowledge (lack of awareness, limited experience and weak interest), employee involvement (unfavourable workforce structure, employees' prejudice and incompatible organizational values), service context (incompatible service type, unsuitable guest structure and mismatched guest expectations), and the technical aspect (physical barriers, high costs and maintenance issues).
+
+The analysis has revealed that managerial knowledge is a key barrier to SR implementation since the managers at both corporate and individual levels appear to be unfamiliar with the features and potential application of SRs. It is not unusual that barriers to innovation adoption come from the management because their rudimentary knowledge can make them non-enthusiastic and reluctant to changes although they know the innovation could bring certain benefits (Chuoki et al .,  2019). King et al . (1994) highlighted knowledge building and development as important actions to stimulate IT adoption. To accelerate SR adoption, the knowledge barrier should be overcome (Okumus et al ., 2017). Guest expectations emerged as another critical issue since the respondents agreed that their target segment, which is mostly leisure guests, expects traditional service and values personalized experience. In reality, however, SRs can be used in various areas to enhance the guest experience without eroding personal interaction (Nam et al ., 2021).
+
+Despite the abovementioned barriers to current SR adoption, hotel managers see the possibility of their application in the future. Four drivers encourage them to consider SR adoption in their establishments, deriving from both the internal and external environment. They refer to competitive pressures, labour shortage, strive for process optimization and the need for cost reduction. Nevertheless, research shows that the opportunity for future SR adoption depends on several characteristics of an organization such as the type of hotel company, size of the hotel, and its categorization. Managers agree that benefits would be greater in larger hotels than in smaller ones. Also, they believe SR implementation and usage would be easier in larger establishments. Similarly, results support the theory of Okumus and Hemmington (1998) that overcoming barriers to change in hotels that are part of large chains is easier than in independent hotels. Although Siguaw et al . (2000) found that upscale and luxury hotels adopt more IT compared with hotels of lower categories, it seems that this may not be the case for SRs. Research indicates that managers are more inclined to adopt SRs in 4-star hotels than in 5-star establishments, as they perceive limited potential for SRs in a luxury environment.
+
+When it comes to certain departments and tasks, managers are more willing to employ SRs for backoffice activities, while for those activities that require direct contact with guests, they still prefer human employees. Some scholars indicate that the technical improvement of robots in the future will increase their  substitution  potential,  leading  to  the  replacement  rather  than  the  enhancement  of  employees (Ivanov, Seyitoğlu, & Markova, 2020). Although the respondents in this study unanimously agree that a robot will never replace a human, they recognize that robotization is inevitable and will likely be used
+
+in their hotels within a few years, if not sooner, especially given the current labour shortage. They agree that SRs will eventually replace certain tasks; however, they do not believe SRs will replace the jobs in their hotels.
+
+The findings of this study contribute to the theory of hotel management by exploring barriers to SR implementation  in  hospitality  from  the  managers'  perspective.  Previous  studies  on  this  topic  have mostly focused on customers and employees. Building upon the established theoretical foundations of the TOE framework and DOI theory, which explore factors influencing technology adoption, this study delves into identifying barriers to SR adoption - a previously unexplored area. The exploratory nature of this study allowed some new concepts to emerge, with all identified barriers being categorized based on their importance. The identified barriers align with the technological, organizational, and environmental dimensions described in the TOE framework, although highlighting certain distinct factors. For example, managerial knowledge, identified to be the most important hesitant factor in this study, was not highlighted in previous research. Guest structure and expectations emerged as significant environmental barriers to SR adoption that were rarely acknowledged in prior research. Moreover, the results underscore the importance of managers and organizational context, aligning with the principles of the DOI theory. However, neither the TOE framework nor the DOI Theory comprehensively incorporates managerial knowledge, including awareness, experience, and interest. Additionally, they do not sufficiently recognize the influence of customers as external factors that may hinder SR implementation. Therefore, the study answers the calls for developing a meaningful framework that would increase the likelihood  of  successful  SR  implementation  in  the  workplace  (Belanche et  al .,  2020;  McCartney  & McCartney, 2020). Understanding the obstacles to technology adoption allows for adjustments to be made to mitigate these barriers effectively (Ivanov, Webster & Berezina, 2020). Furthermore, the research setting represents a novelty in relation to existing studies. In addition to Ivanov, Seyitoğlu, and Markova (2020) who dealt with the advantages and disadvantages of SRs in hospitality, other studies primarily  focus  on  technologically  developed  countries  that  already  use  robots  in  hospitality  (e.g., Zhong et al ., 2020a; Nam et al ., 2021; Tuomi et al ., 2021). However, the theory will benefit from an understanding of the barriers confronting SR non-adopters, particularly if they are struggling with workforce shortage and high dependency on tourism. Accurate information about opportunities for future SR implementation provides a useful starting point for future studies.
+
+The study also provides some practical implications. It highlights some of the reasons why managers may be hesitant to adopt SRs and categorizes them according to their importance. By identifying these barriers, the study can help to define further steps and develop strategies to overcome them. As the most critical issue relates to the controllable factor of managerial knowledge, action should  first be undertaken to increase managers' awareness of SRs and their features. Managers should also be enabled to gain experience in using SRs. As they are generally open to innovation, there should be an initiative from the upper hierarchical levels that would encourage them to implement something new. As the managers recognize their lack of knowledge, this makes them more suitable for education. Namely, Lam and Law (2019) indicate that when people are aware of their lack of knowledge, they are more ready to learn. Given managers' uncertainty about the financial benefits of SR application, providing a precise calculation of the potential benefits and offering insights into successful SR implementation practices would encourage them to adopt SR in their hotels. Furthermore, the findings can help managers make more informed decisions about whether and how to incorporate SRs into their operations. Insights into suitable workplaces for robots can help managers identify specific areas of their operations where SRs might be the most useful. Managers agreed that robots should not interact directly with guests in luxury hotels. Nevertheless, they recognize the need for process optimization and cost reduction that SRs could bring, even in such high-touch environments. In addition to guest interaction, SRs have numerous other applications in the hospitality sector, including laundry handling, food preparation, and cleaning. It is imperative to enhance managers' awareness of how to leverage SRs for optimizing processes behind the
+
+scenes, contributing to more efficient procedures and an improved overall guest experience. Finally, the research suggests that a balance between technological and human factors can be achieved by using robots to support rather than replace employees.
+
+Despite answering the research questions and obtaining extensive in-depth data, the research has some limitations that should be considered for future studies. An important limitation derives from the research sample. Although the sampling procedure followed the guidelines for qualitative research and the saturation point was reached, one should be cautious with generalizing the results. Although it is expected that the findings would apply to other similar research contexts, it is nevertheless advised to replicate the study in some other geographical areas. Furthermore, it should be noted that this study includes only the viewpoints of hotel managers of upscale hotels. It would be beneficial to study other stakeholders in this context, such as employees and guests, and to compare the results. Future studies may also benefit from distinguishing between luxury, upscale, mid-scale, and economy hotels as well as provide more accurate findings on SR's influence on the financial aspects of the hotel. As this research uses thematic analysis to identify key barriers to SR adoption, using a different analysis technique may provide additional valuable information for theory and practice. Future researchers are advised to employ different approaches, i.e., total interpretative structural modelling (TISM) and MICMAC to define the relationships and dependencies between the identified factors. Also, a longitudinal study would be advisable to gain insight into how this process evolves. This study is intended to provide a basis for future research. Hence, both the theory and practice would benefit from a quantitative approach based on the proposed findings.
+
+## Acknowledgements
+
+This paper has been financially supported by the University of Rijeka, Faculty of Tourism and Hospitality Management for the project ZIP-FMTU-013-11-2022.
+
+## References
+
+Adams, W. C. (2015). Conducting Semi-Structured Interviews. In K. E. Newcomer, H. P. Hatry, & J. S. Wholey  (Eds.), Handbook  of  Practical  Program  Evaluation ,  (pp.  492-505).  John  Wiley  &  Sons. https://doi.org/10.1002/9781119171386.ch19
+
+Adeoye-Olatunde, O. A., & Olenik, N. L. (2021). Research and scholarly methods: Semi-structured interviews. Journal of The American College of Clinical Pharmacy , 4 (10), 1358-1367. https://doi.org/10.1002/jac5.1441
+
+- Almatrodi, I., Li, F., & Alojail, M. (2023). Organizational Resistance to Automation Success: How Status Quo Bias Influences Organizational Resistance to an Automated Workflow System in a Public Organization. Systems , 11 (4), 191. https://doi.org/10.3390/systems11040191
+- Ayyildiz, A. Y., Baykal, M., & Koc, E. (2022). Attitudes of hotel customers towards the use of service robots in hospitality service encounters. Technology in Society , 70 , 101995. https://doi.org/10.1016/j.techsoc.2022.101995
+- Baker, J. (2011). The technology-Organization-Environment framework. In Y. K. Dwivedi, Belanche, D., Casaló, L. V., Flavián, C., & Schepers, J. (2020). Service robot implementation: a theoretical framework and research agenda. The Service Industries Journal , 40 (3-4), 203-225. https://doi.org/10.1080/02642069.2019.1672666
+- Belias, D., Vasiliadis, L., & Rossidis, I. (2021). The intention and expectations of modern robotic technologies in the hotel industry. Journal of Quality Assurance in Hospitality & Tourism , 23 (6),  14511479. https://doi.org/10.1080/1528008X.2021.1995566
+
+Biernacki, P. & Waldorf, D. (1981). Snowball sampling: Problems and techniques of chain referral sampling. Sociological methods & research , 10 (2), 141-163. https://doi.org/10.1177/004912418101000205
+
+Bowen, J., & Morosan, C. (2018). Beware hospitality industry: the robots are coming. Worldwide Hospitality and Tourism Themes , 10 (6), 726-733. https://doi.org/10.1108/WHATT-07-2018-0045
+
+Braun, V. & Clarke, V. (2012) Thematic analysis. In H. Cooper, P. M. Camic, D. L. Long, A. T. Panter, D. Rindskopf, & K. J. Sher (Eds), APA handbook of research methods in psychology , Vol. 2: Research designs: Quantitative, qualitative, neuropsychological, and biological (pp. 57-71). American Psychological Association.
+
+- Brougham,  D.  &  Haar,  J.  (2018).  Smart  technology,  artificial  intelligence,  robotics,  and  algorithms (STARA): Employees' perceptions of our future workplace. Journal of Management & Organization , 24 (2), 239-257. https://doi.org/10.1017/jmo.2016.55
+- Buhalis, D., Harwood, T., Bogicevic, V., Viglia, G., Beldona, S., & Hofacker, C. (2019). Technological disruptions in services: lessons from tourism and hospitality. Journal of Service Management, 30 (4), 484-506. https://doi.org/10.1108/JOSM-12-2018-0398
+- Campbell, J. L., Quincy, C., Osserman, J., & Pedersen, O. K. (2013). Coding In-depth Semistructured Interviews. Sociological Methods & Research , 42 (3), 294-320. https://doi.org/10.1177/0049124113500475
+- Chan, A. P. H. & Tung, V. W. S. (2019). Examining the effects of robotic service on brand experience: the  moderating  role  of  hotel  segment. Journal  of  Travel  &  Tourism  Marketing , 36 (4),  458-468. https://doi.org/10.1080/10548408.2019.1568953
+- Chan,  E.  S.,  Okumus,  F.,  &  Chan,  W.  (2015).  Barriers  to  environmental  technology  adoption  in  hotels. Journal of Hospitality & Tourism Research , 42 (5), 829-852. https://doi.org/10.1177/1096348015614959
+- Chan, E. S., Okumus, F., & Chan, W. (2020). What hinders hotels' adoption of environmental technologies:  A  quantitative  study. International  Journal  of  Hospitality  Management , 84 , 102324. https://doi.org/10.1016/j.ijhm.2019.102324
+- Chen, J. (2019). The Augmenting Effects of Artificial Intelligence on Marketing Performance [Doctoral dissertation, University of Texas at El Paso]. University repository https://scholarworks.utep.edu/open\_etd/1976/
+- Chen, Y., Xue, T., Tuomi, A., & Wang, Z. (2022). Hotel robots: an exploratory study of Generation Z customers in China. Tourism Review , 77 (5), 1262-1275. https://doi.org/10.1108/TR-02-2022-0095
+- Choi, Y., Choi, M., Oh, M., & Kim, S. (2020). Service robots in hotels: understanding the service quality perceptions of human-robot interaction. Journal of Hospitality Marketing & Management , 29 (6), 613635. https://doi.org/10.1080/19368623.2020.1703871
+- Chouki, M., Talea, M., Okar, C., & Chroqui, R. (2020). Barriers to information technology adoption within small and medium enterprises: A systematic literature review. International Journal of Innovation and Technology Management , 17 (01), 2050007. https://doi.org/10.1142/S0219877020500078
+- Ciftci, O., Berezina, K., & Kang, M. (2021). Effect of personal innovativeness on technology adoption in hospitality and tourism: meta-analysis. In W. Wörndl, C. Koo, & J. L. Stienmetz (Eds.), Information and Communication Technologies in Tourism 2021 (pp. 162-174). Springer International Publishing. https://doi.org/10.1007/978-3-030-65785-7\_14
+- Cobos, L. M., Mejia, C., Ozturk, A. B., & Wang, Y. (2016). A technology adoption and implementation process in an independent hotel chain. International Journal of Hospitality Management, 57 , 93-105. https://doi.org/10.1016/j.ijhm.2016.06.005
+- Cruz-Jesus, F., Pinheiro, A., & Oliveira, T. (2019). Understanding CRM adoption stages: empirical analysis  building  on  the  TOE  framework. Computers  in  Industry , 109 , 1-13.  doi:10.1016/j.compind.2019.03.007
+- Doğan, S., & Vatan, A. (2019). Hotel Managers' Thoughts Towards New Technologies and Service Robots' at Hotels: A Qualitative Study in Turkey. In C. Cobanoglu, M. Cavusoglu, & A. Corbaci (Eds.), Advances in Global Business and Economics (pp. 382-399). M3 Publishing. https://doi.org/10.5038/9781732127555
+
+DZS.  (2022,  September  22). Objavljeni  konačni  rezultati  popisa  2021 .  https://dzs.gov.hr/vijesti/objavljeni-konacni-rezultati-popisa-2021/1270.
+
+DZS. (2023, September 26). Ulaganja i inovativna rješenja budućnost su turizma, https://dzs.gov.hr/vijesti/ulaganja-i-inovativna-rjesenja-buducnost-su-turizma/1657
+
+- Ezzaouia, I. & Bulchand-Gidumal, J., (2020). Factors influencing the adoption of information technology in the hotel industry. An analysis in a developing country. Tourism Management Perspectives, 34 , 100675. https://doi.org/10.1016/j.tmp.2020.100675
+- Garrison, D. R., Cleveland-Innes, M., Koole, M., & Kappelman, J. (2006). Revisiting methodological issues in transcript analysis: Negotiated coding and reliability. The Internet and Higher Education , 9 (1), 1-8. https://doi.org/10.1016/j.iheduc.2005.11.001
+- Guest, G., Bunce, A., & Johnson, L. (2006). How many interviews are enough? An experiment with data saturation and variability. Field methods , 18 (1), 59-82. https://doi.org/10.1177/1525822X05279903
+- Hasani, T., O'Reilly, N., Dehghantanha, A., Rezania, D., & Levallet, N. (2023). Evaluating the adoption of cybersecurity and its influence on organizational performance. SN Business & Economics , 3 (5), 97. https://doi.org/10.1007/s43546-023-00477-6
+- Healy, M., & Perry, C. (2000). Comprehensive criteria to judge validity and reliability of qualitative research within the realism paradigm. Qualitative Market Research. 3 (3), 118-126. https://doi.org/10.1108/13522750010333861
+- HRT. (2023, April 22). Hrvatska "vodeća" u EU-u po udjelu turizma u BDP-u. https://vijesti.hrt.hr/gospodarstvo/hrvatska-vodeca-u-eu-u-po-udjelu-turizma-u-bdp-u-10730559.
+- Hruschka, D. J., Schwartz, D., St. John, D. C., Picone-Decaro, E., Jenkins, R. A., & Carey, J. W. (2004). Reliability in coding open-ended data: Lessons learned from HIV behavioral research. Field Methods , 16 (3), 307-331. https://doi.org/10.1177/1525822X04266540
+- International  Federation  of  Robotics.  (2023). Staff  Shortage  Boosts  Service  Robots  -  Sales  Up  48%. https://ifr.org/ifr-press-releases/news/staff-shortage-boosts-service-robots-sales-up-48.
+- Ivanov, S. H., Webster, C., & Berezina, K. (2017). Adoption of robots and service automation by tourism and hospitality companies. Revista Turismo & Desenvolvimento , 27 (28), 1501-1517.
+- Ivanov, S., & Webster, C. (2019). Perceived appropriateness and intention to use service robots in tourism. In J. Pesonen & J. Neidhart (Eds.), Information and Communication Technologies in Tourism 2019 (pp. 237-248). Springer International Publishing. https://doi.org/10.1007/978-3-030-05940-8\_19 Ivanov, S., & Webster, C. (2020). Robots in tourism: A research agenda for tourism economics. Tourism Economics , 26 (7), 1065-1085. https://doi.org/10.1177/1354816619879583
+- Ivanov, S., Seyitoğlu, F., & Markova, M. (2020). Hotel managers' perceptions towards the use of robots: a mixed-methods approach. Information Technology & Tourism , 22 , 505-535. https://doi.org/10.1007/s40558-020-00187-x
+- Ivanov, S., Webster, C., & Berezina, K. (2020). Robotics in tourism and hospitality. In Z. Xiang, M. Fuchs, U. Gretzel, W. Höpken, (Eds.), Handbook of e-Tourism (pp. 2-18). Springer International Publishing. https://doi.org/10.1007/978-3-030-05324-6\_112-1
+- Ivanov, S., Webster, C., & Seyitoğlu, F. (2023). Humans and/or robots? Tourists' preferences towards the  humans-robots  mix  in  the  service  delivery  system. Service  Business , 17 (1), 195-231. https://doi.org/10.1007/s11628-022-00517-5
+- Ivkov, M., Blešić, I., Dudić, B., Pajtinková Bartáková, G., & Dudić, Z. (2020). Are future professionals willing to implement service robots? Attitudes of hospitality and tourism students towards service robotization. Electronics , 9 (9), 1442. https://doi.org/10.3390/electronics9091442
+
+Jörling, M., Böhm, R., & Paluch, S. (2019). Service robots: Drivers of perceived responsibility for service outcomes. Journal of Service Research , 22 (4), 404-420. https://doi.org/10.1177/1094670519842334
+
+Kala, D. (2022). Tourism & hospitality students' perception towards the use of robots in service organizations: A qualitative study in India. Advances in Hospitality and Tourism Research , 10 (2), 306-326. https://doi.org/10.30519/ahtr.969999
+
+Kim, H. W., & Kankanhalli, A. (2009). Investigating user resistance to information systems implementation: A status quo bias perspective. MIS quarterly , 567-582. https://doi.org/10.2307/20650309
+
+- King, J. L., Gurbaxani, V., Kraemer, K. L., McFarlan, F. W., Raman, K. S., & Yap, C. S. (1994). Institutional Factors  in  Information  Technology  Innovation. Information  Systems  Research ,  5(2),  139-169. https://doi.org/10.1287/isre.5.2.139
+- Lam, C., & Law, R. (2019). Readiness of upscale and luxury-branded hotels for digital transformation. International Journal of Hospitality Management , 79 , 60-69. https://doi.org/10.1016/j.ijhm.2018.12.015
+- Law, C. C., & Ngai, E. W. (2007). ERP systems adoption: An exploratory study of the organizational factors and impacts of ERP success. Information & Management, 44 (4), 418-432. https://doi.org/10.1016/j.im.2007.03.004
+- Lin, H. F. (2010). An investigation into the effects of IS quality and top management support on ERP system usage. Total Quality Management, 21 (3), 335-349. https://doi.org/10.1080/14783360903561761
+- Lin, I. Y., & Mattila, A. S. (2021). The value of service robots from the hotel guest's perspective: A mixedmethod approach. International Journal of Hospitality Management , 94 , 102876. https://doi.org/10.1016/j.ijhm.2021.102876
+- Lu, V. N., Wirtz, J., Kunz, W. H., Paluch, S., Gruber, T., Martins, A., & Patterson, P. G. (2020). Service robots, customers and service employees: what can we learn from the academic literature and where are the gaps?. Journal of Service Theory and Practice , 30 (3), 361-391. https://doi.org/10.1108/JSTP-042019-0088
+- Lvov, A., & Komppula, R. (2023). The essence of the hotel room in the hotel business - the hotel managers' perspective. European Journal of Tourism Research, 36 , 3609. https://doi.org/10.54055/ejtr.v36i.3158
+- M. R. Wade, & S. L. Schneberger (Eds .), Information systems theory: Explaining and predicting our digital society (pp. 231-245). Springer. https://doi.org/10.1007/978-1-4419-6108-2\_12
+- Maurer, R. (1996). Using resistance to build support for change. The Journal for Quality and Participation, 19 (3), 56-63.
+- McCartney, G., & McCartney, A. (2020). Rise of the machines: towards a conceptual service-robot research framework for the hospitality and tourism industry. International Journal of Contemporary Hospitality Management , 32 (12), 3835-3851. https://doi.org/10.1108/IJCHM-05-2020-0450
+
+Miles, M. B., & Huberman, A. M. (1994). Qualitative data analysis: An expanded sourcebook . SAGE.
+
+- Morosan, C., & Bowen, J. T. (2022). Labor shortage solution: redefining hospitality through digitization. International Journal of Contemporary  Hospitality Management , 34 (12), 4674-4685. https://doi.org/10.1108/IJCHM-03-2022-0304
+- Murphy, J., Hofacker, C., & Gretzel, U. (2017). Dawning of the age of robots in hospitality and tourism: Challenges  for  teaching  and  research. European  Journal  of  Tourism  Research , 15 , 104-111. https://doi.org/10.54055/ejtr.v15i.265
+- Nam, K., Dutt, C. S., Chathoth, P., Daghfous, A., & Khan, M. S. (2021). The adoption of artificial intelligence and robotics in the hotel industry: Prospects and challenges. Electronic Markets , 31 , 553-574. https://doi.org/10.1007/s12525-020-00442-3
+- Okumus, F., & Hemmington, N. (1998). Barriers and resistance to change in hotel firms: an investigation at  unit  level. International  Journal  of  Contemporary  Hospitality  Management , 10 (7),  283-288. https://doi.org/10.1108/09596119810240906
+- Okumus, F., Bilgihan, A., Ozturk, A. B., & Zhao, X. (2017). Identifying and overcoming barriers to deployment of information technology projects in hotels. Journal of Organizational Change Management , 30 (5), 744-766. https://doi.org/10.1108/JOCM-12-2015-0239
+- Oliveira, T., & Martins, M. F. (2011). Literature review of information technology adoption models at firm level. Electronic journal of information systems evaluation , 14 (1), 110-121.
+- Ozturk, A. B., Pizam, A., Hacikara, A., An, Q., Chaulagain, S., Balderas-Cejudo, A., Buhalis, D., Fuchs, G., Hara, T., Souza Meira, J.V., García Revilla, R., Sethi, D., Shen, Y., & State, O. (2023). Hotel customers' behavioral intentions toward service robots: the role of utilitarian and hedonic values. Journal  of  Hospitality  and  Tourism  Technology . 14 (5),  780-801.  https://doi.org/10.1108/JHTT-07-20220223
+
+Parasuraman, A. (2000). Technology readiness index (TRI): A multiple-item scale to measure readiness to embrace new technologies. Journal of Service Research , 2 (4), 307-320. https://doi.org/10.1177/109467050024001
+
+- Parvez, M. O., Arasli, H., Ozturen, A., Lodhi, R. N., & Ongsakul, V. (2022). Antecedents of human-robot collaboration: theoretical extension of the technology acceptance model. Journal of Hospitality and Tourism Technology , 13 (2), 240-263. https://doi.org/10.1108/JHTT-09-2021-0267
+- Pateli, A., Mylonas, N., & Spyrou, A. (2020). Organizational adoption of social media in the hospitality industry: An integrated approach based on DIT and TOE frameworks. Sustainability , 12 (17), 7132. https://doi.org/10.3390/su12177132
+- Pizam, A., Ozturk, A. B., Balderas-Cejudo, A., Buhalis, D., Fuchs, G., Hara, T., Meira J., García Revilla, M.R., Sethi, D., Shen, Y., State, O., Hacikara, A., & Chaulagain, S. (2022). Factors affecting hotel managers' intentions to adopt robotic technologies: A global study. International Journal of Hospitality Management , 102 , 103139. https://doi.org/10.1016/j.ijhm.2022.103139
+- Pizam, A., Ozturk, A. B., Hacikara, A., Zhang, T., Balderas-Cejudo, A., Buhalis, D., Fuchs, G., Hara T., Meira J., Mercedes Revilla, R.G., Sethi D., Shen, Y., & State, O. (2024). The role of perceived risk and information security on customers' acceptance of service robots in the hotel industry. International Journal of Hospitality Management , 117 , 103641. https://doi.org/10.1016/j.ijhm.2023.103641
+
+Rajan, K., & Saffiotti, A. (2017). Towards a science of integrated AI and robotics. Artificial Intelligence , 247 , 1-9. https://doi.org/10.1016/j.artint.2017.03.003
+
+- Reis, J., Melão, N., Salvadorinho, J., Soares, B., & Rosete, A. (2020). Service robots in the hospitality industry: The case of Henn-na hotel, Japan. Technology in Society , 63 , 101423. https://doi.org/10.1016/j.techsoc.2020.101423
+
+Rogers, E.M. (1995). Diffusion of Innovations , Free Press.
+
+- Samuelson, W., & Zeckhauser, R. (1988). Status quo bias in decision making. Journal of Risk and Uncertainty , 1 (1), 7-59. https://doi.org/10.1007/bf00055564
+- Seyitoğlu, F., & Ivanov, S. (2021). Service robots as a tool for physical distancing in tourism. Current Issues in Tourism , 24 (12), 1631-1634. https://doi.org/10.1080/13683500.2020.1774518
+- Seyitoğlu, F., Ivanov, S., Atsız, O., & Çifçi, İ. (2021). Robots as restaurant employees-A double-barrelled detective story. Technology in Society , 67 , 101779. https://doi.org/10.1016/j.techsoc.2021.101779
+- Shin, H., Perdue, R. R., & Kang, J. (2019). Front desk technology innovation in hotels: A managerial perspective. Tourism Management , 74 , 310-318. https://doi.org/10.1016/j.tourman.2019.04.004
+- Siguaw, J. A., Enz, C. A., & Namasivayam, K. (2000). Adoption of information technology in US hotels: strategically driven objectives. Journal of Travel Research , 39 (2), 192-201. https://doi.org/10.1177/004728750003900209
+- Song, Y., Zhang, M., Hu, J., & Cao, X. (2022). Dancing with service robots: The impacts of employeerobot collaboration on hotel employees' job crafting. International Journal of Hospitality Management , 103 , 103220. https://doi.org/10.1016/j.ijhm.2022.103220
+- Strauss, A., & Corbin, J. (1990). Basics of qualitative research: Grounded theory procedures and techniques . SAGE.
+- Stylos, N., Fotiadis, A. K., Shin, D., & Huan, T.-C. T. (2021). Beyond smart systems adoption: Enabling diffusion and assimilation of smartness in hospitality. International Journal of Hospitality Management , 98 , 103042. https://doi.org/10.1016/j.ijhm.2021.103042
+
+Tornatzky, L.G., Fleischer, M. (1990). The processes of technological innovation . Lexington Books.
+
+- Tuomi, A., Tussyadiah, I. P., & Stienmetz, J. (2021). Applications and implications of service robots in hospitality. Cornell Hospitality Quarterly , 62 (2), 232-247. https://doi.org/10.1177/193896552092396
+- Tussyadiah, I. P., & Park, S. (2018). Consumer evaluation of hotel service robots. In B. Stangl & J. Pesonen (Eds.), Information and Communication Technologies in Tourism 2018 . (pp. 308-320). Springer International Publishing. https://doi.org/10.1007/978-3-319-72923-7\_24
+
+UNCTAD (2021). Technology and Innovation Report 2021 . https://unctad.org/page/technology-and-innovation-report-2021.
+
+Van Nes, F., Abma, T., Jonsson, H., & Deeg, D. (2010). Language differences in qualitative research: is meaning lost in translation? European Journal of Ageing , 7 , 313-316. https://doi.org/10.1007/s10433010-0168-y
+
+- Vatan, A., & Dogan, S. (2021). What do hotel employees think about service robots? A qualitative study in Turkey. Tourism Management Perspectives , 37 , 100775. https://doi.org/10.1016/j.tmp.2020.100775
+- Wang, Y. S., Li, H. T., Li, C. R., & Zhang, D. Z. (2016). Factors affecting hotels' adoption of mobile reservation systems: A technology-organization-environment framework. Tourism Management , 53 , 163172. https://doi.org/10.1016/j.tourman.2015.09.021
+- WEF  (2020). The Future of Jobs Report 2020, https://www3.weforum.org/docs/WEF\_Fu-ture\_of\_Jobs\_2020.pdf.
+- WIPO (2022). Global Innovation Index 2022 ,  Dutta, S., Lanvin, B., León, L.-R, & Wunsch-Vincent, S. (Eds.), Switzerland: WIPO.
+- Wirtz, J., Patterson, P. G., Kunz, W. H., Gruber, T., Lu, V. N., Paluch, S., & Martins, A. (2018). Brave new world:  service  robots  in  the  frontline. Journal  of  Service  Management , 29 (5), 907-931. https://doi.org/10.1108/JOSM-04-2018-0119
+- Xu, S., Stienmetz, J., & Ashton, M. (2020). How will service robots redefine leadership in hotel management? A Delphi approach. International Journal of Contemporary Hospitality Management , 32 (6), 2217-2237. https://doi.org/10.1108/IJCHM-05-2019-0505
+- Yang, J., & Chew, E. (2021). A systematic review for service humanoid robotics model in hospitality. International Journal of Social Robotics , 13 , 1397-1410. https://doi.org/10.1007/s12369-020-00724-y
+- Ye, H., Sun, S., & Law, R. (2022). A Review of Robotic Applications in Hospitality and Tourism Research. Sustainability , 14 (17), 10827. https://doi.org/10.3390/su141710827
+- Zhong, L., Sun, S., Law, R., & Zhang, X. (2020a). Impact of robot hotel service on consumers' purchase intention:  a  control  experiment. Asia  Pacific  Journal  of  Tourism  Research , 25 (7), 780-798. https://doi.org/10.1080/10941665.2020.1726421
+- Zhong, L., Zhang, X., Rong, J., Chan, H. K., Xiao, J., & Kong, H. (2020b). Construction and empirical research on acceptance model of service robots applied in hotel industry. Industrial Management & Data Systems , 121 (6), 1325-1352. https://doi.org/10.1108/IMDS-11-2019-0603
