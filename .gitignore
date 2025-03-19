@@ -2,3 +2,4 @@
 docs/.$architecture.drawio.bkp
 .DS_Store
 test.ipynb
+**/__pycache__/
