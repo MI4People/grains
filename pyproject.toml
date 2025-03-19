@@ -12,6 +12,7 @@ docling = "^2.15.1"
 openai = "^1.60.2"
 tiktoken = "^0.8.0"
 mistletoe = "^1.4.0"
+pydantic-ai = "^0.0.42"
 
 
 [tool.poetry.group.dev.dependencies]

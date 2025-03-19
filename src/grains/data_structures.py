@@ -35,21 +35,10 @@ class Curriculum(BaseModel):
         return f"Curriculum:\n{modules_str}"
 
 
-class CategoryMapping(BaseModel):
-    module: str = Field(..., description="Module this section maps to")
-    topic: str = Field(..., description="Topic this section maps to")
-    relevance: float = Field(
-        ...,
-        description="Relevance score (0-1) indicating how well this section matches the topic",
-    )
-    cot_justification: str = Field(..., description="Brief explanation of why this section maps to this topic")
-
-
 class Section(BaseModel):
     title: str = Field(..., description="Title of the section")
     level: int = Field(..., description="Heading level (1-6)")
     content: Optional[str] = Field("", description="Content of the section")
-    mappings: List[CategoryMapping] = Field(default_factory=list, description="Category mappings for this section")
     summary: Optional[str] = Field(None, description="Summary of the section content")
     summary_title: Optional[str] = Field(None, description="Section title based on summary")
 
