@@ -25,8 +25,52 @@ from grains.utils import load_curriculum, try_loading_document_object
 openai.api_key = os.getenv("OPENAI_API_KEY")
 MODEL: str = "gpt-4"
 
+# Initialize S3 client
+S3_BUCKET_NAME: str = "grains-files"
+S3_PREFIX: str = "house-keeping/"
+s3 = boto3.client("s3")
+
+
+# =============== S3 Download =============== #
+
+
+def check_s3_connection():
+    """Check if the connection to S3 is successful."""
+    try:
+        s3.list_objects_v2(Bucket=S3_BUCKET_NAME, MaxKeys=1)
+        print("Successfully connected to S3.")
+        return True
+    except (NoCredentialsError, PartialCredentialsError):
+        print("AWS credentials are missing or incorrect.")
+    except EndpointConnectionError:
+        print("Unable to connect to S3 endpoint. Check your network or region settings.")
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+    return False
+
+
+def download_missing_files(input_dir: Path):
+    """List S3 objects and download only those not present in the local directory."""
+    os.makedirs(input_dir, exist_ok=True)
+    
+    response = s3.list_objects_v2(Bucket=S3_BUCKET_NAME, Prefix=S3_PREFIX)
+    if "Contents" in response:
+        for obj in response["Contents"]:
+            s3_key = obj["Key"]
+            file_name = os.path.basename(s3_key)  # Get only the filename
+            local_file_path = os.path.join(input_dir, file_name)
+
+            if not os.path.exists(local_file_path):
+                print(f"Downloading {s3_key} to {local_file_path}...")
+                s3.download_file(S3_BUCKET_NAME, s3_key, local_file_path)
+            else:
+                print(f"Skipping {file_name}, already exists.")
+        print("Download complete.")
+
 
 # =============== PDF to Markdown Extraction =============== #
+
+
 def extract_content(pdf_path: Path, md_dir: Path, overwrite: bool = False) -> Tuple[str, Path]:
     """Extract content from a single PDF and save as Markdown"""
     markdown_content: str = ""
@@ -263,6 +307,8 @@ def process_markdown(md_generator: Iterable[Tuple[Path, str]]) -> None:
 
 def process_documents(input_dir: Path, md_dir: Path) -> None:
     """Main processing pipeline with error resilience"""
+    if check_s3_connection():
+        download_missing_files(input_dir)
     input_files = input_dir.glob("*.pdf")
     md_generator = extract_all_to_markdown(input_files, md_dir)
     process_markdown(md_generator)
