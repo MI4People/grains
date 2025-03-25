@@ -49,10 +49,12 @@ Section:
 {section_info}
 
 For the section above, evaluate its relevance to each topic in the module.
+Consider BOTH the topic name AND its description when determining relevance.
+
 For EACH topic, provide:
 1. The EXACT topic name as listed above - DO NOT CHANGE OR MODIFY THE TOPIC NAMES IN ANY WAY
 2. A relevance score between 0 and 1 (where 1 is highly relevant, 0 is not relevant)
-3. A brief explanation of why this section is relevant or not to the topic
+3. A brief explanation of why this section is relevant or not to the topic, specifically referencing how the section content relates to the topic description
 
 Return your response in the following JSON format:
 
@@ -75,6 +77,7 @@ Return your response in the following JSON format:
 
 CRITICAL: You must use the EXACT topic names from the list above without any modifications, additions or omissions.
 Make sure to include ALL topics from the module in your response, even if they have low relevance scores.
+When determining relevance, pay careful attention to both the topic name and its description.
 """
 
 async def map_section_to_module_topics(section: Section, module: CurriculumModule, agent: Agent) -> ModuleMapping:
@@ -85,8 +88,7 @@ async def map_section_to_module_topics(section: Section, module: CurriculumModul
         mappings_data = None
         if hasattr(result, 'data') and hasattr(result.data, 'mappings'):
             mappings_data = result.data.mappings
-        
-        # Get the set of valid topic names for verification
+
         valid_topic_names = {topic.name for topic in module.topics}
         
         topic_relevances = []
@@ -95,17 +97,13 @@ async def map_section_to_module_topics(section: Section, module: CurriculumModul
                 if 'topic_name' in mapping and 'relevance_score' in mapping and 'reasoning' in mapping:
                     topic_name = mapping['topic_name']
                     
-                    # Verify the topic name is valid, if not, use closest match
                     if topic_name not in valid_topic_names:
-                        # Try to find closest match by checking if the returned name is a substring
-                        # or if a valid name is a substring of the returned name
                         closest_match = None
                         for valid_name in valid_topic_names:
                             if valid_name in topic_name or topic_name in valid_name:
                                 closest_match = valid_name
                                 break
                         
-                        # If we found a match, use it, otherwise default to first topic
                         if closest_match:
                             topic_name = closest_match
                         else:
@@ -219,13 +217,16 @@ if __name__ == "__main__":
         system_prompt=(
             "You are an expert in mapping document sections to module topics for the hotel and service industry. "
             "Your task is to analyze the section summary below and calculate its relevance for each topic of the module. "
+            "For each topic, ensure you consider BOTH the topic name AND its detailed description when evaluating relevance. "
+            "The topic descriptions provide crucial context about what each topic covers and should heavily inform your relevance assessment.\n\n"
             "For each topic, provide:\n"
             "1. A relevance score [0-1], where 1 means highly relevant and 0 means no relevance.\n"
-            "2. A concise and short reasoning (Chain-of-Thought) explaining why the section is relevant to the topic."
+            "2. A concise and short reasoning (Chain-of-Thought) explaining why the section is relevant to the topic, "
+            "referencing specific elements from the topic description where applicable.\n"
             "ALWAYS use the EXACT topic names without any modifications."
         ),
     )
-    
+
     from grains.utils import load_curriculum, try_loading_document_object
     document = try_loading_document_object("data/objects/w26579.json")
     curriculum = load_curriculum()
