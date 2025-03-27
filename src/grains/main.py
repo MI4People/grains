@@ -7,6 +7,7 @@ from pprint import pprint
 from typing import (Any, Dict, Generator, Iterable, Iterator, List, NamedTuple,
                     Tuple)
 
+import boto3
 import mistletoe
 import openai
 import tiktoken
@@ -14,7 +15,6 @@ from docling.datamodel.base_models import InputFormat
 from docling.datamodel.pipeline_options import (PdfPipelineOptions,
                                                 TableFormerMode)
 from docling.document_converter import DocumentConverter, PdfFormatOption
-from docling_core.types.doc.document import PictureStackedBarChartData
 from mistletoe.ast_renderer import AstRenderer
 
 from grains.data_structures import AstData, Document, Section
@@ -28,7 +28,14 @@ MODEL: str = "gpt-4"
 # Initialize S3 client
 S3_BUCKET_NAME: str = "grains-files"
 S3_PREFIX: str = "house-keeping/"
-s3 = boto3.client("s3")
+# NOTE:
+# Add a ~/.aws/credentials file
+# with
+# [grains]
+# aws_access_key_id = "<id>"
+# aws_secret_access_key = "<key>"
+session = boto3.Session(profile_name="grains")
+s3 = session.client("s3")
 
 
 # =============== S3 Download =============== #
