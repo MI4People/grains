@@ -11,8 +11,7 @@ import boto3
 import mistletoe
 import openai
 import tiktoken
-from botocore.exceptions import (EndpointConnectionError, NoCredentialsError,
-                                 PartialCredentialsError)
+
 from docling.datamodel.base_models import InputFormat
 from docling.datamodel.pipeline_options import (PdfPipelineOptions,
                                                 TableFormerMode)
@@ -21,7 +20,7 @@ from mistletoe.ast_renderer import AstRenderer
 
 from grains.data_structures import AstData, Document, Section
 from grains.llm_utils import add_summaries
-from grains.utils import load_curriculum, try_loading_document_object
+from grains.utils import (load_curriculum, try_loading_document_object, check_s3_connection, download_missing_files)
 
 # Initialize OpenAI client
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -34,47 +33,10 @@ S3_PREFIX: str = "house-keeping/"
 # Add a ~/.aws/credentials file
 # with
 # [grains]
-# aws_access_key_id = "<id>"
-# aws_secret_access_key = "<key>"
+# aws_access_key_id = <id>
+# aws_secret_access_key = <key>
 session = boto3.Session(profile_name="grains")
 s3 = session.client("s3")
-
-
-# =============== S3 Download =============== #
-
-
-def check_s3_connection():
-    """Check if the connection to S3 is successful."""
-    try:
-        s3.list_objects_v2(Bucket=S3_BUCKET_NAME, MaxKeys=1)
-        print("Successfully connected to S3.")
-        return True
-    except (NoCredentialsError, PartialCredentialsError):
-        print("AWS credentials are missing or incorrect.")
-    except EndpointConnectionError:
-        print("Unable to connect to S3 endpoint. Check your network or region settings.")
-    except Exception as e:
-        print(f"Unexpected error: {e}")
-    return False
-
-
-def download_missing_files(input_dir: Path):
-    """List S3 objects and download only those not present in the local directory."""
-    os.makedirs(input_dir, exist_ok=True)
-    
-    response = s3.list_objects_v2(Bucket=S3_BUCKET_NAME, Prefix=S3_PREFIX)
-    if "Contents" in response:
-        for obj in response["Contents"]:
-            s3_key = obj["Key"]
-            file_name = os.path.basename(s3_key)  # Get only the filename
-            local_file_path = os.path.join(input_dir, file_name)
-
-            if not os.path.exists(local_file_path):
-                print(f"Downloading {s3_key} to {local_file_path}...")
-                s3.download_file(S3_BUCKET_NAME, s3_key, local_file_path)
-            else:
-                print(f"Skipping {file_name}, already exists.")
-        print("Download complete.")
 
 
 # =============== PDF to Markdown Extraction =============== #
