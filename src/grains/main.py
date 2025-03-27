@@ -11,6 +11,8 @@ import boto3
 import mistletoe
 import openai
 import tiktoken
+from botocore.exceptions import (EndpointConnectionError, NoCredentialsError,
+                                 PartialCredentialsError)
 from docling.datamodel.base_models import InputFormat
 from docling.datamodel.pipeline_options import (PdfPipelineOptions,
                                                 TableFormerMode)
