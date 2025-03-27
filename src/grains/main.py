@@ -278,8 +278,8 @@ def process_markdown(md_generator: Iterable[Tuple[Path, str]]) -> None:
 
 def process_documents(input_dir: Path, md_dir: Path) -> None:
     """Main processing pipeline with error resilience"""
-    if check_s3_connection():
-        download_missing_files(input_dir)
+    if check_s3_connection(s3, S3_BUCKET_NAME, S3_PREFIX):
+        download_missing_files(s3, input_dir, S3_BUCKET_NAME, S3_PREFIX)
     input_files = input_dir.glob("*.pdf")
     md_generator = extract_all_to_markdown(input_files, md_dir)
     process_markdown(md_generator)
