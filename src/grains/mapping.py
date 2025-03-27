@@ -8,7 +8,7 @@ from pydantic import BaseModel, Field
 from pydantic_ai import Agent
 from pydantic_ai.models.openai import OpenAIModel
 from pydantic_ai.providers.openai import OpenAIProvider
-from data_structures import Curriculum, Document, Module as CurriculumModule, Section
+from grains.data_structures import Curriculum, Document, Module as CurriculumModule, Section
 
 MODEL: str = "anthropic/claude-3.5-sonnet"
 

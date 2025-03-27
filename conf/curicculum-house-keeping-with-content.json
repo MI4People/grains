@@ -1,0 +1,65 @@
+{
+   "modules": [
+      {
+         "name": "Introductory day. What is hospitality and service. The Hotel its structure. Archetypes of guests in the hotel",
+         "topics": [
+            {
+               "name": "What is hospitality",
+               "description": "Hospitality as an art. Philosophy and psychology of hospitality."
+            },
+            {
+               "name": "What is a service",
+               "description": "Service - which ensures the fulfillment of the needs of the guest / client.",
+               "content": "In the hospitality industry, effective service delivery has evolved significantly, particularly in how hotels meet guest needs. This evolution is well-illustrated by the transformation of business traveler accommodations in the 1980s, led by innovators like La Quinta and Marriott's Courtyard chain. The shift demonstrated that quality service doesn't always mean providing every possible amenity, but rather understanding and fulfilling specific guest requirements efficiently. Through careful market analysis and customer feedback, successful hotels learned to focus on essential in-room features like comfortable beds, spacious work areas, and quality décor, while scaling back non-essential amenities such as elaborate lounges and full-service restaurants. This customer-centric approach to service revolutionized the industry by creating the 'limited services' segment, proving that meeting guest needs effectively often means providing targeted, relevant services rather than a one-size-fits-all approach to hospitality."
+            },
+            {
+               "name": "Video",
+               "description": "About service and hospitality in general and housekeeping department in the end. (to find the video from movies or other hotel's provided content)"
+            },
+            {
+               "name": "Hotel",
+               "description": "What is a hotel. Classification of hotels. Its structure, divisions, mission and values.",
+               "content": "The hotel industry has undergone significant structural changes since the 1980s, particularly in how establishments compete on quality and serve different traveler segments. Where hotels once primarily competed through fixed-cost amenities like restaurants and pools, market research in the 1980s revealed that many business travelers valued in-room amenities over external facilities. This insight led to the emergence of limited-service and all-suites hotel formats that emphasized room quality over traditional hotel amenities. The industry evolved differently in business versus leisure travel destinations - business locations saw more but smaller hotels, while leisure destinations maintained larger properties with extensive amenities. This transformation demonstrates how changes in competitive strategy and customer preferences can reshape industry structure. Modern hotels now offer diverse formats tailored to specific market segments, from luxury full-service properties to focused limited-service establishments, illustrating the hospitality industry's adaptation to evolving consumer needs while maintaining service quality through different operational models. This evolution provides essential context for understanding today's hotel industry structure, its various service approaches, and how different property types serve distinct customer segments."
+            },
+            {
+               "name": "Archetypes of guests in a hotel",
+               "description": "Archetypes of guests in a hotel. + examples"
+            },
+            {
+               "name": "Personal development (macro)",
+               "description": "What prospects a person (maid) can have in the industry"
+            },
+            {
+               "name": "Your why",
+               "description": "Discussion of personal goals of each student"
+            }
+         ]
+      },
+      {
+         "name": "Housekeeping Department. Standards. Safety requirements at the workplace.",
+         "topics": [
+            {
+               "name": "Housekeeping department",
+               "description": "Organizational structure of the housekeeping department. The role of the Housekeeping Attendant in creating a positive guest experience. Description of the maid's duties in a hotel. Guest-centered thinking: Emphasize the importance of anticipating guest needs. Career development (micro) + cross training for housekeeping attendant."
+            },
+            {
+               "name": "Introduction to service standards (SOPs)",
+               "description": "Types of hotel rooms. Abbreviations. What are the Hotel Service Standards. Goals and importance of compliance with standards."
+            },
+            {
+               "name": "Practical task",
+               "description": "Getting to know the territory of the hotel Shelest. Location of rooms, service areas, recreation areas."
+            },
+            {
+               "name": "Theory",
+               "description": "Hotel security service. Safety requirements in the workplace. Fire safety and evacuation instructions (invited guest)."
+            },
+            {
+               "name": "Group discussion",
+               "description": "Guest impressions: What is it? Why are impressions created and how? Types of impressions and their consequences. What impressions does the HK attendant manage?",
+               "content": "This section examines how guest impressions in the hotel industry evolved through changes in quality competition and service delivery, particularly relevant to housekeeping standards. The text illustrates this through the examples of La Quinta and Marriott's strategic shifts in the 1980s, where hotels began moving away from competing on out-of-room amenities (like restaurants and elaborate lounges) to focusing on in-room quality and cleanliness. This transformation was driven by better understanding of business traveler preferences through market research, which revealed that guests, especially business travelers, valued clean, comfortable, well-maintained rooms with functional amenities over extensive external facilities. This insight revolutionized the hotel industry's approach to quality competition and directly influenced housekeeping standards, as the department became increasingly crucial in managing guest impressions through room quality, cleanliness, and maintenance rather than through peripheral services. The shift demonstrates how guest impressions are primarily formed through direct experiences with their immediate environment, making the housekeeping department's role fundamental in shaping overall guest satisfaction."
+            }
+         ]
+      }
+   ]
+}
