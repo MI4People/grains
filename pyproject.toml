@@ -10,7 +10,7 @@ packages = [{include = "grains", from = "src"}]
 python = "^3.12"
 docling = "^2.15.1"
 openai = "^1.60.2"
-tiktoken = "^0.8.0"
+tiktoken = "^0.9.0"
 mistletoe = "^1.4.0"
 
 
