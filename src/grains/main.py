@@ -7,26 +7,41 @@ from pprint import pprint
 from typing import (Any, Dict, Generator, Iterable, Iterator, List, NamedTuple,
                     Tuple)
 
+import boto3
 import mistletoe
 import openai
 import tiktoken
+
 from docling.datamodel.base_models import InputFormat
 from docling.datamodel.pipeline_options import (PdfPipelineOptions,
                                                 TableFormerMode)
 from docling.document_converter import DocumentConverter, PdfFormatOption
-from docling_core.types.doc.document import PictureStackedBarChartData
 from mistletoe.ast_renderer import AstRenderer
 
 from grains.data_structures import AstData, Document, Section
 from grains.llm_utils import add_summaries
-from grains.utils import load_curriculum, try_loading_document_object
+from grains.utils import (load_curriculum, try_loading_document_object, check_s3_connection, download_missing_files)
 
 # Initialize OpenAI client
 openai.api_key = os.getenv("OPENAI_API_KEY")
 MODEL: str = "gpt-4"
 
+# Initialize S3 client
+S3_BUCKET_NAME: str = "grains-files"
+S3_PREFIX: str = "house-keeping/"
+# NOTE:
+# Add a ~/.aws/credentials file
+# with
+# [grains]
+# aws_access_key_id = <id>
+# aws_secret_access_key = <key>
+session = boto3.Session(profile_name="grains")
+s3 = session.client("s3")
+
 
 # =============== PDF to Markdown Extraction =============== #
+
+
 def extract_content(pdf_path: Path, md_dir: Path, overwrite: bool = False) -> Tuple[str, Path]:
     """Extract content from a single PDF and save as Markdown"""
     markdown_content: str = ""
@@ -263,6 +278,8 @@ def process_markdown(md_generator: Iterable[Tuple[Path, str]]) -> None:
 
 def process_documents(input_dir: Path, md_dir: Path) -> None:
     """Main processing pipeline with error resilience"""
+    if check_s3_connection(s3, S3_BUCKET_NAME, S3_PREFIX):
+        download_missing_files(s3, input_dir, S3_BUCKET_NAME, S3_PREFIX)
     input_files = input_dir.glob("*.pdf")
     md_generator = extract_all_to_markdown(input_files, md_dir)
     process_markdown(md_generator)
