@@ -154,38 +154,33 @@ def generate_system_prompt(module_name, topic_name, topic_description, section_c
     """
     Returns a system prompt to summarize section content into one coherent paragraph.
     """
-    joined_content = "\n\n".join(section_content)
+    #joined_content = "\n\n".join(section_content)
 
     prompt = f"""
-You are an assistant trained to help process and summarize structured training content.
+            You are an assistant trained to help aggregate structured content by writing smooth transitions.
 
-You are currently working with the following context:
-- **Module**: {module_name}
-- **Topic**: {topic_name}
-- **Topic Description**: {topic_description}
+            You are currently working with the following context:
+            - **Module**: {module_name}
+            - **Topic**: {topic_name}
+            - **Topic Description**: {topic_description}
 
-This topic includes multiple section content entries that cover related subtopics. Here they are:
+            This topic includes multiple sections that cover related subtopics, which are given in the following list:
 
-{joined_content}
+            {section_content}
+            
+            ---
 
----
+            Your task is to:
+            1. Concatenate all sections with a simple transition  
+            
 
-Your task is to:
-1. Read all section content carefully.
-2. Identify and summarize the most important and recurring ideas.
-3. Write a **single, clear, and concise paragraph** that:
-    - Captures the essence of the topic in combination with the module
-    - Highlights common themes
-    - Removes redundancy
-    - Includes only relevant information
-4. Use a professional tone suitable for training or documentation.
-
-Only return the paragraph. Do not include section titles, headers, or lists.
+        
     """.strip()
 
     return prompt
 
 async def process_curriculum(source_cur, target_cur, agent):
+
     """
     Takes content from source curriculum, summarizes it with AI, and adds it to target curriculum
     """
@@ -194,9 +189,9 @@ async def process_curriculum(source_cur, target_cur, agent):
             # Skip if no section content
             if not s_topic.get("section_content") or not s_topic["section_content"]:
                 continue
-                
-            print(f"Processing: {s_topic['name']}")
             
+            print(f"Processing: {s_topic['name']}")
+
             # Generate prompt
             prompt = generate_system_prompt(
                 s_module["name"],
@@ -205,7 +200,6 @@ async def process_curriculum(source_cur, target_cur, agent):
                 s_topic["section_content"]
             )
             
-            # Get AI response
             try:
                 result = await agent.run(prompt)
                 t_topic["content"] = result.data
