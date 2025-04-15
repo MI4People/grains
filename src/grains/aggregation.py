@@ -156,27 +156,28 @@ def generate_system_prompt(module_name, topic_name, topic_description, section_c
     """
     #joined_content = "\n\n".join(section_content)
 
-    prompt = f"""
-            You are an assistant trained to help aggregate structured content by writing smooth transitions.
+#    prompt = f"""
+#            You are an expert in creating aggregated content out of multiple strings, which represent sections.
+#
+#            You are currently working with the following context:
+#            - **Module**: {module_name}
+#            - **Topic**: {topic_name}
+#            - **Topic Description**: {topic_description}
+#
+#            This topic includes multiple sections that cover related subtopics, which are given in the following list:
+#
+#            {section_content}
+#            
+#            ---
+#
+#            Your task is to:
+#            1. Concatenate all sections with a simple transition  
+#            
+#
+#        
+#    """.strip()
 
-            You are currently working with the following context:
-            - **Module**: {module_name}
-            - **Topic**: {topic_name}
-            - **Topic Description**: {topic_description}
-
-            This topic includes multiple sections that cover related subtopics, which are given in the following list:
-
-            {section_content}
-            
-            ---
-
-            Your task is to:
-            1. Concatenate all sections with a simple transition  
-            
-
-        
-    """.strip()
-
+    prompt = "you are getting some string which you shall summarized pretty detailed and the give back one readable paragraph containing all those information"
     return prompt
 
 async def process_curriculum(source_cur, target_cur, agent):
@@ -200,6 +201,7 @@ async def process_curriculum(source_cur, target_cur, agent):
                 s_topic["section_content"]
             )
             
+            #t_topic["content"] = s_topic.get("section_content")
             try:
                 result = await agent.run(prompt)
                 t_topic["content"] = result.data
@@ -244,7 +246,8 @@ async def main():
 
     source_cur = add_section_content(curriculum=source_cur,document=doc)
 
-    MODEL: str = "anthropic/claude-3.5-sonnet"
+    MODEL: str = "anthropic/claude-3.7-sonnet"
+    #MODEL: str = "openai/gpt-4o-2024-11-20"
 
     agent = Agent(
             OpenAIModel(
@@ -262,7 +265,7 @@ async def main():
     target_cur = await process_curriculum(source_cur=source_cur, target_cur=target_cur, agent=agent)
 
     # Save the result
-    with open("conf/curicculum-house-keeping-with-content.json", 'w', encoding='utf-8') as f:
+    with open("data/target/curicculum-house-keeping-with-content.json", 'w', encoding='utf-8') as f:
         json.dump(target_cur, f, indent=3, ensure_ascii=False)
     
 

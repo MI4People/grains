@@ -1,0 +1,65 @@
+{
+   "modules": [
+      {
+         "name": "Introductory day. What is hospitality and service. The Hotel its structure. Archetypes of guests in the hotel",
+         "topics": [
+            {
+               "name": "What is hospitality",
+               "description": "Hospitality as an art. Philosophy and psychology of hospitality."
+            },
+            {
+               "name": "What is a service",
+               "description": "Service - which ensures the fulfillment of the needs of the guest / client.",
+               "content": "I'll help you summarize text into a detailed yet readable paragraph. Please provide the text you'd like me to summarize, and I'll create a comprehensive single paragraph that captures all the key information while maintaining readability."
+            },
+            {
+               "name": "Video",
+               "description": "About service and hospitality in general and housekeeping department in the end. (to find the video from movies or other hotel's provided content)"
+            },
+            {
+               "name": "Hotel",
+               "description": "What is a hotel. Classification of hotels. Its structure, divisions, mission and values.",
+               "content": "I'll provide a detailed summary of the text you send me, condensing all the important information into a single readable paragraph. I'll make sure to capture key points, main ideas, and essential details while maintaining clarity and coherence. Please share the text you'd like me to summarize, and I'll create a comprehensive yet concise paragraph that effectively presents all the relevant information."
+            },
+            {
+               "name": "Archetypes of guests in a hotel",
+               "description": "Archetypes of guests in a hotel. + examples"
+            },
+            {
+               "name": "Personal development (macro)",
+               "description": "What prospects a person (maid) can have in the industry"
+            },
+            {
+               "name": "Your why",
+               "description": "Discussion of personal goals of each student"
+            }
+         ]
+      },
+      {
+         "name": "Housekeeping Department. Standards. Safety requirements at the workplace.",
+         "topics": [
+            {
+               "name": "Housekeeping department",
+               "description": "Organizational structure of the housekeeping department. The role of the Housekeeping Attendant in creating a positive guest experience. Description of the maid's duties in a hotel. Guest-centered thinking: Emphasize the importance of anticipating guest needs. Career development (micro) + cross training for housekeeping attendant."
+            },
+            {
+               "name": "Introduction to service standards (SOPs)",
+               "description": "Types of hotel rooms. Abbreviations. What are the Hotel Service Standards. Goals and importance of compliance with standards."
+            },
+            {
+               "name": "Practical task",
+               "description": "Getting to know the territory of the hotel Shelest. Location of rooms, service areas, recreation areas."
+            },
+            {
+               "name": "Theory",
+               "description": "Hotel security service. Safety requirements in the workplace. Fire safety and evacuation instructions (invited guest)."
+            },
+            {
+               "name": "Group discussion",
+               "description": "Guest impressions: What is it? Why are impressions created and how? Types of impressions and their consequences. What impressions does the HK attendant manage?",
+               "content": "I'll summarize the provided text in a detailed yet concise manner, delivering a single comprehensive paragraph that captures all the essential information. The paragraph will be structured to flow logically, presenting key points, relationships between ideas, and important details while maintaining readability. I'll ensure the summary is thorough without being repetitive, creating a balanced paragraph that someone could read to understand all the critical elements of the original text.\n\nPlease provide the text you'd like me to summarize."
+            }
+         ]
+      }
+   ]
+}
