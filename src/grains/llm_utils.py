@@ -3,7 +3,7 @@ import os
 import openai
 
 from grains.data_structures import Document, Section
-from grains.prompts import (MODEL_NAME, SUMMARIZE_DOCUMENT_MAX_TOKENS,
+from grains.prompts import (SUMMARIZE_DOCUMENT_MAX_TOKENS,
                             SUMMARIZE_DOCUMENT_PROMPT,
                             SUMMARIZE_SECTION_MAX_TOKENS,
                             SUMMARIZE_SECTION_PROMPT,
@@ -14,7 +14,7 @@ from grains.prompts import (MODEL_NAME, SUMMARIZE_DOCUMENT_MAX_TOKENS,
 # os.environ["OPENAI_API_KEY"] = ("sk-your-open-API-key")  # VERY SECURE ...
 
 
-def add_summaries(document: Document) -> Document:
+def add_summaries(document: Document, model: str) -> Document:
     """
     Generates summaries and titles for sections and the overall document using an LLM.
 
@@ -30,7 +30,7 @@ def add_summaries(document: Document) -> Document:
         prompt_section = SUMMARIZE_SECTION_PROMPT.format(section=section.content)
         try:
             response_section = client.chat.completions.create(
-                model=MODEL_NAME,
+                model=model,
                 messages=[{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": prompt_section}],
                 max_tokens=SUMMARIZE_SECTION_MAX_TOKENS,
             )

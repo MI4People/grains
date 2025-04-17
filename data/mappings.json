@@ -1,0 +1,828 @@
+{
+  "mappings": [
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "a0ba7c9c-b40c-440e-adbc-323a89b63214",
+      "topic_id": "8c50023c-6b17-4e90-b4a7-923d566e15e7",
+      "relevance_score": 0.0,
+      "reasoning": "The section does not mention hospitality as an art, philosophy, or psychology, and does not relate to the topic description."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "a0ba7c9c-b40c-440e-adbc-323a89b63214",
+      "topic_id": "61be82d6-2b25-4747-be13-e078530616f6",
+      "relevance_score": 0.0,
+      "reasoning": "The section does not mention service or fulfillment of guest needs, and does not relate to the topic description."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "a0ba7c9c-b40c-440e-adbc-323a89b63214",
+      "topic_id": "12432a09-d7b6-4bdf-82e2-b91c3d6968b1",
+      "relevance_score": 0.0,
+      "reasoning": "The section does not mention service, hospitality, or housekeeping, and does not relate to the topic description."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "a0ba7c9c-b40c-440e-adbc-323a89b63214",
+      "topic_id": "49246b6b-f6b8-41d6-8783-43dd399f31a9",
+      "relevance_score": 0.0,
+      "reasoning": "The section does not mention hotels, classification, structure, divisions, mission, or values, and does not relate to the topic description."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "a0ba7c9c-b40c-440e-adbc-323a89b63214",
+      "topic_id": "db083dcc-bc8c-4fb0-9e6c-7908ebd0ce89",
+      "relevance_score": 0.0,
+      "reasoning": "The section does not mention archetypes of guests or hotels, and does not relate to the topic description."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "a0ba7c9c-b40c-440e-adbc-323a89b63214",
+      "topic_id": "fd9c49bd-f731-4886-aeed-ad787210ae73",
+      "relevance_score": 0.0,
+      "reasoning": "The section does not mention personal development or industry prospects, and does not relate to the topic description."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "a0ba7c9c-b40c-440e-adbc-323a89b63214",
+      "topic_id": "93bd02c8-7480-4058-ba1a-a6ad4e7360fb",
+      "relevance_score": 0.0,
+      "reasoning": "The section does not mention personal goals or discussion, and does not relate to the topic description."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "a0ba7c9c-b40c-440e-adbc-323a89b63214",
+      "topic_id": "5dd24321-5435-4905-b36e-b0ec4e5f4d2d",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary does not mention anything related to the housekeeping department, its organizational structure, or guest-centered thinking."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "a0ba7c9c-b40c-440e-adbc-323a89b63214",
+      "topic_id": "8a22cc88-f4ff-40c7-b1f6-fcbe8699c6f5",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary does not mention anything related to hotel service standards, types of hotel rooms, or compliance with standards."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "a0ba7c9c-b40c-440e-adbc-323a89b63214",
+      "topic_id": "7710aa2a-4989-4dca-b0f2-70c495cfbb38",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary does not mention anything related to the hotel territory, room locations, or service areas."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "a0ba7c9c-b40c-440e-adbc-323a89b63214",
+      "topic_id": "cca19142-8a6c-4182-9b89-7f8f14c8d837",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary does not mention anything related to hotel security, safety requirements, or fire safety instructions."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "a0ba7c9c-b40c-440e-adbc-323a89b63214",
+      "topic_id": "68e97fc0-fbe6-4638-ae46-659bbd890351",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary does not mention anything related to guest impressions, types of impressions, or their consequences."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "846a2e42-3fa9-445e-b45c-516819b693c5",
+      "topic_id": "8c50023c-6b17-4e90-b4a7-923d566e15e7",
+      "relevance_score": 0.2,
+      "reasoning": "The section discusses the U.S. hotel industry, which is related to hospitality, but does not directly focus on the philosophy and psychology of hospitality."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "846a2e42-3fa9-445e-b45c-516819b693c5",
+      "topic_id": "61be82d6-2b25-4747-be13-e078530616f6",
+      "relevance_score": 0.1,
+      "reasoning": "The section mentions the U.S. hotel industry, but does not specifically discuss service or the fulfillment of guest needs."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "846a2e42-3fa9-445e-b45c-516819b693c5",
+      "topic_id": "12432a09-d7b6-4bdf-82e2-b91c3d6968b1",
+      "relevance_score": 0.0,
+      "reasoning": "The section does not mention video or housekeeping department, making it irrelevant to this topic."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "846a2e42-3fa9-445e-b45c-516819b693c5",
+      "topic_id": "49246b6b-f6b8-41d6-8783-43dd399f31a9",
+      "relevance_score": 0.8,
+      "reasoning": "The section discusses the U.S. hotel industry, including its structure and competition, which is highly relevant to the topic of what is a hotel and its structure."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "846a2e42-3fa9-445e-b45c-516819b693c5",
+      "topic_id": "db083dcc-bc8c-4fb0-9e6c-7908ebd0ce89",
+      "relevance_score": 0.1,
+      "reasoning": "The section does not specifically discuss archetypes of guests in a hotel, making it mostly irrelevant to this topic."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "846a2e42-3fa9-445e-b45c-516819b693c5",
+      "topic_id": "fd9c49bd-f731-4886-aeed-ad787210ae73",
+      "relevance_score": 0.0,
+      "reasoning": "The section does not mention personal development or career prospects in the industry, making it irrelevant to this topic."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "846a2e42-3fa9-445e-b45c-516819b693c5",
+      "topic_id": "93bd02c8-7480-4058-ba1a-a6ad4e7360fb",
+      "relevance_score": 0.0,
+      "reasoning": "The section does not discuss personal goals or motivations, making it irrelevant to this topic."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "846a2e42-3fa9-445e-b45c-516819b693c5",
+      "topic_id": "5dd24321-5435-4905-b36e-b0ec4e5f4d2d",
+      "relevance_score": 0.0,
+      "reasoning": "The section is about the industry structure, segmentation, and competition in the U.S. hotel industry and does not relate to the organizational structure of the housekeeping department or the role of the Housekeeping Attendant."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "846a2e42-3fa9-445e-b45c-516819b693c5",
+      "topic_id": "8a22cc88-f4ff-40c7-b1f6-fcbe8699c6f5",
+      "relevance_score": 0.0,
+      "reasoning": "The section does not cover hotel service standards, types of hotel rooms, or compliance with standards, making it irrelevant to this topic."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "846a2e42-3fa9-445e-b45c-516819b693c5",
+      "topic_id": "7710aa2a-4989-4dca-b0f2-70c495cfbb38",
+      "relevance_score": 0.0,
+      "reasoning": "This section does not pertain to getting to know the hotel territory, location of rooms, or service areas, which are the focus of this topic."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "846a2e42-3fa9-445e-b45c-516819b693c5",
+      "topic_id": "cca19142-8a6c-4182-9b89-7f8f14c8d837",
+      "relevance_score": 0.0,
+      "reasoning": "While the section touches on the hotel industry, it does not specifically address hotel security services, safety requirements, or fire safety and evacuation instructions, making it irrelevant to this topic."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "846a2e42-3fa9-445e-b45c-516819b693c5",
+      "topic_id": "68e97fc0-fbe6-4638-ae46-659bbd890351",
+      "relevance_score": 0.0,
+      "reasoning": "The section does not cover guest impressions, their creation, types, or consequences as related to the housekeeping attendant, which is the focus of this topic."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "f42c493f-b71b-4590-9d63-0ab566172179",
+      "topic_id": "8c50023c-6b17-4e90-b4a7-923d566e15e7",
+      "relevance_score": 0.2,
+      "reasoning": "The section summary does not directly relate to the philosophy and psychology of hospitality, but it touches on the evolution of the hotel industry, which may indirectly relate to hospitality as an art."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "f42c493f-b71b-4590-9d63-0ab566172179",
+      "topic_id": "61be82d6-2b25-4747-be13-e078530616f6",
+      "relevance_score": 0.1,
+      "reasoning": "The section summary focuses on industry concentration and quality competition, which does not directly ensure the fulfillment of the needs of the guest/client."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "f42c493f-b71b-4590-9d63-0ab566172179",
+      "topic_id": "12432a09-d7b6-4bdf-82e2-b91c3d6968b1",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary does not relate to the video content about service and hospitality in general and housekeeping department."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "f42c493f-b71b-4590-9d63-0ab566172179",
+      "topic_id": "49246b6b-f6b8-41d6-8783-43dd399f31a9",
+      "relevance_score": 0.8,
+      "reasoning": "The section summary analyzes the U.S. hotel industry, which directly relates to the topic of what is a hotel, its structure, divisions, mission, and values."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "f42c493f-b71b-4590-9d63-0ab566172179",
+      "topic_id": "db083dcc-bc8c-4fb0-9e6c-7908ebd0ce89",
+      "relevance_score": 0.3,
+      "reasoning": "The section summary mentions business and personal travel destinations, which may indirectly relate to archetypes of guests in a hotel, but it does not provide a direct analysis of guest archetypes."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "f42c493f-b71b-4590-9d63-0ab566172179",
+      "topic_id": "fd9c49bd-f731-4886-aeed-ad787210ae73",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary does not discuss personal development prospects in the hotel industry."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "f42c493f-b71b-4590-9d63-0ab566172179",
+      "topic_id": "93bd02c8-7480-4058-ba1a-a6ad4e7360fb",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary does not relate to personal goals of each student."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "f42c493f-b71b-4590-9d63-0ab566172179",
+      "topic_id": "5dd24321-5435-4905-b36e-b0ec4e5f4d2d",
+      "relevance_score": 0.2,
+      "reasoning": "The section summary mentions the evolution of the hotel industry, which could be tangentially related to the organizational structure of the housekeeping department, but it does not directly address the topic."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "f42c493f-b71b-4590-9d63-0ab566172179",
+      "topic_id": "8a22cc88-f4ff-40c7-b1f6-fcbe8699c6f5",
+      "relevance_score": 0.1,
+      "reasoning": "The section summary does not directly relate to hotel service standards or types of hotel rooms, making it mostly irrelevant to this topic."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "f42c493f-b71b-4590-9d63-0ab566172179",
+      "topic_id": "7710aa2a-4989-4dca-b0f2-70c495cfbb38",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary does not mention getting to know the territory of a specific hotel or location of rooms and service areas, making it completely irrelevant to this topic."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "f42c493f-b71b-4590-9d63-0ab566172179",
+      "topic_id": "cca19142-8a6c-4182-9b89-7f8f14c8d837",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary does not address hotel security service, safety requirements, or fire safety and evacuation instructions, making it irrelevant to this topic."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "f42c493f-b71b-4590-9d63-0ab566172179",
+      "topic_id": "68e97fc0-fbe6-4638-ae46-659bbd890351",
+      "relevance_score": 0.1,
+      "reasoning": "The section summary touches upon the evolution of the hotel industry, which might influence guest impressions, but it does not directly discuss guest impressions or their creation, making it mostly irrelevant to this topic."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "4dc99c2b-9167-42fa-bfda-a4af82b1e40c",
+      "topic_id": "8c50023c-6b17-4e90-b4a7-923d566e15e7",
+      "relevance_score": 0.2,
+      "reasoning": "The section discusses changes in quality competition in the hotel industry, which is slightly related to the concept of hospitality as an art and its philosophy and psychology."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "4dc99c2b-9167-42fa-bfda-a4af82b1e40c",
+      "topic_id": "61be82d6-2b25-4747-be13-e078530616f6",
+      "relevance_score": 0.1,
+      "reasoning": "The section does not directly address the fulfillment of guest needs, but it touches on how hotels adapted to changing customer preferences."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "4dc99c2b-9167-42fa-bfda-a4af82b1e40c",
+      "topic_id": "12432a09-d7b6-4bdf-82e2-b91c3d6968b1",
+      "relevance_score": 0.0,
+      "reasoning": "The section does not mention video content or housekeeping departments, making it unrelated to this topic."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "4dc99c2b-9167-42fa-bfda-a4af82b1e40c",
+      "topic_id": "49246b6b-f6b8-41d6-8783-43dd399f31a9",
+      "relevance_score": 0.8,
+      "reasoning": "The section discusses the US hotel industry, including changes in industry concentration and hotel structures, which is highly relevant to the topic of what a hotel is and its structure."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "4dc99c2b-9167-42fa-bfda-a4af82b1e40c",
+      "topic_id": "db083dcc-bc8c-4fb0-9e6c-7908ebd0ce89",
+      "relevance_score": 0.0,
+      "reasoning": "The section does not mention archetypes of guests in hotels, making it unrelated to this topic."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "4dc99c2b-9167-42fa-bfda-a4af82b1e40c",
+      "topic_id": "fd9c49bd-f731-4886-aeed-ad787210ae73",
+      "relevance_score": 0.0,
+      "reasoning": "The section does not discuss personal development prospects in the hotel industry, making it unrelated to this topic."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "4dc99c2b-9167-42fa-bfda-a4af82b1e40c",
+      "topic_id": "93bd02c8-7480-4058-ba1a-a6ad4e7360fb",
+      "relevance_score": 0.0,
+      "reasoning": "The section does not discuss personal goals of students, making it unrelated to this topic."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "4dc99c2b-9167-42fa-bfda-a4af82b1e40c",
+      "topic_id": "5dd24321-5435-4905-b36e-b0ec4e5f4d2d",
+      "relevance_score": 0.0,
+      "reasoning": "The section discusses changes in quality competition in the US hotel industry, which is not related to the organizational structure of the housekeeping department or the role of the Housekeeping Attendant."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "4dc99c2b-9167-42fa-bfda-a4af82b1e40c",
+      "topic_id": "8a22cc88-f4ff-40c7-b1f6-fcbe8699c6f5",
+      "relevance_score": 0.0,
+      "reasoning": "The section focuses on industry concentration and quality competition, which is not related to hotel service standards or types of hotel rooms."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "4dc99c2b-9167-42fa-bfda-a4af82b1e40c",
+      "topic_id": "7710aa2a-4989-4dca-b0f2-70c495cfbb38",
+      "relevance_score": 0.0,
+      "reasoning": "The section discusses industry trends and competition, which is not related to the location of rooms or service areas in a hotel."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "4dc99c2b-9167-42fa-bfda-a4af82b1e40c",
+      "topic_id": "cca19142-8a6c-4182-9b89-7f8f14c8d837",
+      "relevance_score": 0.0,
+      "reasoning": "The section focuses on quality competition and industry structure, which is not related to hotel security service or safety requirements in the workplace."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "4dc99c2b-9167-42fa-bfda-a4af82b1e40c",
+      "topic_id": "68e97fc0-fbe6-4638-ae46-659bbd890351",
+      "relevance_score": 0.0,
+      "reasoning": "The section discusses industry trends and competition, which is not related to guest impressions or the role of the Housekeeping Attendant in managing impressions."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "e2200643-4dcb-4e24-8d5f-208b2fff8762",
+      "topic_id": "8c50023c-6b17-4e90-b4a7-923d566e15e7",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary discusses industry structure determinants and quality competition, which is not directly related to the philosophy and psychology of hospitality."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "e2200643-4dcb-4e24-8d5f-208b2fff8762",
+      "topic_id": "61be82d6-2b25-4747-be13-e078530616f6",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary focuses on industry structure and quality competition, which does not directly relate to the fulfillment of guest needs."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "e2200643-4dcb-4e24-8d5f-208b2fff8762",
+      "topic_id": "12432a09-d7b6-4bdf-82e2-b91c3d6968b1",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary does not mention videos or housekeeping departments, making it irrelevant to this topic."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "e2200643-4dcb-4e24-8d5f-208b2fff8762",
+      "topic_id": "49246b6b-f6b8-41d6-8783-43dd399f31a9",
+      "relevance_score": 0.5,
+      "reasoning": "While the section summary does not directly discuss hotel structure or classification, it touches on industry structure, which might be indirectly related to the hotel industry."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "e2200643-4dcb-4e24-8d5f-208b2fff8762",
+      "topic_id": "db083dcc-bc8c-4fb0-9e6c-7908ebd0ce89",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary does not discuss archetypes of guests in hotels, making it irrelevant to this topic."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "e2200643-4dcb-4e24-8d5f-208b2fff8762",
+      "topic_id": "fd9c49bd-f731-4886-aeed-ad787210ae73",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary does not discuss personal development prospects in the industry, making it irrelevant to this topic."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "e2200643-4dcb-4e24-8d5f-208b2fff8762",
+      "topic_id": "93bd02c8-7480-4058-ba1a-a6ad4e7360fb",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary does not discuss personal goals of students, making it irrelevant to this topic."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "e2200643-4dcb-4e24-8d5f-208b2fff8762",
+      "topic_id": "5dd24321-5435-4905-b36e-b0ec4e5f4d2d",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary discusses industry structure determinants and quality competition, which is not relevant to the housekeeping department's organizational structure or the role of the Housekeeping Attendant."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "e2200643-4dcb-4e24-8d5f-208b2fff8762",
+      "topic_id": "8a22cc88-f4ff-40c7-b1f6-fcbe8699c6f5",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary focuses on industry structure and quality competition, which is not related to hotel service standards or types of hotel rooms."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "e2200643-4dcb-4e24-8d5f-208b2fff8762",
+      "topic_id": "7710aa2a-4989-4dca-b0f2-70c495cfbb38",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary discusses industry structure and quality competition, which is not relevant to getting to know the territory of the hotel or its layout."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "e2200643-4dcb-4e24-8d5f-208b2fff8762",
+      "topic_id": "cca19142-8a6c-4182-9b89-7f8f14c8d837",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary focuses on industry structure and quality competition, which is not related to hotel security service, safety requirements, or fire safety."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "e2200643-4dcb-4e24-8d5f-208b2fff8762",
+      "topic_id": "68e97fc0-fbe6-4638-ae46-659bbd890351",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary discusses industry structure and quality competition, which is not relevant to guest impressions, their creation, or management by the Housekeeping Attendant."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "951416df-e802-4ac2-9e7f-c72fb28d0e8a",
+      "topic_id": "8c50023c-6b17-4e90-b4a7-923d566e15e7",
+      "relevance_score": 0.2,
+      "reasoning": "The section discusses hotel industry changes in the 1980s, which is not directly related to the philosophy and psychology of hospitality."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "951416df-e802-4ac2-9e7f-c72fb28d0e8a",
+      "topic_id": "61be82d6-2b25-4747-be13-e078530616f6",
+      "relevance_score": 0.3,
+      "reasoning": "The section mentions chain hotels and their dominance in revenue, which indirectly relates to fulfilling guest needs, but does not directly address service."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "951416df-e802-4ac2-9e7f-c72fb28d0e8a",
+      "topic_id": "12432a09-d7b6-4bdf-82e2-b91c3d6968b1",
+      "relevance_score": 0.1,
+      "reasoning": "The section does not discuss service and hospitality in general or the housekeeping department, making it not relevant to this topic."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "951416df-e802-4ac2-9e7f-c72fb28d0e8a",
+      "topic_id": "49246b6b-f6b8-41d6-8783-43dd399f31a9",
+      "relevance_score": 0.8,
+      "reasoning": "The section discusses the hotel industry, including chain hotels and their revenue, which is directly related to the structure and classification of hotels."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "951416df-e802-4ac2-9e7f-c72fb28d0e8a",
+      "topic_id": "db083dcc-bc8c-4fb0-9e6c-7908ebd0ce89",
+      "relevance_score": 0.2,
+      "reasoning": "The section does not specifically discuss archetypes of guests in hotels, making it not directly relevant to this topic."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "951416df-e802-4ac2-9e7f-c72fb28d0e8a",
+      "topic_id": "fd9c49bd-f731-4886-aeed-ad787210ae73",
+      "relevance_score": 0.1,
+      "reasoning": "The section does not discuss personal development prospects in the industry, making it not relevant to this topic."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "951416df-e802-4ac2-9e7f-c72fb28d0e8a",
+      "topic_id": "93bd02c8-7480-4058-ba1a-a6ad4e7360fb",
+      "relevance_score": 0.1,
+      "reasoning": "The section does not discuss personal goals of students, making it not relevant to this topic."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "951416df-e802-4ac2-9e7f-c72fb28d0e8a",
+      "topic_id": "5dd24321-5435-4905-b36e-b0ec4e5f4d2d",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary discusses the hotel industry in the 1980s, focusing on changes in quality competition, while the topic is about the organizational structure of the housekeeping department and its role in creating a positive guest experience, showing no direct relation."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "951416df-e802-4ac2-9e7f-c72fb28d0e8a",
+      "topic_id": "8a22cc88-f4ff-40c7-b1f6-fcbe8699c6f5",
+      "relevance_score": 0.2,
+      "reasoning": "Although the topic is about introduction to service standards, the section summary touches upon amenities trends which could be loosely related to service standards, yet it does not directly address types of hotel rooms, abbreviations, or compliance with standards."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "951416df-e802-4ac2-9e7f-c72fb28d0e8a",
+      "topic_id": "7710aa2a-4989-4dca-b0f2-70c495cfbb38",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary deals with historical industry trends, while the topic is about getting familiar with a specific hotel's territory, including room locations and service areas, which are unrelated."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "951416df-e802-4ac2-9e7f-c72fb28d0e8a",
+      "topic_id": "cca19142-8a6c-4182-9b89-7f8f14c8d837",
+      "relevance_score": 0.0,
+      "reasoning": "The topic focuses on hotel security, safety requirements, and fire safety, which are not mentioned in the section summary that discusses industry changes and competition."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "951416df-e802-4ac2-9e7f-c72fb28d0e8a",
+      "topic_id": "68e97fc0-fbe6-4638-ae46-659bbd890351",
+      "relevance_score": 0.1,
+      "reasoning": "While the section summary indirectly relates to guest experiences through discussions of amenities and pricing, the topic specifically addresses guest impressions, their creation, and management by housekeeping attendants, which is not the focus of the section."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "3884544b-a098-4be2-972c-adb787af8fb8",
+      "topic_id": "8c50023c-6b17-4e90-b4a7-923d566e15e7",
+      "relevance_score": 0.2,
+      "reasoning": "The section summary discusses changes in quality competition for business travelers, which indirectly relates to the philosophy of hospitality in understanding guest needs and preferences."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "3884544b-a098-4be2-972c-adb787af8fb8",
+      "topic_id": "61be82d6-2b25-4747-be13-e078530616f6",
+      "relevance_score": 0.4,
+      "reasoning": "The section summary touches upon the fulfillment of business travelers' needs through in-room offerings, aligning with the service concept of ensuring guest needs are met."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "3884544b-a098-4be2-972c-adb787af8fb8",
+      "topic_id": "12432a09-d7b6-4bdf-82e2-b91c3d6968b1",
+      "relevance_score": 0.1,
+      "reasoning": "The topic is about a video on service and hospitality, which does not directly relate to the section summary about competition and quality changes in the hotel industry."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "3884544b-a098-4be2-972c-adb787af8fb8",
+      "topic_id": "49246b6b-f6b8-41d6-8783-43dd399f31a9",
+      "relevance_score": 0.6,
+      "reasoning": "The section discusses the hotel industry's evolution, including changes in structure and focus on room features, which relates to the hotel's structure and classification."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "3884544b-a098-4be2-972c-adb787af8fb8",
+      "topic_id": "db083dcc-bc8c-4fb0-9e6c-7908ebd0ce89",
+      "relevance_score": 0.3,
+      "reasoning": "While the section focuses on business travelers, it does not explicitly discuss archetypes of guests, making it somewhat relevant but not directly aligned."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "3884544b-a098-4be2-972c-adb787af8fb8",
+      "topic_id": "fd9c49bd-f731-4886-aeed-ad787210ae73",
+      "relevance_score": 0.1,
+      "reasoning": "The section summary does not discuss personal development prospects within the industry, making it not relevant to this topic."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "3884544b-a098-4be2-972c-adb787af8fb8",
+      "topic_id": "93bd02c8-7480-4058-ba1a-a6ad4e7360fb",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary does not relate to personal goals of students, making it not relevant to this topic."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "3884544b-a098-4be2-972c-adb787af8fb8",
+      "topic_id": "5dd24321-5435-4905-b36e-b0ec4e5f4d2d",
+      "relevance_score": 0.2,
+      "reasoning": "The section discusses changes in quality competition for business travelers, which indirectly relates to the housekeeping department's role in creating a positive guest experience, but the connection is weak."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "3884544b-a098-4be2-972c-adb787af8fb8",
+      "topic_id": "8a22cc88-f4ff-40c7-b1f6-fcbe8699c6f5",
+      "relevance_score": 0.1,
+      "reasoning": "The section focuses on historical changes in the hotel industry, which does not directly relate to introduction to service standards or types of hotel rooms."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "3884544b-a098-4be2-972c-adb787af8fb8",
+      "topic_id": "7710aa2a-4989-4dca-b0f2-70c495cfbb38",
+      "relevance_score": 0.0,
+      "reasoning": "The section does not mention getting to know the territory of a specific hotel or its layout."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "3884544b-a098-4be2-972c-adb787af8fb8",
+      "topic_id": "cca19142-8a6c-4182-9b89-7f8f14c8d837",
+      "relevance_score": 0.0,
+      "reasoning": "The section does not discuss hotel security, safety requirements, or fire safety and evacuation instructions."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "3884544b-a098-4be2-972c-adb787af8fb8",
+      "topic_id": "68e97fc0-fbe6-4638-ae46-659bbd890351",
+      "relevance_score": 0.3,
+      "reasoning": "The section touches upon the importance of quality and guest experience, which can influence guest impressions, but it does not directly address the creation or management of impressions by housekeeping attendants."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "21621372-a869-47af-add1-d5871bacb9e6",
+      "topic_id": "8c50023c-6b17-4e90-b4a7-923d566e15e7",
+      "relevance_score": 0.2,
+      "reasoning": "The section does not directly discuss hospitality as an art or its philosophy and psychology, but it mentions the evolution of industry structure which could be tangentially related to hospitality trends."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "21621372-a869-47af-add1-d5871bacb9e6",
+      "topic_id": "61be82d6-2b25-4747-be13-e078530616f6",
+      "relevance_score": 0.1,
+      "reasoning": "The section focuses on the evolution of industry structure and does not directly address service or the fulfillment of guest/client needs."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "21621372-a869-47af-add1-d5871bacb9e6",
+      "topic_id": "12432a09-d7b6-4bdf-82e2-b91c3d6968b1",
+      "relevance_score": 0.0,
+      "reasoning": "The section does not mention video content or housekeeping departments, making it completely irrelevant to this topic."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "21621372-a869-47af-add1-d5871bacb9e6",
+      "topic_id": "49246b6b-f6b8-41d6-8783-43dd399f31a9",
+      "relevance_score": 0.8,
+      "reasoning": "The section explores the evolution of hotel industry structure, including hotel growth, size, and employment, which directly relates to the structure, divisions, mission, and values of hotels."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "21621372-a869-47af-add1-d5871bacb9e6",
+      "topic_id": "db083dcc-bc8c-4fb0-9e6c-7908ebd0ce89",
+      "relevance_score": 0.3,
+      "reasoning": "While the section discusses differences in hotel growth based on business and personal travel, it does not directly address archetypes of guests or provide examples, making its relevance moderate."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "21621372-a869-47af-add1-d5871bacb9e6",
+      "topic_id": "fd9c49bd-f731-4886-aeed-ad787210ae73",
+      "relevance_score": 0.0,
+      "reasoning": "The section does not discuss personal development prospects within the industry, making it completely irrelevant to this topic."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "21621372-a869-47af-add1-d5871bacb9e6",
+      "topic_id": "93bd02c8-7480-4058-ba1a-a6ad4e7360fb",
+      "relevance_score": 0.0,
+      "reasoning": "The section does not address personal goals of students or any form of discussion related to 'Your why', making it completely irrelevant to this topic."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "21621372-a869-47af-add1-d5871bacb9e6",
+      "topic_id": "5dd24321-5435-4905-b36e-b0ec4e5f4d2d",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary does not mention the housekeeping department, its organizational structure, or the role of the Housekeeping Attendant, which are the main focus of this topic."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "21621372-a869-47af-add1-d5871bacb9e6",
+      "topic_id": "8a22cc88-f4ff-40c7-b1f6-fcbe8699c6f5",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary does not discuss hotel service standards, types of hotel rooms, or abbreviations, which are the key aspects of this topic."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "21621372-a869-47af-add1-d5871bacb9e6",
+      "topic_id": "7710aa2a-4989-4dca-b0f2-70c495cfbb38",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary does not describe the territory of a hotel, location of rooms, service areas, or recreation areas, which are the main focus of this topic."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "21621372-a869-47af-add1-d5871bacb9e6",
+      "topic_id": "cca19142-8a6c-4182-9b89-7f8f14c8d837",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary does not mention hotel security service, safety requirements in the workplace, or fire safety and evacuation instructions, which are the key aspects of this topic."
+    },
+    {
+      "module_id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "21621372-a869-47af-add1-d5871bacb9e6",
+      "topic_id": "68e97fc0-fbe6-4638-ae46-659bbd890351",
+      "relevance_score": 0.0,
+      "reasoning": "The section summary does not discuss guest impressions, their creation, types, or consequences, which are the main focus of this topic."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "3edb4cc8-5992-4f01-af21-ea4d714b634c",
+      "topic_id": "8c50023c-6b17-4e90-b4a7-923d566e15e7",
+      "relevance_score": 0.2,
+      "reasoning": "The section discusses changes in the hotel industry, which is related to hospitality, but it does not directly explore the philosophy or psychology of hospitality."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "3edb4cc8-5992-4f01-af21-ea4d714b634c",
+      "topic_id": "61be82d6-2b25-4747-be13-e078530616f6",
+      "relevance_score": 0.1,
+      "reasoning": "The section focuses on hotel industry trends and does not directly address the fulfillment of guest needs, which is the core of service."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "3edb4cc8-5992-4f01-af21-ea4d714b634c",
+      "topic_id": "12432a09-d7b6-4bdf-82e2-b91c3d6968b1",
+      "relevance_score": 0.0,
+      "reasoning": "The section does not mention videos or housekeeping departments, making it completely irrelevant to this topic."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "3edb4cc8-5992-4f01-af21-ea4d714b634c",
+      "topic_id": "49246b6b-f6b8-41d6-8783-43dd399f31a9",
+      "relevance_score": 0.8,
+      "reasoning": "The section discusses changes in hotel employment, number of hotels, and hotel size, all of which are related to the structure and divisions of hotels."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "3edb4cc8-5992-4f01-af21-ea4d714b634c",
+      "topic_id": "db083dcc-bc8c-4fb0-9e6c-7908ebd0ce89",
+      "relevance_score": 0.1,
+      "reasoning": "The section does not directly address archetypes of guests or their examples, making it mostly irrelevant to this topic."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "3edb4cc8-5992-4f01-af21-ea4d714b634c",
+      "topic_id": "fd9c49bd-f731-4886-aeed-ad787210ae73",
+      "relevance_score": 0.2,
+      "reasoning": "The section mentions changes in hotel employment, which could be related to personal development prospects in the industry, but it does not directly discuss career paths or growth."
+    },
+    {
+      "module_id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "document_id": "7bf4e67f-c426-4813-a0f0-c63768e33fc3",
+      "section_id": "3edb4cc8-5992-4f01-af21-ea4d714b634c",
+      "topic_id": "93bd02c8-7480-4058-ba1a-a6ad4e7360fb",
+      "relevance_score": 0.0,
+      "reasoning": "The section does not discuss personal goals or motivations of students, making it completely irrelevant to this topic."
+    }
+  ]
+}
