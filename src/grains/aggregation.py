@@ -219,7 +219,8 @@ async def main():
 
     # Load enviroinment and setup agent, which will be replaced by normal LLM call
     load_dotenv()
-    MODEL: str = "anthropic/claude-3.5-sonnet"
+    MODEL: str = "meta-llama/llama-3.3-70b-instruct"
+    #MODEL: str = "anthropic/claude-3.5-sonnet"
     #MODEL: str = "openai/gpt-4o-2024-11-20"
 
     agent = Agent(
