@@ -228,7 +228,7 @@ if __name__ == "__main__":
     )
 
     from grains.utils import load_curriculum, try_loading_document_object
-    document = try_loading_document_object("data/objects/w26579.json")
+    document = try_loading_document_object("data/objects/The future of hospitality jobs.json")
     curriculum = load_curriculum()
     
     if document:

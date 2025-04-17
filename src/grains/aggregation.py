@@ -3,6 +3,7 @@ from pydantic import BaseModel
 import json
 import copy
 import os 
+import glob
 from dotenv import load_dotenv
 
 import asyncio 
@@ -68,7 +69,7 @@ def extract_relevant_sections(data) -> List[Tuple[str, str, str]]:
     Returns:
         List of tuples: (module_name, topic_name, section_title)
     """
-    matches: List[Tuple[str, str, str]] = []
+    matches: List[Tuple[str, str, str, str]] = []
 
     for section in data.get("sections", []):
         section_title = section.get("section_title")
@@ -81,26 +82,26 @@ def extract_relevant_sections(data) -> List[Tuple[str, str, str]]:
                 topic_name = topic.get("topic_name")
 
                 if relevance >= 0.75:
-                    matches.append((module_name, topic_name, section_title))
+                    matches.append((module_name, topic_name, section_title, data.get("document_title")))
 
     return matches
 
 def insert_sections_into_dictionary(matches, target_dict):
     """
-    Insert sections from matches list into the target dictionary.
+    Insert relevant section names from matches list into the target dictionary.
     
     Args:
-        matches: List of tuples (module_name, topic_name, section_name)
+        matches: List of tuples (module_name, topic_name, section_name, document_title)
         target_dict: The target dictionary structure
     
     Returns:
-        Updated dictionary with sections inserted
+        Updated dictionary with a list of section names which are relavant for the topic
     """
     # Make a deep copy to ensure we don't modify the original
     result_dict = copy.deepcopy(target_dict)
     
     # Process each match tuple
-    for module_name, topic_name, section_name in matches:
+    for module_name, topic_name, section_name, document_title in matches:
         # Find matching module in target dictionary
         for module in result_dict["modules"]:
             if module["name"] == module_name:
@@ -109,6 +110,7 @@ def insert_sections_into_dictionary(matches, target_dict):
                     if topic["name"] == topic_name:
                         # Add section to the sections list
                         topic["sections"].append(section_name)
+                        topic["document"].append(document_title)
                         break  # Found the matching topic, no need to continue inner loop
                 
                 break  # Found the matching module, no need to continue outer loop
@@ -154,30 +156,31 @@ def generate_system_prompt(module_name, topic_name, topic_description, section_c
     """
     Returns a system prompt to summarize section content into one coherent paragraph.
     """
-    #joined_content = "\n\n".join(section_content)
 
-#    prompt = f"""
-#            You are an expert in creating aggregated content out of multiple strings, which represent sections.
-#
-#            You are currently working with the following context:
-#            - **Module**: {module_name}
-#            - **Topic**: {topic_name}
-#            - **Topic Description**: {topic_description}
-#
-#            This topic includes multiple sections that cover related subtopics, which are given in the following list:
-#
-#            {section_content}
-#            
-#            ---
-#
-#            Your task is to:
-#            1. Concatenate all sections with a simple transition  
-#            
-#
-#        
-#    """.strip()
+    prompt = f"""
+            You are an expert in creating learning content out of document excerpts from differnt documents.
+            The excerpts are given in a list of strings, where each string represents one whole section from one document.
 
-    prompt = "you are getting some string which you shall summarized pretty detailed and the give back one readable paragraph containing all those information"
+            You are currently working with the following context:
+            - **Module**: {module_name}
+            - **Topic**: {topic_name}
+            - **Topic Description**: {topic_description}
+
+            The list of strings representing sections is given by:
+
+            {section_content}
+            
+            ---
+
+            Your task is to:
+            1. Go - in detail - through all sections and get to know the content.
+            2. Write a single and readable **CHAPTER**. It should contain all all information of all the different sections aggregated.
+            3. The chapter should be extremely detailed as well as of appropriate length, since it is used as learning content for refugees.
+        
+        The output should be an alone standing whole chapter of a learning material - especially in terms of length.
+        Just output the content, never include suggestions, introductions etc.
+    """.strip()
+
     return prompt
 
 async def process_curriculum(source_cur, target_cur, agent):
@@ -200,8 +203,7 @@ async def process_curriculum(source_cur, target_cur, agent):
                 s_topic["description"],
                 s_topic["section_content"]
             )
-            
-            #t_topic["content"] = s_topic.get("section_content")
+        
             try:
                 result = await agent.run(prompt)
                 t_topic["content"] = result.data
@@ -213,54 +215,56 @@ async def process_curriculum(source_cur, target_cur, agent):
 
 async def main():
 
-    load_dotenv()
-
     """Main function to execute the entire process"""
-    print("1. Loading ground structure to work with...")
-    inter_cur = load_curriculum()
 
-    print("2. Adding empty section lists to topics...")
-    prepared_dict = add_field_to_innermost(inter_cur)
-    
-    # Load the data containing section information
-    print("3. Loading mapping data...")
-    with open("data/mappings/w26579_mappings_20250325_165945.json","rb") as f:
-        mappings = json.load(f)
-
-    # Due to the non matching order of the mapping output and target
-    print("4. Extracting relevant sections...")
-    matches = extract_relevant_sections(mappings)
-    print(f"Found {len(matches)} matching sections")
-    
-    print("5. Inserting sections into the curriculum structure...")
-    source_cur = insert_sections_into_dictionary(matches, prepared_dict)
-    
-    print("6. Process completed. Outputting result...")
-   
-    # Optionally save to file
-    with open("data/target/curriculum_with_sections.json", "w") as f:
-        json.dump(source_cur, f, indent=2)
-
-    with open("data/objects/w26579.json","rb") as f:
-        doc = json.load(f)
-
-    source_cur = add_section_content(curriculum=source_cur,document=doc)
-
-    MODEL: str = "anthropic/claude-3.7-sonnet"
+    # Load enviroinment and setup agent, which will be replaced by normal LLM call
+    load_dotenv()
+    MODEL: str = "anthropic/claude-3.5-sonnet"
     #MODEL: str = "openai/gpt-4o-2024-11-20"
 
     agent = Agent(
-            OpenAIModel(
-                MODEL,
-                provider=OpenAIProvider(
-                    base_url="https://openrouter.ai/api/v1",
-                    api_key=os.getenv("OPENAI_API_KEY")
-                ),
-            )
-    )
+               OpenAIModel(
+                   MODEL,
+                   provider=OpenAIProvider(
+                       base_url="https://openrouter.ai/api/v1",
+                       api_key=os.getenv("OPENAI_API_KEY")
+                   ),
+               )
+       )
 
     with open("conf/curicculum-house-keeping.json","r") as f:
-        target_cur = json.load(f)
+            target_cur = json.load(f)
+
+    print("1. Loading ground structure to work with...")
+    source_cur = load_curriculum()
+
+    print("2. Adding empty section lists as well as empty document string to topics...")
+    source_cur = add_field_to_innermost(source_cur)
+    source_cur = add_field_to_innermost(source_cur,field_name="document")
+
+    # Define ordered lists containing the paths to the documents and to the mappings
+    object_files = sorted(glob.glob("data/objects/*.json"))
+    mapping_files = sorted(glob.glob("data/mappings/*.json"))
+    paired_files = list(zip(object_files, mapping_files))
+
+    # Load the data containing section information
+    for obj_file, map_file in paired_files:
+        with open(obj_file,"rb") as of:
+            obj = json.load(of)
+        with open(map_file,"rb") as mf:
+            map = json.load(mf)
+    
+        # Get all relevant sections out of the mapping files
+        matches = extract_relevant_sections(map)
+        
+        # Add section names to the source curriculum
+        source_cur = insert_sections_into_dictionary(matches, source_cur)
+    
+        # Save to file for debugging reasons
+        with open("data/target/curriculum_with_sections_and_docname.json", "w") as f:
+            json.dump(source_cur, f, indent=2)
+        # Add section content to the source curriculum
+        source_cur = add_section_content(curriculum=source_cur,document=obj)
 
     target_cur = await process_curriculum(source_cur=source_cur, target_cur=target_cur, agent=agent)
 
@@ -268,6 +272,5 @@ async def main():
     with open("data/target/curicculum-house-keeping-with-content.json", 'w', encoding='utf-8') as f:
         json.dump(target_cur, f, indent=3, ensure_ascii=False)
     
-
 if __name__ == "__main__":
     asyncio.run(main())

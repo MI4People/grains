@@ -1,0 +1,1430 @@
+{
+  "document_title": "w26579",
+  "sections": [
+    {
+      "section_title": "NBER WORKING PAPER SERIES",
+      "modules": [
+        {
+          "module_name": "Introductory day. What is hospitality and service. The Hotel its structure. Archetypes of guests in the hotel",
+          "topics": [
+            {
+              "topic_name": "What is hospitality",
+              "relevance_score": 0.0,
+              "reasoning": "With no actual content in the section summary, it's impossible to establish any relevance to hospitality philosophy and psychology."
+            },
+            {
+              "topic_name": "What is a service",
+              "relevance_score": 0.0,
+              "reasoning": "The empty section provides no information about service concepts or guest needs fulfillment."
+            },
+            {
+              "topic_name": "Video",
+              "relevance_score": 0.0,
+              "reasoning": "The section title indicates an academic paper series, not video content about hospitality services."
+            },
+            {
+              "topic_name": "Hotel",
+              "relevance_score": 0.0,
+              "reasoning": "No content is provided to evaluate hotel classification, structure, or organizational aspects."
+            },
+            {
+              "topic_name": "Archetypes of guests in a hotel",
+              "relevance_score": 0.0,
+              "reasoning": "The empty section contains no information about hotel guest types or examples."
+            },
+            {
+              "topic_name": "Personal development (macro)",
+              "relevance_score": 0.0,
+              "reasoning": "No content is available to assess career prospects or industry development opportunities."
+            },
+            {
+              "topic_name": "Your why",
+              "relevance_score": 0.0,
+              "reasoning": "The section contains no discussion of personal goals or student motivations."
+            }
+          ]
+        },
+        {
+          "module_name": "Housekeeping Department. Standards. Safety requirements at the workplace.",
+          "topics": [
+            {
+              "topic_name": "Housekeeping department",
+              "relevance_score": 0.0,
+              "reasoning": "The section appears to be empty with just a title 'NBER WORKING PAPER SERIES' and no actual content to analyze for relevance to housekeeping department operations or roles."
+            },
+            {
+              "topic_name": "Introduction to service standards (SOPs)",
+              "relevance_score": 0.0,
+              "reasoning": "With no actual content provided in the section, there is no information to evaluate against hotel service standards, room types, or compliance requirements."
+            },
+            {
+              "topic_name": "Practical task",
+              "relevance_score": 0.0,
+              "reasoning": "The empty section with only a working paper series title has no content related to hotel territory, room locations, or service areas."
+            },
+            {
+              "topic_name": "Theory",
+              "relevance_score": 0.0,
+              "reasoning": "Without any actual content in the section, there is nothing to evaluate regarding hotel security, workplace safety, or fire safety procedures."
+            },
+            {
+              "topic_name": "Group discussion",
+              "relevance_score": 0.0,
+              "reasoning": "The section lacks any content to analyze regarding guest impressions, their creation, types, or management by housekeeping attendants."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_title": "INDUSTRY STRUCTURE, SEGMENTATION, AND COMPETITION IN THE U.S. HOTEL INDUSTRY",
+      "modules": [
+        {
+          "module_name": "Introductory day. What is hospitality and service. The Hotel its structure. Archetypes of guests in the hotel",
+          "topics": [
+            {
+              "topic_name": "What is hospitality",
+              "relevance_score": 0.1,
+              "reasoning": "While the section mentions the hotel industry, it doesn't specifically address the philosophy or psychology of hospitality as an art, offering only administrative context."
+            },
+            {
+              "topic_name": "What is a service",
+              "relevance_score": 0.1,
+              "reasoning": "The section doesn't discuss service delivery or guest needs fulfillment; it focuses on industry structure rather than service concepts."
+            },
+            {
+              "topic_name": "Video",
+              "relevance_score": 0.0,
+              "reasoning": "The section is a written academic paper acknowledgment and does not contain any video content or housekeeping information."
+            },
+            {
+              "topic_name": "Hotel",
+              "relevance_score": 0.6,
+              "reasoning": "The section's focus on industry structure and segmentation directly relates to hotel classification and structure, though it's specifically about the U.S. market and doesn't detail internal divisions or values."
+            },
+            {
+              "topic_name": "Archetypes of guests in a hotel",
+              "relevance_score": 0.0,
+              "reasoning": "The section doesn't discuss guest types or provide any examples of hotel guest archetypes."
+            },
+            {
+              "topic_name": "Personal development (macro)",
+              "relevance_score": 0.0,
+              "reasoning": "The section doesn't address career prospects or development opportunities for hotel staff."
+            },
+            {
+              "topic_name": "Your why",
+              "relevance_score": 0.0,
+              "reasoning": "The section is purely about industry structure and contains no discussion of personal goals or student motivations."
+            }
+          ]
+        },
+        {
+          "module_name": "Housekeeping Department. Standards. Safety requirements at the workplace.",
+          "topics": [
+            {
+              "topic_name": "Housekeeping department",
+              "relevance_score": 0.1,
+              "reasoning": "The section only tangentially relates to hotel operations in general, discussing industry structure rather than specific housekeeping department organization, roles, or duties. It doesn't address guest experience or career development aspects mentioned in the topic description."
+            },
+            {
+              "topic_name": "Introduction to service standards (SOPs)",
+              "relevance_score": 0.2,
+              "reasoning": "While the section discusses the hotel industry structure, it doesn't specifically cover hotel service standards, room types, or the importance of compliance with standards as outlined in the topic description."
+            },
+            {
+              "topic_name": "Practical task",
+              "relevance_score": 0.0,
+              "reasoning": "The section is completely unrelated to the practical aspects of learning about Hotel Shelest's specific layout, rooms, and facilities. It focuses on broader U.S. hotel industry analysis rather than specific property orientation."
+            },
+            {
+              "topic_name": "Theory",
+              "relevance_score": 0.0,
+              "reasoning": "The section contains no information about hotel security services, workplace safety requirements, or fire safety procedures as specified in the topic description."
+            },
+            {
+              "topic_name": "Group discussion",
+              "relevance_score": 0.1,
+              "reasoning": "Though the section discusses the hotel industry, it doesn't address guest impressions, types of impressions, or how they are created and managed by staff as outlined in the topic description."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_title": "ABSTRACT",
+      "modules": [
+        {
+          "module_name": "Introductory day. What is hospitality and service. The Hotel its structure. Archetypes of guests in the hotel",
+          "topics": [
+            {
+              "topic_name": "What is hospitality",
+              "relevance_score": 0.2,
+              "reasoning": "While the section discusses the hotel industry, it doesn't directly address the philosophy or psychology of hospitality as an art. Only tangentially related through industry analysis."
+            },
+            {
+              "topic_name": "What is a service",
+              "relevance_score": 0.3,
+              "reasoning": "The paper mentions quality competition which somewhat relates to service delivery, but doesn't specifically address the fulfillment of guest needs or define service concepts."
+            },
+            {
+              "topic_name": "Video",
+              "relevance_score": 0.0,
+              "reasoning": "The section contains no mention of video content or housekeeping department specifics."
+            },
+            {
+              "topic_name": "Hotel",
+              "relevance_score": 0.8,
+              "reasoning": "Highly relevant as it directly analyzes the hotel industry structure, classification (hotel classes), and industry evolution, which aligns with the topic's focus on hotel classification and structure."
+            },
+            {
+              "topic_name": "Archetypes of guests in a hotel",
+              "relevance_score": 0.3,
+              "reasoning": "Mentions business and personal travel destinations, indicating different types of guests, but doesn't specifically discuss guest archetypes or provide examples."
+            },
+            {
+              "topic_name": "Personal development (macro)",
+              "relevance_score": 0.1,
+              "reasoning": "While it discusses industry evolution, it doesn't address career prospects or development opportunities for hotel staff."
+            },
+            {
+              "topic_name": "Your why",
+              "relevance_score": 0.0,
+              "reasoning": "The section is purely about industry analysis and doesn't relate to personal goals or student discussions."
+            }
+          ]
+        },
+        {
+          "module_name": "Housekeeping Department. Standards. Safety requirements at the workplace.",
+          "topics": [
+            {
+              "topic_name": "Housekeeping department",
+              "relevance_score": 0.3,
+              "reasoning": "The section discusses industry structure changes which has minimal relevance to housekeeping operations. Only tangentially related through its discussion of quality competition which might affect housekeeping standards and guest experience."
+            },
+            {
+              "topic_name": "Introduction to service standards (SOPs)",
+              "relevance_score": 0.4,
+              "reasoning": "The section touches on hotel classes and quality competition, which relates to service standards, but doesn't specifically address SOPs or room types in detail. Somewhat relevant through its discussion of industry quality changes."
+            },
+            {
+              "topic_name": "Practical task",
+              "relevance_score": 0.0,
+              "reasoning": "The section contains no specific information about hotel Shelest or practical aspects of hotel layout and territories. It focuses on industry-level analysis rather than specific property details."
+            },
+            {
+              "topic_name": "Theory",
+              "relevance_score": 0.0,
+              "reasoning": "The section does not address any aspects of hotel security, workplace safety, or fire safety procedures. It focuses purely on industry competition and quality changes."
+            },
+            {
+              "topic_name": "Group discussion",
+              "relevance_score": 0.3,
+              "reasoning": "The section's discussion of quality competition somewhat relates to guest impressions, as quality standards affect guest experience. However, it doesn't directly address the creation or management of guest impressions."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_title": "1. Introduction",
+      "modules": [
+        {
+          "module_name": "Introductory day. What is hospitality and service. The Hotel its structure. Archetypes of guests in the hotel",
+          "topics": [
+            {
+              "topic_name": "What is hospitality",
+              "relevance_score": 0.2,
+              "reasoning": "While the section discusses the hotel industry, it doesn't directly address the philosophy or psychology of hospitality as an art. Only tangentially relevant through industry evolution context."
+            },
+            {
+              "topic_name": "What is a service",
+              "relevance_score": 0.3,
+              "reasoning": "The section mentions quality competition which relates to service delivery, but doesn't specifically address the fulfillment of guest needs. Connection is indirect through quality focus."
+            },
+            {
+              "topic_name": "Video",
+              "relevance_score": 0.0,
+              "reasoning": "The section has no content related to videos or visual content about hospitality or housekeeping departments."
+            },
+            {
+              "topic_name": "Hotel",
+              "relevance_score": 0.8,
+              "reasoning": "Highly relevant as it directly discusses hotel industry structure, classification (through quality competition), and how the industry has evolved. Addresses hotel organization and industry-level changes."
+            },
+            {
+              "topic_name": "Archetypes of guests in a hotel",
+              "relevance_score": 0.2,
+              "reasoning": "Only marginally relevant through mention of 'evolving customer preferences', but doesn't specifically address guest archetypes or provide examples."
+            },
+            {
+              "topic_name": "Personal development (macro)",
+              "relevance_score": 0.1,
+              "reasoning": "Very limited relevance. While it discusses industry changes, it doesn't address career prospects or development opportunities for hotel staff."
+            },
+            {
+              "topic_name": "Your why",
+              "relevance_score": 0.0,
+              "reasoning": "No relevance to personal goals or student discussions. The section focuses on industry-level analysis rather than individual motivations."
+            }
+          ]
+        },
+        {
+          "module_name": "Housekeeping Department. Standards. Safety requirements at the workplace.",
+          "topics": [
+            {
+              "topic_name": "Housekeeping department",
+              "relevance_score": 0.3,
+              "reasoning": "The section touches on industry structure and customer preferences, which somewhat relates to organizational structure and guest experience, but only very broadly and indirectly. The focus on industry-level changes rather than specific departmental operations limits relevance."
+            },
+            {
+              "topic_name": "Introduction to service standards (SOPs)",
+              "relevance_score": 0.4,
+              "reasoning": "The section's discussion of quality competition and customer preferences has some connection to service standards, but it's focused more on industry-level economics rather than specific hotel service standards and procedures."
+            },
+            {
+              "topic_name": "Practical task",
+              "relevance_score": 0.0,
+              "reasoning": "The section contains no content related to specific hotel territory, room locations, or physical layout of service areas. It focuses entirely on industry-level economic analysis."
+            },
+            {
+              "topic_name": "Theory",
+              "relevance_score": 0.0,
+              "reasoning": "The section does not address any aspects of hotel security, workplace safety, or emergency procedures. It focuses on economic aspects of hotel industry structure."
+            },
+            {
+              "topic_name": "Group discussion",
+              "relevance_score": 0.3,
+              "reasoning": "The section mentions customer preferences and quality competition, which tangentially relates to guest impressions, but doesn't directly address how impressions are created or managed by staff."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_title": "2. Quality Competition and Industry Structure",
+      "modules": [
+        {
+          "module_name": "Introductory day. What is hospitality and service. The Hotel its structure. Archetypes of guests in the hotel",
+          "topics": [
+            {
+              "topic_name": "What is hospitality",
+              "relevance_score": 0.2,
+              "reasoning": "Limited relevance. While the section discusses industry structure, it doesn't directly address the philosophical and psychological aspects of hospitality as an art."
+            },
+            {
+              "topic_name": "What is a service",
+              "relevance_score": 0.3,
+              "reasoning": "Moderate-low relevance. Quality competition relates to service delivery, but the section focuses on economic structure rather than fulfilling guest needs specifically."
+            },
+            {
+              "topic_name": "Video",
+              "relevance_score": 0.0,
+              "reasoning": "No relevance. The section is about economic theory and industry structure, with no connection to video content or housekeeping operations."
+            },
+            {
+              "topic_name": "Hotel",
+              "relevance_score": 0.8,
+              "reasoning": "High relevance. The section directly discusses industry structure, classification, and organizational aspects which align with understanding hotel classification and structure."
+            },
+            {
+              "topic_name": "Archetypes of guests in a hotel",
+              "relevance_score": 0.0,
+              "reasoning": "No relevance. The section focuses on industry economics and structure, with no discussion of guest types or customer profiles."
+            },
+            {
+              "topic_name": "Personal development (macro)",
+              "relevance_score": 0.2,
+              "reasoning": "Low relevance. While industry structure might impact career opportunities, the section doesn't specifically address personal career development in hospitality."
+            },
+            {
+              "topic_name": "Your why",
+              "relevance_score": 0.0,
+              "reasoning": "No relevance. The section is about economic theory and industry structure, with no connection to personal goals or motivations of students."
+            }
+          ]
+        },
+        {
+          "module_name": "Housekeeping Department. Standards. Safety requirements at the workplace.",
+          "topics": [
+            {
+              "topic_name": "Housekeeping department",
+              "relevance_score": 0.4,
+              "reasoning": "The section discusses industry structure and quality competition, which indirectly relates to organizational structure and service quality in housekeeping. The concepts of quality investments could connect to guest experience and service standards, though the connection is not direct."
+            },
+            {
+              "topic_name": "Introduction to service standards (SOPs)",
+              "relevance_score": 0.5,
+              "reasoning": "The section's focus on quality competition and fixed-cost investments relates to maintaining service standards. The discussion of quality investments aligns with the importance of compliance with standards, though specific hotel standards are not mentioned."
+            },
+            {
+              "topic_name": "Practical task",
+              "relevance_score": 0.0,
+              "reasoning": "This section contains no content related to physical hotel layout or familiarization with specific hotel territories. The theoretical discussion of industry structure has no relevance to this practical task."
+            },
+            {
+              "topic_name": "Theory",
+              "relevance_score": 0.1,
+              "reasoning": "The section's content about industry structure and quality competition has minimal relevance to hotel security services or workplace safety requirements. There is no discussion of security or safety protocols."
+            },
+            {
+              "topic_name": "Group discussion",
+              "relevance_score": 0.3,
+              "reasoning": "While the section discusses quality competition which could impact guest impressions, it focuses more on industry-level economics rather than specific guest experiences or types of impressions. The connection is tangential."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_title": "3. Hotels and Changes in Quality Competition in the Early 1980s",
+      "modules": [
+        {
+          "module_name": "Introductory day. What is hospitality and service. The Hotel its structure. Archetypes of guests in the hotel",
+          "topics": [
+            {
+              "topic_name": "What is hospitality",
+              "relevance_score": 0.2,
+              "reasoning": "The section only tangentially relates to hospitality philosophy, focusing more on industry changes. While it discusses hotel industry evolution, it doesn't specifically address the art or psychology of hospitality."
+            },
+            {
+              "topic_name": "What is a service",
+              "relevance_score": 0.3,
+              "reasoning": "The section touches on amenities which are part of service delivery, but doesn't directly address the core concept of fulfilling guest needs. The focus is more on industry structure than service philosophy."
+            },
+            {
+              "topic_name": "Video",
+              "relevance_score": 0.0,
+              "reasoning": "The section contains no video content or material that would be relevant to creating or selecting a video about service and hospitality."
+            },
+            {
+              "topic_name": "Hotel",
+              "relevance_score": 0.8,
+              "reasoning": "Highly relevant as it discusses hotel classification (chain vs non-chain), industry structure, and hotel amenities. It provides historical context about hotel industry development and adaptation to changes."
+            },
+            {
+              "topic_name": "Archetypes of guests in a hotel",
+              "relevance_score": 0.2,
+              "reasoning": "While the section mentions business travelers indirectly through amenity patterns, it doesn't specifically focus on guest types or archetypes. The discussion of guest patterns is minimal."
+            },
+            {
+              "topic_name": "Personal development (macro)",
+              "relevance_score": 0.0,
+              "reasoning": "The section does not address career development or prospects for hotel staff. It focuses on industry-level changes rather than individual career opportunities."
+            },
+            {
+              "topic_name": "Your why",
+              "relevance_score": 0.0,
+              "reasoning": "The section contains no content related to personal goals or individual motivations for working in the hospitality industry."
+            }
+          ]
+        },
+        {
+          "module_name": "Housekeeping Department. Standards. Safety requirements at the workplace.",
+          "topics": [
+            {
+              "topic_name": "Housekeeping department",
+              "relevance_score": 0.1,
+              "reasoning": "Very low relevance as the section focuses on industry-wide changes and competition rather than housekeeping operations. Only tangentially related through the general context of hotel operations and service quality."
+            },
+            {
+              "topic_name": "Introduction to service standards (SOPs)",
+              "relevance_score": 0.4,
+              "reasoning": "Moderate-low relevance through the discussion of hotel amenities and quality standards (AAA TourBooks data). The section touches on hotel room types and service standards indirectly through industry competition analysis."
+            },
+            {
+              "topic_name": "Practical task",
+              "relevance_score": 0.0,
+              "reasoning": "No relevance as the section discusses broad industry trends and does not address specific hotel facility layouts or practical orientation tasks."
+            },
+            {
+              "topic_name": "Theory",
+              "relevance_score": 0.0,
+              "reasoning": "No relevance as the section does not address any safety, security, or workplace requirements. It focuses on industry competition and market changes."
+            },
+            {
+              "topic_name": "Group discussion",
+              "relevance_score": 0.3,
+              "reasoning": "Low-moderate relevance through the discussion of hotel amenities and quality competition, which indirectly relates to guest impressions and service quality, though not specifically from a housekeeping perspective."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_title": "Customer Insight and Changes in Quality Competition For Business Travelers",
+      "modules": [
+        {
+          "module_name": "Introductory day. What is hospitality and service. The Hotel its structure. Archetypes of guests in the hotel",
+          "topics": [
+            {
+              "topic_name": "What is hospitality",
+              "relevance_score": 0.3,
+              "reasoning": "The section touches on aspects of hospitality evolution through business amenities, but doesn't deeply explore the philosophical or psychological aspects of hospitality mentioned in the topic description."
+            },
+            {
+              "topic_name": "What is a service",
+              "relevance_score": 0.8,
+              "reasoning": "Highly relevant as it discusses how hotels adapted their service offerings to meet changing business traveler needs, directly aligning with the topic's focus on fulfilling guest needs."
+            },
+            {
+              "topic_name": "Video",
+              "relevance_score": 0.2,
+              "reasoning": "While the section discusses service concepts, it's not directly related to video content or housekeeping specifically."
+            },
+            {
+              "topic_name": "Hotel",
+              "relevance_score": 0.9,
+              "reasoning": "Very relevant as it discusses hotel structure evolution, business models (Courtyard chain), and industry transformation, directly addressing hotel classification and structural aspects."
+            },
+            {
+              "topic_name": "Archetypes of guests in a hotel",
+              "relevance_score": 0.6,
+              "reasoning": "Moderately relevant as it focuses specifically on business travelers as a key guest archetype and their evolving needs, though it doesn't cover other guest types."
+            },
+            {
+              "topic_name": "Personal development (macro)",
+              "relevance_score": 0.1,
+              "reasoning": "Minimal relevance as the section focuses on industry trends rather than personal career development opportunities in hospitality."
+            },
+            {
+              "topic_name": "Your why",
+              "relevance_score": 0.0,
+              "reasoning": "No relevance as the section doesn't address personal goals or motivations of students in the hospitality industry."
+            }
+          ]
+        },
+        {
+          "module_name": "Housekeeping Department. Standards. Safety requirements at the workplace.",
+          "topics": [
+            {
+              "topic_name": "Housekeeping department",
+              "relevance_score": 0.7,
+              "reasoning": "The section discusses evolution of guest preferences and hotel service quality, particularly for business travelers, which directly relates to guest-centered thinking and anticipating guest needs. The focus on in-room offerings impacts housekeeping duties and service delivery."
+            },
+            {
+              "topic_name": "Introduction to service standards (SOPs)",
+              "relevance_score": 0.8,
+              "reasoning": "The section discusses quality competition and changing service standards, particularly regarding in-room offerings and amenities, which directly relates to hotel service standards and room types. The shift in competition basis reflects evolving service standards."
+            },
+            {
+              "topic_name": "Practical task",
+              "relevance_score": 0.1,
+              "reasoning": "The section has minimal relevance to this practical, location-specific topic as it discusses industry-wide trends rather than specific hotel layout or facilities."
+            },
+            {
+              "topic_name": "Theory",
+              "relevance_score": 0.0,
+              "reasoning": "The section does not address any aspects of hotel security, workplace safety, or emergency procedures. It focuses entirely on service quality and competition."
+            },
+            {
+              "topic_name": "Group discussion",
+              "relevance_score": 0.9,
+              "reasoning": "The section is highly relevant as it directly discusses how hotels shape guest impressions through service quality and amenities, particularly the shift to in-room features that impact guest experience and satisfaction."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_title": "4. The Evolution of Industry Structure",
+      "modules": [
+        {
+          "module_name": "Introductory day. What is hospitality and service. The Hotel its structure. Archetypes of guests in the hotel",
+          "topics": [
+            {
+              "topic_name": "What is hospitality",
+              "relevance_score": 0.2,
+              "reasoning": "While the section discusses hotel industry evolution, it only tangentially relates to the philosophy and psychology of hospitality, focusing more on structural changes rather than the art of hospitality itself."
+            },
+            {
+              "topic_name": "What is a service",
+              "relevance_score": 0.1,
+              "reasoning": "The section doesn't directly address service delivery or guest needs fulfillment. It focuses on industry structure and growth patterns rather than service concepts."
+            },
+            {
+              "topic_name": "Video",
+              "relevance_score": 0.0,
+              "reasoning": "The section has no relevance to video content about service and housekeeping. It's a data-driven analysis of industry structure."
+            },
+            {
+              "topic_name": "Hotel",
+              "relevance_score": 0.8,
+              "reasoning": "Highly relevant as it directly discusses hotel industry structure, growth patterns, and classifications based on business vs. personal travel. Provides historical context for hotel development and size variations."
+            },
+            {
+              "topic_name": "Archetypes of guests in a hotel",
+              "relevance_score": 0.3,
+              "reasoning": "Moderately low relevance - while it mentions business vs. personal travelers as broad categories, it doesn't delve into specific guest archetypes or provide examples."
+            },
+            {
+              "topic_name": "Personal development (macro)",
+              "relevance_score": 0.2,
+              "reasoning": "While it mentions employment in hotels, it doesn't specifically address career prospects or advancement opportunities for hospitality workers."
+            },
+            {
+              "topic_name": "Your why",
+              "relevance_score": 0.0,
+              "reasoning": "The section contains no content related to personal goals or motivations of students in the hospitality industry."
+            }
+          ]
+        },
+        {
+          "module_name": "Housekeeping Department. Standards. Safety requirements at the workplace.",
+          "topics": [
+            {
+              "topic_name": "Housekeeping department",
+              "relevance_score": 0.2,
+              "reasoning": "The section discusses industry structure but only tangentially relates to housekeeping organization through employment data. It doesn't address specific roles, duties, or guest experience aspects of housekeeping."
+            },
+            {
+              "topic_name": "Introduction to service standards (SOPs)",
+              "relevance_score": 0.3,
+              "reasoning": "While the section discusses hotel size and growth, it doesn't specifically address service standards, room types, or compliance requirements. However, it provides some context about hotel industry development."
+            },
+            {
+              "topic_name": "Practical task",
+              "relevance_score": 0.0,
+              "reasoning": "The section focuses on broad industry analysis and has no relevance to the specific layout or territories of hotel Shelest."
+            },
+            {
+              "topic_name": "Theory",
+              "relevance_score": 0.0,
+              "reasoning": "The section contains no information about security services, workplace safety, or fire safety procedures. It focuses purely on industry structure analysis."
+            },
+            {
+              "topic_name": "Group discussion",
+              "relevance_score": 0.2,
+              "reasoning": "The section touches on business vs. personal travel patterns, which might slightly relate to guest experiences, but doesn't directly address guest impressions or how they are managed."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_title": "Long Difference Regressions",
+      "modules": [
+        {
+          "module_name": "Introductory day. What is hospitality and service. The Hotel its structure. Archetypes of guests in the hotel",
+          "topics": [
+            {
+              "topic_name": "What is hospitality",
+              "relevance_score": 0.1,
+              "reasoning": "While the section discusses hotel industry analysis, it doesn't directly address the philosophical or psychological aspects of hospitality as an art. The content is more focused on statistical analysis rather than the nature of hospitality itself."
+            },
+            {
+              "topic_name": "What is a service",
+              "relevance_score": 0.2,
+              "reasoning": "The section touches on industry changes but doesn't specifically address service definition or guest need fulfillment. The statistical analysis approach doesn't directly relate to the service concept or guest satisfaction aspects."
+            },
+            {
+              "topic_name": "Video",
+              "relevance_score": 0.0,
+              "reasoning": "The section contains no content related to video materials or housekeeping department specifics. It's purely focused on statistical analysis of industry trends."
+            },
+            {
+              "topic_name": "Hotel",
+              "relevance_score": 0.8,
+              "reasoning": "Highly relevant as it analyzes hotel industry structure, including metrics like hotel employment, number of hotels, and hotel size. This directly relates to understanding hotel classification and structure, though it focuses more on industry-level analysis."
+            },
+            {
+              "topic_name": "Archetypes of guests in a hotel",
+              "relevance_score": 0.3,
+              "reasoning": "The section mentions business travel share, which relates to one type of guest archetype, but doesn't explore detailed guest classifications or provide specific examples of different guest types."
+            },
+            {
+              "topic_name": "Personal development (macro)",
+              "relevance_score": 0.2,
+              "reasoning": "The section mentions hotel employment trends, which might tangentially relate to industry career prospects, but doesn't specifically address career development opportunities for maids or other staff."
+            },
+            {
+              "topic_name": "Your why",
+              "relevance_score": 0.0,
+              "reasoning": "The section is entirely focused on statistical industry analysis and contains no content related to personal goals or individual motivations of students."
+            }
+          ]
+        },
+        {
+          "module_name": "Housekeeping Department. Standards. Safety requirements at the workplace.",
+          "topics": [
+            {
+              "topic_name": "Housekeeping department",
+              "relevance_score": 0.2,
+              "reasoning": "The section discusses hotel industry changes and employment, which has minor relevance to housekeeping department structure and roles. However, it doesn't specifically address housekeeping duties, guest experience, or career development."
+            },
+            {
+              "topic_name": "Introduction to service standards (SOPs)",
+              "relevance_score": 0.3,
+              "reasoning": "The section's analysis of industry changes and business travel impacts has some indirect relevance to hotel service standards and room types, but doesn't specifically address SOPs or compliance standards."
+            },
+            {
+              "topic_name": "Practical task",
+              "relevance_score": 0.0,
+              "reasoning": "The section focuses on broad industry analysis and has no direct relevance to the specific practical task of learning about Hotel Shelest's physical layout and areas."
+            },
+            {
+              "topic_name": "Theory",
+              "relevance_score": 0.1,
+              "reasoning": "While the section discusses hotel industry changes, it does not address security services, workplace safety requirements, or fire safety procedures."
+            },
+            {
+              "topic_name": "Group discussion",
+              "relevance_score": 0.2,
+              "reasoning": "The section's analysis of business travel impact has slight relevance to guest impressions, but doesn't specifically discuss types of impressions or how they are managed by staff."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_title": "5. Hotels and Quality Competition in the 2010s",
+      "modules": [
+        {
+          "module_name": "Introductory day. What is hospitality and service. The Hotel its structure. Archetypes of guests in the hotel",
+          "topics": [
+            {
+              "topic_name": "What is hospitality",
+              "relevance_score": 0.3,
+              "reasoning": "While the section discusses hotel industry changes, it only tangentially relates to the philosophy and psychology of hospitality, mainly through implications of shifting service models towards in-room amenities."
+            },
+            {
+              "topic_name": "What is a service",
+              "relevance_score": 0.7,
+              "reasoning": "The section directly addresses service evolution in hotels, particularly how guest needs are being met differently through changes in amenities and quality competition, which relates to fulfilling guest needs."
+            },
+            {
+              "topic_name": "Video",
+              "relevance_score": 0.2,
+              "reasoning": "The section's content about hotel quality and amenities could provide context for a video, but doesn't directly relate to video content about service and housekeeping."
+            },
+            {
+              "topic_name": "Hotel",
+              "relevance_score": 0.9,
+              "reasoning": "The section strongly relates to hotel classification, structure, and evolution, discussing specific hotel types (all-suites), quality levels, and structural changes in the industry."
+            },
+            {
+              "topic_name": "Archetypes of guests in a hotel",
+              "relevance_score": 0.3,
+              "reasoning": "While the section discusses changes in hotel services and amenities, it only indirectly implies guest preferences and types through these changes."
+            },
+            {
+              "topic_name": "Personal development (macro)",
+              "relevance_score": 0.2,
+              "reasoning": "The section's industry-level analysis provides limited insight into personal career prospects in the hotel industry, only offering general context about industry evolution."
+            },
+            {
+              "topic_name": "Your why",
+              "relevance_score": 0.0,
+              "reasoning": "The section focuses on industry-level analysis and does not address personal goals or motivations of students in the hospitality industry."
+            }
+          ]
+        },
+        {
+          "module_name": "Housekeeping Department. Standards. Safety requirements at the workplace.",
+          "topics": [
+            {
+              "topic_name": "Housekeeping department",
+              "relevance_score": 0.3,
+              "reasoning": "The section discusses hotel quality competition and amenities, which slightly relates to guest experience and anticipating needs, but doesn't directly address housekeeping roles or organization."
+            },
+            {
+              "topic_name": "Introduction to service standards (SOPs)",
+              "relevance_score": 0.6,
+              "reasoning": "The section discusses hotel quality standards and room types (including all-suites hotels), which directly relates to hotel room types and service standards. The focus on quality competition is relevant to service standards."
+            },
+            {
+              "topic_name": "Practical task",
+              "relevance_score": 0.1,
+              "reasoning": "The section focuses on industry-wide trends rather than specific hotel layout or facilities. Very minimal relevance to practical facility orientation."
+            },
+            {
+              "topic_name": "Theory",
+              "relevance_score": 0.0,
+              "reasoning": "The section contains no content related to security, safety requirements, or emergency procedures."
+            },
+            {
+              "topic_name": "Group discussion",
+              "relevance_score": 0.4,
+              "reasoning": "The section's discussion of quality competition and amenities relates to guest impressions and how hotels create them through room quality and facilities, though it doesn't specifically address housekeeping's role."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_title": "6. Conclusion",
+      "modules": [
+        {
+          "module_name": "Introductory day. What is hospitality and service. The Hotel its structure. Archetypes of guests in the hotel",
+          "topics": [
+            {
+              "topic_name": "What is hospitality",
+              "relevance_score": 0.3,
+              "reasoning": "While the section discusses industry analysis, it only tangentially relates to hospitality philosophy by touching on quality competition and service evolution, but doesn't directly address hospitality as an art or its psychology."
+            },
+            {
+              "topic_name": "What is a service",
+              "relevance_score": 0.4,
+              "reasoning": "The section mentions quality competition and in-room amenities which relate to fulfilling guest needs, but focuses more on economic analysis rather than service definition or delivery principles."
+            },
+            {
+              "topic_name": "Video",
+              "relevance_score": 0.1,
+              "reasoning": "The section contains economic analysis that could provide background context for a video, but has no direct relevance to video content about service and housekeeping."
+            },
+            {
+              "topic_name": "Hotel",
+              "relevance_score": 0.8,
+              "reasoning": "The section directly analyzes hotel industry structure, competition, and evolution over 40 years, including discussion of market dynamics and amenity focus, which strongly relates to understanding hotel classification and structure."
+            },
+            {
+              "topic_name": "Archetypes of guests in a hotel",
+              "relevance_score": 0.3,
+              "reasoning": "The section briefly mentions business travelers as a key market segment, but doesn't comprehensively discuss guest archetypes or provide detailed examples."
+            },
+            {
+              "topic_name": "Personal development (macro)",
+              "relevance_score": 0.2,
+              "reasoning": "While the section discusses industry evolution and structure, it doesn't specifically address career prospects or development opportunities for hotel staff."
+            },
+            {
+              "topic_name": "Your why",
+              "relevance_score": 0.0,
+              "reasoning": "The section focuses on economic analysis and industry structure, with no connection to personal goals or individual student motivations."
+            }
+          ]
+        },
+        {
+          "module_name": "Housekeeping Department. Standards. Safety requirements at the workplace.",
+          "topics": [
+            {
+              "topic_name": "Housekeeping department",
+              "relevance_score": 0.3,
+              "reasoning": "The section touches on competition and guest amenities in hotels, which loosely relates to guest experience and anticipating needs. However, it doesn't directly address housekeeping roles or organizational structure."
+            },
+            {
+              "topic_name": "Introduction to service standards (SOPs)",
+              "relevance_score": 0.4,
+              "reasoning": "The section discusses quality competition and in-room amenities, which somewhat relates to hotel room types and service standards, but doesn't specifically address SOPs or standard compliance."
+            },
+            {
+              "topic_name": "Practical task",
+              "relevance_score": 0.0,
+              "reasoning": "The section is a theoretical conclusion about industry competition and contains no content related to physical hotel layout or practical orientation tasks."
+            },
+            {
+              "topic_name": "Theory",
+              "relevance_score": 0.0,
+              "reasoning": "The section focuses on economic competition and market structure, with no content related to security services, safety requirements, or emergency procedures."
+            },
+            {
+              "topic_name": "Group discussion",
+              "relevance_score": 0.2,
+              "reasoning": "The section briefly mentions competition in guest amenities, which could indirectly affect guest impressions, but doesn't specifically address the creation or management of guest impressions."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_title": "7. Appendix",
+      "modules": [
+        {
+          "module_name": "Introductory day. What is hospitality and service. The Hotel its structure. Archetypes of guests in the hotel",
+          "topics": [
+            {
+              "topic_name": "What is hospitality",
+              "relevance_score": 0.0,
+              "reasoning": "The section appears to be an empty or missing appendix, containing no substantive content about hospitality philosophy or psychology."
+            },
+            {
+              "topic_name": "What is a service",
+              "relevance_score": 0.0,
+              "reasoning": "The section lacks any content related to service definitions or guest needs fulfillment, as it is an empty appendix section."
+            },
+            {
+              "topic_name": "Video",
+              "relevance_score": 0.0,
+              "reasoning": "The empty appendix section contains no video content or relevant material about service, hospitality, or housekeeping."
+            },
+            {
+              "topic_name": "Hotel",
+              "relevance_score": 0.0,
+              "reasoning": "The section provides no information about hotel classification, structure, divisions, mission or values as it appears to be an empty appendix."
+            },
+            {
+              "topic_name": "Archetypes of guests in a hotel",
+              "relevance_score": 0.0,
+              "reasoning": "The empty appendix section contains no content related to guest archetypes or examples."
+            },
+            {
+              "topic_name": "Personal development (macro)",
+              "relevance_score": 0.0,
+              "reasoning": "The section has no content about career prospects or industry advancement opportunities as it is an empty appendix."
+            },
+            {
+              "topic_name": "Your why",
+              "relevance_score": 0.0,
+              "reasoning": "The empty appendix provides no material related to personal goals or student discussions."
+            }
+          ]
+        },
+        {
+          "module_name": "Housekeeping Department. Standards. Safety requirements at the workplace.",
+          "topics": [
+            {
+              "topic_name": "Housekeeping department",
+              "relevance_score": 0.0,
+              "reasoning": "No content available in the section to evaluate relevance to housekeeping department organization or duties."
+            },
+            {
+              "topic_name": "Introduction to service standards (SOPs)",
+              "relevance_score": 0.0,
+              "reasoning": "Without actual content in the section, there is no relevance to service standards or hotel room types."
+            },
+            {
+              "topic_name": "Practical task",
+              "relevance_score": 0.0,
+              "reasoning": "No content provided to assess any connection to hotel territory familiarization."
+            },
+            {
+              "topic_name": "Theory",
+              "relevance_score": 0.0,
+              "reasoning": "The section lacks any content to evaluate relevance to security and safety requirements."
+            },
+            {
+              "topic_name": "Group discussion",
+              "relevance_score": 0.0,
+              "reasoning": "Without actual content, there is no relevance to guest impressions or their management."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_title": "Room Size and Employment Size Distributions",
+      "modules": [
+        {
+          "module_name": "Introductory day. What is hospitality and service. The Hotel its structure. Archetypes of guests in the hotel",
+          "topics": [
+            {
+              "topic_name": "What is hospitality",
+              "relevance_score": 0.1,
+              "reasoning": "The section's statistical analysis of hotel room sizes has minimal connection to the philosophical and psychological aspects of hospitality as an art."
+            },
+            {
+              "topic_name": "What is a service",
+              "relevance_score": 0.2,
+              "reasoning": "While hotel operations are related to service delivery, this section focuses on structural statistics rather than addressing how services fulfill guest needs."
+            },
+            {
+              "topic_name": "Video",
+              "relevance_score": 0.1,
+              "reasoning": "The statistical data about room and employment distributions could potentially appear in a video, but has minimal direct relevance to general service and housekeeping content."
+            },
+            {
+              "topic_name": "Hotel",
+              "relevance_score": 0.8,
+              "reasoning": "This section directly relates to hotel structure and classification by analyzing room size distributions and employment patterns, providing concrete data about hotel organizational structure."
+            },
+            {
+              "topic_name": "Archetypes of guests in a hotel",
+              "relevance_score": 0.0,
+              "reasoning": "The section focuses entirely on hotel infrastructure and staffing metrics, with no connection to guest types or characteristics."
+            },
+            {
+              "topic_name": "Personal development (macro)",
+              "relevance_score": 0.4,
+              "reasoning": "The employment size distribution data provides some context about the scale of employment opportunities in hotels, which relates to career prospects in the industry."
+            },
+            {
+              "topic_name": "Your why",
+              "relevance_score": 0.1,
+              "reasoning": "The statistical data about hotel sizes and employment has minimal relevance to discussing personal goals and motivations of students."
+            }
+          ]
+        },
+        {
+          "module_name": "Housekeeping Department. Standards. Safety requirements at the workplace.",
+          "topics": [
+            {
+              "topic_name": "Housekeeping department",
+              "relevance_score": 0.3,
+              "reasoning": "The section discusses hotel size and employment distribution which has minimal relevance to housekeeping operations and duties. It only tangentially relates to organizational structure through employment numbers."
+            },
+            {
+              "topic_name": "Introduction to service standards (SOPs)",
+              "relevance_score": 0.4,
+              "reasoning": "The section discusses room size distribution which relates to 'types of hotel rooms', but doesn't cover service standards or SOPs. The relevance is limited to physical room characteristics."
+            },
+            {
+              "topic_name": "Practical task",
+              "relevance_score": 0.2,
+              "reasoning": "While the section deals with room distributions, it's focused on industry statistics rather than specific hotel layout familiarization. Only marginally relevant through room size concepts."
+            },
+            {
+              "topic_name": "Theory",
+              "relevance_score": 0.1,
+              "reasoning": "The section contains no information about security, safety requirements, or emergency procedures. Room size information has minimal implications for safety considerations."
+            },
+            {
+              "topic_name": "Group discussion",
+              "relevance_score": 0.0,
+              "reasoning": "The section focuses purely on statistical data about room and employment sizes, with no connection to guest impressions, guest experience, or housekeeping's role in creating impressions."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_title": "Construction of a Business Travel Index for Hotels",
+      "modules": [
+        {
+          "module_name": "Introductory day. What is hospitality and service. The Hotel its structure. Archetypes of guests in the hotel",
+          "topics": [
+            {
+              "topic_name": "What is hospitality",
+              "relevance_score": 0.2,
+              "reasoning": "The section focuses on business travel statistics rather than the philosophy and psychology of hospitality. Only marginally relevant as it provides data about hotel usage patterns which indirectly relates to hospitality practice."
+            },
+            {
+              "topic_name": "What is a service",
+              "relevance_score": 0.3,
+              "reasoning": "While the section discusses hotel stays, it doesn't directly address service fulfillment of guest needs. The business travel index provides indirect insights into service demand patterns but doesn't explore service concepts."
+            },
+            {
+              "topic_name": "Video",
+              "relevance_score": 0.0,
+              "reasoning": "The section contains no video content or material related to housekeeping. It focuses on statistical analysis of business travel patterns."
+            },
+            {
+              "topic_name": "Hotel",
+              "relevance_score": 0.7,
+              "reasoning": "Highly relevant as it provides data about hotel usage patterns and business travel's impact on hotels, contributing to understanding hotel classification and structure. The analysis of hotel stays across different locations relates to hotel classification."
+            },
+            {
+              "topic_name": "Archetypes of guests in a hotel",
+              "relevance_score": 0.6,
+              "reasoning": "Relevant as it identifies business travelers as a major guest archetype, showing they comprise 40% of hotel stays. This helps understand one important guest category and their travel patterns."
+            },
+            {
+              "topic_name": "Personal development (macro)",
+              "relevance_score": 0.1,
+              "reasoning": "Minimal relevance as the section focuses on business travel statistics rather than career development opportunities in the hotel industry for staff members."
+            },
+            {
+              "topic_name": "Your why",
+              "relevance_score": 0.0,
+              "reasoning": "No relevance as the section doesn't discuss personal goals or motivations of students. It's purely focused on business travel statistics and analysis."
+            }
+          ]
+        },
+        {
+          "module_name": "Housekeeping Department. Standards. Safety requirements at the workplace.",
+          "topics": [
+            {
+              "topic_name": "Housekeeping department",
+              "relevance_score": 0.2,
+              "reasoning": "Limited relevance based on the business travel data potentially informing guest needs and expectations, but does not directly address housekeeping operations or duties."
+            },
+            {
+              "topic_name": "Introduction to service standards (SOPs)",
+              "relevance_score": 0.3,
+              "reasoning": "Moderate-low relevance as business travel data might influence room type requirements and service standards, but section doesn't directly discuss SOPs or hotel standards."
+            },
+            {
+              "topic_name": "Practical task",
+              "relevance_score": 0.0,
+              "reasoning": "No relevance as the section focuses on business travel statistics and doesn't address physical hotel layout or specific property features."
+            },
+            {
+              "topic_name": "Theory",
+              "relevance_score": 0.0,
+              "reasoning": "No relevance as the section discusses business travel metrics and doesn't address any security or safety requirements."
+            },
+            {
+              "topic_name": "Group discussion",
+              "relevance_score": 0.4,
+              "reasoning": "Moderate relevance as understanding business travel patterns and their 40% share of hotel stays could inform guest impressions and expectations, though doesn't directly discuss impression management."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_title": "References",
+      "modules": [
+        {
+          "module_name": "Introductory day. What is hospitality and service. The Hotel its structure. Archetypes of guests in the hotel",
+          "topics": [
+            {
+              "topic_name": "What is hospitality",
+              "relevance_score": 0.3,
+              "reasoning": "The references section may contain some material about hospitality philosophy, but it's primarily focused on market economics and industrial organization, with only indirect connections to hospitality as an art or its philosophy."
+            },
+            {
+              "topic_name": "What is a service",
+              "relevance_score": 0.2,
+              "reasoning": "While the references might touch on service-related aspects within hotel industries, the focus is more on market structures and competition rather than the fundamental nature of service and guest needs fulfillment."
+            },
+            {
+              "topic_name": "Video",
+              "relevance_score": 0.0,
+              "reasoning": "The references section contains no mention of video content or audiovisual materials about service and housekeeping."
+            },
+            {
+              "topic_name": "Hotel",
+              "relevance_score": 0.7,
+              "reasoning": "The section contains references about hotel industries, amenities, and market structures, which directly relates to understanding hotel classification and structure, though it focuses more on economic aspects."
+            },
+            {
+              "topic_name": "Archetypes of guests in a hotel",
+              "relevance_score": 0.1,
+              "reasoning": "While the references cover hotel industry topics, they appear focused on market economics rather than guest types and characteristics."
+            },
+            {
+              "topic_name": "Personal development (macro)",
+              "relevance_score": 0.0,
+              "reasoning": "The references don't address career development or prospects in the hospitality industry for staff members."
+            },
+            {
+              "topic_name": "Your why",
+              "relevance_score": 0.0,
+              "reasoning": "The reference list is academic in nature and doesn't relate to personal goals or motivations of students."
+            }
+          ]
+        },
+        {
+          "module_name": "Housekeeping Department. Standards. Safety requirements at the workplace.",
+          "topics": [
+            {
+              "topic_name": "Housekeeping department",
+              "relevance_score": 0.1,
+              "reasoning": "The references section has minimal relevance as it primarily focuses on market economics and industry organization, with only tangential connection to hotel operations. While it may contain some hotel industry studies, it doesn't specifically address housekeeping operations or attendant roles."
+            },
+            {
+              "topic_name": "Introduction to service standards (SOPs)",
+              "relevance_score": 0.2,
+              "reasoning": "The references include some hotel industry studies which might touch on service standards, but the focus is primarily on market economics and competition rather than operational standards and room types."
+            },
+            {
+              "topic_name": "Practical task",
+              "relevance_score": 0.0,
+              "reasoning": "The references section has no relevance to this practical, location-specific task about Hotel Shelest's physical layout and facilities."
+            },
+            {
+              "topic_name": "Theory",
+              "relevance_score": 0.1,
+              "reasoning": "While the references cover hotel industry studies, they appear focused on economics and market structure rather than security and safety requirements. Only minimal potential overlap with workplace safety topics."
+            },
+            {
+              "topic_name": "Group discussion",
+              "relevance_score": 0.3,
+              "reasoning": "The references about hotel amenities and industry studies might contain some relevant information about guest experiences and impressions, though the primary focus is on market economics rather than guest experience management."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_title": "Coefficient Estimates",
+      "modules": [
+        {
+          "module_name": "Introductory day. What is hospitality and service. The Hotel its structure. Archetypes of guests in the hotel",
+          "topics": [
+            {
+              "topic_name": "What is hospitality",
+              "relevance_score": 0.1,
+              "reasoning": "The section discusses business travel statistics and hotel data but has minimal direct connection to hospitality philosophy or psychology."
+            },
+            {
+              "topic_name": "What is a service",
+              "relevance_score": 0.2,
+              "reasoning": "While the section involves hotel data, it only tangentially relates to service fulfillment through business travel metrics, without directly addressing guest needs."
+            },
+            {
+              "topic_name": "Video",
+              "relevance_score": 0.0,
+              "reasoning": "The statistical analysis of hotel data has no relevance to video content about service and housekeeping."
+            },
+            {
+              "topic_name": "Hotel",
+              "relevance_score": 0.4,
+              "reasoning": "The section contains hotel-related data and employment metrics, which somewhat relates to hotel structure, though focuses more on statistical analysis than classification or organizational aspects."
+            },
+            {
+              "topic_name": "Archetypes of guests in a hotel",
+              "relevance_score": 0.3,
+              "reasoning": "The business travel share metric provides some insight into guest types, but doesn't directly address guest archetypes or provide specific examples."
+            },
+            {
+              "topic_name": "Personal development (macro)",
+              "relevance_score": 0.2,
+              "reasoning": "The hotel employment data mentioned could marginally relate to industry prospects, but doesn't specifically address career development opportunities."
+            },
+            {
+              "topic_name": "Your why",
+              "relevance_score": 0.0,
+              "reasoning": "The statistical analysis of hotel data has no connection to personal goals or student discussions."
+            }
+          ]
+        },
+        {
+          "module_name": "Housekeeping Department. Standards. Safety requirements at the workplace.",
+          "topics": [
+            {
+              "topic_name": "Housekeeping department",
+              "relevance_score": 0.1,
+              "reasoning": "The section focuses on statistical data about business travel and temperature variables, with minimal connection to housekeeping operations or duties. Only slight relevance through business travel potentially affecting housekeeping workload."
+            },
+            {
+              "topic_name": "Introduction to service standards (SOPs)",
+              "relevance_score": 0.2,
+              "reasoning": "The statistical analysis of business travel patterns could indirectly inform service standards and room type demand, but the connection is minimal and the section doesn't address standards or procedures directly."
+            },
+            {
+              "topic_name": "Practical task",
+              "relevance_score": 0.0,
+              "reasoning": "The section contains no information about hotel Shelest's physical layout or facilities. It deals purely with statistical coefficients and has no relevance to practical facility orientation."
+            },
+            {
+              "topic_name": "Theory",
+              "relevance_score": 0.0,
+              "reasoning": "The section discusses statistical analysis of business travel and temperature variables, with no connection to security services, workplace safety, or emergency procedures."
+            },
+            {
+              "topic_name": "Group discussion",
+              "relevance_score": 0.1,
+              "reasoning": "The business travel data might very indirectly relate to understanding guest patterns and their potential impact on impressions, but the section's focus on statistical coefficients has minimal relevance to guest experience management."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_title": "Predicted Changes, Evaluated at Percentiles of Business Travel Share",
+      "modules": [
+        {
+          "module_name": "Introductory day. What is hospitality and service. The Hotel its structure. Archetypes of guests in the hotel",
+          "topics": [
+            {
+              "topic_name": "What is hospitality",
+              "relevance_score": 0.0,
+              "reasoning": "The section focuses on business travel statistics and employment data, with no connection to the philosophy or psychology of hospitality as an art."
+            },
+            {
+              "topic_name": "What is a service",
+              "relevance_score": 0.1,
+              "reasoning": "While the section deals with employment in establishments, it doesn't specifically address service concepts or guest needs fulfillment."
+            },
+            {
+              "topic_name": "Video",
+              "relevance_score": 0.0,
+              "reasoning": "The section contains statistical data and has no relation to video content about service and hospitality."
+            },
+            {
+              "topic_name": "Hotel",
+              "relevance_score": 0.3,
+              "reasoning": "The section includes data about establishments which might include hotels, but doesn't specifically address hotel classification, structure, or values."
+            },
+            {
+              "topic_name": "Archetypes of guests in a hotel",
+              "relevance_score": 0.1,
+              "reasoning": "While business travel is mentioned, the section doesn't discuss guest archetypes or provide examples of different types of hotel guests."
+            },
+            {
+              "topic_name": "Personal development (macro)",
+              "relevance_score": 0.2,
+              "reasoning": "The employment data might tangentially relate to industry prospects, but doesn't specifically address career development paths for hospitality workers."
+            },
+            {
+              "topic_name": "Your why",
+              "relevance_score": 0.0,
+              "reasoning": "The statistical nature of the section has no connection to discussing personal goals of students."
+            }
+          ]
+        },
+        {
+          "module_name": "Housekeeping Department. Standards. Safety requirements at the workplace.",
+          "topics": [
+            {
+              "topic_name": "Housekeeping department",
+              "relevance_score": 0.2,
+              "reasoning": "The section discusses employment data which has minimal relevance to housekeeping operations. While it touches on employment statistics, it doesn't specifically address housekeeping roles, duties, or guest service aspects."
+            },
+            {
+              "topic_name": "Introduction to service standards (SOPs)",
+              "relevance_score": 0.1,
+              "reasoning": "The section contains employment statistics but doesn't address hotel service standards, room types, or compliance requirements. Very limited relevance to SOPs or service standards."
+            },
+            {
+              "topic_name": "Practical task",
+              "relevance_score": 0.0,
+              "reasoning": "The section focuses on business travel and employment statistics with no connection to physical hotel layout or familiarization with specific hotel areas."
+            },
+            {
+              "topic_name": "Theory",
+              "relevance_score": 0.1,
+              "reasoning": "While the section discusses employment data, it doesn't address workplace safety, security services, or emergency procedures. Very minimal relevance to safety requirements."
+            },
+            {
+              "topic_name": "Group discussion",
+              "relevance_score": 0.0,
+              "reasoning": "The section's focus on business travel statistics and employment data has no relevance to guest impressions, guest experience, or the role of housekeeping in managing guest perceptions."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_title": "Coefficient Estimates",
+      "modules": [
+        {
+          "module_name": "Introductory day. What is hospitality and service. The Hotel its structure. Archetypes of guests in the hotel",
+          "topics": [
+            {
+              "topic_name": "What is hospitality",
+              "relevance_score": 0.1,
+              "reasoning": "Minimal relevance as the section focuses on statistical analysis rather than the philosophy and psychology of hospitality. Only tangentially related through hotel context."
+            },
+            {
+              "topic_name": "What is a service",
+              "relevance_score": 0.1,
+              "reasoning": "Very low relevance as the section discusses business metrics rather than service delivery or guest needs fulfillment."
+            },
+            {
+              "topic_name": "Video",
+              "relevance_score": 0.0,
+              "reasoning": "No relevance as this section contains no video content or material related to housekeeping operations."
+            },
+            {
+              "topic_name": "Hotel",
+              "relevance_score": 0.4,
+              "reasoning": "Moderate relevance as it includes hotel employment data and business travel metrics, which relate to hotel operations, though it doesn't directly address hotel classification or structure."
+            },
+            {
+              "topic_name": "Archetypes of guests in a hotel",
+              "relevance_score": 0.2,
+              "reasoning": "Low relevance, though it mentions business travel share which could indirectly relate to guest types, it doesn't explicitly discuss guest archetypes or provide examples."
+            },
+            {
+              "topic_name": "Personal development (macro)",
+              "relevance_score": 0.1,
+              "reasoning": "Very low relevance as while it mentions hotel employment, it doesn't discuss career prospects or development opportunities in the industry."
+            },
+            {
+              "topic_name": "Your why",
+              "relevance_score": 0.0,
+              "reasoning": "No relevance as the section contains statistical analysis and doesn't address personal goals or motivations of students."
+            }
+          ]
+        },
+        {
+          "module_name": "Housekeeping Department. Standards. Safety requirements at the workplace.",
+          "topics": [
+            {
+              "topic_name": "Housekeeping department",
+              "relevance_score": 0.2,
+              "reasoning": "The section mentions hotel employment data, which has minimal relevance to housekeeping department structure and duties. While it contains statistical data about hotels, it doesn't address organizational structure, duties, or guest service aspects."
+            },
+            {
+              "topic_name": "Introduction to service standards (SOPs)",
+              "relevance_score": 0.1,
+              "reasoning": "Very low relevance as the section focuses on statistical coefficients rather than hotel service standards, room types, or compliance requirements. The data analysis approach doesn't directly relate to hotel operational standards."
+            },
+            {
+              "topic_name": "Practical task",
+              "relevance_score": 0.0,
+              "reasoning": "No relevance to this topic as the section contains statistical analysis and doesn't discuss physical hotel layout, room locations, or service areas specific to hotel Shelest."
+            },
+            {
+              "topic_name": "Theory",
+              "relevance_score": 0.0,
+              "reasoning": "The section focuses on business travel and temperature variables analysis, showing no connection to hotel security, workplace safety requirements, or fire safety procedures."
+            },
+            {
+              "topic_name": "Group discussion",
+              "relevance_score": 0.2,
+              "reasoning": "Slight relevance as business travel share data might indirectly relate to guest experiences, but the section doesn't specifically address guest impressions, their types, or how they're managed."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_title": "Predicted Changes, Evaluated at Percentiles of Business Travel Share",
+      "modules": [
+        {
+          "module_name": "Introductory day. What is hospitality and service. The Hotel its structure. Archetypes of guests in the hotel",
+          "topics": [
+            {
+              "topic_name": "What is hospitality",
+              "relevance_score": 0.1,
+              "reasoning": "While the section contains hotel industry data, it doesn't specifically address the philosophical or psychological aspects of hospitality as an art, making it only marginally relevant."
+            },
+            {
+              "topic_name": "What is a service",
+              "relevance_score": 0.2,
+              "reasoning": "The section mentions amenities which are part of service delivery, but doesn't directly address the concept of service or guest needs fulfillment."
+            },
+            {
+              "topic_name": "Video",
+              "relevance_score": 0.0,
+              "reasoning": "The section contains no mention of video content or housekeeping department specifically."
+            },
+            {
+              "topic_name": "Hotel",
+              "relevance_score": 0.8,
+              "reasoning": "Highly relevant as it provides detailed data about hotel structures, establishment sizes, and industry changes over time, directly relating to hotel classification and structure."
+            },
+            {
+              "topic_name": "Archetypes of guests in a hotel",
+              "relevance_score": 0.3,
+              "reasoning": "The section mentions business travel share, which relates to one type of guest archetype, but doesn't explicitly discuss guest types or provide examples."
+            },
+            {
+              "topic_name": "Personal development (macro)",
+              "relevance_score": 0.4,
+              "reasoning": "The section includes employment data and industry changes which could indicate career opportunities, but doesn't specifically address career progression for maids."
+            },
+            {
+              "topic_name": "Your why",
+              "relevance_score": 0.0,
+              "reasoning": "The section is purely statistical and analytical, with no connection to personal goals or individual student discussions."
+            }
+          ]
+        },
+        {
+          "module_name": "Housekeeping Department. Standards. Safety requirements at the workplace.",
+          "topics": [
+            {
+              "topic_name": "Housekeeping department",
+              "relevance_score": 0.4,
+              "reasoning": "The section touches on hotel employment and establishment sizes, which partially relates to organizational structure, but doesn't specifically address housekeeping roles or duties. The historical employment data provides some context for career development, but is not directly focused on housekeeping staff."
+            },
+            {
+              "topic_name": "Introduction to service standards (SOPs)",
+              "relevance_score": 0.3,
+              "reasoning": "While the section includes data about hotel amenities, which indirectly relates to room types and service standards, it doesn't specifically address SOPs or service standards. The historical data about hotel changes provides some context but isn't directly focused on service standards."
+            },
+            {
+              "topic_name": "Practical task",
+              "relevance_score": 0.1,
+              "reasoning": "The section contains general information about hotel establishments but has no specific relevance to the physical layout or territory of hotel Shelest. The content is focused on industry-wide trends rather than specific property layout."
+            },
+            {
+              "topic_name": "Theory",
+              "relevance_score": 0.0,
+              "reasoning": "The section doesn't address any aspects of hotel security, workplace safety requirements, or fire safety procedures. The content is focused on business metrics and industry changes rather than safety considerations."
+            },
+            {
+              "topic_name": "Group discussion",
+              "relevance_score": 0.2,
+              "reasoning": "The section's data about hotel amenities has minor relevance to guest impressions, as amenities can influence guest experience. However, it doesn't directly address the creation, types, or management of guest impressions."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
