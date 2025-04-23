@@ -24,6 +24,7 @@ def add_summaries(document: Document, model: str) -> Document:
     Returns:
         The Document object with generated summaries and titles.
     """
+
     client = openai.OpenAI()
     for section in document.sections:
         # 1. Generate Section Summary
@@ -43,7 +44,7 @@ def add_summaries(document: Document, model: str) -> Document:
         prompt_title = SUMMARIZE_TITLE_PROMPT.format(summary=section.summary)
         try:
             response_title = client.chat.completions.create(
-                model=MODEL_NAME,
+                model=model,
                 messages=[{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": prompt_title}],
                 max_tokens=SUMMARIZE_TITLE_MAX_TOKENS,
             )
@@ -57,7 +58,7 @@ def add_summaries(document: Document, model: str) -> Document:
     prompt_doc = SUMMARIZE_DOCUMENT_PROMPT.format(section_summaries=section_summaries)
     try:
         response_doc = client.chat.completions.create(
-            model=MODEL_NAME,
+            model=model,
             messages=[{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": prompt_doc}],
             max_tokens=SUMMARIZE_DOCUMENT_MAX_TOKENS,
         )
@@ -70,7 +71,7 @@ def add_summaries(document: Document, model: str) -> Document:
     prompt_document_title = SUMMARIZE_TITLE_PROMPT.format(summary=document.summary)
     try:
         response_document_title = client.chat.completions.create(
-            model=MODEL_NAME,
+            model=model,
             messages=[{"role": "user", "content": prompt_document_title}],
             max_tokens=SUMMARIZE_TITLE_MAX_TOKENS,
         )

@@ -288,7 +288,7 @@ def get_object_paths(documents: Iterable[Document], base_dir: Path | str = "data
     return [(Path(base_dir) / f"{doc.filename}.json", doc) for doc in documents]
 
 
-def generate_and_store_summary(document: Document) -> Document:  # Pass base directory
+def generate_and_store_summary(document: Document, filepath: str) -> Document:  # Pass base directory
     """
     Generates a summary for the Document object and stores it.
 
@@ -333,9 +333,9 @@ def generate_or_load_summary_documents(
             results.append(loaded_document)
         else:
             # TODO: if we do not want to wait for new documents outcomment the following line
-            # continue
-            result = generate_and_store_summary(doc, path)
-            results.append(result)
+            continue
+            #result = generate_and_store_summary(doc, path)
+            #results.append(result)
         # yield generate_and_store_summary(d, base_dir)
     return results
 
@@ -368,6 +368,7 @@ def load_or_create_aggregations(mappings_store, docs_with_summaries):
         mappings_store: Store for relevance mappings.
         docs_with_summaries (Iterable[Document]): List of Document objects with summaries.
     """
+    print("aggregation following")
     pass
 
 

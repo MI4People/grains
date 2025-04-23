@@ -5,7 +5,7 @@ from pathlib import Path
 from pydantic import BaseModel
 
 from grains.data_structures import Curriculum, Document
-
+from botocore.exceptions import EndpointConnectionError, NoCredentialsError, PartialCredentialsError
 
 def load_curriculum(filepath: str = "conf/curriculum-house-keeping.json") -> Curriculum:
     """
