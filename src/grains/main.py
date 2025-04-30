@@ -27,7 +27,6 @@ from grains.utils import (load_curriculum, save_pydantic_object,
                           try_loading_document_object)
 
 # Initialize OpenAI client
-openai.api_key = os.getenv("OPENAI_API_KEY")
 MODEL = "meta-llama/llama-3.3-70b-instruct"
 SUMMARY_MODEL = "meta-llama/llama-3.3-70b-instruct"
 MAPPINGS_MODEL = "meta-llama/llama-3.3-70b-instruct"
@@ -333,10 +332,10 @@ def generate_or_load_summary_documents(
             results.append(loaded_document)
         else:
             # TODO: if we do not want to wait for new documents outcomment the following line
-            continue
-            #result = generate_and_store_summary(doc, path)
-            #results.append(result)
-        # yield generate_and_store_summary(d, base_dir)
+            #continue
+            result = generate_and_store_summary(doc, path)
+            results.append(result)
+            #yield generate_and_store_summary(d, base_dir)
     return results
 
 
@@ -389,8 +388,8 @@ def process_documents(input_dir: Path, md_dir: Path, curriculum) -> None:
     docs_with_summaries = process_markdown(md_path_markdown_tuples)
     # Create the mappings file
     print("Create Mappings")
-    mappings_store = load_or_create_mappings_for_docs(docs_with_summaries, curriculum, MAPPINGS_MODEL)
-    aggregations = load_or_create_aggregations(mappings_store, docs_with_summaries)
+    #mappings_store = load_or_create_mappings_for_docs(docs_with_summaries, curriculum, MAPPINGS_MODEL)
+    #aggregations = load_or_create_aggregations(mappings_store, docs_with_summaries)
 
 
 if __name__ == "__main__":

@@ -10,6 +10,7 @@ from grains.prompts import (SUMMARIZE_DOCUMENT_MAX_TOKENS,
                             SUMMARIZE_TITLE_MAX_TOKENS, SUMMARIZE_TITLE_PROMPT,
                             SYSTEM_PROMPT)
 
+from grains.clients import client
 # Ensure environment variable is set (replace with your actual key or alternative method)
 # os.environ["OPENAI_API_KEY"] = ("sk-your-open-API-key")  # VERY SECURE ...
 
@@ -25,7 +26,6 @@ def add_summaries(document: Document, model: str) -> Document:
         The Document object with generated summaries and titles.
     """
 
-    client = openai.OpenAI()
     for section in document.sections:
         # 1. Generate Section Summary
         prompt_section = SUMMARIZE_SECTION_PROMPT.format(section=section.content)
