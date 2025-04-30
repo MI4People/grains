@@ -1,0 +1,225 @@
+{
+  "id": "1dd9f1c0-12a5-4118-a851-4ce903171e90",
+  "filename": "3. Classification of Hotels Author Institute of Hotel Management Catering Technology and Applied Nutrition",
+  "tokens": 6773,
+  "summary": "Here is a summary of the document in under 170 words:\n\nThe document discusses various aspects of the hotel industry, including hotel classifications and standards. The Ministry of Tourism's HRACC committee categorizes hotels into 1-5 star categories based on factors like location, amenities, and staff. Different types of hotels are described, such as luxury hotels, conference hotels, green hotels, and condominium hotels. The document also explains various business models, including hotel management contracts, franchising, and referral groups. Additionally, it touches on alternative forms of accommodation, like vacation ownership and boarding houses. Overall, the document provides an overview of the hotel industry, covering topics like hotel classification, amenities, and business models.",
+  "summary_title": "\"Hotel Industry Overview\"",
+  "sections": [
+    {
+      "id": "619a6703-d804-49fd-8322-ac2cb5728d27",
+      "title": "Preamble",
+      "level": 0,
+      "content": "<!-- image -->",
+      "summary": "No section content is available to summarize.",
+      "summary_title": "\"No Content Available\""
+    },
+    {
+      "id": "c4355f2e-4e88-450b-be3b-9bc8254b9013",
+      "title": "CLASSIFICATION OF HOTELS",
+      "level": 2,
+      "content": "",
+      "summary": "No text is provided in the section to summarize.",
+      "summary_title": "No Text Provided"
+    },
+    {
+      "id": "eee25d54-b25d-448c-8641-1268c38aaabc",
+      "title": "A)  Classification on the basis of Size.",
+      "level": 2,
+      "content": "",
+      "summary": "There is no section to summarize. Please provide the section text for a concise summary.",
+      "summary_title": "\"No Text Provided\""
+    },
+    {
+      "id": "4930ee31-1f5c-4612-bd5a-e8e5d6ba3514",
+      "title": "B)  Classification on the basis of Star.",
+      "level": 2,
+      "content": "The classification is done by Ministry of Tourism under which a committee forms known as HRACC\n\n(Hotels and Restaurants Approval & Classification committee) headed by Director General of tourism comprising of following members are\n\nThis is a permanent committee to classify hotels into 1-5 star categories. Generally inspects ones in three years\n\nIn case of 4 stars, 5 Star, 5 Star deluxe categories, the procedures is to apply on a prescribed application form to director general of tourism. In case of 1, 2, 3 star category to regional director of the concerned govt of India tourist office at Delhi/Mumbai/Kolkata/Chennai.\n\n",
+      "summary": "The Ministry of Tourism's HRACC committee classifies hotels into 1-5 star categories, inspecting them every 3 years, with application procedures varying by star category.",
+      "summary_title": "Hotel Star Classification System"
+    },
+    {
+      "id": "0440d2a9-73e0-45f2-9640-e9b0290300aa",
+      "title": "The basic details need to be given:",
+      "level": 2,
+      "content": "Page 1 of 14\n\n<!-- image -->\n\nSection 80L, Section 32, Section 33\n\n",
+      "summary": "The section mentions three specific sections: 80L, 32, and 33, with an accompanying image on page 1 of 14.",
+      "summary_title": "Key Sections and Accompanying Image"
+    },
+    {
+      "id": "2f33b609-94d6-41c4-b9b0-81c12e0d0483",
+      "title": "1 Star",
+      "level": 2,
+      "content": "These are smaller hotels manage by proprietor.\n\nThe hotel often has more personal atmosphere .\n\nIt is usually located near affordable attraction, major intersection and convenient transportation.\n\nFurnishings and facilities are clean but basic.\n\nMost will not have a restaurant on site but are usually within walking distance .\n\n",
+      "summary": "Smaller, proprietor-managed hotels with a personal atmosphere, basic facilities, and convenient locations near attractions and transportation, often without on-site restaurants but nearby dining options.",
+      "summary_title": "\"Intimate Hotels with Basic Amenities\""
+    },
+    {
+      "id": "9b3a6ea1-01c5-4f76-9ad5-dc7356c8588f",
+      "title": "2 Star",
+      "level": 2,
+      "content": "The building should be constructed and the locality and environs including the approach suitable for good hotel.\n\nThere should be a reception counter with a telephone.\n\nAll public and private rooms should be fully air conditioned and should be well equipped with support quality\n\nThere should be experienced ,courteous and efficient staff in smart and clean uniforms.\n\nPage 2 of 14\n\n<!-- image -->\n\n",
+      "summary": "A hotel should have a suitable location, air-conditioned rooms, a reception counter, and efficient staff in uniforms to ensure a quality experience.",
+      "summary_title": "\"Hotel Quality Standards\""
+    },
+    {
+      "id": "12b14f45-53cf-40c4-ad90-3ed6f7ddbe19",
+      "title": "3 Star",
+      "level": 2,
+      "content": "Typically these hotel offer spacious accommodation that include well appointed staff and decorated lobbies. Bell desk services are generally not available. They are located near business area for immediate approach and environs should be of highest standard. There should be well equipped ,well furnished and well maintained dining room/restaurant on the premises .\n\n",
+      "summary": "These hotels offer spacious accommodations, decorated lobbies, and well-equipped dining rooms, located near business areas with high-standard environs.",
+      "summary_title": "Luxury Hotels for Business Travelers"
+    },
+    {
+      "id": "8ee6296f-c7b4-41fd-837e-f9398fffef5c",
+      "title": "4 Star",
+      "level": 2,
+      "content": "Façade, Architectural features and general construction of the hotel building should have distinctive qualities .\n\nThe locality including the immediate approach and environs should be of highest standard.\n\nThere should be a receptionist ,cash and information counter attended by highest qualified trained and experienced personnel and conference facilities.\n\n<!-- image -->\n\n",
+      "summary": "A hotel's façade and construction should be distinctive. The locality and approach should be of high standard, with a well-staffed reception and conference facilities.",
+      "summary_title": "Hotel Design and Facilities Matter"
+    },
+    {
+      "id": "45a50918-3abe-4e9d-abdc-013e424a9fb0",
+      "title": "5 Star",
+      "level": 2,
+      "content": "Façade, Architectural features and general construction of the hotel building should have distinctive qualities .\n\nThe locality including the immediate approach and environs should be of highest standard.\n\nThere should be a receptionist ,cash and information counter attended by highest qualified trained and experienced personnel and conference facilities.\n\n",
+      "summary": "Hotel buildings should have distinctive façades and high-quality construction. The surrounding area and reception should also meet high standards, with well-trained staff and conference facilities available.",
+      "summary_title": "Luxury Hotel Standards"
+    },
+    {
+      "id": "27ecd52e-a9b4-4af9-97f3-4a88564af454",
+      "title": "Eligibility for Star Classification",
+      "level": 2,
+      "content": "<!-- image -->\n\n",
+      "summary": "There is no text in the section to summarize.",
+      "summary_title": "No Text Provided"
+    },
+    {
+      "id": "4a0c77e6-0fb5-4c57-80a0-c27f814f99f9",
+      "title": "To be eligible to apply for classification",
+      "level": 2,
+      "content": "",
+      "summary": "There is no section to summarize. Please provide the section text for a concise summary.",
+      "summary_title": "\"No Text Provided for Summary\""
+    },
+    {
+      "id": "4d0accda-4025-49be-b41b-10c3aeff31b6",
+      "title": "Category of hotels /Bathroom",
+      "level": 2,
+      "content": "Area standard for Bedroom\n\n5Star/5StarDelux Hotels\n\nSingle                                                                          180Sq ft\n\nDouble                                                                         200Sq ft\n\nBathroom                                                                     45 Sq ft\n\n4 Star and 3 Star Hotels\n\nSingle                                                                           120Sq ft\n\nDouble                                                                          140Sq ft\n\nBathroom                                                                      36sq ft\n\n2Star and 1 Star Hotels\n\nSingle                                                                            100Sq ft\n\nDouble                                                                           120Sq ft\n\nBathroom\n\n30Sq ft\n\nFailure to satisfy the above conditions will disqualify a hotel for consideration.\n\nHeritage Hotels : A recent addition to the hotel industry, in the country, heritage hotels are properties set in small forts, palaces, or havelis, the mansions of erstwhile royal and aristocratic families. They have added a new dimension to cultural tourism. In a heritage hotel, a visitor is offered rooms that have their own history, is served traditional cuisine toned down to the requirements of international palates, is entertained by folk artistes, can participates in activities that allow a glimpse into the heritage of the region, and can bask in an atmosphere that lives and breathes of the past. Taj lake palace in Udaipur and the Oberoi Cecil in Shimla are example of heritage hotels.\n\nAccording to Ministry of tourism, the heritage hotels are further subdivided as follows: Heritage : This category covers hotels in residences, havelis, hunting lodges, castles or forts and palaces built during 1935-1950.\n\nHeritage Classic : This category covers hotels in residences, havelis, hunting lodges, castles or forts and palaces built prior to 1935 but after 1920.\n\nHeritage Grand: This category covers hotels in residences, havelis, hunting lodges, castles or forts and palaces built prior to 1920.\n\n",
+      "summary": "Hotel room standards vary by rating: 5-star (180-200 sq ft), 4-3 star (120-140 sq ft), and 2-1 star (100-120 sq ft).",
+      "summary_title": "Hotel Room Size Standards"
+    },
+    {
+      "id": "34278ca1-7e6f-4892-9f85-cad98899bdf1",
+      "title": "C)  Classification on the basis of Location/Clientele",
+      "level": 2,
+      "content": "<!-- image -->\n\n<!-- image -->\n\nSome of them provide luxurious accommodation, along with food and beverage facilities to guests. The house boats of Dal Lake (Shikara) in Srinagar in Jammu and Kashmir are some examples of Floatels in India.\n\nOther e.g. Are the Deccan Odyssey (Golden Chariot), Maharaja Express, Royal Rajasthan\n\nMahaparinirvan Express and Fairy Queen.\n\n",
+      "summary": "Floatels in India offer luxurious accommodations and facilities, such as houseboats on Dal Lake and luxury trains like the Deccan Odyssey and Maharaja Express.",
+      "summary_title": "Luxury Floatels in India"
+    },
+    {
+      "id": "ed66afe9-0ea2-41b3-ae87-5b4864913fe3",
+      "title": "Classification on the basis of Clientele",
+      "level": 2,
+      "content": "Page 7 of 14\n\n<!-- image -->\n\n<!-- image -->\n\nis a hotel which caters to the needs of a conference delegation. These hotels provide rooms to delegates of conferences, a conference hall with the desired seating configuration for the meeting, food and beverage requirements during and after the conferences and other requirements, such as flip charts, white board with markers, and overhead projector with screen, computer, and public address system. These are large hotels, having more than 400 guest rooms. The services provided are of the highest standards. Normally conferences are charged as packages, which include accommodation and meetings facilities . Hotel Ashok, New Delhi is an example of conference centres.\n\n",
+      "summary": "Conference hotels cater to delegates' needs, offering rooms, meeting spaces, and amenities like food and audiovisual equipment, with high standards and packaged services.",
+      "summary_title": "Conference Hotels Meet Delegate Needs"
+    },
+    {
+      "id": "83c54ced-7b7a-4cf0-aba6-b010dbfa92b6",
+      "title": "9) Green hotel :",
+      "level": 2,
+      "content": "Green Hotels are environmentally-friendly properties whose managers are eager to institute programs that save water, save energy and reduce solid waste. The basic definition of a green hotel is an environmentally responsible lodging that follows the practices of green living.\n\n",
+      "summary": "Green Hotels are environmentally-friendly properties that conserve water, energy, and reduce waste, following green living practices.",
+      "summary_title": "\"Ecological Green Hotels\""
+    },
+    {
+      "id": "2b787c57-2d8b-421f-a278-873a0edb920c",
+      "title": "D) Classification on the basis of Ownership.",
+      "level": 2,
+      "content": "<!-- image -->\n\n",
+      "summary": "There is no text to summarize. The section appears to be empty, containing only an image placeholder.",
+      "summary_title": "\"Section Contains Only Image Placeholder\""
+    },
+    {
+      "id": "ca6f8881-59a8-45ee-9005-99bcd45a4edf",
+      "title": "International, Club Mediterranean, Four Season Hotels and Resorts, and TUI AG/TUI Hotels and Resorts.",
+      "level": 2,
+      "content": "",
+      "summary": "There is no section provided. Please provide the section you would like me to summarize.",
+      "summary_title": "\"No Section Provided for Summarization\""
+    },
+    {
+      "id": "967d9817-8445-4881-b220-fe362f837062",
+      "title": "A chain is usually classified as operating under a management contract or as a franchise or referral group.",
+      "level": 2,
+      "content": "",
+      "summary": "There is no section to summarize. Please provide the section you would like me to summarize.",
+      "summary_title": "\"No Section Provided Yet\""
+    },
+    {
+      "id": "e71bf9d9-6966-4236-af7e-cde465594965",
+      "title": "3) Management Contracts:",
+      "level": 2,
+      "content": "It is a contract between the owner of the property and a hotel operator (management contractor) by which the owner employs the operator as an agent to assume the full responsibilities for  operating  and managing  the hotel .  The  operator  can  be  a  hotel chain  with  reputed  name  and  market  image  ,such  as  Hilton  ,Sheraton  ,best western ,choice hospitality, etc.\n\n",
+      "summary": "A hotel management contract is between the property owner and operator, where the owner hires the operator to manage the hotel, often a reputable hotel chain like Hilton or Sheraton.",
+      "summary_title": "\"Hotel Management Contracts\""
+    },
+    {
+      "id": "47c3425f-8708-4d03-b82d-e0bc474cb8b0",
+      "title": "4) Franchise:",
+      "level": 2,
+      "content": "It is the authorization given by a company to another company or individual to sell its unique product /services and use its trademark according to the guidelines given by former, for a specified time, and a specified place. Under it the owner operates as a member of the chain, utilizing the brand image, name, and goodwill and obtaining for a certain fee . Some  of  the franchising companies  are  Holiday  Inn, Choice international, Ramada,\n\n",
+      "summary": "Franchising is authorization to sell a company's products/services using its trademark, following guidelines, for a specified time and place, often involving a fee.",
+      "summary_title": "\"Franchising Defined\""
+    },
+    {
+      "id": "6476eb2a-5352-417e-8ebb-4e74b12757ad",
+      "title": "5) Referral Groups:",
+      "level": 2,
+      "content": "It consists  of  independent  hotel  which  have  grouped  together  for  some  common purpose. Though the properties in the referral group may be different from each other but there is sufficient consistency in the quality of service to satisfy guest expectations. The member hotels recommend guest to other member hotels. Some examples are Best Western international, one of the largest hotel chains, is the best example of referral groups.\n\n",
+      "summary": "A referral group is a collection of independent hotels united for a common purpose, offering consistent service quality and recommending guests to other member hotels, with Best Western International being a notable example.",
+      "summary_title": "\"Hotel Referral Network Overview\""
+    },
+    {
+      "id": "8f5c0381-08c8-4529-a328-4438acc8f9fa",
+      "title": "6) Time -Share Hotels :",
+      "level": 2,
+      "content": "A  new  concept  of  ownership  also  called  vacation  ownership  or  holiday  ownership concepts, mushrooming up in resorts areas like hills, beaches, forest. As the name suggest, it entails purchasing a tourist accommodation at a popular destination for a particular time slot in a year which can be week or weeks. Each room or suite is owned by several people who will schedule their visits well in advance with the management office to ensure that the room or suites is available or rent a unit to other vacationers if they cannot avail the facility. It is fully furnished rooms with kitchenettes may have a dining hall with a bar. More desirable the season, the higher the timeshare\n\nPage 10 of 14\n\n<!-- image -->\n\nfee. The price of the property will depend on the week, one intends to buy. The guest can choose the peak seasons, semi peak seasons or lean seasons. It is also required to  pay  an  annual  contribution  towards  the  maintenance  of  apartments  and  public areas, electricity, gas, water, safety, insurance etc. The owner can also rent out the unit through management.\n\nThe most common time share in India is Mahindra and Mahindra, Nanda Tourist Corporation, Sterling Holiday's Resorts, Avelon Resorts ,Hilton Grand Vacation,Marriott Vacation Club International.\n\n",
+      "summary": "Vacation ownership involves buying a timeshare at a resort for a set time period, with fully furnished rooms and shared maintenance costs.",
+      "summary_title": "\"Buying a Timeshare Vacation\""
+    },
+    {
+      "id": "62b7a718-6d6e-41cf-8659-af94411ed2e2",
+      "title": "7) Condominium :",
+      "level": 2,
+      "content": "Condominium units also called as Condo are purchased outright and owned by the guest as second homes.\n\nCondominium  hotels  have single  owners instead  of multiple  owners sharing  the hotel. In condominium hotels, the owner informs the management company when they would  occupy  the  unit.  The  management  company  is  free  to  rent  the  unit  for  the remainder of the year, and this revenue goes to the owner.\n\nOwner purchases a unit and has full right of an unit he has purchased and shares the cost common to the complex such as takes, insurance, Maintenance, and upkeep of public areas includingswimming,pool,health,clubs,parking,security,airconditioning,health,cable,broa dband etc.\n\nEach owner can occupy or sell his unit independently but is required to follow the rules and regulations laid by the management. In some cases the management can help the owner in renting out the properties. They take full responsibility of the owner's unit's safety and also pay to the owner a major portion of the rent earned from renting out. Usually the management request the owner to rent out in case of major conferences. The  management  earns  a  major  portion  by  renting  out  conferences  hall  and  from catering.\n\nThe  Resorts  and  condominium  inns  group  of  Singapore  are  among  the  most popular example of such properties.\n\n",
+      "summary": "Condominium hotels have single owners who purchase units outright. Owners have full rights to their unit and share complex costs, while the management company rents out the unit when not occupied, distributing revenue to the owner.",
+      "summary_title": "Condo Hotel Ownership Model"
+    },
+    {
+      "id": "827a0733-5ef6-4e35-b383-74d4f94a5112",
+      "title": "E)  Classification on the basis of Level of Services.",
+      "level": 2,
+      "content": "<!-- image -->\n\nand class. These hotels provide upscale restaurants and lounge, exquisite decor, concierge services, opulent rooms and abundant amenities. The design and interior decoration of the hotel itself reflects the standards maintained by the hotel. The guest rooms are large with exquisite decoration and furnishing. Generally, a valet is assigned to each guest room. These hotels have many speciality restaurants with full-assisted services. Top-end recreational facilities, such as golf course, tennis court, designer swimming pool with trained lifeguard, and other sports facilities, shopping arcades, beauty salons, health spas with sauna and Jacuzzi, are a regular feature. These hotels are generally patronised by affluent people who care for quality and include business executives, celebrities, and high -ranking political figures . The Oberoi Udaivilas, Udaipur and ITC Hotel grand Maratha Sheraton & Towers, Mumbai are few luxury hotels in India.\n\n",
+      "summary": "Luxury hotels offer upscale amenities, exquisite decor, and high-end services, catering to affluent guests, including business executives and celebrities, with top-end recreational facilities and personalized services.",
+      "summary_title": "Luxury Hotels Offer Upscale Experience"
+    },
+    {
+      "id": "ce95f688-0392-41a9-8156-ad88de676f0d",
+      "title": "F)  Classification on the basis of Duration of guest stay.",
+      "level": 2,
+      "content": "<!-- image -->\n\nreached his final destination. Hence hotels, which cater to a transient guest, are called transient hotels. Transient hotels generally operate on the European plan.\n\n",
+      "summary": "Transient hotels cater to temporary guests and typically operate on the European plan, providing accommodations for those passing through.",
+      "summary_title": "Transient Hotel Basics"
+    },
+    {
+      "id": "aa229322-476d-4985-836f-0d367f1be704",
+      "title": "G) Alternative Accommodation:",
+      "level": 2,
+      "content": "<!-- image -->\n\nfood and beverage service. Boarding houses are establishment that usually provide accommodation and meals at a specified period of time, such as weekends, or for a specified time of stay.\n\n",
+      "summary": "Boarding houses provide accommodation and meals for a set period, such as weekends or a specified stay duration, offering food and beverage services.",
+      "summary_title": "\"Boarding Houses Offer Meals\""
+    }
+  ]
+}

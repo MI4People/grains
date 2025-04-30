@@ -32,25 +32,29 @@ SUMMARY_MODEL = "meta-llama/llama-3.3-70b-instruct"
 MAPPINGS_MODEL = "meta-llama/llama-3.3-70b-instruct"
 
 # =============== PDF to Markdown Extraction =============== #
-def ocr(md_path: Path, md_dir: Path, overwrite: bool = False) -> str:
+def ocr(md_path: Path, overwrite: bool = False) -> str:
     """
     Extracts content from a single PDF and saves it as Markdown.
 
     Args:
         md_path (Path): Path to the Markdown file.
-        md_dir (Path): Directory for the Markdown file.
         overwrite (bool): Whether to overwrite existing files. Defaults to False.
 
     Returns:
         str: Markdown content of the PDF.
     """
+
+    #Get pdf path from the markdown path 
+    pdf_path = Path("data/pdf") / md_path.with_suffix(".pdf").name
+
     pipeline_options = PdfPipelineOptions(do_table_structure=True)
     pipeline_options.table_structure_options.mode = TableFormerMode.ACCURATE
 
     converter = DocumentConverter(
         format_options={InputFormat.PDF: PdfFormatOption(pipeline_options=pipeline_options)}
     )
-    result = converter.convert(str(md_path))
+    result = converter.convert(str(pdf_path))
+
     # TODO: can also embed images as base64
     markdown_content = result.document.export_to_markdown()
     with open(md_path, "w", encoding="utf-8") as f:
@@ -82,22 +86,23 @@ def extract_or_load_markdown(
         input_files (Iterable[Path]): List of input PDF files.
         md_dir (Path): Directory for the Markdown files.
         overwrite (bool): Whether to overwrite existing files. Defaults to False.
-        only_load (bool): Whether to only load existing files. Defaults to True.
+        only_load (bool): Whether to parse detailed or not. Defaults to False.
 
     Yields:
         Tuple[Path, str]: Markdown file path and content.
     """
     md_dir.mkdir(parents=True, exist_ok=True)
     md_paths = get_md_paths(input_files, md_dir)
+
     for md_path in md_paths:
-        if md_path.exists() and not overwrite:
+        if md_path.exists() and not overwrite:             
             with md_path.open("r") as f:
                 md_content = f.read()
                 yield md_path, md_content
         else:
             if not only_load:
                 try:
-                    md_content = ocr(md_path, md_dir, overwrite)
+                    md_content = ocr(md_path, overwrite)
                     yield md_path, md_content
                 except Exception as e:
                     warnings.warn(f"Failed to process {md_path.name}: {str(e)}")
@@ -381,7 +386,8 @@ def process_documents(input_dir: Path, md_dir: Path, curriculum) -> None:
         curriculum (Curriculum): Curriculum object for mapping.
     """
     input_files = input_dir.glob("*.pdf")
-    md_path_markdown_tuples = extract_or_load_markdown(input_files, md_dir)
+    print("Extract Markdown from PDF")
+    md_path_markdown_tuples = extract_or_load_markdown(input_files, md_dir, only_load=False)
     md_path_markdown_tuples = list(md_path_markdown_tuples)
     #print([it[0] for it in list(md_path_markdown_tuples)])
     print("Create Summaries")
