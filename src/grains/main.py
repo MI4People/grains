@@ -9,6 +9,8 @@ from typing import (Any, Dict, Generator, Iterable, Iterator, List, NamedTuple,
                     Tuple)
 from uuid import UUID
 
+import asyncio
+
 import boto3
 import mistletoe
 import openai
@@ -376,7 +378,7 @@ def load_or_create_aggregations(mappings_store, docs_with_summaries):
     pass
 
 
-def process_documents(input_dir: Path, md_dir: Path, curriculum) -> None:
+async def process_documents(input_dir: Path, md_dir: Path, curriculum) -> None:
     """
     Main processing pipeline for documents.
 
@@ -394,15 +396,17 @@ def process_documents(input_dir: Path, md_dir: Path, curriculum) -> None:
     docs_with_summaries = process_markdown(md_path_markdown_tuples)
     # Create the mappings file
     print("Create Mappings")
-    mappings_store = load_or_create_mappings_for_docs(docs_with_summaries, curriculum, MAPPINGS_MODEL)
+    mappings_store = await load_or_create_mappings_for_docs(docs_with_summaries, curriculum, MAPPINGS_MODEL)
     #aggregations = load_or_create_aggregations(mappings_store, docs_with_summaries)
 
-
-if __name__ == "__main__":
+async def main():
     # Configuration with type-hinted Path objects
     input_dir: Path = Path("data/pdf")
     md_dir: Path = Path("data/md")
     # Load desired curriculum
     curriculum = load_curriculum()
     # Run processing
-    process_documents(input_dir, md_dir, curriculum)
+    await process_documents(input_dir, md_dir, curriculum)
+
+if __name__ == "__main__":
+    asyncio.run(main())

@@ -5,13 +5,14 @@ from datetime import datetime
 from typing import Dict, Iterable, List, Optional, Tuple
 from uuid import UUID
 import time 
+import asyncio
 
 from pydantic import BaseModel, Field
 from pydantic_ai import Agent
 from pydantic_ai.models.openai import OpenAIModel
 from pydantic_ai.providers.openai import OpenAIProvider
 
-from grains.data_structures import Curriculum, Document, DocumentMappings
+from grains.data_structures import Curriculum, Document, DocumentMappings, Section, Module
 from grains.data_structures import Module as CurriculumModule
 from grains.data_structures import RelevanceMapping, RelevanceStore, Section
 from grains.prompts import MAPPING_PROMPT, MAPPING_SYSTM_PROMPT
@@ -22,6 +23,9 @@ from grains.utils import load_curriculum, try_loading_document_object
 # Works
 #MODEL = "openai/gpt-4o-mini"
 MODEL = "meta-llama/llama-3.3-70b-instruct"  # Use a single model
+
+# Async wrapper - restricts the concurrenct running actions
+sem = asyncio.Semaphore(40)
 
 def create_mapping_prompt(
     document_id: UUID, section: Section, module: CurriculumModule, prompt: str = MAPPING_PROMPT
@@ -45,12 +49,72 @@ def create_mapping_prompt(
     formatted_prompt = prompt.format(document_id=document_id, module_info=module_info, section_info=section_info)
     return formatted_prompt
 
-def create_mappings_store(
+#async def create_mappings_store(
+#    document: Document, curriculum: Curriculum, agent: Agent, store: RelevanceStore
+#) -> RelevanceStore:
+#    """
+#    Creates or updates a RelevanceStore with mappings between document sections and curriculum modules.
+#
+#    Args:
+#        document (Document): Document to process.
+#        curriculum (Curriculum): Curriculum to map to.
+#        agent (Agent): LLM agent for generating mappings.
+#        store (RelevanceStore): Existing RelevanceStore to update.
+#
+#    Returns:
+#        RelevanceStore: Updated RelevanceStore with new mappings.
+#    """
+#    for section in document.sections:
+#        for module in curriculum.modules:
+#            
+#            async with sem:
+#                if not store.section_already_mapped_to_module(section.id, module.id):
+#                    prompt = create_mapping_prompt(document.id, section, module)
+#                    try:
+#                        map_start = time.time()
+#                        result = await asyncio.to_thread(agent.run_sync, prompt)
+#                        print(f"Created mappings for section {section.id} and module {module.id}")
+#                        map_end = time.time()
+#                        print("-----------------------------------------------")
+#                        print(f"Mapping calculation took {map_end-map_start:.2f}")
+#                        print("-----------------------------------------------")
+#                        store.add_mappings(result.data, "data/mappings.json")
+#                    except Exception as e:
+#                        print(f"Error generating mappings: {e}")
+#                else:
+#                    print(f"Section {section.id} already mapped to module {module.id}")
+#    return store
+
+async def map_section_to_module(
+        document: Document, section: Section, module: Module, agent: Agent, store: RelevanceStore
+        ):
+    """
+    Calculates the mappings between the given section and module
+
+    Args and output 
+    """
+    # Start async with above defined setup restrictor
+    async with sem:
+        if not store.section_already_mapped_to_module(section.id,module.id):
+            prompt = create_mapping_prompt(document.id, section, module)
+            try:
+                map_start = time.time()
+                result = await asyncio.to_thread(agent.run_sync, prompt)
+                map_end = time.time()
+                print(f"[{section.id} <-> {module.id}] took {map_end - map_start:.2f}s")
+                store.add_mappings(result.data, "data/mappings.json")
+                
+            except Exception as e:
+                print(f"Error generating mappings: {e}")
+        else:
+            None
+
+
+async def create_mappings_store(
     document: Document, curriculum: Curriculum, agent: Agent, store: RelevanceStore
 ) -> RelevanceStore:
     """
-    Creates or updates a RelevanceStore with mappings between document sections and curriculum modules.
-
+    Gathers all concurrent tasks and then executes them concurrently 
     Args:
         document (Document): Document to process.
         curriculum (Curriculum): Curriculum to map to.
@@ -60,31 +124,18 @@ def create_mappings_store(
     Returns:
         RelevanceStore: Updated RelevanceStore with new mappings.
     """
+    tasks = []
+
     for section in document.sections:
         for module in curriculum.modules:
-            if not store.section_already_mapped_to_module(section.id, module.id):
-                prom_start = time.time()
-                prompt = create_mapping_prompt(document.id, section, module)
-                prom_end = time.time()
-                print("-----------------------------------------------")
-                print(f"Prompt generation took {prom_end-prom_start:.2f}")
-                print("-----------------------------------------------")
-                try:
-                    map_start = time.time()
-                    result = agent.run_sync(prompt)
-                    print(f"Created mappings for section {section.id} and module {module.id}")
-                    map_end = time.time()
-                    print("-----------------------------------------------")
-                    print(f"Mapping calculation took {map_end-map_start:.2f}")
-                    print("-----------------------------------------------")
-                    store.add_mappings(result.data, "data/mappings.json")
-                except Exception as e:
-                    print(f"Error generating mappings: {e}")
-            else:
-                print(f"Section {section.id} already mapped to module {module.id}")
-    return store
+            tasks.append(map_section_to_module(document,section,module,agent,store))
+    
+    # Trigger the async run
+    await asyncio.gather(*tasks)
 
-def load_or_create_mappings_for_docs(
+    return store 
+
+async def load_or_create_mappings_for_docs(
     documents: Iterable[Document], curriculum: Curriculum, model: str, mappings_store_file_path: str = "data/mappings.json"
 ) -> RelevanceStore:
     """
@@ -112,7 +163,7 @@ def load_or_create_mappings_for_docs(
     )
     for doc in documents:
         print(f"Create mappings for {doc.filename}")
-        store = create_mappings_store(doc, curriculum, agent, mappings_store)
+        store = await create_mappings_store(doc, curriculum, agent, mappings_store)
     return store
 
 if __name__ == "__main__":
