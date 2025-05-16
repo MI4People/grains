@@ -31,13 +31,20 @@ class Topic(BaseModel):
         id (UUID): Unique identifier for the topic (auto-generated).
         name (str): Name of the topic.
         description (str): Brief description of the topic.
+        content (list[str]): List of the original sections with relevance score >= threshold.
     """
     id: UUID = Field(default_factory=uuid.uuid4)
     name: str = Field(..., description="Name of the topic")
     description: str = Field(..., description="Description of the topic")
+    content: Optional[List[str]] = Field(default_factory=list, description="Content of the relevant sections")
 
     def __str__(self) -> str:
-        return f"Topic: {self.name}\n    Description: {self.description}"
+        content_str = (
+            "\n    Content:\n" + "\n".join(f"      - {line}" for line in self.content)
+            if self.content else "\n    Content: []"
+        )
+        return f"Topic: {self.name}\n    Description: {self.description}{content_str}"
+
 
 
 class Module(BaseModel):

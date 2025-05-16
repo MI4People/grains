@@ -394,7 +394,7 @@ def process_documents(input_dir: Path, md_dir: Path, curriculum) -> None:
     docs_with_summaries = process_markdown(md_path_markdown_tuples)
     # Create the mappings file
     print("Create Mappings")
-    #mappings_store = load_or_create_mappings_for_docs(docs_with_summaries, curriculum, MAPPINGS_MODEL)
+    mappings_store = load_or_create_mappings_for_docs(docs_with_summaries, curriculum, MAPPINGS_MODEL)
     #aggregations = load_or_create_aggregations(mappings_store, docs_with_summaries)
 
 

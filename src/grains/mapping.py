@@ -4,6 +4,7 @@ import os
 from datetime import datetime
 from typing import Dict, Iterable, List, Optional, Tuple
 from uuid import UUID
+import time 
 
 from pydantic import BaseModel, Field
 from pydantic_ai import Agent
@@ -16,13 +17,10 @@ from grains.data_structures import RelevanceMapping, RelevanceStore, Section
 from grains.prompts import MAPPING_PROMPT, MAPPING_SYSTM_PROMPT
 from grains.utils import load_curriculum, try_loading_document_object
 
-MODEL: str = "anthropic/claude-3.5-sonnet"
-#MODEL = "nvidia/llama-3.3-nemotron-super-49b-v1:free"
-#MODEL = "meta-llama/llama-4-maverick:free"
-# Does not return proper format
-MODEL = "google/gemini-2.0-flash-001"
+#MODEL: str = "anthropic/claude-3.5-sonnet"
+#MODEL = "google/gemini-2.0-flash-001"
 # Works
-MODEL = "openai/gpt-4o-mini"
+#MODEL = "openai/gpt-4o-mini"
 MODEL = "meta-llama/llama-3.3-70b-instruct"  # Use a single model
 
 def create_mapping_prompt(
@@ -65,11 +63,20 @@ def create_mappings_store(
     for section in document.sections:
         for module in curriculum.modules:
             if not store.section_already_mapped_to_module(section.id, module.id):
+                prom_start = time.time()
                 prompt = create_mapping_prompt(document.id, section, module)
-                print(prompt)
+                prom_end = time.time()
+                print("-----------------------------------------------")
+                print(f"Prompt generation took {prom_end-prom_start:.2f}")
+                print("-----------------------------------------------")
                 try:
+                    map_start = time.time()
                     result = agent.run_sync(prompt)
                     print(f"Created mappings for section {section.id} and module {module.id}")
+                    map_end = time.time()
+                    print("-----------------------------------------------")
+                    print(f"Mapping calculation took {map_end-map_start:.2f}")
+                    print("-----------------------------------------------")
                     store.add_mappings(result.data, "data/mappings.json")
                 except Exception as e:
                     print(f"Error generating mappings: {e}")

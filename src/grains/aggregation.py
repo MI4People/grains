@@ -1,5 +1,8 @@
 from typing import List, Tuple
 from pydantic import BaseModel
+
+from src.grains.data_structures import Curriculum
+
 import json
 import copy
 import os 
@@ -184,35 +187,37 @@ def generate_system_prompt(module_name, topic_name, topic_description, section_c
 
     return prompt
 
-async def process_curriculum(source_cur, target_cur, agent):
+async def process_curriculum(source_cur: Curriculum, target_cur: Curriculum, agent) -> Curriculum:
+    """
+    Takes content from source curriculum, summarizes it with AI, and adds it to the target curriculum.
+    """
 
-    """
-    Takes content from source curriculum, summarizes it with AI, and adds it to target curriculum
-    """
-    for s_module, t_module in zip(source_cur["modules"], target_cur["modules"]):
-        for s_topic, t_topic in zip(s_module["topics"], t_module["topics"]):
+    for s_module, t_module in zip(source_cur.modules, target_cur.modules):
+        for s_topic, t_topic in zip(s_module.topics, t_module.topics):
             # Skip if no section content
-            if not s_topic.get("section_content") or not s_topic["section_content"]:
+            if not getattr(s_topic, "section_content", None):
                 continue
-            
-            print(f"Processing: {s_topic['name']}")
+
+            print(f"Processing: {s_topic.name}")
 
             # Generate prompt
             prompt = generate_system_prompt(
-                s_module["name"],
-                s_topic["name"],
-                s_topic["description"],
-                s_topic["section_content"]
+                s_module.name,
+                s_topic.name,
+                s_topic.description,
+                s_topic.section_content
             )
-        
+            
+            print(prompt)
             try:
                 result = await agent.run(prompt)
-                t_topic["content"] = result.data
-                print(f"✓ Added content to: {s_topic['name']}")
+                t_topic.content = [result.data]  # assuming result.data is a string
+                print(f"✓ Added content to: {s_topic.name}")
             except Exception as e:
                 print(f"✗ Error: {str(e)}")
-    
+
     return target_cur
+
 
 async def main():
 
