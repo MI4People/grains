@@ -1,8 +1,8 @@
 from typing import List, Tuple
 from pydantic import BaseModel
 
-from src.grains.data_structures import Curriculum
-
+from grains.data_structures import Curriculum, Path, Document, RelevanceStore
+from uuid import UUID 
 import json
 import copy
 import os 
@@ -18,143 +18,92 @@ from pydantic_ai.providers.openai import OpenAIProvider
 
 from grains.utils import load_curriculum
 
-
-def add_field_to_innermost(data, field_name="sections", field_value=None):
+def load_documents_from_dir(json_dir: Path) -> list[Document]:
     """
-    Adds a new custom field to each innermost dictionary.
-    Creates a new independent copy of the field_value for each dictionary.
-    
+    Loads all JSON files from a directory and parses them into Document objects.
+
     Args:
-        data: The data structure to modify
-        field_name: Name of the field to add (default: "sections")
-        field_value: Value to add for each field (default: empty list)
-                    This value will be deep-copied for each dictionary.
-    
+        json_dir (Path): Path to the directory containing JSON files.
+
     Returns:
-        Modified data structure
+        List[Document]: List of validated Document objects.
     """
-    # Handle None input
-    if data is None:
-        return None
+    documents = []
+    for json_file in json_dir.glob("*.json"):
+        try:
+            with open(json_file, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            doc = Document.model_validate(data)
+            documents.append(doc)
+        except Exception as e:
+            print(f"Failed to load {json_file.name}: {e}")
+    return documents
+
+def get_relevant_sections(map_store: RelevanceStore, threshold):
+    '''
+    Exracts all relevant mappings with relevance score higher than the threshold.
     
-    # Set default field_value if not provided
-    if field_value is None:
-        field_value = []
+    Args: 
+        map_store (RelevanceStore). pydantic Relevance store object containing all mappings
+
+    Output: 
+        relevance (List): An orderd list containing 
+                - moduleId 
+                - documentId
+                - sectionId
+                - topicId
+            from the mappings with score >= threshold
+    '''
+    mapp = map_store.mappings
+    relevant: List[Tuple[UUID,UUID,UUID,UUID]] = []
+    for key in mapp:
+        r_score = mapp[key].relevance_score
+        if r_score >= threshold:
+            relevant.append((mapp[key].module_id,
+                mapp[key].document_id,
+                mapp[key].section_id,
+                mapp[key].topic_id))
     
-    # Convert Pydantic models to dicts
-    if isinstance(data, BaseModel):
-        data = data.model_dump()
+    relevant_sorted = sorted(relevant, key=lambda x: (x[0], x[1])) 
 
-    # Process dictionaries
-    if isinstance(data, dict):
-        # For topics, add the custom field
-        if "topics" in data and isinstance(data["topics"], list):
-            for topic in data["topics"]:
-                if isinstance(topic, dict):
-                    # Important: Create a deep copy of field_value for each topic
-                    # This ensures each topic gets its own independent value
-                    import copy
-                    topic[field_name] = copy.deepcopy(field_value)
-        
-        # Process all other keys recursively
-        for k, v in data.items():
-            data[k] = add_field_to_innermost(v, field_name, field_value)
-    
-    # Process lists
-    elif isinstance(data, list):
-        data = [add_field_to_innermost(item, field_name, field_value) for item in data]
+    return relevant_sorted 
 
-    return data
+def insert_section_content(cur: Curriculum, relevant, docs):
+    '''
+    Insert the section content into the curriculum for all relevant sections
 
-def extract_relevant_sections(data) -> List[Tuple[str, str, str]]:
-    """
-    Extract relevant sections from data where relevance score >= 0.75.
-    
-    Returns:
-        List of tuples: (module_name, topic_name, section_title)
-    """
-    matches: List[Tuple[str, str, str, str]] = []
-
-    for section in data.get("sections", []):
-        section_title = section.get("section_title")
-    
-        for module in section.get("modules", []):
-            module_name = module.get("module_name")
-            
-            for topic in module.get("topics", []):
-                relevance = topic.get("relevance_score", 0)
-                topic_name = topic.get("topic_name")
-
-                if relevance >= 0.75:
-                    matches.append((module_name, topic_name, section_title, data.get("document_title")))
-
-    return matches
-
-def insert_sections_into_dictionary(matches, target_dict):
-    """
-    Insert relevant section names from matches list into the target dictionary.
-    
     Args:
-        matches: List of tuples (module_name, topic_name, section_name, document_title)
-        target_dict: The target dictionary structure
-    
-    Returns:
-        Updated dictionary with a list of section names which are relavant for the topic
-    """
-    # Make a deep copy to ensure we don't modify the original
-    result_dict = copy.deepcopy(target_dict)
-    
-    # Process each match tuple
-    for module_name, topic_name, section_name, document_title in matches:
-        # Find matching module in target dictionary
-        for module in result_dict["modules"]:
-            if module["name"] == module_name:
-                # Find matching topic in module
-                for topic in module["topics"]:
-                    if topic["name"] == topic_name:
-                        # Add section to the sections list
-                        topic["sections"].append(section_name)
-                        topic["document"].append(document_title)
-                        break  # Found the matching topic, no need to continue inner loop
-                
-                break  # Found the matching module, no need to continue outer loop
-    
-    return result_dict
+        cur (Curriculum): Source curriculum where the content gets added
+        relevant (List): list of relevant sections and it's ids
+        docs (List): list of documents  
+    '''
+    last_module_id = last_topic_id = None
+    current_module = current_topic = None
 
-def find_section_in_document(section_title, document):
-    """Find a section by title in the document"""
-    for section in document.get("sections", []):
-        if section.get("title") == section_title:
-            return section
-    return None
+    for r in relevant:
+        module_id, document_id, section_id, topic_id = r
 
-def add_section_content(curriculum, document):
-    """Adding actual content of the sections which are assigned to a topic"""
+        if module_id != last_module_id:
+            current_module = next((m for m in cur.modules if m.id == module_id), None)
+            last_module_id = module_id
+            current_topic = None
+            last_topic_id = None
 
-    # For each module and topic in the curriculum
-    for module in curriculum["modules"]:
-        
-        for topic in module.get("topics", []):
-            
-            # Skip topics with empty sections list
-            if not topic.get("sections") or len(topic["sections"]) == 0:
-                continue
-            
-            # Initialize section_content if it doesn't exist
-            if "section_content" not in topic:
-                topic["section_content"] = []
+        if current_module and topic_id != last_topic_id:
+            current_topic = next((t for t in current_module.topics if t.id == topic_id), None)
+            last_topic_id = topic_id
 
-            # Process each section title in the topic
-            for section_title in topic["sections"]:
-                # Find the section in the document
-                section = find_section_in_document(section_title, document)
-                
-                if section:
-                # Adding section content to the list
-                    section_content = section.get("content", "")
-                    topic["section_content"].append(section_content)
+        if current_module and current_topic:
+            for d in docs:
+                if d.id == document_id:
+                    for s in d.sections:
+                        if s.id == section_id:
+                            section_content = s.content
+
+            if section_content:
+                current_topic.content.append(section_content)
     
-    return curriculum
+    return cur 
 
 def generate_system_prompt(module_name, topic_name, topic_description, section_content):
     """
@@ -195,20 +144,18 @@ async def process_curriculum(source_cur: Curriculum, target_cur: Curriculum, age
     for s_module, t_module in zip(source_cur.modules, target_cur.modules):
         for s_topic, t_topic in zip(s_module.topics, t_module.topics):
             # Skip if no section content
-            if not getattr(s_topic, "section_content", None):
+            if not len(s_topic.content):
+                print("No Content")
                 continue
-
             print(f"Processing: {s_topic.name}")
-
             # Generate prompt
             prompt = generate_system_prompt(
                 s_module.name,
                 s_topic.name,
                 s_topic.description,
-                s_topic.section_content
+                s_topic.content
             )
-            
-            print(prompt)
+
             try:
                 result = await agent.run(prompt)
                 t_topic.content = [result.data]  # assuming result.data is a string
@@ -219,15 +166,12 @@ async def process_curriculum(source_cur: Curriculum, target_cur: Curriculum, age
     return target_cur
 
 
+
 async def main():
 
     """Main function to execute the entire process"""
 
-    # Load enviroinment and setup agent, which will be replaced by normal LLM call
-    load_dotenv()
     MODEL: str = "meta-llama/llama-3.3-70b-instruct"
-    #MODEL: str = "anthropic/claude-3.5-sonnet"
-    #MODEL: str = "openai/gpt-4o-2024-11-20"
 
     agent = Agent(
                OpenAIModel(
@@ -239,41 +183,17 @@ async def main():
                )
        )
 
-    with open("conf/curicculum-house-keeping.json","r") as f:
-            target_cur = json.load(f)
-
-    print("1. Loading ground structure to work with...")
     source_cur = load_curriculum()
+    target_cur = load_curriculum()
 
-    print("2. Adding empty section lists as well as empty document string to topics...")
-    source_cur = add_field_to_innermost(source_cur)
-    source_cur = add_field_to_innermost(source_cur,field_name="document")
+    dir = Path("data/objects")
+    docs = load_documents_from_dir(dir)
 
-    # Define ordered lists containing the paths to the documents and to the mappings
-    object_files = sorted(glob.glob("data/objects/*.json"))
-    mapping_files = sorted(glob.glob("data/mappings/*.json"))
-    paired_files = list(zip(object_files, mapping_files))
+    mapping_store = RelevanceStore.create_store_from_json("data/mappings.json")
+    relevant = get_relevant_sections(mapping_store, 0.8)
+    source_cur = insert_section_content(cur=source_cur,relevant=relevant,docs=docs)
 
-    # Load the data containing section information
-    for obj_file, map_file in paired_files:
-        with open(obj_file,"rb") as of:
-            obj = json.load(of)
-        with open(map_file,"rb") as mf:
-            map = json.load(mf)
-    
-        # Get all relevant sections out of the mapping files
-        matches = extract_relevant_sections(map)
-        
-        # Add section names to the source curriculum
-        source_cur = insert_sections_into_dictionary(matches, source_cur)
-    
-        # Save to file for debugging reasons
-        with open("data/target/curriculum_with_sections_and_docname.json", "w") as f:
-            json.dump(source_cur, f, indent=2)
-        # Add section content to the source curriculum
-        source_cur = add_section_content(curriculum=source_cur,document=obj)
-
-    target_cur = await process_curriculum(source_cur=source_cur, target_cur=target_cur, agent=agent)
+    target_cur = await process_curriculum(source_cur=source_cur,target_cur=target_cur,agent=agent)
 
     # Save the result
     with open("data/target/curicculum-house-keeping-with-content.json", 'w', encoding='utf-8') as f:
