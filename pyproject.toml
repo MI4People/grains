@@ -13,6 +13,7 @@ openai = "^1.60.2"
 tiktoken = "^0.8.0"
 mistletoe = "^1.4.0"
 pydantic-ai = "^0.0.42"
+mlflow = {version = ">=3.0.0rc0", allow-prereleases = true}
 
 
 [tool.poetry.group.dev.dependencies]

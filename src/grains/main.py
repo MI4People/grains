@@ -1,3 +1,4 @@
+import asyncio
 import json
 import os
 import uuid
@@ -9,13 +10,10 @@ from typing import (Any, Dict, Generator, Iterable, Iterator, List, NamedTuple,
                     Tuple)
 from uuid import UUID
 
-import asyncio
-
 import boto3
 import mistletoe
 import openai
 import tiktoken
-
 from docling.datamodel.base_models import InputFormat
 from docling.datamodel.pipeline_options import (PdfPipelineOptions,
                                                 TableFormerMode)
@@ -32,6 +30,7 @@ from grains.utils import (load_curriculum, save_pydantic_object,
 MODEL = "meta-llama/llama-3.3-70b-instruct"
 SUMMARY_MODEL = "meta-llama/llama-3.3-70b-instruct"
 MAPPINGS_MODEL = "meta-llama/llama-3.3-70b-instruct"
+MAX_CONCURRENT_LLM_CALLS = 40
 
 # =============== PDF to Markdown Extraction =============== #
 def ocr(md_path: Path, overwrite: bool = False) -> str:
@@ -378,7 +377,7 @@ def load_or_create_aggregations(mappings_store, docs_with_summaries):
     pass
 
 
-async def process_documents(input_dir: Path, md_dir: Path, curriculum) -> None:
+def process_documents(input_dir: Path, md_dir: Path, curriculum) -> None:
     """
     Main processing pipeline for documents.
 
@@ -388,25 +387,29 @@ async def process_documents(input_dir: Path, md_dir: Path, curriculum) -> None:
         curriculum (Curriculum): Curriculum object for mapping.
     """
     input_files = input_dir.glob("*.pdf")
-    print("Extract Markdown from PDF")
+    print("Load or Extract Markdown from PDF")
     md_path_markdown_tuples = extract_or_load_markdown(input_files, md_dir, only_load=False)
     md_path_markdown_tuples = list(md_path_markdown_tuples)
     #print([it[0] for it in list(md_path_markdown_tuples)])
-    print("Create Summaries")
+    print("Create or load Summaries")
     docs_with_summaries = process_markdown(md_path_markdown_tuples)
     # Create the mappings file
+    print(docs_with_summaries[0])
     print("Create Mappings")
-    mappings_store = await load_or_create_mappings_for_docs(docs_with_summaries, curriculum, MAPPINGS_MODEL)
+    mappings_store = asyncio.run(load_or_create_mappings_for_docs(docs_with_summaries, curriculum, MAPPINGS_MODEL, MAX_CONCURRENT_LLM_CALLS = MAX_CONCURRENT_LLM_CALLS))
     #aggregations = load_or_create_aggregations(mappings_store, docs_with_summaries)
 
-async def main():
+def main():
+    # mlflow.pydantic_ai.autolog()
+    # mlflow.set_tracking_uri("http://localhost:8080")
+    # mlflow.set_experiment("PydanticAI")
     # Configuration with type-hinted Path objects
     input_dir: Path = Path("data/pdf")
     md_dir: Path = Path("data/md")
     # Load desired curriculum
     curriculum = load_curriculum()
     # Run processing
-    await process_documents(input_dir, md_dir, curriculum)
+    process_documents(input_dir, md_dir, curriculum)
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
