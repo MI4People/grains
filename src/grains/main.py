@@ -22,9 +22,23 @@ from mistletoe.ast_renderer import AstRenderer
 
 from grains.data_structures import AstData, Curriculum, Document, Section
 from grains.llm_utils import add_summaries
+# =============== PDF to Markdown Extraction =============== #
 from grains.mapping import load_or_create_mappings_for_docs
 from grains.utils import (load_curriculum, save_pydantic_object,
                           try_loading_document_object)
+
+# TODO: maybe remove Initialize S3 client
+# S3_BUCKET_NAME: str = "grains-files"
+# S3_PREFIX: str = "house-keeping/"
+# # NOTE:
+# # Add a ~/.aws/credentials file
+# # with
+# # [grains]
+# # aws_access_key_id = <id>
+# # aws_secret_access_key = <key>
+# session = boto3.Session(profile_name="grains")
+# s3 = session.client("s3")
+
 
 # Initialize OpenAI client
 MODEL = "meta-llama/llama-3.3-70b-instruct"
@@ -36,7 +50,6 @@ MAX_CONCURRENT_LLM_CALLS = 40
 def ocr(md_path: Path, overwrite: bool = False) -> str:
     """
     Extracts content from a single PDF and saves it as Markdown.
-
     Args:
         md_path (Path): Path to the Markdown file.
         overwrite (bool): Whether to overwrite existing files. Defaults to False.
@@ -386,6 +399,9 @@ def process_documents(input_dir: Path, md_dir: Path, curriculum) -> None:
         md_dir (Path): Directory for Markdown files.
         curriculum (Curriculum): Curriculum object for mapping.
     """
+    # TODO: maybe remove or use
+    # if check_s3_connection(s3, S3_BUCKET_NAME, S3_PREFIX):
+    #     download_missing_files(s3, input_dir, S3_BUCKET_NAME, S3_PREFIX)
     input_files = input_dir.glob("*.pdf")
     print("Load or Extract Markdown from PDF")
     md_path_markdown_tuples = extract_or_load_markdown(input_files, md_dir, only_load=False)
