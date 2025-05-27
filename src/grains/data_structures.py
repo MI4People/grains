@@ -1,24 +1,62 @@
+import json
+import uuid
+from collections import defaultdict
+from pathlib import Path
 from typing import (Any, Dict, Generator, Iterable, Iterator, List, NamedTuple,
-                    Optional, Tuple)
+                    Optional, Tuple, Set)
+from uuid import UUID
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, root_validator
 
 
 class AstData(NamedTuple):
+    """
+    Auxiliary data structure for storing AST-related information.
+
+    Attributes:
+        filename (str): Name of the file.
+        tokens (int): Number of tokens in the file.
+        data (Dict[str, Any]): Additional data related to the AST.
+    """
     filename: str
     tokens: int
     data: Dict[str, Any]
 
 
 class Topic(BaseModel):
+    """
+    Represents a topic within a curriculum module.
+
+    Attributes:
+        id (UUID): Unique identifier for the topic (auto-generated).
+        name (str): Name of the topic.
+        description (str): Brief description of the topic.
+        content (list[str]): List of the original sections with relevance score >= threshold.
+    """
+    id: UUID = Field(default_factory=uuid.uuid4)
     name: str = Field(..., description="Name of the topic")
     description: str = Field(..., description="Description of the topic")
+    content: Optional[List[str]] = Field(default_factory=list, description="Content of the relevant sections")
 
     def __str__(self) -> str:
-        return f"Topic: {self.name}\n    Description: {self.description}"
+        content_str = (
+            "\n    Content:\n" + "\n".join(f"      - {line}" for line in self.content)
+            if self.content else "\n    Content: []"
+        )
+        return f"Topic: {self.name}\n    Description: {self.description}{content_str}"
+
 
 
 class Module(BaseModel):
+    """
+    Represents a module within a curriculum.
+
+    Attributes:
+        id (UUID): Unique identifier for the module (auto-generated).
+        name (str): Name of the module.
+        topics (List[Topic]): List of topics covered in the module.
+    """
+    id: UUID = Field(default_factory=uuid.uuid4)
     name: str = Field(..., description="Name of the module")
     topics: List[Topic] = Field(..., description="Topics covered in the module")
 
@@ -28,6 +66,12 @@ class Module(BaseModel):
 
 
 class Curriculum(BaseModel):
+    """
+    Represents a curriculum comprising multiple modules.
+
+    Attributes:
+        modules (List[Module]): List of modules in the curriculum.
+    """
     modules: List[Module] = Field(..., description="List of modules in the curriculum")
 
     def __str__(self) -> str:
@@ -35,30 +79,43 @@ class Curriculum(BaseModel):
         return f"Curriculum:\n{modules_str}"
 
 
-class CategoryMapping(BaseModel):
-    module: str = Field(..., description="Module this section maps to")
-    topic: str = Field(..., description="Topic this section maps to")
-    relevance: float = Field(
-        ...,
-        description="Relevance score (0-1) indicating how well this section matches the topic",
-    )
-    cot_justification: str = Field(..., description="Brief explanation of why this section maps to this topic")
-
-
 class Section(BaseModel):
+    """
+    Represents a section within a document.
+
+    Attributes:
+        id (UUID): Unique identifier for the section (auto-generated).
+        title (str): Title of the section.
+        level (int): Heading level (1-6) of the section.
+        content (Optional[str]): Content of the section.
+        summary (Optional[str]): Summary of the section content.
+        summary_title (Optional[str]): Section title based on the summary.
+    """
+    id: UUID = Field(default_factory=uuid.uuid4)
     title: str = Field(..., description="Title of the section")
     level: int = Field(..., description="Heading level (1-6)")
     content: Optional[str] = Field("", description="Content of the section")
-    mappings: List[CategoryMapping] = Field(default_factory=list, description="Category mappings for this section")
     summary: Optional[str] = Field(None, description="Summary of the section content")
     summary_title: Optional[str] = Field(None, description="Section title based on summary")
 
     def __str__(self) -> str:
-        """Returns a markdown representation of the Document object."""
+        """Returns a markdown representation of the Section object."""
         return f"{self.level*'#'} {self.title}:\n{self.content}"
 
 
 class Document(BaseModel):
+    """
+    Represents a document with its metadata and content.
+
+    Attributes:
+        id (UUID): Unique identifier for the document (auto-generated).
+        filename (Optional[str]): Name of the source file.
+        tokens (Optional[int]): Number of tokens in the document.
+        summary (Optional[str]): Summary of the entire document.
+        summary_title (Optional[str]): Document title based on the summary.
+        sections (List[Section]): List of sections in the document.
+    """
+    id: UUID = Field(default_factory=uuid.uuid4)
     filename: Optional[str] = Field(None, description="Name of the source file")
     tokens: Optional[int] = Field(None, description="Number of tokens in the document")
     summary: Optional[str] = Field(None, description="Summary of the entire document, generated by an LLM")
@@ -77,6 +134,244 @@ class Document(BaseModel):
         return markdown
 
     @property
+    def has_summaries(self) -> bool:
+        """Checks if the document has a summary and all sections have summaries."""
+        if not self.summary:
+            return False
+        if any(section is None for section in self.sections):
+            return False
+        return True
+
+    @property
     def section_titles(self) -> str:
-        """Returns secton titles of the document."""
+        """Returns a concatenated string of section titles."""
         return "\n".join([s.title for s in self.sections])
+
+
+class RelevanceMapping(BaseModel):
+    """
+    Represents a relevance mapping between a document section and a curriculum topic.
+
+    Attributes:
+        module_id (UUID): Unique identifier for the document.
+        document_id (UUID): Unique identifier for the module.
+        section_id (UUID): Unique identifier for the section.
+        topic_id (UUID): Unique identifier for the topic module.
+        relevance_score (float): Relevance score between 0 and 1.
+        reasoning (str): Explanation for the mapping.
+    """
+    module_id: UUID = Field(..., description="Unique identifier for the document")
+    document_id: UUID = Field(..., description="Unique identifier for the module")
+    section_id: UUID = Field(..., description="Unique identifier for the section")
+    topic_id: UUID = Field(..., description="Unique identifier for the topic module")
+    relevance_score: float = Field(..., description="Relevance score between 0 and 1")
+    reasoning: str = Field(..., description="Explanation for the mapping")
+
+
+class DocumentMappings(BaseModel):
+    """
+    Collection of relevance mappings for a document.
+
+    Attributes:
+        mappings (List[RelevanceMapping]): List of relevance mappings.
+    """
+    mappings: List[RelevanceMapping] = Field(..., description="List of relevance mappings")
+
+    @classmethod
+    def create_mappings_from_json(cls, file_path: str):
+        """Deserializes a RelevanceStore from a JSON file using DocumentMappings."""
+        if not Path(file_path).exists():
+            return DocumentMappings(mappings=list())
+        with open(file_path, "r") as f:
+            data = json.load(f)
+            mappings = DocumentMappings(**data)
+        return mappings
+
+
+class RelevanceStore:
+    """
+    Stores and manages relevance mappings between document sections and curriculum topics.
+    """
+
+    def __init__(self):
+        # Key: (section_id, topic_id), Value: RelevanceMapping
+        self.mappings: Dict[Tuple[UUID, UUID], RelevanceMapping] = {}
+        self.topic_to_sections: Dict[UUID, Set[UUID]] = defaultdict(set)
+        self.section_to_topics: Dict[UUID, Set[UUID]] = defaultdict(set)
+        self.section_to_modules: Dict[UUID, Set[UUID]] = defaultdict(set)
+        self.topic_to_documents: Dict[UUID, Set[UUID]] = defaultdict(set)
+
+    def add_mappings(self, mappings: DocumentMappings, file_path: str = None):
+        """
+        Adds a list of relevance mappings to the store.
+
+        Args:
+            mappings (DocumentMappings): List of mappings to add.
+            file_path (str, optional): Path to save the updated mappings. Defaults to None.
+        """
+        for mapping in mappings.mappings:
+            self.add_mapping(mapping)
+        if file_path:
+            self.save_or_update(file_path)
+
+    def add_mapping(self, mapping: RelevanceMapping):
+        """
+        Adds a single relevance mapping to the store.
+
+        Args:
+            mapping (RelevanceMapping): Mapping to add.
+        """
+        key = (mapping.section_id, mapping.topic_id)
+        self.mappings[key] = mapping
+        self.topic_to_sections[mapping.topic_id].add(mapping.section_id)
+        self.section_to_topics[mapping.section_id].add(mapping.topic_id)
+        self.section_to_modules[mapping.section_id].add(mapping.module_id)
+        self.topic_to_documents[mapping.topic_id].add(mapping.document_id)
+
+    def section_already_mapped_to_module(self, section_id: UUID, module_id: UUID):
+        """
+        Checks if a section is already mapped to a module.
+
+        Args:
+            section_id (UUID): Unique identifier for the section.
+            module_id (UUID): Unique identifier for the module.
+
+        Returns:
+            bool: True if the section is already mapped to the module, False otherwise.
+        """
+        return module_id in self.section_to_modules[section_id]
+
+    def get_relevant_mappings(self, min_score: float = 0.0, sort_by_relevance: bool = False) -> List[RelevanceMapping]:
+        """
+        Retrieves relevant mappings based on a minimum score.
+
+        Args:
+            min_score (float, optional): Minimum relevance score. Defaults to 0.0.
+            sort_by_relevance (bool, optional): Sort results by relevance score. Defaults to False.
+
+        Returns:
+            List[RelevanceMapping]: List of relevant mappings.
+        """
+        mappings = [m for m in self.mappings.values() if m.relevance_score >= min_score]
+        if sort_by_relevance:
+            mappings = sorted(mappings, key=lambda obj: obj.relevance_score, reverse=True)
+        return mappings
+
+    def get_relevant_section_mappings(self, topic_id: UUID, min_score: float = 0.0) -> List[RelevanceMapping]:
+        """
+        Retrieves relevant mappings for a specific topic.
+
+        Args:
+            topic_id (UUID): Unique identifier for the topic.
+            min_score (float, optional): Minimum relevance score. Defaults to 0.0.
+
+        Returns:
+            List[RelevanceMapping]: List of relevant mappings for the topic.
+        """
+        return [
+            self.mappings[(section_id, topic_id)]
+            for section_id in self.topic_to_sections.get(topic_id, set())
+            if (section_id, topic_id) in self.mappings and self.mappings[(section_id, topic_id)].relevance_score >= min_score
+        ]
+
+    def get_relevant_topic_mappings(self, section_id: UUID, min_score: float = 0.0) -> List[RelevanceMapping]:
+        """
+        Retrieves relevant mappings for a specific section.
+
+        Args:
+            section_id (UUID): Unique identifier for the section.
+            min_score (float, optional): Minimum relevance score. Defaults to 0.0.
+
+        Returns:
+            List[RelevanceMapping]: List of relevant mappings for the section.
+        """
+        return [
+            self.mappings[(section_id, topic_id)]
+            for topic_id in self.section_to_topics.get(section_id, set())
+            if (section_id, topic_id) in self.mappings and self.mappings[(section_id, topic_id)].relevance_score >= min_score
+        ]
+
+    def get_relevant_section_ids(self, topic_id: UUID, min_score: float = 0.0) -> List[UUID]:
+        """
+        Retrieves section IDs relevant to a specific topic.
+
+        Args:
+            topic_id (UUID): Unique identifier for the topic.
+            min_score (float, optional): Minimum relevance score. Defaults to 0.0.
+
+        Returns:
+            List[UUID]: List of section IDs relevant to the topic.
+        """
+        return [
+            mapping.section_id
+            for mapping in self.get_relevant_section_mappings(topic_id, min_score=min_score)
+        ]
+
+    def get_relevant_topic_ids(self, section_id: UUID, min_score: float = 0.0) -> List[UUID]:
+        """
+        Retrieves topic IDs relevant to a specific section.
+
+        Args:
+            section_id (UUID): Unique identifier for the section.
+            min_score (float, optional): Minimum relevance score. Defaults to 0.0.
+
+        Returns:
+            List[UUID]: List of topic IDs relevant to the section.
+        """
+        return [
+            mapping.topic_id
+            for mapping in self.get_relevant_topic_mappings(section_id, min_score=min_score)
+        ]
+
+    def remove_mapping(self, section_id: UUID, topic_id: UUID):
+        """
+        Removes a mapping between a section and a topic.
+
+        Args:
+            section_id (UUID): Unique identifier for the section.
+            topic_id (UUID): Unique identifier for the topic.
+        """
+        key = (section_id, topic_id)
+        if key in self.mappings:
+            mapping = self.mappings[key]
+            del self.mappings[key]
+            self.topic_to_sections[topic_id].discard(section_id)
+            self.section_to_topics[section_id].discard(topic_id)
+            self.section_to_modules[section_id].discard(mapping.module_id)
+            self.topic_to_documents[topic_id].discard(mapping.document_id)
+
+    def save_or_update(self, file_path: str):
+        """
+        Saves or updates the RelevanceStore to a JSON file.
+
+        Args:
+            file_path (str): Path to the output JSON file.
+        """
+        unique_mappings = []
+        document_mappings = DocumentMappings.create_mappings_from_json(file_path)
+        all_mappings = document_mappings.mappings + list(self.mappings.values())
+        seen = set()
+        for mapping in all_mappings:
+            key = (mapping.section_id, mapping.topic_id)
+            if key not in seen:
+                unique_mappings.append(mapping)
+                seen.add(key)
+        updated_document_mappings = DocumentMappings(mappings=unique_mappings)
+        with open(file_path, "w") as f:
+            f.write(updated_document_mappings.model_dump_json(indent=2))
+
+    @classmethod
+    def create_store_from_json(cls, file_path: str):
+        """
+        Creates a RelevanceStore from a JSON file.
+
+        Args:
+            file_path (str): Path to the input JSON file.
+
+        Returns:
+            RelevanceStore: Instantiated RelevanceStore.
+        """
+        store = cls()
+        document_mappings = DocumentMappings.create_mappings_from_json(file_path)
+        store.add_mappings(document_mappings)
+        return store

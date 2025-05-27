@@ -3,18 +3,19 @@ import os
 import openai
 
 from grains.data_structures import Document, Section
-from grains.prompts import (MODEL_NAME, SUMMARIZE_DOCUMENT_MAX_TOKENS,
+from grains.prompts import (SUMMARIZE_DOCUMENT_MAX_TOKENS,
                             SUMMARIZE_DOCUMENT_PROMPT,
                             SUMMARIZE_SECTION_MAX_TOKENS,
                             SUMMARIZE_SECTION_PROMPT,
                             SUMMARIZE_TITLE_MAX_TOKENS, SUMMARIZE_TITLE_PROMPT,
                             SYSTEM_PROMPT)
 
+from grains.clients import client
 # Ensure environment variable is set (replace with your actual key or alternative method)
 # os.environ["OPENAI_API_KEY"] = ("sk-your-open-API-key")  # VERY SECURE ...
 
 
-def add_summaries(document: Document) -> Document:
+def add_summaries(document: Document, model: str) -> Document:
     """
     Generates summaries and titles for sections and the overall document using an LLM.
 
@@ -24,13 +25,13 @@ def add_summaries(document: Document) -> Document:
     Returns:
         The Document object with generated summaries and titles.
     """
-    client = openai.OpenAI()
+
     for section in document.sections:
         # 1. Generate Section Summary
         prompt_section = SUMMARIZE_SECTION_PROMPT.format(section=section.content)
         try:
             response_section = client.chat.completions.create(
-                model=MODEL_NAME,
+                model=model,
                 messages=[{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": prompt_section}],
                 max_tokens=SUMMARIZE_SECTION_MAX_TOKENS,
             )
@@ -43,7 +44,7 @@ def add_summaries(document: Document) -> Document:
         prompt_title = SUMMARIZE_TITLE_PROMPT.format(summary=section.summary)
         try:
             response_title = client.chat.completions.create(
-                model=MODEL_NAME,
+                model=model,
                 messages=[{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": prompt_title}],
                 max_tokens=SUMMARIZE_TITLE_MAX_TOKENS,
             )
@@ -57,7 +58,7 @@ def add_summaries(document: Document) -> Document:
     prompt_doc = SUMMARIZE_DOCUMENT_PROMPT.format(section_summaries=section_summaries)
     try:
         response_doc = client.chat.completions.create(
-            model=MODEL_NAME,
+            model=model,
             messages=[{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": prompt_doc}],
             max_tokens=SUMMARIZE_DOCUMENT_MAX_TOKENS,
         )
@@ -70,7 +71,7 @@ def add_summaries(document: Document) -> Document:
     prompt_document_title = SUMMARIZE_TITLE_PROMPT.format(summary=document.summary)
     try:
         response_document_title = client.chat.completions.create(
-            model=MODEL_NAME,
+            model=model,
             messages=[{"role": "user", "content": prompt_document_title}],
             max_tokens=SUMMARIZE_TITLE_MAX_TOKENS,
         )

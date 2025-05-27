@@ -1,0 +1,76 @@
+{
+  "modules": [
+    {
+      "id": "b06e46cc-13ee-431c-8295-a116edd60650",
+      "name": "Introductory day. What is hospitality and service. The Hotel its structure. Archetypes of guests in the hotel",
+      "topics": [
+        {
+          "id": "8c50023c-6b17-4e90-b4a7-923d566e15e7",
+          "name": "What is hospitality",
+          "description": "Hospitality as an art. Philosophy and psychology of hospitality."
+        },
+        {
+          "id": "61be82d6-2b25-4747-be13-e078530616f6",
+          "name": "What is a service",
+          "description": "Service - which ensures the fulfillment of the needs of the guest / client."
+        },
+        {
+          "id": "12432a09-d7b6-4bdf-82e2-b91c3d6968b1",
+          "name": "Video",
+          "description": "About service and hospitality in general and housekeeping department in the end. (to find the video from movies or other hotel's provided content)"
+        },
+        {
+          "id": "49246b6b-f6b8-41d6-8783-43dd399f31a9",
+          "name": "Hotel",
+          "description": "What is a hotel. Classification of hotels. Its structure, divisions, mission and values."
+        },
+        {
+          "id": "db083dcc-bc8c-4fb0-9e6c-7908ebd0ce89",
+          "name": "Archetypes of guests in a hotel",
+          "description": "Archetypes of guests in a hotel. + examples"
+        },
+        {
+          "id": "fd9c49bd-f731-4886-aeed-ad787210ae73",
+          "name": "Personal development (macro)",
+          "description": "What prospects a person (maid) can have in the industry"
+        },
+        {
+          "id": "93bd02c8-7480-4058-ba1a-a6ad4e7360fb",
+          "name": "Your why",
+          "description": "Discussion of personal goals of each student"
+        }
+      ]
+    },
+    {
+      "id": "913e7b58-c591-44a0-a5d6-734ac8541211",
+      "name": "Housekeeping Department. Standards. Safety requirements at the workplace.",
+      "topics": [
+        {
+          "id": "5dd24321-5435-4905-b36e-b0ec4e5f4d2d",
+          "name": "Housekeeping department",
+          "description": "Organizational structure of the housekeeping department. The role of the Housekeeping Attendant in creating a positive guest experience. Description of the maid's duties in a hotel. Guest-centered thinking: Emphasize the importance of anticipating guest needs. Career development (micro) + cross training for housekeeping attendant."
+        },
+        {
+          "id": "8a22cc88-f4ff-40c7-b1f6-fcbe8699c6f5",
+          "name": "Introduction to service standards (SOPs)",
+          "description": "Types of hotel rooms. Abbreviations. What are the Hotel Service Standards. Goals and importance of compliance with standards."
+        },
+        {
+          "id": "7710aa2a-4989-4dca-b0f2-70c495cfbb38",
+          "name": "Practical task",
+          "description": "Getting to know the territory of the hotel Shelest. Location of rooms, service areas, recreation areas."
+        },
+        {
+          "id": "cca19142-8a6c-4182-9b89-7f8f14c8d837",
+          "name": "Theory",
+          "description": "Hotel security service. Safety requirements in the workplace. Fire safety and evacuation instructions (invited guest)."
+        },
+        {
+          "id": "68e97fc0-fbe6-4638-ae46-659bbd890351",
+          "name": "Group discussion",
+          "description": "Guest impressions: What is it? Why are impressions created and how? Types of impressions and their consequences. What impressions does the HK attendant manage?"
+        }
+      ]
+    }
+  ]
+}
