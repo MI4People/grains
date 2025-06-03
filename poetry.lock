@@ -491,53 +491,6 @@ notebook = ["ipython (>=8,<10)", "ipywidgets (>=8,<9)"]
 openai = ["httpx", "langchain-openai ; python_version > \"3.7\"", "openai"]
 
 [[package]]
-name = "deepsearch-glm"
-version = "1.0.0"
-description = "Graph Language Models"
-optional = false
-python-versions = "<4.0,>=3.9"
-groups = ["main"]
-files = [
-    {file = "deepsearch_glm-1.0.0-cp310-cp310-macosx_13_0_x86_64.whl", hash = "sha256:94792b57df7a1c4ba8b47ebd8f36ea0a090d4f27a4fba39bd7b166b6b537260a"},
-    {file = "deepsearch_glm-1.0.0-cp310-cp310-macosx_14_0_arm64.whl", hash = "sha256:ff46e352e96a2f56ce7ae4fdf04b271ee841c29ff159b1dec0e5ecaaadba8d4d"},
-    {file = "deepsearch_glm-1.0.0-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:9d77d3d94d49641888aa15f3ad23e81158e791aa9d9608dd8168dc71788e56f3"},
-    {file = "deepsearch_glm-1.0.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:143de0fd111a570be12935d8799a2715fe1775d4dc4e256337860b429cee5d36"},
-    {file = "deepsearch_glm-1.0.0-cp310-cp310-win_amd64.whl", hash = "sha256:9f2872dd573cd2206ce7f9e2e6016c38b66d9ecbd983283ff5e8c6023813c311"},
-    {file = "deepsearch_glm-1.0.0-cp311-cp311-macosx_13_0_x86_64.whl", hash = "sha256:e64d94ff5209f0a11e8c75c6b28b033ef27b95a22c2fbcbd945e7fe8cc421545"},
-    {file = "deepsearch_glm-1.0.0-cp311-cp311-macosx_14_0_arm64.whl", hash = "sha256:a5702205677b768b51f881d15d933370f6ef3c826dfac3b9aa0b904d2e6c495a"},
-    {file = "deepsearch_glm-1.0.0-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:0417a2ae998e1709f03458cfb9adb55423bb1328224eb055300796baa757879f"},
-    {file = "deepsearch_glm-1.0.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:6f0e1efe9af0d28e9b473fe599246deb3a0be7c3d546a478da284747144d086a"},
-    {file = "deepsearch_glm-1.0.0-cp311-cp311-win_amd64.whl", hash = "sha256:807faf13eb0deea55a1951d479a85d5e20de0ff8b2e0b57b2f7939552759a426"},
-    {file = "deepsearch_glm-1.0.0-cp312-cp312-macosx_13_0_x86_64.whl", hash = "sha256:56d9575df9eceb8c2ae33e3d15e133924cc195714c3d268599b6f8414c1f6bb8"},
-    {file = "deepsearch_glm-1.0.0-cp312-cp312-macosx_14_0_arm64.whl", hash = "sha256:51f5c6522f60ba73eb12eeb7217bd98d871ba7c078337a4059d05878d8baf2d6"},
-    {file = "deepsearch_glm-1.0.0-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:c6211eaf497ad7cfcb68f80f9b5387940be0204fe149a9fc03988a95145f410a"},
-    {file = "deepsearch_glm-1.0.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:1b003bf457fce61ea4de79e2d7d0228a1ae349f677eb6570e745f79d4429804f"},
-    {file = "deepsearch_glm-1.0.0-cp312-cp312-win_amd64.whl", hash = "sha256:9d61f66048e6ab60fe9f84c823fd593bf8517755833bd9efb59156d77a2b42d0"},
-    {file = "deepsearch_glm-1.0.0-cp313-cp313-macosx_13_0_x86_64.whl", hash = "sha256:7d558e8b365c27ee665d0589165fd074fb252c73715f9cc6aeb4304a63683f37"},
-    {file = "deepsearch_glm-1.0.0-cp313-cp313-macosx_14_0_arm64.whl", hash = "sha256:3199093a9472e5756214b9b6563f827c19c001c7dd8ae00e03eed1140c12930d"},
-    {file = "deepsearch_glm-1.0.0-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:7f18d1ee68a0479592e0c714e6cbf9e2d0fa8edd692d580da64431c84cbef5c2"},
-    {file = "deepsearch_glm-1.0.0-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:62c1c0ea0a544219da15c017632f9e0be116ecdc335b865c6c5760429557fe23"},
-    {file = "deepsearch_glm-1.0.0-cp313-cp313-win_amd64.whl", hash = "sha256:962f393dcec2204de1a5cb0f635c65258bde2424ad2d4e0f5df770139c3958de"},
-    {file = "deepsearch_glm-1.0.0-cp39-cp39-macosx_13_0_x86_64.whl", hash = "sha256:4d328336950975c583d318a70e3511075d1ac1c599c2090a2a7928a4662fe8f2"},
-    {file = "deepsearch_glm-1.0.0-cp39-cp39-macosx_14_0_arm64.whl", hash = "sha256:748d077a4cacd714ff23a095c873549c176fa5ffe1a656be1bd11873148e58db"},
-    {file = "deepsearch_glm-1.0.0-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:1c0953d1983e902327f0cc152ff8267056ec2699106eefc70a41eec6eebdbe1b"},
-    {file = "deepsearch_glm-1.0.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:105c50b2e5b8f9a6ea5fb0b755a9cd38a1fb12ecb07f1a13d1290ad3cdfeaa90"},
-    {file = "deepsearch_glm-1.0.0-cp39-cp39-win_amd64.whl", hash = "sha256:25bb899317f6af062083daa578f343c93a2b12755c174549fb58596de0bc7b9d"},
-    {file = "deepsearch_glm-1.0.0-pp310-pypy310_pp73-win_amd64.whl", hash = "sha256:e2315cc4ffe7032dada294a0cd72a47dbc6c0121fd07d4b5719f9a9e9519d091"},
-    {file = "deepsearch_glm-1.0.0-pp39-pypy39_pp73-win_amd64.whl", hash = "sha256:707b92f51bacbd0f799ee3351474766bf916ef82f97c1bcc0e7696532ba03535"},
-    {file = "deepsearch_glm-1.0.0.tar.gz", hash = "sha256:e8dce88ac519a693c260f28bd3c4ec409811e65ade84fb508f6c6e37ca065e62"},
-]
-
-[package.dependencies]
-pywin32 = {version = ">=307,<308", markers = "sys_platform == \"win32\""}
-
-[package.extras]
-docling = ["docling-core (>=2.0,<3.0)", "pandas (>=1.5.1,<3.0.0)"]
-pyplot = ["matplotlib (>=3.7.1,<4.0.0)"]
-toolkit = ["deepsearch-toolkit (>=1.1.0,<2.0.0)", "python-dotenv (>=1.0.0,<2.0.0)"]
-utils = ["pandas (>=1.5.1,<3.0.0)", "python-dotenv (>=1.0.0,<2.0.0)", "requests (>=2.32.3,<3.0.0)", "rich (>=13.7.0,<14.0.0)", "tabulate (>=0.8.9)", "tqdm (>=4.64.0,<5.0.0)"]
-
-[[package]]
 name = "deprecated"
 version = "1.2.18"
 description = "Python @deprecated decorator to deprecate old python classes, functions or methods."
@@ -608,23 +561,23 @@ websockets = ["websocket-client (>=1.3.0)"]
 
 [[package]]
 name = "docling"
-version = "2.21.0"
+version = "2.35.0"
 description = "SDK and CLI for parsing PDF, DOCX, HTML, and more, to a unified document representation for powering downstream workflows such as gen AI applications."
 optional = false
 python-versions = "<4.0,>=3.9"
 groups = ["main"]
 files = [
-    {file = "docling-2.21.0-py3-none-any.whl", hash = "sha256:d0e0b77885971e18058994810de35a0e0b3a12dec585a219b089d578121a3992"},
-    {file = "docling-2.21.0.tar.gz", hash = "sha256:bd9a4636692a52c27b40300f5b1017f9a9c4a09fad861a3d3f177264bd8331b1"},
+    {file = "docling-2.35.0-py3-none-any.whl", hash = "sha256:957ab3af090a882bd2cd205ce2ed3bd3be791d551efa8509aa45efa3c4edc4ea"},
+    {file = "docling-2.35.0.tar.gz", hash = "sha256:7eecbcce9e36366ea7f166994617aee174a42c18eac5988e359bedf3faebb4b0"},
 ]
 
 [package.dependencies]
-beautifulsoup4 = ">=4.12.3,<4.13.0"
+beautifulsoup4 = ">=4.12.3,<5.0.0"
 certifi = ">=2024.7.4"
-deepsearch-glm = ">=1.0.0,<2.0.0"
-docling-core = {version = ">=2.18.0,<3.0.0", extras = ["chunking"]}
-docling-ibm-models = ">=3.3.0,<4.0.0"
-docling-parse = ">=3.3.0,<4.0.0"
+click = "<8.2.0"
+docling-core = {version = ">=2.31.2,<3.0.0", extras = ["chunking"]}
+docling-ibm-models = ">=3.4.0,<4.0.0"
+docling-parse = ">=4.0.0,<5.0.0"
 easyocr = ">=1.7,<2.0"
 filetype = ">=1.2.0,<2.0.0"
 huggingface_hub = ">=0.23,<1"
@@ -632,9 +585,11 @@ lxml = ">=4.0.0,<6.0.0"
 marko = ">=2.1.2,<3.0.0"
 openpyxl = ">=3.1.5,<4.0.0"
 pandas = ">=2.1.4,<3.0.0"
-pillow = ">=10.0.0,<11.0.0"
+pillow = ">=10.0.0,<12.0.0"
+pluggy = ">=1.0.0,<2.0.0"
 pydantic = ">=2.0.0,<3.0.0"
 pydantic-settings = ">=2.3.0,<3.0.0"
+pylatexenc = ">=2.10,<3.0"
 pypdfium2 = ">=4.30.0,<5.0.0"
 python-docx = ">=1.1.2,<2.0.0"
 python-pptx = ">=1.0.2,<2.0.0"
@@ -642,24 +597,24 @@ requests = ">=2.32.2,<3.0.0"
 rtree = ">=1.3.0,<2.0.0"
 scipy = {version = ">=1.6.0,<2.0.0", markers = "python_version >= \"3.10\""}
 tqdm = ">=4.65.0,<5.0.0"
-typer = ">=0.12.5,<0.13.0"
+typer = ">=0.12.5,<0.16.0"
 
 [package.extras]
 ocrmac = ["ocrmac (>=1.0.0,<2.0.0) ; sys_platform == \"darwin\""]
 rapidocr = ["onnxruntime (>=1.7.0,<1.20.0) ; python_version < \"3.10\"", "onnxruntime (>=1.7.0,<2.0.0) ; python_version >= \"3.10\"", "rapidocr-onnxruntime (>=1.4.0,<2.0.0) ; python_version < \"3.13\""]
 tesserocr = ["tesserocr (>=2.7.1,<3.0.0)"]
-vlm = ["transformers (>=4.42.0,<4.43.0) ; sys_platform == \"darwin\" and platform_machine == \"x86_64\"", "transformers (>=4.46.0,<5.0.0) ; sys_platform != \"darwin\" or platform_machine != \"x86_64\""]
+vlm = ["accelerate (>=1.2.1,<2.0.0) ; sys_platform != \"darwin\" or platform_machine != \"x86_64\"", "transformers (>=4.42.0,<4.43.0) ; sys_platform == \"darwin\" and platform_machine == \"x86_64\"", "transformers (>=4.46.0,<5.0.0) ; sys_platform != \"darwin\" or platform_machine != \"x86_64\""]
 
 [[package]]
 name = "docling-core"
-version = "2.18.1"
+version = "2.33.0"
 description = "A python library to define and validate data types in Docling."
 optional = false
 python-versions = "<4.0,>=3.9"
 groups = ["main"]
 files = [
-    {file = "docling_core-2.18.1-py3-none-any.whl", hash = "sha256:6083ca0bed7534cd923dd06d348960cfe8ff598ba19c22a81b799747e698204a"},
-    {file = "docling_core-2.18.1.tar.gz", hash = "sha256:c2cc3ff1aefa4a79a0d0c39046a9d158de48ac7d0bba225636dde0d42ef7df6c"},
+    {file = "docling_core-2.33.0-py3-none-any.whl", hash = "sha256:174c31379514d7552044aa21129c972a628265e2efea5059b4e0aef3685f8022"},
+    {file = "docling_core-2.33.0.tar.gz", hash = "sha256:f334ebb917d8a212ef2a3d7e77e6381fdbec202fff0d9b762998def02da61de1"},
 ]
 
 [package.dependencies]
@@ -673,25 +628,27 @@ pyyaml = ">=5.1,<7.0.0"
 semchunk = {version = ">=2.2.0,<3.0.0", optional = true, markers = "extra == \"chunking\""}
 tabulate = ">=0.9.0,<0.10.0"
 transformers = {version = ">=4.34.0,<5.0.0", optional = true, markers = "extra == \"chunking\""}
-typer = ">=0.12.5,<0.13.0"
+typer = ">=0.12.5,<0.16.0"
 typing-extensions = ">=4.12.2,<5.0.0"
 
 [package.extras]
 chunking = ["semchunk (>=2.2.0,<3.0.0)", "transformers (>=4.34.0,<5.0.0)"]
+chunking-openai = ["semchunk", "tiktoken (>=0.9.0,<0.10.0)"]
 
 [[package]]
 name = "docling-ibm-models"
-version = "3.3.2"
+version = "3.4.3"
 description = "This package contains the AI models used by the Docling PDF conversion package"
 optional = false
 python-versions = "<4.0,>=3.9"
 groups = ["main"]
 files = [
-    {file = "docling_ibm_models-3.3.2-py3-none-any.whl", hash = "sha256:9f82a2ef73c6cd8d729ab2fcc4223079ccb8b6eec0bf0643c56e55352b97b5cb"},
-    {file = "docling_ibm_models-3.3.2.tar.gz", hash = "sha256:f6ed59dfb3f98a71ccdd003c13c9a868e3003c22bd5adc554197da7eec227cde"},
+    {file = "docling_ibm_models-3.4.3-py3-none-any.whl", hash = "sha256:9a9a0cb0e892985f38adb1057d9c57be135a8f91283bad02fb738c2eac5709ec"},
+    {file = "docling_ibm_models-3.4.3.tar.gz", hash = "sha256:f172334f4a723ad3ab91304d759ca887cce9f283179d60cc7c7167d920b57909"},
 ]
 
 [package.dependencies]
+docling-core = ">=2.19.0,<3.0.0"
 huggingface_hub = ">=0.23,<1"
 jsonlines = ">=3.1.0,<4.0.0"
 numpy = [
@@ -700,55 +657,57 @@ numpy = [
 ]
 opencv-python-headless = ">=4.6.0.66,<5.0.0.0"
 Pillow = ">=10.0.0,<12.0.0"
+pydantic = ">=2.0.0,<3.0.0"
 safetensors = {version = ">=0.4.3,<1", extras = ["torch"]}
 torch = ">=2.2.2,<3.0.0"
 torchvision = ">=0,<1"
 tqdm = ">=4.64.0,<5.0.0"
 transformers = [
-    {version = ">=4.42.0,<5.0.0", markers = "sys_platform != \"darwin\" or platform_machine != \"x86_64\""},
-    {version = ">=4.42.0,<4.43.0", markers = "sys_platform == \"darwin\" and platform_machine == \"x86_64\""},
+    {version = ">=4.47.0,<5.0.0", markers = "python_version >= \"3.13\" and (sys_platform != \"darwin\" or platform_machine != \"x86_64\")"},
+    {version = ">=4.42.0,<5.0.0", markers = "(sys_platform != \"darwin\" or platform_machine != \"x86_64\") and python_version < \"3.13\""},
+    {version = ">=4.42.0,<4.43.0", markers = "python_version < \"3.13\" and sys_platform == \"darwin\" and platform_machine == \"x86_64\""},
 ]
 
 [[package]]
 name = "docling-parse"
-version = "3.3.1"
+version = "4.0.1"
 description = "Simple package to extract text with coordinates from programmatic PDFs"
 optional = false
 python-versions = "<4.0,>=3.9"
 groups = ["main"]
 files = [
-    {file = "docling_parse-3.3.1-cp310-cp310-macosx_13_0_x86_64.whl", hash = "sha256:abf3a0c9ea35fc33fbd288031096826688d1e787f7c51e174cc9fea6a22d2f67"},
-    {file = "docling_parse-3.3.1-cp310-cp310-macosx_14_0_arm64.whl", hash = "sha256:1e07cc6e3603ff246affa11bec25a82d90f79c6b92c370d993f2bd6318476b7c"},
-    {file = "docling_parse-3.3.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:338000deee0251f7e2ebdfde2bcd6392c388624206555410867cfc93608d84fe"},
-    {file = "docling_parse-3.3.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:46f14a9871e840a021a642ea0ece4b675cc9584224eba3b85cd269feda892b76"},
-    {file = "docling_parse-3.3.1-cp310-cp310-win_amd64.whl", hash = "sha256:c0bad3db594e05bca2366d46e630a0b8050b6eb37fcae2cbcd5020b06ac0879a"},
-    {file = "docling_parse-3.3.1-cp311-cp311-macosx_13_0_x86_64.whl", hash = "sha256:db0cebe28b299f78f1da58b5567c22de6f5b30aa5b6fe4fb2daae9f372bd022c"},
-    {file = "docling_parse-3.3.1-cp311-cp311-macosx_14_0_arm64.whl", hash = "sha256:72e901cc6dfac9e4f5e13ddd841f758b41484e61b7092b891c693e2c036461ac"},
-    {file = "docling_parse-3.3.1-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:fcfc7309b46e9b0941cc5513560b06f0b1c221ff3a2d5e516eb752ae7f2ccb81"},
-    {file = "docling_parse-3.3.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:76dc12fc510d08d1f76741dc429666a5791db003275067aa1f18da02b7a98925"},
-    {file = "docling_parse-3.3.1-cp311-cp311-win_amd64.whl", hash = "sha256:4c096f5c2460a6eb308e046e3045bb0100b6b602ef4394924cfd4846cee5800e"},
-    {file = "docling_parse-3.3.1-cp312-cp312-macosx_13_0_x86_64.whl", hash = "sha256:3cc23f0d6aa91d015117b8962162bf4a482e2208d2068abfada34fda112ef077"},
-    {file = "docling_parse-3.3.1-cp312-cp312-macosx_14_0_arm64.whl", hash = "sha256:7a62afe01b6f008f3f50a12e3d8feddb28d045bc2b96321d48933ab23ff1e201"},
-    {file = "docling_parse-3.3.1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:fd93d2a23a22b84c61213fa62db906ae444201e4e404d7dc2b6152d64d69ec50"},
-    {file = "docling_parse-3.3.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:87a8678b8e37a1f0bd41fb0227938a7bba0dc7e6f6ce69777b1ee947ef0e28ef"},
-    {file = "docling_parse-3.3.1-cp312-cp312-win_amd64.whl", hash = "sha256:c6ae62864d3d0e1e3bfb467e217c90ae938b0773c671412ff3ca110081b024ea"},
-    {file = "docling_parse-3.3.1-cp313-cp313-macosx_13_0_x86_64.whl", hash = "sha256:79cc92e3b1d3d8957df11c8dfd5c8f89aaae06d5ac49f019a59a0aad301ba59c"},
-    {file = "docling_parse-3.3.1-cp313-cp313-macosx_14_0_arm64.whl", hash = "sha256:8d8b988ca77dd88111fb8e5d961806fcb26b3ea146841d7d304d1d52b82ed27b"},
-    {file = "docling_parse-3.3.1-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:781a88c3a4eb27dd09598fe5956f8cd874acb49c102c2d35ccf0fbbeb3fc714d"},
-    {file = "docling_parse-3.3.1-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:cb803dd61d79a7f876ff7febb4ce2f43de19646f05196031f35b891a8c24b57a"},
-    {file = "docling_parse-3.3.1-cp313-cp313-win_amd64.whl", hash = "sha256:2052d3dc4711975fdcfa343947a1fbb9502c6a81ccc5834af41615868e61fb94"},
-    {file = "docling_parse-3.3.1-cp39-cp39-macosx_13_0_x86_64.whl", hash = "sha256:7ccb186369f706b5df8d6751c6cfff2a4355c3c843c68b0210e3f53a2bdf9bf6"},
-    {file = "docling_parse-3.3.1-cp39-cp39-macosx_14_0_arm64.whl", hash = "sha256:5a00c37ed9923f7d7317044135d8ff81829474d1d47730dfc8bd2d2a3e3e60cd"},
-    {file = "docling_parse-3.3.1-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:72beb63683f5e581c15d1c3370480dbe4457031f447944342a09bd23a66b378e"},
-    {file = "docling_parse-3.3.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:d5ac8f3bb64e50cf58959ce591574cb0ba3d6ebe9bdbedfabbff1817aaf34664"},
-    {file = "docling_parse-3.3.1-cp39-cp39-win_amd64.whl", hash = "sha256:24ea10d7bda2ea35c6cc24b8db3fdea4a1e05182890ea44364fcd703e5090e54"},
-    {file = "docling_parse-3.3.1-pp310-pypy310_pp73-win_amd64.whl", hash = "sha256:048157bc8640e3c03c082b4296f9f8946516c624a5469e10c7c9a32dcb0dc5c8"},
-    {file = "docling_parse-3.3.1-pp39-pypy39_pp73-win_amd64.whl", hash = "sha256:c6f293644856d05a1fced3e100dd052374da793e7e3a0e6023c69b9d3eb64881"},
-    {file = "docling_parse-3.3.1.tar.gz", hash = "sha256:536f581e7564cbfd37bff2e79d2cb17e7dbaa0d34d054cfdb28d648da31da85b"},
+    {file = "docling_parse-4.0.1-cp310-cp310-macosx_13_0_x86_64.whl", hash = "sha256:bd6faa40bf305a47b0ecd4f3ddbd6680ea6052ba70ec3e355e502eb80ca1c648"},
+    {file = "docling_parse-4.0.1-cp310-cp310-macosx_14_0_arm64.whl", hash = "sha256:ebf6c7b971c665fd1b0ddb90ba3ba0d5afba9e62ae281453e2a2ea57c46ada2b"},
+    {file = "docling_parse-4.0.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:76b4c67be28081d34019511aff7cd1548c3ac428c768cefdb491787138f23517"},
+    {file = "docling_parse-4.0.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:774d174626a9826b2140a5f3215c02de7159f16071a382242e7dc263be7af843"},
+    {file = "docling_parse-4.0.1-cp310-cp310-win_amd64.whl", hash = "sha256:79d97cc8efe9fca5bcfd549853492475431fdacdb15fd1a42d4b721273d112a6"},
+    {file = "docling_parse-4.0.1-cp311-cp311-macosx_13_0_x86_64.whl", hash = "sha256:59ddcdd41f4fe81086c67e453b835217e6b462fbb86563930034b1c85e37a8f8"},
+    {file = "docling_parse-4.0.1-cp311-cp311-macosx_14_0_arm64.whl", hash = "sha256:34210ccd2877facf8d23eb69b3f1c92932778d314022df4804aa71134de0514f"},
+    {file = "docling_parse-4.0.1-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:c6c367cb836de1f3dcbd3b2daa268226c60eccf38f992baef6c1fc0a60f74c97"},
+    {file = "docling_parse-4.0.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b9681cf60186f9fd31bfb4df9d61fdd6e16c0c96819e93642062c110715ee233"},
+    {file = "docling_parse-4.0.1-cp311-cp311-win_amd64.whl", hash = "sha256:afa7ab1cc625eb4559a5253df13edcf06298c44a15e14258db2ae8c187c517ca"},
+    {file = "docling_parse-4.0.1-cp312-cp312-macosx_13_0_x86_64.whl", hash = "sha256:892add674f8db9ac7335b2d2d069a0b65ac6ab1373155b8e94eabaf4eb925f1c"},
+    {file = "docling_parse-4.0.1-cp312-cp312-macosx_14_0_arm64.whl", hash = "sha256:80bee0d95cb5eaeb8f72307904a3158497e4defd53eba0936e2dc2f16ee128f5"},
+    {file = "docling_parse-4.0.1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:541ca1e033386572cbfa2bffe27f5ac743482d3d8f5f8e2c2dacc74ab47b3fba"},
+    {file = "docling_parse-4.0.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:625d0738329f9d6d638129cbca488bb76d772cbd5ae56f2c20b7b95409958bb3"},
+    {file = "docling_parse-4.0.1-cp312-cp312-win_amd64.whl", hash = "sha256:514a104a9eccde9ed95a6d55fbb5924b32756133c4358b03be6d9372b3da5173"},
+    {file = "docling_parse-4.0.1-cp313-cp313-macosx_13_0_x86_64.whl", hash = "sha256:6061ca796149674f38e4b412e2971e387cc2d606278cd79001734543f69c8a73"},
+    {file = "docling_parse-4.0.1-cp313-cp313-macosx_14_0_arm64.whl", hash = "sha256:628c7690bbbb7e28938cb4fa84457407944cd8439c0453166bf1bd3da70c6834"},
+    {file = "docling_parse-4.0.1-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:6c3102030740919c01ab2eac875bf6e1996044ace83502799a4b37be0578d9bf"},
+    {file = "docling_parse-4.0.1-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:a9e9a4752c93918eaa05b4dfdfbb58c0dffdb043c39de455966c11cbd6863555"},
+    {file = "docling_parse-4.0.1-cp313-cp313-win_amd64.whl", hash = "sha256:afd222d4cde5c829ca77f83e3fb680597d567cc509a9d2fdd86ec2ad42e039bc"},
+    {file = "docling_parse-4.0.1-cp39-cp39-macosx_13_0_x86_64.whl", hash = "sha256:ab9573a26d2fba3164590541205d53563473f6266420daa152afe582f83467ea"},
+    {file = "docling_parse-4.0.1-cp39-cp39-macosx_14_0_arm64.whl", hash = "sha256:d79cac3c88f3fcc3718ae664483265b2eaae315ed1fc3a64d6572215fb1ea1af"},
+    {file = "docling_parse-4.0.1-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:c7c59ae3e51f215322c24f3084918e9abb1d3744069221717cd22875ab0c7cee"},
+    {file = "docling_parse-4.0.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:e60c329157a06f1a18b7f9cdc7c6a701ac259fc48c6ff8eaad91c1ef24b07fd7"},
+    {file = "docling_parse-4.0.1-cp39-cp39-win_amd64.whl", hash = "sha256:dffd8aaf97c9fca77efa03eaa2445cd969985865c64634d979354c3bb59e10ba"},
+    {file = "docling_parse-4.0.1-pp310-pypy310_pp73-win_amd64.whl", hash = "sha256:43eed0a933367d2e2a28b6926f92fd16377dc34c1b04be63be2d344708da0e63"},
+    {file = "docling_parse-4.0.1-pp39-pypy39_pp73-win_amd64.whl", hash = "sha256:54c7508b4e91daf2b12c5ca37b24a71f3627364102be1672e99f63440a92b827"},
+    {file = "docling_parse-4.0.1.tar.gz", hash = "sha256:df9fe33fb5ddf537780b8f4234af99488613f357d27c599ef7727ade361972b8"},
 ]
 
 [package.dependencies]
-docling-core = ">=2.14.0,<3.0.0"
+docling-core = ">=2.23.0,<3.0.0"
 pillow = ">=10.0.0,<12.0.0"
 pydantic = ">=2.0.0,<3.0.0"
 pywin32 = {version = ">=305", markers = "sys_platform == \"win32\""}
@@ -2576,7 +2535,7 @@ description = "CUBLAS native runtime libraries"
 optional = false
 python-versions = ">=3"
 groups = ["main"]
-markers = "platform_machine == \"x86_64\" and platform_system == \"Linux\""
+markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""
 files = [
     {file = "nvidia_cublas_cu12-12.4.5.8-py3-none-manylinux2014_aarch64.whl", hash = "sha256:0f8aa1706812e00b9f19dfe0cdb3999b092ccb8ca168c0db5b8ea712456fd9b3"},
     {file = "nvidia_cublas_cu12-12.4.5.8-py3-none-manylinux2014_x86_64.whl", hash = "sha256:2fc8da60df463fdefa81e323eef2e36489e1c94335b5358bcb38360adf75ac9b"},
@@ -2590,7 +2549,7 @@ description = "CUDA profiling tools runtime libs."
 optional = false
 python-versions = ">=3"
 groups = ["main"]
-markers = "platform_machine == \"x86_64\" and platform_system == \"Linux\""
+markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""
 files = [
     {file = "nvidia_cuda_cupti_cu12-12.4.127-py3-none-manylinux2014_aarch64.whl", hash = "sha256:79279b35cf6f91da114182a5ce1864997fd52294a87a16179ce275773799458a"},
     {file = "nvidia_cuda_cupti_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl", hash = "sha256:9dec60f5ac126f7bb551c055072b69d85392b13311fcc1bcda2202d172df30fb"},
@@ -2604,7 +2563,7 @@ description = "NVRTC native runtime libraries"
 optional = false
 python-versions = ">=3"
 groups = ["main"]
-markers = "platform_machine == \"x86_64\" and platform_system == \"Linux\""
+markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""
 files = [
     {file = "nvidia_cuda_nvrtc_cu12-12.4.127-py3-none-manylinux2014_aarch64.whl", hash = "sha256:0eedf14185e04b76aa05b1fea04133e59f465b6f960c0cbf4e37c3cb6b0ea198"},
     {file = "nvidia_cuda_nvrtc_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl", hash = "sha256:a178759ebb095827bd30ef56598ec182b85547f1508941a3d560eb7ea1fbf338"},
@@ -2618,7 +2577,7 @@ description = "CUDA Runtime native Libraries"
 optional = false
 python-versions = ">=3"
 groups = ["main"]
-markers = "platform_machine == \"x86_64\" and platform_system == \"Linux\""
+markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""
 files = [
     {file = "nvidia_cuda_runtime_cu12-12.4.127-py3-none-manylinux2014_aarch64.whl", hash = "sha256:961fe0e2e716a2a1d967aab7caee97512f71767f852f67432d572e36cb3a11f3"},
     {file = "nvidia_cuda_runtime_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl", hash = "sha256:64403288fa2136ee8e467cdc9c9427e0434110899d07c779f25b5c068934faa5"},
@@ -2632,7 +2591,7 @@ description = "cuDNN runtime libraries"
 optional = false
 python-versions = ">=3"
 groups = ["main"]
-markers = "platform_machine == \"x86_64\" and platform_system == \"Linux\""
+markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""
 files = [
     {file = "nvidia_cudnn_cu12-9.1.0.70-py3-none-manylinux2014_x86_64.whl", hash = "sha256:165764f44ef8c61fcdfdfdbe769d687e06374059fbb388b6c89ecb0e28793a6f"},
     {file = "nvidia_cudnn_cu12-9.1.0.70-py3-none-win_amd64.whl", hash = "sha256:6278562929433d68365a07a4a1546c237ba2849852c0d4b2262a486e805b977a"},
@@ -2648,7 +2607,7 @@ description = "CUFFT native runtime libraries"
 optional = false
 python-versions = ">=3"
 groups = ["main"]
-markers = "platform_machine == \"x86_64\" and platform_system == \"Linux\""
+markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""
 files = [
     {file = "nvidia_cufft_cu12-11.2.1.3-py3-none-manylinux2014_aarch64.whl", hash = "sha256:5dad8008fc7f92f5ddfa2101430917ce2ffacd86824914c82e28990ad7f00399"},
     {file = "nvidia_cufft_cu12-11.2.1.3-py3-none-manylinux2014_x86_64.whl", hash = "sha256:f083fc24912aa410be21fa16d157fed2055dab1cc4b6934a0e03cba69eb242b9"},
@@ -2665,7 +2624,7 @@ description = "CURAND native runtime libraries"
 optional = false
 python-versions = ">=3"
 groups = ["main"]
-markers = "platform_machine == \"x86_64\" and platform_system == \"Linux\""
+markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""
 files = [
     {file = "nvidia_curand_cu12-10.3.5.147-py3-none-manylinux2014_aarch64.whl", hash = "sha256:1f173f09e3e3c76ab084aba0de819c49e56614feae5c12f69883f4ae9bb5fad9"},
     {file = "nvidia_curand_cu12-10.3.5.147-py3-none-manylinux2014_x86_64.whl", hash = "sha256:a88f583d4e0bb643c49743469964103aa59f7f708d862c3ddb0fc07f851e3b8b"},
@@ -2679,7 +2638,7 @@ description = "CUDA solver native runtime libraries"
 optional = false
 python-versions = ">=3"
 groups = ["main"]
-markers = "platform_machine == \"x86_64\" and platform_system == \"Linux\""
+markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""
 files = [
     {file = "nvidia_cusolver_cu12-11.6.1.9-py3-none-manylinux2014_aarch64.whl", hash = "sha256:d338f155f174f90724bbde3758b7ac375a70ce8e706d70b018dd3375545fc84e"},
     {file = "nvidia_cusolver_cu12-11.6.1.9-py3-none-manylinux2014_x86_64.whl", hash = "sha256:19e33fa442bcfd085b3086c4ebf7e8debc07cfe01e11513cc6d332fd918ac260"},
@@ -2698,7 +2657,7 @@ description = "CUSPARSE native runtime libraries"
 optional = false
 python-versions = ">=3"
 groups = ["main"]
-markers = "platform_machine == \"x86_64\" and platform_system == \"Linux\""
+markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""
 files = [
     {file = "nvidia_cusparse_cu12-12.3.1.170-py3-none-manylinux2014_aarch64.whl", hash = "sha256:9d32f62896231ebe0480efd8a7f702e143c98cfaa0e8a76df3386c1ba2b54df3"},
     {file = "nvidia_cusparse_cu12-12.3.1.170-py3-none-manylinux2014_x86_64.whl", hash = "sha256:ea4f11a2904e2a8dc4b1833cc1b5181cde564edd0d5cd33e3c168eff2d1863f1"},
@@ -2715,7 +2674,7 @@ description = "NVIDIA cuSPARSELt"
 optional = false
 python-versions = "*"
 groups = ["main"]
-markers = "platform_machine == \"x86_64\" and platform_system == \"Linux\""
+markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""
 files = [
     {file = "nvidia_cusparselt_cu12-0.6.2-py3-none-manylinux2014_aarch64.whl", hash = "sha256:067a7f6d03ea0d4841c85f0c6f1991c5dda98211f6302cb83a4ab234ee95bef8"},
     {file = "nvidia_cusparselt_cu12-0.6.2-py3-none-manylinux2014_x86_64.whl", hash = "sha256:df2c24502fd76ebafe7457dbc4716b2fec071aabaed4fb7691a201cde03704d9"},
@@ -2729,7 +2688,7 @@ description = "NVIDIA Collective Communication Library (NCCL) Runtime"
 optional = false
 python-versions = ">=3"
 groups = ["main"]
-markers = "platform_machine == \"x86_64\" and platform_system == \"Linux\""
+markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""
 files = [
     {file = "nvidia_nccl_cu12-2.21.5-py3-none-manylinux2014_x86_64.whl", hash = "sha256:8579076d30a8c24988834445f8d633c697d42397e92ffc3f63fa26766d25e0a0"},
 ]
@@ -2741,7 +2700,7 @@ description = "Nvidia JIT LTO Library"
 optional = false
 python-versions = ">=3"
 groups = ["main"]
-markers = "platform_machine == \"x86_64\" and platform_system == \"Linux\""
+markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""
 files = [
     {file = "nvidia_nvjitlink_cu12-12.4.127-py3-none-manylinux2014_aarch64.whl", hash = "sha256:4abe7fef64914ccfa909bc2ba39739670ecc9e820c83ccc7a6ed414122599b83"},
     {file = "nvidia_nvjitlink_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl", hash = "sha256:06b3b9b25bf3f8af351d664978ca26a16d2c5127dbd53c0497e28d1fb9611d57"},
@@ -2755,7 +2714,7 @@ description = "NVIDIA Tools Extension"
 optional = false
 python-versions = ">=3"
 groups = ["main"]
-markers = "platform_machine == \"x86_64\" and platform_system == \"Linux\""
+markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""
 files = [
     {file = "nvidia_nvtx_cu12-12.4.127-py3-none-manylinux2014_aarch64.whl", hash = "sha256:7959ad635db13edf4fc65c06a6e9f9e55fc2f92596db928d169c0bb031e88ef3"},
     {file = "nvidia_nvtx_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl", hash = "sha256:781e950d9b9f60d8241ccea575b32f5105a5baf4c2351cab5256a24869f12a1a"},
@@ -3080,6 +3039,22 @@ mic = ["olefile"]
 tests = ["check-manifest", "coverage", "defusedxml", "markdown2", "olefile", "packaging", "pyroma", "pytest", "pytest-cov", "pytest-timeout"]
 typing = ["typing-extensions ; python_version < \"3.10\""]
 xmp = ["defusedxml"]
+
+[[package]]
+name = "pluggy"
+version = "1.6.0"
+description = "plugin and hook calling mechanisms for python"
+optional = false
+python-versions = ">=3.9"
+groups = ["main"]
+files = [
+    {file = "pluggy-1.6.0-py3-none-any.whl", hash = "sha256:e920276dd6813095e9377c0bc5566d94c932c33b27a3e3945d8389c374dd4746"},
+    {file = "pluggy-1.6.0.tar.gz", hash = "sha256:7dcc130b76258d33b90f61b658791dede3486c3e6bfb003ee5c9bfb396dd22f3"},
+]
+
+[package.extras]
+dev = ["pre-commit", "tox"]
+testing = ["coverage", "pytest", "pytest-benchmark"]
 
 [[package]]
 name = "prompt-toolkit"
@@ -3532,6 +3507,17 @@ files = [
 
 [package.extras]
 windows-terminal = ["colorama (>=0.4.6)"]
+
+[[package]]
+name = "pylatexenc"
+version = "2.10"
+description = "Simple LaTeX parser providing latex-to-unicode and unicode-to-latex conversion"
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "pylatexenc-2.10.tar.gz", hash = "sha256:3dd8fd84eb46dc30bee1e23eaab8d8fb5a7f507347b23e5f38ad9675c84f40d3"},
+]
 
 [[package]]
 name = "pyparsing"
@@ -4862,7 +4848,7 @@ description = ""
 optional = false
 python-versions = ">=3.7"
 groups = ["main"]
-markers = "sys_platform == \"darwin\" and platform_machine == \"x86_64\""
+markers = "python_version < \"3.13\" and sys_platform == \"darwin\" and platform_machine == \"x86_64\""
 files = [
     {file = "tokenizers-0.19.1-cp310-cp310-macosx_10_12_x86_64.whl", hash = "sha256:952078130b3d101e05ecfc7fc3640282d74ed26bcf691400f872563fca15ac97"},
     {file = "tokenizers-0.19.1-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:82c8b8063de6c0468f08e82c4e198763e7b97aabfe573fd4cf7b33930ca4df77"},
@@ -4981,7 +4967,7 @@ description = ""
 optional = false
 python-versions = ">=3.7"
 groups = ["main"]
-markers = "sys_platform != \"darwin\" or platform_machine != \"x86_64\""
+markers = "sys_platform != \"darwin\" or platform_machine != \"x86_64\" or python_version >= \"3.13\""
 files = [
     {file = "tokenizers-0.21.0-cp39-abi3-macosx_10_12_x86_64.whl", hash = "sha256:3c4c93eae637e7d2aaae3d376f06085164e1660f89304c0ab2b1d08a406636b2"},
     {file = "tokenizers-0.21.0-cp39-abi3-macosx_11_0_arm64.whl", hash = "sha256:f53ea537c925422a2e0e92a24cce96f6bc5046bbef24a1652a5edc8ba975f62e"},
@@ -5138,7 +5124,7 @@ description = "State-of-the-art Machine Learning for JAX, PyTorch and TensorFlow
 optional = false
 python-versions = ">=3.8.0"
 groups = ["main"]
-markers = "sys_platform == \"darwin\" and platform_machine == \"x86_64\""
+markers = "python_version < \"3.13\" and sys_platform == \"darwin\" and platform_machine == \"x86_64\""
 files = [
     {file = "transformers-4.42.4-py3-none-any.whl", hash = "sha256:6d59061392d0f1da312af29c962df9017ff3c0108c681a56d1bc981004d16d24"},
     {file = "transformers-4.42.4.tar.gz", hash = "sha256:f956e25e24df851f650cb2c158b6f4352dfae9d702f04c113ed24fc36ce7ae2d"},
@@ -5208,7 +5194,7 @@ description = "State-of-the-art Machine Learning for JAX, PyTorch and TensorFlow
 optional = false
 python-versions = ">=3.9.0"
 groups = ["main"]
-markers = "sys_platform != \"darwin\" or platform_machine != \"x86_64\""
+markers = "sys_platform != \"darwin\" or platform_machine != \"x86_64\" or python_version >= \"3.13\""
 files = [
     {file = "transformers-4.48.3-py3-none-any.whl", hash = "sha256:78697f990f5ef350c23b46bf86d5081ce96b49479ab180b2de7687267de8fd36"},
     {file = "transformers-4.48.3.tar.gz", hash = "sha256:a5e8f1e9a6430aa78215836be70cecd3f872d99eeda300f41ad6cc841724afdb"},
@@ -5279,7 +5265,7 @@ description = "A language and compiler for custom Deep Learning operations"
 optional = false
 python-versions = "*"
 groups = ["main"]
-markers = "platform_machine == \"x86_64\" and platform_system == \"Linux\""
+markers = "platform_system == \"Linux\" and platform_machine == \"x86_64\""
 files = [
     {file = "triton-3.2.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b3e54983cd51875855da7c68ec05c05cf8bb08df361b1d5b69e05e40b0c9bd62"},
     {file = "triton-3.2.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:8009a1fb093ee8546495e96731336a33fb8856a38e45bb4ab6affd6dbc3ba220"},
@@ -5632,4 +5618,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12"
-content-hash = "dccea5ca79c73c4dc0c0479c43158bb5d14e7b398aca4e5bed15fc95d7f20ef3"
+content-hash = "060a901eab2411b8cd7bea7c8f1a18fc1188f65757c356bf729b8f0652b70691"
