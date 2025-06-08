@@ -14,6 +14,7 @@ import boto3
 import mistletoe
 import openai
 import tiktoken
+import typer
 from docling.datamodel.base_models import InputFormat
 from docling.datamodel.pipeline_options import (PdfPipelineOptions,
                                                 TableFormerMode)
@@ -46,6 +47,7 @@ SUMMARY_MODEL = "meta-llama/llama-3.3-70b-instruct"
 MAPPINGS_MODEL = "meta-llama/llama-3.3-70b-instruct"
 MAX_CONCURRENT_LLM_CALLS = 40
 
+app = typer.Typer()
 # =============== PDF to Markdown Extraction =============== #
 def ocr(md_path: Path, overwrite: bool = False) -> str:
     """
@@ -318,6 +320,7 @@ def generate_and_store_summary(document: Document, filepath: str) -> Document:  
     """
     try:
         # Call OpenAI API
+        print(f"Creating summary for documment {document.filename}")
         document = add_summaries(document, SUMMARY_MODEL)
         save_pydantic_object(document, filepath)  # Save updated document
         return document
@@ -345,8 +348,8 @@ def generate_or_load_summary_documents(
     obj_paths_docs = get_object_paths(documents, base_dir)
     for path, doc in obj_paths_docs:
         loaded_document = try_loading_document_object(path)
-        if loaded_document:
-            print(loaded_document.filename)
+        # if loaded_document:
+        #     print(loaded_document.filename)
         if loaded_document and loaded_document.has_summaries and not overwrite:
             results.append(loaded_document)
         else:
@@ -389,8 +392,7 @@ def load_or_create_aggregations(mappings_store, docs_with_summaries):
     print("aggregation following")
     pass
 
-
-def process_documents(input_dir: Path, md_dir: Path, curriculum) -> None:
+def process_documents(input_dir: Path, md_dir: Path, curriculum, create_new_mappings : bool) -> None:
     """
     Main processing pipeline for documents.
 
@@ -410,12 +412,20 @@ def process_documents(input_dir: Path, md_dir: Path, curriculum) -> None:
     print("Create or load Summaries")
     docs_with_summaries = process_markdown(md_path_markdown_tuples)
     # Create the mappings file
-    print(docs_with_summaries[0])
+    # print(docs_with_summaries[0])
     print("Create Mappings")
-    mappings_store = asyncio.run(load_or_create_mappings_for_docs(docs_with_summaries, curriculum, MAPPINGS_MODEL, MAX_CONCURRENT_LLM_CALLS = MAX_CONCURRENT_LLM_CALLS))
+    mappings_store = asyncio.run(load_or_create_mappings_for_docs(docs_with_summaries, curriculum,
+                                                                  MAPPINGS_MODEL, MAX_CONCURRENT_LLM_CALLS = MAX_CONCURRENT_LLM_CALLS, create_new_mappings = create_new_mappings))
     #aggregations = load_or_create_aggregations(mappings_store, docs_with_summaries)
 
-def main():
+@app.command()
+def main(create_new_mappings: bool = typer.Option(
+        False, # Default value is False (meaning, DO create new aggregations by default)
+        "--create-new-mappings", # CLI flag names
+        "-M",
+        help="If set potentially new and missing mappings will be created and stored."
+             "Default is to create no new mappings."
+    )):
     # mlflow.pydantic_ai.autolog()
     # mlflow.set_tracking_uri("http://localhost:8080")
     # mlflow.set_experiment("PydanticAI")
@@ -425,7 +435,7 @@ def main():
     # Load desired curriculum
     curriculum = load_curriculum()
     # Run processing
-    process_documents(input_dir, md_dir, curriculum)
+    process_documents(input_dir, md_dir, curriculum, create_new_mappings)
 
 if __name__ == "__main__":
-    main()
+    app()

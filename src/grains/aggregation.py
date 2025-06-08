@@ -1,72 +1,23 @@
-from typing import List, Tuple
-from pydantic import BaseModel
-
-from grains.data_structures import Curriculum, Path, Document, RelevanceStore
-from uuid import UUID 
-import json
+import asyncio
 import copy
-import os 
 import glob
-import glob
+import json
+import os
+from collections import defaultdict
+from typing import List, Tuple
+from uuid import UUID
+
 from dotenv import load_dotenv
-
-import asyncio 
-
+from pydantic import BaseModel
 from pydantic_ai import Agent
 from pydantic_ai.models.openai import OpenAIModel
 from pydantic_ai.providers.openai import OpenAIProvider
 
-from grains.utils import load_curriculum
+from grains.clients import client
+from grains.data_structures import (Curriculum, Document, Module, Path,
+                                    RelevanceStore, Topic)
+from grains.utils import load_curriculum, load_documents_from_obj_dir
 
-def load_documents_from_dir(json_dir: Path) -> list[Document]:
-    """
-    Loads all JSON files from a directory and parses them into Document objects.
-
-    Args:
-        json_dir (Path): Path to the directory containing JSON files.
-
-    Returns:
-        List[Document]: List of validated Document objects.
-    """
-    documents = []
-    for json_file in json_dir.glob("*.json"):
-        try:
-            with open(json_file, "r", encoding="utf-8") as f:
-                data = json.load(f)
-            doc = Document.model_validate(data)
-            documents.append(doc)
-        except Exception as e:
-            print(f"Failed to load {json_file.name}: {e}")
-    return documents
-
-def get_relevant_sections(map_store: RelevanceStore, threshold):
-    '''
-    Exracts all relevant mappings with relevance score higher than the threshold.
-    
-    Args: 
-        map_store (RelevanceStore). pydantic Relevance store object containing all mappings
-
-    Output: 
-        relevance (List): An orderd list containing 
-                - moduleId 
-                - documentId
-                - sectionId
-                - topicId
-            from the mappings with score >= threshold
-    '''
-    mapp = map_store.mappings
-    relevant: List[Tuple[UUID,UUID,UUID,UUID]] = []
-    for key in mapp:
-        r_score = mapp[key].relevance_score
-        if r_score >= threshold:
-            relevant.append((mapp[key].module_id,
-                mapp[key].document_id,
-                mapp[key].section_id,
-                mapp[key].topic_id))
-    
-    relevant_sorted = sorted(relevant, key=lambda x: (x[0], x[1])) 
-
-    return relevant_sorted 
 
 def insert_section_content(cur: Curriculum, relevant, docs):
     '''
@@ -165,39 +116,104 @@ async def process_curriculum(source_cur: Curriculum, target_cur: Curriculum, age
 
     return target_cur
 
+from typing import List
 
 
-async def main():
+def make_aggregation_prompt(module_name: str, topic_name: str, topic_description: str, rel_docs: List[Document]) -> dict:
+    # Build the SYSTEM prompt
+    system_prompt = (
+        "You are an expert curriculum content integrator. "
+        "Your job is to synthesize and aggregate all relevant knowledge from the provided document sections "
+        "to create a cohesive, comprehensive, and logically structured learning document for a specific topic. "
+        "Filter information for relevance to the topic, eliminate redundancy, and organize content clearly with appropriate headings. "
+        "Do NOT simply concatenate the source material. Use clear academic or professional language for hospitality education."
+    )
 
+    # Build the USER prompt (with embedded variable values)
+    user_prompt = f"""\
+Module Name: {module_name}
+Topic Name: {topic_name}
+Topic Description:
+{topic_description}
+
+Here are relevant documents, each with a summary and several sections. Each section includes a summary and the full content.
+Aggregate and synthesize the topic-relevant points into ONE coherent learning document. Structure the document for clarity and flow. Avoid redundancy.
+
+Relevant documents and sections:
+"""
+
+    for doc in rel_docs:
+        user_prompt += f"\n---\nDocument: {doc.filename or doc.summary_title or 'Untitled'}\n"
+        if doc.summary_title:
+            user_prompt += f"Document Title: {doc.summary_title}\n"
+        if doc.summary:
+            user_prompt += f"Document Summary:\n{doc.summary}\n"
+        user_prompt += f"Sections:\n"
+        for sec in doc.sections:
+            user_prompt += (
+                f"\n### {sec.title or 'Untitled Section'}"
+                f"\n#### Summary:\n{sec.summary or '(No summary provided)'}"
+                f"\n#### Content:\n{sec.content or '(No content provided)'}\n"
+            )
+    user_prompt += (
+        "\n---\n"
+        f"Now, aggregate and synthesize the above information into a single, structured educational document relevant to the topic: \"{topic_name}\".\n"
+        "If possible, use subheadings, paragraphs, and clear transitions."
+    )
+
+    return {
+        "system_prompt": system_prompt,
+        "user_prompt": user_prompt
+    }
+
+
+
+def main(mappings_store_file_path: str = "data/mappings.json", dir : Path = Path("data/objects")):
     """Main function to execute the entire process"""
+    MODEL: str = "google/gemini-2.5-flash-preview-05-20"
+    curriculum = load_curriculum()
+    test_module = curriculum.modules[1]
+    test_section = test_module.topics[3]
+    docs = load_documents_from_obj_dir(dir)
+    store = RelevanceStore.create_store_from_json(mappings_store_file_path)
+    print(store)
+    THRESHOLD = 0.8
+    print(f"Threshold {THRESHOLD}\n")
+    to_be_aggregated = defaultdict(dict)
+    for module in curriculum.modules:
+        print(f"Module {module.name}:")
+        for topic in module.topics:
+            releveant = store.get_relevant_section_ids(topic.id, min_score=THRESHOLD)
+            padding_width = 4-len(str(len(releveant)))
+            padding_spaces = " " * padding_width
+            print(f"{len(releveant)}{padding_spaces} relevant sections for topic {topic.name}.")
+            to_be_aggregated[module.name][topic.name] = store.get_relevant_section_ids_per_doc(topic.id, min_score=THRESHOLD, docs=docs)
+        print()
+    print(f"Module:\n'{test_module.name}':\nSection:\n'{test_section.name}'")
+    docs_for_section = to_be_aggregated[test_module.name][test_section.name]
+    non_relevant_documents = []
+    for doc in docs_for_section:
+        if(len(doc.sections)>0):
+            padding_width = 10-len(f"{len(doc.sections)}/{doc.tokens}")
+            padding_spaces = " " * padding_width
+            print(f"{len(doc.sections)}/{doc.tokens}{padding_spaces}[rel.sections/tokens] for doc '{doc.filename}'")
+            #print(f"{doc.summary}")
+        else:
+            non_relevant_documents.append(doc)
+    print(f"{len(non_relevant_documents)}/{len(docs)} documents have no relevant sections.")
+    test = [[sec.content for sec in doc.sections] for doc in docs_for_section if doc.filename in ["1771058994_0"]]
+    #print(test)
 
-    MODEL: str = "meta-llama/llama-3.3-70b-instruct"
 
-    agent = Agent(
-               OpenAIModel(
-                   MODEL,
-                   provider=OpenAIProvider(
-                       base_url="https://openrouter.ai/api/v1",
-                       api_key=os.getenv("OPENAI_API_KEY")
-                   ),
-               )
-       )
 
-    source_cur = load_curriculum()
-    target_cur = load_curriculum()
+    text = store.create_aggregated_document(module.name, topic.name, curriculum, docs, THRESHOLD, client, MODEL)
+    print(text)
 
-    dir = Path("data/objects")
-    docs = load_documents_from_dir(dir)
+    # source_cur = insert_section_content(cur=source_cur,relevant=relevant,docs=docs)
+    # target_cur = await process_curriculum(source_cur=source_cur,target_cur=target_cur,agent=agent)
+    # # Save the result
+    # with open("data/target/curicculum-house-keeping-with-content.json", 'w', encoding='utf-8') as f:
+    #     json.dump(target_cur, f, indent=3, ensure_ascii=False)
 
-    mapping_store = RelevanceStore.create_store_from_json("data/mappings.json")
-    relevant = get_relevant_sections(mapping_store, 0.8)
-    source_cur = insert_section_content(cur=source_cur,relevant=relevant,docs=docs)
-
-    target_cur = await process_curriculum(source_cur=source_cur,target_cur=target_cur,agent=agent)
-
-    # Save the result
-    with open("data/target/curicculum-house-keeping-with-content.json", 'w', encoding='utf-8') as f:
-        json.dump(target_cur, f, indent=3, ensure_ascii=False)
-    
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()

@@ -90,7 +90,7 @@ def analyze_documents(md_paths: Iterable[Path]) -> List[str]:
     return categories
 
 
-def count_okens_in_markdown(file_path: str, encoding_name: str = "cl100k_base") -> int:
+def count_tokens_in_markdown(file_path: str, encoding_name: str = "cl100k_base") -> int:
     """Counts the tokens of a markdown document."""
     with open(file_path, "r", encoding="utf-8") as f:
         content = f.read()

@@ -1,16 +1,17 @@
 # This sets up a global client using a .env file
 # If you're using a different file please enhance accordingly
 
-from openai import OpenAI
-import os 
+import os
+
 from dotenv import load_dotenv
+from openai import OpenAI
 
 load_dotenv()
 
-url = os.getenv("url")
-key = os.getenv("OPENAI_API_KEY")
+base_url="https://openrouter.ai/api/v1"
+api_key=os.getenv("OPENAI_API_KEY")
 
 client = OpenAI(
-  base_url=url,
-  api_key=key,
+  base_url=base_url,
+  api_key=api_key,
 )

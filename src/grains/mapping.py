@@ -76,7 +76,7 @@ async def _run_async_agent_with_semaphore(prompt: str, async_agent : Agent, stor
 
 
 async def create_mappings_store(
-        document: Document, curriculum: Curriculum, agent: Agent, store: RelevanceStore, sema : asyncio.Semaphore, lock : asyncio.Lock
+        document: Document, curriculum: Curriculum, agent: Agent, store: RelevanceStore, sema : asyncio.Semaphore, lock : asyncio.Lock, create_new_mappings : bool
 ) -> RelevanceStore:
     """
     Gathers all concurrent tasks and then executes them concurrently 
@@ -90,16 +90,25 @@ async def create_mappings_store(
         RelevanceStore: Updated RelevanceStore with new mappings.
     """
     tasks = []
+    mapped_document_sections = []
+    not_yet_mapped_document_sections = []
     for section in document.sections:
         for module in curriculum.modules:
-            if not store.section_already_mapped_to_module(section.id, module.id):
+            is_section_already_mapped = store.section_already_mapped_to_module(section.id, module.id)
+            if not is_section_already_mapped and create_new_mappings:
                 prompt = create_mapping_prompt(document.id, section, module)
                 tasks.append(asyncio.create_task(_run_async_agent_with_semaphore(prompt, agent, store, sema, lock)))
             else:
-                print(f"Section {section.id} already mapped to module {module.id}")
-
-    print(f"Running {len(tasks)} task for document {document.filename}")
+                if not is_section_already_mapped:
+                    # print(f"Section {section.id} not yet mapped to module {module.id}")
+                    not_yet_mapped_document_sections.append((section.id, module.id))
+                else:
+                    mapped_document_sections.append((section.id, module.id))
+                    # print(f"Section {section.id} already mapped to module {module.id}")
+    print(f"Document '{document.filename}': running {len(tasks)} tasks")
     await asyncio.gather(*tasks, return_exceptions=True)
+    print(f"{len(mapped_document_sections)} sections already mapped.")
+    print(f"{len(not_yet_mapped_document_sections)} sections still need to be mapped.\n")
 
     return store
 
@@ -107,7 +116,7 @@ async def create_mappings_store(
 
 async def load_or_create_mappings_for_docs(
         documents: Iterable[Document], curriculum: Curriculum, llm_model: str, mappings_store_file_path: str = "data/mappings.json",
-        MAX_CONCURRENT_LLM_CALLS : int = 20, MAX_RETRIES : int =3) -> RelevanceStore:
+        MAX_CONCURRENT_LLM_CALLS : int = 20, MAX_RETRIES : int =3, create_new_mappings : bool = False) -> RelevanceStore:
     """
     Loads existing mappings or creates new ones for a set of documents against a curriculum.
 
@@ -138,8 +147,7 @@ async def load_or_create_mappings_for_docs(
     sema = asyncio.Semaphore(MAX_CONCURRENT_LLM_CALLS)
     lock = asyncio.Lock()
     for doc in documents:
-        print(f"Create mappings for {doc.filename}")
-        store = await create_mappings_store(doc, curriculum, agent, mappings_store, sema, lock)
+        store = await create_mappings_store(doc, curriculum, agent, mappings_store, sema, lock, create_new_mappings)
     return store
 
 if __name__ == "__main__":

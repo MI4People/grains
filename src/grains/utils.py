@@ -144,6 +144,27 @@ def download_missing_files(s3, input_dir: Path, S3_BUCKET_NAME: str, S3_PREFIX: 
                 s3.download_file(S3_BUCKET_NAME, s3_key, local_file_path)
         print("S3 file check complete.")
 
+def load_documents_from_obj_dir(json_dir: Path) -> list[Document]:
+    """
+    Loads all JSON files from a directory and parses them into Document objects.
+
+    Args:
+        json_dir (Path): Path to the directory containing JSON files.
+
+    Returns:
+        List[Document]: List of validated Document objects.
+    """
+    documents = []
+    for json_file in json_dir.glob("*.json"):
+        try:
+            with open(json_file, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            doc = Document.model_validate(data)
+            documents.append(doc)
+        except Exception as e:
+            print(f"Failed to load {json_file.name}: {e}")
+    return documents
+
 if __name__ == "__main__":
     curriculum = load_curriculum()
     print(curriculum)
