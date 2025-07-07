@@ -1,5 +1,10 @@
+# keep sorted per folders, files
+**/__pycache__/
+.idea/
+.venv/
+dist/
+
+.DS_Store
 .env
 docs/.$architecture.drawio.bkp
-.DS_Store
 test.ipynb
-**/__pycache__/
