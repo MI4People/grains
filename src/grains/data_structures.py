@@ -8,6 +8,7 @@ from typing import (Any, Dict, Generator, Iterable, Iterator, List, NamedTuple,
 from uuid import UUID
 
 import tiktoken
+import yaml
 from openai import OpenAI
 from pydantic import BaseModel, Field, root_validator
 
@@ -41,7 +42,7 @@ class Topic(BaseModel):
     id: UUID = Field(default_factory=uuid.uuid4)
     name: str = Field(..., description="Name of the topic")
     description: str = Field(..., description="Description of the topic")
-    content: Optional[List[str]] = Field(default_factory=list, description="Content of the relevant sections")
+    content: Optional[str] = Field(default=None, description="Content of the relevant sections")
 
     def __str__(self) -> str:
         content_str = (
@@ -96,6 +97,35 @@ class Curriculum(BaseModel):
             if module.name == module_name:
                 return module
         raise KeyError(f"Module '{module_name}' not found in curriculum.")
+
+    def to_yaml(self, filepath=None) -> str:
+        def topic_dict(topic):
+            t = topic.model_dump()
+            # Convert content to block literal if multi-line
+            if t.get('content') and '\n' in t['content']:
+                # LiteralStr is a custom subclass of str for block style
+                class LiteralStr(str): pass
+                def literal_presenter(dumper, data):
+                    return dumper.represent_scalar('tag:yaml.org,2002:str', data, style='|')
+                yaml.add_representer(LiteralStr, literal_presenter)
+                t['content'] = LiteralStr(t['content'])
+            return t
+
+        out = {
+            "modules": [
+                {
+                    "id": str(m.id),
+                    "name": m.name,
+                    "topics": [topic_dict(t) for t in m.topics]
+                }
+                for m in self.modules
+            ]
+        }
+        yaml_str = yaml.dump(out, allow_unicode=True, sort_keys=False, default_flow_style=False)
+        if filepath:
+            with open(filepath, "w", encoding="utf-8") as f:
+                f.write(yaml_str)
+        return yaml_str
 
 
 class Section(BaseModel):

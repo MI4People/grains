@@ -172,12 +172,12 @@ def main(mappings_store_file_path: str = "data/mappings.json", dir : Path = Path
     """Main function to execute the entire process"""
     MODEL: str = "google/gemini-2.5-flash-preview-05-20"
     curriculum = load_curriculum()
-    test_module = curriculum.modules[1]
-    test_section = test_module.topics[3]
+    test_module = curriculum.modules[0]
+    test_section = test_module.topics[4]
     docs = load_documents_from_obj_dir(dir)
     store = RelevanceStore.create_store_from_json(mappings_store_file_path)
     print(store)
-    THRESHOLD = 0.8
+    THRESHOLD = 0.7
     print(f"Threshold {THRESHOLD}\n")
     to_be_aggregated = defaultdict(dict)
     for module in curriculum.modules:

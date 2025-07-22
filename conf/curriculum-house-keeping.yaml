@@ -43,7 +43,6 @@ modules:
       - id: cca19142-8a6c-4182-9b89-7f8f14c8d837
         name: Theory
         description: Hotel security service. Safety requirements in the workplace. Fire safety and evacuation instructions (invited guest).
-        content: 
       - id: 68e97fc0-fbe6-4638-ae46-659bbd890351
         name: Group discussion
         description: Guest impressions: What is it? Why are impressions created and how? Types of impressions and their consequences. What impressions does the HK attendant manage?
