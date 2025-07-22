@@ -64,9 +64,10 @@ def merge_categories(all_categories: Iterable[str]) -> str:
     Raises:
         openai.OpenAIError: If LLM API call fails
     """
+    categories_text = "\n\n".join(all_categories)
     prompt: str = f"""Create a comprehensive chapter structure that best organizes these hospitality categories:
 
-    {"\n\n".join(all_categories)}
+    {categories_text}
 
     Return final structure in markdown format with hierarchy. Follow these rules:
     1. Group similar concepts (e.g., merge "Hotel Operations" and "Resort Management")
