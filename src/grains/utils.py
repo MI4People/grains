@@ -2,13 +2,36 @@ import json
 import os
 from pathlib import Path
 
+import yaml
 # TODO: eventually remove
 from botocore.exceptions import (EndpointConnectionError, NoCredentialsError,
                                  PartialCredentialsError)
-from pydantic import BaseModel
+from pydantic import BaseModel, ValidationError
 
 from grains.data_structures import Curriculum, Document
 
+# def load_curriculum(filepath: str = "conf/curriculum-house-keeping.yaml") -> Curriculum:
+#     """
+#     Loads a curriculum from a YAML file and returns a Curriculum instance.
+
+#     Args:
+#         filepath (str): Path to the YAML file containing curriculum data.
+#                         Defaults to "conf/curriculum-house-keeping.yaml".
+
+#     Returns:
+#         Curriculum: A Curriculum object with validated modules and topics.
+
+#     Raises:
+#         ValidationError: If the YAML data does not conform to the Curriculum model.
+#         FileNotFoundError: If the file at the specified filepath does not exist.
+#     """
+#     try:
+#         with open(filepath, "r", encoding="utf-8") as f:
+#             data = yaml.safe_load(f)
+#     except FileNotFoundError as e:
+#         raise FileNotFoundError(f"Curriculum file not found: {filepath}") from e
+#     curriculum = Curriculum.model_validate(data)
+#     return curriculum
 
 def load_curriculum(filepath: str = "conf/curriculum-house-keeping.json") -> Curriculum:
     """
@@ -33,7 +56,6 @@ def load_curriculum(filepath: str = "conf/curriculum-house-keeping.json") -> Cur
     # Instantiate the Curriculum using Pydantic's parsing capabilities.
     curriculum = Curriculum.model_validate(data)
     return curriculum
-
 
 def try_loading_document_object(filepath: str | Path) -> Document | None:
     """
