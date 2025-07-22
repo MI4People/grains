@@ -10,30 +10,30 @@ from pydantic import BaseModel, ValidationError
 
 from grains.data_structures import Curriculum, Document
 
-# def load_curriculum(filepath: str = "conf/curriculum-house-keeping.yaml") -> Curriculum:
-#     """
-#     Loads a curriculum from a YAML file and returns a Curriculum instance.
+def load_curriculum(filepath: str = "conf/curriculum-house-keeping.yaml") -> Curriculum:
+    """
+    Loads a curriculum from a YAML file and returns a Curriculum instance.
 
-#     Args:
-#         filepath (str): Path to the YAML file containing curriculum data.
-#                         Defaults to "conf/curriculum-house-keeping.yaml".
+    Args:
+        filepath (str): Path to the YAML file containing curriculum data.
+                        Defaults to "conf/curriculum-house-keeping.yaml".
 
-#     Returns:
-#         Curriculum: A Curriculum object with validated modules and topics.
+    Returns:
+        Curriculum: A Curriculum object with validated modules and topics.
 
-#     Raises:
-#         ValidationError: If the YAML data does not conform to the Curriculum model.
-#         FileNotFoundError: If the file at the specified filepath does not exist.
-#     """
-#     try:
-#         with open(filepath, "r", encoding="utf-8") as f:
-#             data = yaml.safe_load(f)
-#     except FileNotFoundError as e:
-#         raise FileNotFoundError(f"Curriculum file not found: {filepath}") from e
-#     curriculum = Curriculum.model_validate(data)
-#     return curriculum
+    Raises:
+        ValidationError: If the YAML data does not conform to the Curriculum model.
+        FileNotFoundError: If the file at the specified filepath does not exist.
+    """
+    try:
+        with open(filepath, "r", encoding="utf-8") as f:
+            data = yaml.safe_load(f)
+    except FileNotFoundError as e:
+        raise FileNotFoundError(f"Curriculum file not found: {filepath}") from e
+    curriculum = Curriculum.model_validate(data)
+    return curriculum
 
-def load_curriculum(filepath: str = "conf/curriculum-house-keeping.json") -> Curriculum:
+# def load_curriculum(filepath: str = "conf/curriculum-house-keeping.json") -> Curriculum:
     """
     Loads a curriculum from a JSON file and returns a Curriculum instance.
 

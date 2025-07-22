@@ -33,11 +33,11 @@ def get_openai_client() -> OpenAI:
         Configured OpenAI client for API calls
         
     Raises:
-        ValueError: If OPENAI_API_KEY environment variable is not set
+        ValueError: If OPENROUTER_API_KEY environment variable is not set
     """
-    api_key = os.getenv('OPENAI_API_KEY')
+    api_key = os.getenv('OPENROUTER_API_KEY')
     if not api_key:
-        raise ValueError("OPENAI_API_KEY environment variable is required")
+        raise ValueError("OPENROUTER_API_KEY environment variable is required")
     
     return OpenAI(
         base_url='https://openrouter.ai/api/v1',
